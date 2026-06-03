@@ -4,10 +4,12 @@ Adult-only features for planning, tracking, and adapting Ezra's homeschool exper
 
 ## Curriculum Planner
 - Seven-section curriculum library.
+- Expanded subcategory taxonomy for all life domains.
 - Lesson-plan builder with age, energy, materials, duration, and setting.
 - Activity variants for visual, physical, verbal, choice-based, and sensory methods.
 - Teacher notes per activity.
 - Link activities to Student Edition missions.
+- Lesson coverage tracking by category, subcategory, variant type, and Student Edition publish status.
 
 ## Students
 - Students tab for adding and managing student profiles.
