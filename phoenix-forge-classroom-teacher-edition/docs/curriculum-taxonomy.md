@@ -13,6 +13,8 @@ The seven top-tier categories stay stable. Subcategories can grow over time. Eac
 - Store adult reasoning in Teacher Edition only.
 - Tag every lesson by category, subcategory, age/stage, energy level, materials, setting, supports, and evidence type.
 - Prefer observable metrics: what he did, how much help he needed, what changed, and what support worked.
+- Choose teaching methods from `teaching-methods-research.md`.
+- Use `subcategory-method-map.md` to select the first method set and starter lesson direction for each subcategory.
 
 ## 1. Cognitive & Academic Foundations
 

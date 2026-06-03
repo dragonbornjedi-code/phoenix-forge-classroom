@@ -27,6 +27,8 @@ Required fields:
 - Progress metric.
 - Independence scale target.
 - Supports offered.
+- Teaching methods used.
+- Research/source anchor.
 - Adaptations.
 - Extension.
 - Recovery option.
@@ -49,6 +51,12 @@ Every lesson should eventually have at least four variants:
 - Physical: movement, build, sort, carry, trace, act out.
 - Verbal/social: puppet, conversation, story, roleplay, explanation.
 - Low-demand: quiet, short, sensory-friendly, no-fail version.
+
+Every lesson should also identify:
+- Primary teaching method.
+- Secondary teaching method.
+- Support method for neurodivergent tendencies.
+- How the same skill will be practiced later through retrieval or spaced practice.
 
 When useful, add:
 - Outdoor version.
@@ -145,3 +153,17 @@ Minimum coverage target:
 - Values/Civic: 12 subcategories x 3 = 36 lessons.
 
 Initial full library target: 270 lessons.
+
+## Lesson Pack Strategy
+
+Build lesson packs in layers:
+- Pack 01: one high-value detailed lesson per top-tier category.
+- Pack 02-08: one complete top-tier category at a time.
+- Pack 09+: thematic playthrough expansions, field trips, games, and seasonal/monthly themes.
+
+Every lesson pack should include:
+- Teacher Edition lesson objects.
+- Student Edition mission translations.
+- Metrics and evidence.
+- Supports and adaptations.
+- Thematic playthrough placement.

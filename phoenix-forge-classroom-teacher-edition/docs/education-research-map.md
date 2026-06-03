@@ -54,6 +54,16 @@ Each lesson should include:
 - Which framework it supports.
 - Which subcategory it belongs to.
 - What observable skill it practices.
+- Which teaching methods it uses.
 - What supports can be used.
 - How to reduce or extend difficulty.
 - What evidence will be collected.
+
+## Current Method Priorities
+
+Use these method priorities while filling out the taxonomy:
+- Foundational reading: explicit phonological awareness, letter-sound mapping, decoding, word recognition, fluency, vocabulary, and language-rich reading.
+- Early math: developmental progressions, concrete materials, daily math talk, progress monitoring, patterns, measurement, geometry, and describing the world mathematically.
+- Early childhood learning: play-based practice, adult-guided exploration, oral language, movement, and hands-on materials.
+- Self-regulation/executive function: visual routines, self-monitoring, co-regulation, games that practice inhibition and shifting, and gradual independence.
+- Neurodivergent supports: UDL, visual supports, task analysis, prompting, reinforcement, social narratives, sensory regulation, and communication options.
