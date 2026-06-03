@@ -9,12 +9,28 @@ Adult-only features for planning, tracking, and adapting Ezra's homeschool exper
 - Teacher notes per activity.
 - Link activities to Student Edition missions.
 
+## Students
+- Students tab for adding and managing student profiles.
+- Profile fields for age/stage, interests, goals, sensory preferences, supports, safety notes, and linked Student Edition device.
+- Import from Student for scores, completion events, emotional check-ins, energy check-ins, time spent, hints used, retries, and blocked tasks.
+- Export to Student for assigned missions, lesson queues, game/activity queues, simple schedules, rewards, and visual prompts.
+- Sync status, sync history, conflict review, unlink device, and manual backup.
+
 ## Daily Dashboard
+- Today landing page with the full daily itinerary.
 - Morning System Initialization.
 - Energy, mood color, hunger, sleep, and transition notes.
 - Today's missions.
+- Lessons, activities, materials, meals, destinations, travel, chores, breaks, movement, rest, and maker/project blocks.
 - Recovery tools that worked.
 - One-sentence daily observation.
+
+## Lesson Plans
+- Daily Itinerary view for editing the current day plan.
+- Weekly Overview view with each day of the week, materials to gather, field trips, meal prep, and assessment checkpoints.
+- Monthly Overview view with monthly theme, core skills, books/media, major projects, destinations, holidays/events, and end-of-month review.
+- Categories view for browsing lesson plans by the seven Curriculum Of Life sections and custom categories.
+- Lesson plan fields for objective, vocabulary, materials, setup, steps, questions, assessment, adaptations, behavioral cues, recovery options, evidence, and Student Edition links.
 
 ## Progress Metrics
 - Track concrete observations, not labels.

@@ -13,6 +13,7 @@ Teacher/admin APK for homeschool planning and oversight.
 ## Planning Docs
 - `docs/curriculum-of-life.md`: seven-section homeschool framework.
 - `docs/system-initialization.md`: five-minute daily launch routine.
+- `docs/teacher-edition-product-spec.md`: tabs, student profiles, cross-app sync, daily itinerary, and lesson-plan views.
 - `docs/teacher-edition-feature-backlog.md`: adult-only app feature backlog.
 
 ## Android
