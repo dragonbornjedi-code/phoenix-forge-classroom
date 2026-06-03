@@ -8,6 +8,12 @@ Teacher/admin APK for homeschool planning and oversight.
 - Review student progress and completion history.
 - Manage homeschool records, schedules, and offline sync.
 - Use Phoenix/Sovereign Deck integration for lesson generation and automation.
+- Keep adult-only behavioral insight, curriculum planning, and adaptation notes.
+
+## Planning Docs
+- `docs/curriculum-of-life.md`: seven-section homeschool framework.
+- `docs/system-initialization.md`: five-minute daily launch routine.
+- `docs/teacher-edition-feature-backlog.md`: adult-only app feature backlog.
 
 ## Android
 Android app sources belong in `android/`.

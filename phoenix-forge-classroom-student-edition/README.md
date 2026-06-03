@@ -8,6 +8,10 @@ Student APK for lessons, learning games, assignments, and offline study.
 - Track progress locally for teacher review.
 - Work offline on the Galaxy S24 Ultra.
 - Sync with Teacher Edition through shared local contracts when available.
+- Show child-facing missions, games, rewards, and simple progress only.
+
+## Product Boundary
+- `docs/student-experience-boundary.md`: what belongs in Student Edition and what stays adult-only.
 
 ## Android
 Android app sources belong in `android/`.
