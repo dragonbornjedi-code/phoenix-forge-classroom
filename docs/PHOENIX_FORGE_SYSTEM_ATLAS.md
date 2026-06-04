@@ -63,17 +63,21 @@ Chronicle Artifact
 - State: PARTIAL
 
 ## Part 8: Repository Audit
-| Component | Status | Last Audit |
-|-----------|--------|------------|
-| Curriculum OS | IMPLEMENTED | 2026-06-03 |
-| Childhood Compass | PARTIAL | 2026-06-03 |
-| Intent Tiles | IMPLEMENTED | 2026-06-03 |
-| PCAS | PARTIAL | 2026-06-03 |
+| Subsystem | Owner Doc | Implementation Location | State | Last Verified | Known Gaps |
+|-----------|-----------|-------------------------|-------|---------------|------------|
+| Curriculum OS | contracts/CURRICULUM_OS_SCHEMA.md | phoenix-forge-classroom-teacher-edition/android/ | IMPLEMENTED | 2026-06-03 | None |
+| Student Sim Engine | IDENTITY_FORMATION_ENGINE.md | student-app/src/main/java/.../domain/engine/ | PARTIAL | 2026-06-03 | Missing simulation state persistence |
+| PCAS | PCAS_ARCHITECTURE.md | shared/schemas/PCAS_DB_SCHEMA.sql | PARTIAL | 2026-06-03 | Incomplete query engine |
+| Childhood Compass | CHILDHOOD_COMPASS.md | teacher-edition/android/ | PARTIAL | 2026-06-03 | Integration logic pending |
+| Repository Config | REPOSITORY_CONSTITUTION.md | docs/REPOSITORY_CONSTITUTION.md | DOCUMENTED| 2026-06-03 | None |
 
-## Part 9: Technical Debt
-- PCAS full integration with Chronicle Query Engine remains incomplete (State: PARTIAL).
-- Childhood Compass integration logic in Teacher Edition is in progress (State: PARTIAL).
+## Part 9: Technical Debt Register
+- **Architecture & Persistence:** PCAS full integration with Chronicle Query Engine (State: PARTIAL).
+- **Pedagogical Engine:** Childhood Compass integration logic in Teacher Edition (State: PARTIAL).
+- **Simulation:** Student Simulation engine PCAS implementation (State: PARTIAL).
 
 ## Part 10: Roadmap
-- Stabilize Student Simulation engine (PCAS implementation).
-- Complete migration of remaining Godot components (as per docs/GODOT_MIGRATION_STRATEGY.md).
+- Q3 2026: Complete PCAS Chronicle Query Engine integration.
+- Q3 2026: Stabilize Student Simulation engine.
+- Q4 2026: Finalize Childhood Compass integration in Teacher Edition.
+- Q4 2026: Complete migration of Godot components.
