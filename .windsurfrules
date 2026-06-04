@@ -1,0 +1,30 @@
+# Windsurf — Phoenix Forge Classroom
+
+Follow `docs/AI_AGENT_UNIVERSAL_RULES.md` (canonical). Summary:
+
+## Tier 0 + Cline Essence (read first)
+
+- `docs/CONSTITUTION.md`, `registry/phoenix-forge-classroom.yaml`
+- `docs/cline_essence/SKILL.md`, `docs/cline_essence/MASTER_PROTOCOL.md`, `docs/cline_essence/SKILL_STACK.md`
+
+## Master todo (only schedule)
+
+- **File:** `docs/roadmaps/00_MASTER_ROADMAP.md` — sole repo-wide path `0.01` → `5.00`
+- **Format:** decimals only (`3.24`, `3.25`) — no letter suffixes; forward-only insertion
+- **Sub-roadmaps 01–04:** file/doc indexes — not P0/P1/P1a task IDs
+- **New feature:** add master decimal row before coding
+- **Current step:** master header + registry `current_step`; mark `[VERIFIED]`/`[TESTED]` only with proof
+
+## Builds
+
+`phoenix-forge-classroom-forge-profile/forge-profile-app`, `student-app`, `teacher-app` — not `*/teacher-edition/android/` or `*/student-edition/android/`.
+
+## After edits
+
+`./scripts/cline-essence-drift-check.sh`
+
+## Workflow (Cline Essence)
+
+Objective → ≥3 systemic risks → guardrails → verifiable implement → forensic summary (cite master step).
+
+Do not create competing timelines, phantom docs, or rename products.

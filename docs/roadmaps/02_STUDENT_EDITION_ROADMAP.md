@@ -1,107 +1,69 @@
-# Phoenix Forge Classroom Student Edition — Roadmap (four paths)
+# Student Edition — Index (master steps only)
 
-**Product name:** Phoenix Forge Classroom Student Edition  
-**Not:** Digital House (deprecated label; internal `DigitalHouse*` classes may remain until refactor)  
-**Code module:** `:student-app` (Gradle)  
-**Docs folder:** `phoenix-forge-classroom-student-edition/docs/`  
-**Package:** `com.phoenixforge.student`
+**Schedule:** [00_MASTER_ROADMAP.md](00_MASTER_ROADMAP.md) — do not use P0/P1 labels for work tracking.
 
-**Census:** [REPOSITORY_CENSUS_AND_CONNECTIONS.md](../REPOSITORY_CENSUS_AND_CONNECTIONS.md) — Layer 6
+**Code:** `:student-app` · `com.phoenixforge.student`  
+**UX docs:** `phoenix-forge-classroom-student-edition/docs/` (not `student-edition/android/`)
 
 ---
 
-## Four paths
+## Step map
 
-| Path | Goal | Exit criteria |
-|------|------|---------------|
-| **P0 Stabilize** | Runnable child app on parent phone for QA | Launches, bottom nav, quests run, Room persists |
-| **P1 Core** | Ezra could use for 15 min without parent | Home, quests, gallery/vault, Spark NPC stable |
-| **P2 Integrate** | Teacher tiles become quests; events hit Profile | One quest from external tile |
-| **P3 Vision** | Hearthhome + lenses + companion | Match HEARTHHOME / SPARK / IDENTITY_LENSES UX |
-
----
-
-## P0 Stabilize
-
-| Task | Code | Doc |
-|------|------|-----|
-| Launcher name correct | `student-app/.../strings.xml` | Done 2026-06-04 |
-| Install on phone | DEPLOYMENT_REALITY | User verify |
-| Cold start + bootstrap | `StudentWorldBootstrap.kt` | Built |
-| Import Forge Profile | `ForgeProfileImporter.kt` | Test on device |
-| No Digital House in UI strings | Home, Settings, Quests | Done 2026-06-04 |
-
-**Attached docs (read, don’t block P0)**
-
-| Document | Doc % | Code % | Action |
-|----------|-------|--------|--------|
-| [EXPERIENCE_SHELL_SPEC.md](../../phoenix-forge-classroom-student-edition/docs/EXPERIENCE_SHELL_SPEC.md) | 85% | 30% | **Evolve** after P1 |
-| [superpowers/plans/2026-06-02-student-edition-mvp.md](../superpowers/plans/2026-06-02-student-edition-mvp.md) | 40% | — | **STALE** — wrong android path |
+| Master steps | Work |
+|--------------|------|
+| 0.13–0.14 | Launcher name, no “Digital House” UI |
+| 0.30–0.32 | Cold start, bootstrap, home |
+| 0.37 | Import Forge Profile |
+| 0.42–0.48 | Quests, gallery, vault, settings, story, NPC |
+| 0.68–0.73 | P1 usability + orchestrator + polish |
+| 1.03 | Receive quest payload |
+| 1.52–1.53 | Loop 50% quest flow |
+| 2.01–2.02 | Full loop participant |
+| 2.54 | Full avatar import |
+| 3.01–3.06 | Hearthhome, Spark, lenses, cleanup |
+| 4.02 | TILE_EVENT_MAPPING emitter |
 
 ---
 
-## P1 Core
+## Files by step
 
-| Feature | Code | Attached doc |
-|---------|------|--------------|
-| WorldOrchestrator loop | `WorldOrchestrator.kt` | CURRICULUM_RUNTIME_FLOW |
-| Quests UI | `QuestEngine.kt`, `QuestsScreen.kt` | QUEST_ENGINE_DESIGN |
-| Story / drift / NPC | simulation package | PCAS_ARCHITECTURE |
-| Gallery + vault | `StudentGallery`, `MemoryVault` | EXPERIENCE_SHELL_SPEC |
-| Settings + offline copy | `SettingsScreen.kt` | OFFLINE_DATA_AND_SYNC_DESIGN |
-
-**Needs dev**
-
-- Quest copy and balance (not curriculum-driven yet)  
-- Crash fixes from phone QA  
-
-**Needs plan**
-
-- Rename internal `DigitalHouse` → `StudentHome` (optional cleanup, P1 tail)
+| Step | Primary files |
+|------|----------------|
+| 0.31 | `StudentWorldBootstrap.kt` |
+| 0.37 | `ForgeProfileImporter.kt`, `ImportForgeProfileScreen.kt` |
+| 0.42 | `QuestEngine.kt`, `QuestsScreen.kt` |
+| 0.70 | `WorldOrchestrator.kt` (protect) |
+| 0.71 | `StudentGallery.kt`, `MemoryVault.kt` |
+| 1.03 | quest ingest route + VM |
+| 1.52–1.53 | `LifeEventCollector.kt`, completion path |
+| 3.01 | `HomeScreen.kt` → Hearthhome hub |
 
 ---
 
-## P2 Integrate
-
-| Task | Attached doc |
-|------|--------------|
-| Receive IntentTile / quest payload | INTENT_TILE_CONTRACT, sync-contract |
-| Emit MemoryEvent on complete | MEMORY_EVENT_CONTRACT, TILE_EVENT_MAPPING |
-| Stop using only local `LifeEvent` | CURRICULUM_RUNTIME_FLOW |
-
-**Cross-track:** [04_CROSS_APP_INTEGRATION_ROADMAP.md](04_CROSS_APP_INTEGRATION_ROADMAP.md)
-
----
-
-## P3 Vision
-
-| Feature | Attached doc | Code today |
-|---------|--------------|------------|
-| Hearthhome hub (world as menu) | HEARTHHOME_MUSEUM_UX | Home screen only |
-| Spark companion loop | SPARK_COMPANION_UX | NPC lines only |
-| Identity lenses / Wisps | IDENTITY_LENSES_UX | None |
-| Godot shell handoff | GODOT_MIGRATION_STRATEGY | External repo |
-
----
-
-## Simulation spine (already built — protect in P0)
+## Simulation spine (protect from step 0.70)
 
 ```text
 LifeEventCollector → WorldOrchestrator → StoryEngine / NPCEngine / Drift / BehaviorSignalTracker → Room
 ```
 
-**Do not rip this out** for UX rework; wrap it with Hearthhome in P3.
+---
+
+## Docs
+
+| Doc | Steps |
+|-----|-------|
+| [EXPERIENCE_SHELL_SPEC.md](../../phoenix-forge-classroom-student-edition/docs/EXPERIENCE_SHELL_SPEC.md) | 0.68, 3.01–3.03 |
+| [HEARTHHOME_MUSEUM_UX.md](../../phoenix-forge-classroom-student-edition/docs/HEARTHHOME_MUSEUM_UX.md) | 3.01 |
+| [SPARK_COMPANION_UX.md](../../phoenix-forge-classroom-student-edition/docs/SPARK_COMPANION_UX.md) | 3.02 |
+| [CURRICULUM_RUNTIME_FLOW.md](../contracts/CURRICULUM_RUNTIME_FLOW.md) | 1.52+, 2.01+ |
 
 ---
 
-## Orphan folder warning
+## Legacy path names
 
-`phoenix-forge-classroom-student-edition/android/` is **empty**. All Kotlin is in `phoenix-forge-classroom-forge-profile/student-app/`. Docs in student-edition folder remain **authority for UX** until merged into implementation.
-
----
-
-## Dependencies
-
-- **Uses:** Forge Profile ContentProvider (P0 import)  
-- **Blocked by Teacher P2:** for real missions  
-- **Feeds:** Profile MemoryEvents (Cross-app P2)
+| Old label | Master steps |
+|-----------|--------------|
+| P0 | 0.30–0.37, 0.42–0.48 |
+| P1 | 0.68–0.73 |
+| P2 | 1.03, 1.52–1.53, 2.01–2.02 |
+| P3 | 3.01–3.06 |

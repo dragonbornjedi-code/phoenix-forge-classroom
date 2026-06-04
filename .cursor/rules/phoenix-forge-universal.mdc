@@ -1,0 +1,42 @@
+---
+description: Phoenix Forge — master decimal ledger, Cline Essence, Tier 0 (all agents)
+alwaysApply: true
+---
+
+# Phoenix Forge Classroom — mandatory agent rules
+
+**Full canonical text:** `docs/AI_AGENT_UNIVERSAL_RULES.md`
+
+## Read before any write
+
+1. `docs/cline_essence/SKILL.md` (cline-essence v1.1.0)
+2. `docs/cline_essence/MASTER_PROTOCOL.md`
+3. `docs/CONSTITUTION.md` + `registry/phoenix-forge-classroom.yaml` (Tier 0)
+4. `docs/roadmaps/00_MASTER_ROADMAP.md` — **Current step** line
+
+## Single schedule (non-negotiable)
+
+- **Only** `docs/roadmaps/00_MASTER_ROADMAP.md` owns work (`0.01` … `5.00`).
+- Step IDs: `X.XX` only — never `0.00-A` or letter suffixes.
+- **Forward-only:** at step `3.24`, new work is `3.25+`; never renumber backward.
+- **New work:** add a decimal row in master **first**, then implement.
+- `docs/roadmaps/01`–`04` = indexes only — do **not** schedule by P0/P1/P1a.
+
+## Build & products
+
+- APKs: `phoenix-forge-classroom-forge-profile/{forge-profile-app,student-app,teacher-app}` only.
+- Never build `teacher-edition/android/` or `student-edition/android/`.
+- Product names fixed (Forge Profile, Student Edition, Teacher Edition).
+
+## Completion
+
+- No “done” without proof → mark `[VERIFIED]` / `[TESTED]` on the master row.
+- Sync `Current step:` + registry `current_step` after verified steps.
+- After doc/path edits: `./scripts/cline-essence-drift-check.sh`
+- Cline Essence workflow: objective → ≥3 risks → guardrails → implement → forensic summary (cite master step in Mission).
+
+## Forbidden
+
+- Competing roadmaps or new global timelines
+- Phantom doc filenames; parallel audit/north-star files
+- Renaming the three products; P3 depth while P0 for that app still fails

@@ -1,135 +1,76 @@
-# Cross-App Integration — Roadmap (four paths)
+# Cross-App Integration — Index (master steps only)
 
-**This is the spine.** Three apps are surfaces; integration is the product.
+**Schedule:** [00_MASTER_ROADMAP.md](00_MASTER_ROADMAP.md) — spine steps only here.
 
-**Census:** [REPOSITORY_CENSUS_AND_CONNECTIONS.md](../REPOSITORY_CENSUS_AND_CONNECTIONS.md) — contracts + shared  
 **Flow authority:** [CURRICULUM_RUNTIME_FLOW.md](../contracts/CURRICULUM_RUNTIME_FLOW.md)
 
 ---
 
-## Four paths
+## Step map
 
-| Path | Goal | Exit criteria |
-|------|------|---------------|
-| **P0 Stabilize** | Prove existing bridge | Profile provider + Student import on one device |
-| **P1 Contracts** | Shared Kotlin truth types | IntentTile, MemoryEvent, QuestPayload compile in monorepo |
-| **P2 One loop** | Curriculum Execution Spine live | Secret Label Decoder (or simpler tile) end-to-end |
-| **P3 Platform** | Sync, compass recompute, automation | sync-contract implemented; optional Sovereign |
-
----
-
-## P0 Stabilize (existing wire)
-
-| Link | How | Doc | Status |
-|------|-----|-----|--------|
-| Profile → Student read | ContentProvider | FORGEPROFILE_SPEC | **Built** |
-| Student import UI | `ForgeProfileImporter.kt` | DEPLOYMENT_REALITY | **Test on phone** |
-
-**Not built:** Teacher ↔ anyone.
+| Master steps | Work |
+|--------------|------|
+| 0.17–0.18 | reference-tile YAML + sync-contract present |
+| 0.38–0.40 | Provider smoke + deployment matrix |
+| 0.76–0.85 | Shared Kotlin types + YAML load + transport doc |
+| 1.01–1.06 | Integration scaffold |
+| 1.51–1.55 | Loop 50% |
+| 2.01–2.07 | **Loop proven** (irreversible) |
+| 4.01–4.06 | CMOS bridge |
+| 4.53 | sync-contract implementation |
+| 4.55 | PCAS DB decision |
 
 ---
 
-## P1 Contracts
-
-| Deliverable | Attached doc | Owner modules |
-|-------------|--------------|---------------|
-| `IntentTile` Kotlin ↔ YAML | INTENT_TILE_CONTRACT, reference-tiles | teacher-app + shared |
-| `MemoryEvent` Kotlin | MEMORY_EVENT_CONTRACT | forge-profile-core |
-| `QuestPayload` / mapping | TILE_EVENT_MAPPING, CURRICULUM_RUNTIME_FLOW | student-app |
-| YAML loader for reference tile | secret-label-decoder.yaml | teacher-app |
-| Document transport choice | OFFLINE_DATA_AND_SYNC_DESIGN, sync-contract | **Decision:** file export vs provider vs both |
-
-**Needs update**
-
-- [shared/README.md](../../shared/README.md) — point to real module path  
-- Root [README.md](../../README.md) — remove false AIDL claims until implemented
-
-**Needs evolve**
-
-- [CURRICULUM_OS_SCHEMA.md](../contracts/CURRICULUM_OS_SCHEMA.md) — trim to what P2 loop uses (YAGNI)
-
----
-
-## P2 One loop (Curriculum Execution Spine)
-
-Minimum loop (master MVP):
+## Loop spine (master steps 2.01–2.05)
 
 ```text
-Teacher: IntentTile "Observation walk"
-    → export / handoff
-Student: Quest "Find 3 patterns"
-    → complete
-Forge Profile: MemoryEvent recorded
-    → timeline visible
-Teacher: Compass signal "Nature +1" (minimal UI)
+2.01 Teacher tile → handoff
+2.02 Student quest + complete → MemoryEvent shape
+2.03 Profile timeline
+2.04 Teacher compass signal
+2.05 reference-tiles 10-step checklist
 ```
 
-| Step | Attached doc | Implementation target |
-|------|--------------|----------------------|
-| 1 | INTENT_TILE_CONTRACT | teacher-app Room |
-| 2 | sync-contract § handoff | file or provider |
-| 3 | CURRICULUM_RUNTIME_FLOW § Student | QuestEngine ingest |
-| 4 | MEMORY_EVENT_CONTRACT | ProfileRepository |
-| 5 | CHILDHOOD_COMPASS_ENGINE | Teacher compass stub |
+---
 
-**Proof checklist:** [reference-tiles/README.md](../contracts/reference-tiles/README.md)
+## Contracts by step
+
+| Step | Contract / artifact |
+|------|---------------------|
+| 0.76–0.78 | INTENT_TILE, MEMORY_EVENT, QuestPayload |
+| 0.79 | [secret-label-decoder.yaml](../contracts/reference-tiles/secret-label-decoder.yaml) |
+| 0.81 | [sync-contract.md](../../shared/sync-contract.md), OFFLINE_DATA |
+| 2.05 | [reference-tiles/README.md](../contracts/reference-tiles/README.md) |
+| 4.02 | [TILE_EVENT_MAPPING.md](../contracts/TILE_EVENT_MAPPING.md) |
 
 ---
 
-## P3 Platform
+## Connection matrix (target at 5.00)
 
-| Feature | Attached doc |
-|---------|--------------|
-| Full sync-contract | shared/sync-contract.md |
-| PCAS runtime DB | PCAS_DB_SCHEMA.sql |
-| TILE → event automation | TILE_EVENT_MAPPING.md |
-| Narrative wrapper generation | QUEST_ENGINE_DESIGN.md |
-| Event capture from real world | EVENT_CAPTURE_PROTOCOL.md |
-
----
-
-## Connection matrix (target state)
-
-| From → To | P0 | P1 | P2 | P3 |
-|-----------|----|----|----|-----|
-| Teacher → Student | — | types | send tile | auto sync |
-| Student → Profile | import | types | MemoryEvent | promote chronicle |
-| Profile → Teacher | — | read API | compass input | full viewer |
-| Student → Teacher | — | — | completion signal | compass recompute |
+| Link | Master steps when done |
+|------|------------------------|
+| Teacher → Student | 1.02, 2.01 |
+| Student → Profile | 0.37, 2.02–2.03 |
+| Profile → Teacher | 0.38, 2.04, 2.55 |
+| Student → Teacher | 2.04 |
 
 ---
 
-## What NOT to build in this repo
+## Out of repo (hooks only at 5.00)
 
-| Item | Where |
+| Item | Notes |
 |------|-------|
-| Sovereign Deck mesh | Other repo |
-| Godot shell | Other repo |
-| Phoenix lesson generator | Other repo / tool |
-
-Hooks only: narrative AI, optional profile read.
+| Sovereign Deck | Optional narrative |
+| Godot shell | Import contracts at 2.51 |
 
 ---
 
-## Parallel work rules
+## Legacy path names
 
-1. **P0** on all three apps can run same day (install + smoke test).  
-2. **P1 contracts** before Teacher “send to Student” button does anything real.  
-3. **P2 loop** before Hearthhome visual overhaul.  
-4. Update [AUTHORITY_AND_REALITY_MAPPING.md](../AUTHORITY_AND_REALITY_MAPPING.md) when a link moves from “Not built” to “Built”.
-
----
-
-## Document attachment list (integration-owned)
-
-| File | P1 | P2 | P3 |
-|------|----|----|-----|
-| CURRICULUM_OS_SCHEMA.md | read | partial impl | full |
-| CURRICULUM_RUNTIME_FLOW.md | read | **authority** | maintain |
-| INTENT_TILE_CONTRACT.md | **implement** | use | extend |
-| MEMORY_EVENT_CONTRACT.md | **implement** | use | extend |
-| TILE_EVENT_MAPPING.md | read | **implement** | automate |
-| sync-contract.md | **decide** | implement | harden |
-| secret-label-decoder.yaml | load | **prove** | more tiles |
-| OFFLINE_DATA_AND_SYNC_DESIGN.md | align | implement | — |
-| STUDENT_TEACHER_BOUNDARY.md | enforce | enforce | audit |
+| Old label | Master steps |
+|-----------|--------------|
+| P0 bridge | 0.38–0.40 |
+| P1 contracts | 0.76–0.85 |
+| P2 one loop | 2.01–2.07 |
+| P3 platform | 4.01–4.06, 4.53 |

@@ -31,7 +31,16 @@ tier0_docs:
   - registry/phoenix-forge-classroom.yaml
 
 master_timeline: docs/roadmaps/00_MASTER_ROADMAP.md
-current_step: "0.04"
+current_step: "0.06"
+
+agent_rules:
+  canonical: docs/AI_AGENT_UNIVERSAL_RULES.md
+  agents_md: AGENTS.md
+  cursor: .cursor/rules/phoenix-forge-universal.mdc
+  windsurf: .windsurfrules
+  gemini: GEMINI.md
+  copilot: .github/copilot-instructions.md
+  cline: .clinerules
 
 cline_essence:
   version: "1.1.0"

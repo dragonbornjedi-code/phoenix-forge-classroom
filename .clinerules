@@ -1,0 +1,45 @@
+# Cline — Phoenix Forge Classroom
+
+**Canonical:** `docs/AI_AGENT_UNIVERSAL_RULES.md`
+
+Activate **cline-essence** v1.1.0 from `docs/cline_essence/SKILL.md` on every task.
+
+## Read-first (mandatory)
+
+1. `docs/cline_essence/SKILL.md`
+2. `docs/cline_essence/MASTER_PROTOCOL.md`
+3. `docs/CONSTITUTION.md` + `registry/phoenix-forge-classroom.yaml`
+4. `docs/roadmaps/00_MASTER_ROADMAP.md` — line `Current step: X.XX`
+5. `docs/cline_essence/SKILL_STACK.md` when domain-specific (Android, offline, agents)
+
+## Master timeline (only schedule)
+
+| Rule | Action |
+|------|--------|
+| Single ledger | `docs/roadmaps/00_MASTER_ROADMAP.md` |
+| Step IDs | `0.01`–`5.00` decimals only — never `0.00-A` |
+| Forward insert | At `N.MM`, new work is `N.(MM+1)+` or reserved gap — never lower decimals |
+| New work | Add row to master → drift check → implement → verify |
+| Sub-roadmaps | `01`–`04` = file hints; **no** P0/P1/P1a–P1f as parallel IDs |
+| Complete | `[VERIFIED]`/`[TESTED]` + bump `Current step:` + registry `current_step` |
+
+## Phoenix bindings (MASTER_PROTOCOL)
+
+- Three APKs under `phoenix-forge-classroom-forge-profile/` — forbidden legacy `*/android/` app builds
+- Products: Forge Profile, Student Edition, Teacher Edition (never rename)
+- Center: Ezra / Forge Profile / Avatar Studio
+- Order: all P0 device → P1 → contracts → loop @ 2.00 → depth → 5.00
+
+## Output contract (substantial tasks)
+
+Mission (cite master step) · Threat model (≥3 risks) · Plan · Tradeoff scorecard · Residual risks · Verification tags
+
+## Drift guard
+
+```bash
+./scripts/cline-essence-drift-check.sh
+```
+
+Run after documentation or repository path changes. Do not claim task completion without Verification Contract in SKILL.md.
+
+**Do not:** skip master step, create competing roadmaps, reference phantom docs, build on forbidden paths.

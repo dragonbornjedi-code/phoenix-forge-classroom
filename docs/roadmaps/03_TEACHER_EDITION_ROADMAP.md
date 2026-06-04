@@ -1,166 +1,65 @@
-# Phoenix Forge Classroom Teacher Edition — Roadmap (four paths)
+# Teacher Edition — Index (master steps only)
 
-**Product name:** Phoenix Forge Classroom Teacher Edition  
-**Code module:** `:teacher-app`  
-**Docs folder:** `phoenix-forge-classroom-teacher-edition/docs/`  
-**Package:** `com.phoenixforge.classroom.teacher`
+**Schedule:** [00_MASTER_ROADMAP.md](00_MASTER_ROADMAP.md) — do not use P0/P1/P1a–P1f labels for work tracking.
 
-**Your landing page vision:** Daily **Expedition Board** (magnetic/chalkboard tiles), drag-reorder, double-tap full detail, plus 7-day overview, monthly theme, search — fed by curriculum + Student/Profile signals.
-
-**Census:** [REPOSITORY_CENSUS_AND_CONNECTIONS.md](../REPOSITORY_CENSUS_AND_CONNECTIONS.md) — Layer 5
+**Code:** `:teacher-app` · `com.phoenixforge.classroom.teacher`  
+**UX docs:** `phoenix-forge-classroom-teacher-edition/docs/`
 
 ---
 
-## Four paths
+## Step map
 
-| Path | Goal | Exit criteria |
-|------|------|---------------|
-| **P0 Stabilize** | Real APK on parent phone | Launches, sample board, no crash |
-| **P1 Core** | **Today’s expedition board** usable | Create tiles, reorder, open detail sheet, persist locally |
-| **P2 Integrate** | Send tile → Student quest; see completion | One tile round-trip |
-| **P3 Vision** | Morning generator, 7-day/month, search, narrative wrapper, Sovereign AI hook | Per product-spec + PLAN_GENERATION_RULES |
-
----
-
-## P0 Stabilize
-
-| Task | Status |
-|------|--------|
-| `teacher-app` module in monorepo | Done |
-| Launcher label Phoenix Forge Classroom Teacher Edition | Done 2026-06-04 |
-| Install on parent phone | User verify |
-| Expedition Board + Room + tile detail | **Done** 2026-06-04 |
-| Drag reorder (P1c) | **Next** |
-
-**Attached docs**
-
-| Document | Doc % | Action |
-|----------|-------|--------|
-| [EXPEDITION_BOARD_UX.md](../../phoenix-forge-classroom-teacher-edition/docs/EXPEDITION_BOARD_UX.md) | 90% | **Implement** P1 |
-| [teacher-edition-product-spec.md](../../phoenix-forge-classroom-teacher-edition/docs/teacher-edition-product-spec.md) | 85% | **Implement** tabs P3 |
-| [teacher-edition-feature-backlog.md](../../phoenix-forge-classroom-teacher-edition/docs/teacher-edition-feature-backlog.md) | 80% | **Prioritize** from P1 |
-
-**Do not use yet:** empty `teacher-edition/android/` — build `:teacher-app` only.
+| Master steps | Work |
+|--------------|------|
+| 0.15 | Launcher label |
+| 0.33–0.36 | Board, create tile, field guide, complete persist (**done on device — verify at 0.36**) |
+| 0.41 | ForgeProfileViewerScreen |
+| 0.51–0.55 | Board polish, drag reorder, steward L3, start-day export |
+| 0.79 | YAML reference tile load |
+| 1.02 | Send tile stub |
+| 1.51 | Send Observation tile |
+| 2.04 | Compass signal stub |
+| 2.55 | Profile viewer complete |
+| 3.51–3.58 | 7-day, month, search, narrative, compass, curriculum tags |
+| 4.05 | Chronicle approval UI |
 
 ---
 
-## P1 Core — build decomposition
+## Files by step
 
-### P1a Expedition Board surface
-
-| Step | Files | Status |
-|------|-------|--------|
-| Board screen + grid | `ui/expedition/ExpeditionBoardScreen.kt` | **Done** |
-| Tile component + FAB | same | **Done** |
-| Room + seed tiles | `TileRepository.ensureSeedData()` | **Done** |
-| Scroll + empty state | same | **Done** |
-
-**Exit:** Board opens, tiles visible, no crash on cold start.
-
----
-
-### P1b Tile interaction (field guide)
-
-| Step | Files | Status |
-|------|-------|--------|
-| Tap tile → detail route | `TeacherNavGraph.kt` | **Done** |
-| Materials / coaching / evidence fields | `TileDetailScreen.kt` | **Done** |
-| Save details | `TileDetailViewModel.kt` | **Done** |
-| Mark completed | `TileRepository.markComplete` | **Done** |
-
-**Exit:** Every tile opens a field guide; complete + reopen app → status persists.
-
-**Doc:** [EXPEDITION_BOARD_UX.md](../../phoenix-forge-classroom-teacher-edition/docs/EXPEDITION_BOARD_UX.md)
+| Step | Primary files |
+|------|----------------|
+| 0.33–0.34 | `ExpeditionBoardScreen.kt`, `TileRepository.kt` |
+| 0.35–0.36 | `TileDetailScreen.kt`, `TileDetailViewModel.kt` |
+| 0.52–0.53 | `ExpeditionBoardScreen.kt` drag + `sortOrder` |
+| 0.54 | `TileDetailScreen.kt` L3 fields |
+| 0.41, 2.55 | `ForgeProfileViewerScreen.kt` |
+| 0.79 | YAML loader (new) |
+| 1.02 | handoff from `TileRepository` |
 
 ---
 
-### P1c Tile reordering
+## Docs
 
-| Step | Status |
-|------|--------|
-| `sortOrder` on `IntentTile` | **Done** (schema) |
-| Drag / drop UI | **Not started** |
-| Persist order on drop | **Not started** |
-
-**Exit:** Close app → reopen → tile order preserved.
-
----
-
-### P1d Steward completion (levels)
-
-| Level | Status |
-|-------|--------|
-| L1 Complete + timestamp + lock | **Partial** (`markComplete`) |
-| L2 Quick note | **Done** (`evidenceNotes`) |
-| L3 Mental/emotional/physical/educational/behavioral | **Planned** (P1d-next) |
-
-**Exit:** Completed tiles queryable; chronicle promotion = Cross-app P2.
+| Doc | Steps |
+|-----|-------|
+| [EXPEDITION_BOARD_UX.md](../../phoenix-forge-classroom-teacher-edition/docs/EXPEDITION_BOARD_UX.md) | 0.33–0.36, 0.51–0.55 |
+| [teacher-edition-product-spec.md](../../phoenix-forge-classroom-teacher-edition/docs/teacher-edition-product-spec.md) | 3.51–3.53 |
+| [CHILDHOOD_COMPASS_ENGINE.md](../../phoenix-forge-classroom-teacher-edition/docs/CHILDHOOD_COMPASS_ENGINE.md) | 2.04, 3.55 |
+| [curriculum-of-life.md](../../phoenix-forge-classroom-teacher-edition/docs/curriculum-of-life.md) | 3.56 (human canon) |
 
 ---
 
-### P1e–P1f (remaining P1)
+## Legacy path names
 
-| Feature | Attached doc | Priority |
-|---------|--------------|----------|
-| Create tile sheet | EXPEDITION_BOARD_UX | **Done** |
-| Tile states enum | INTENT_TILE_CONTRACT | **Done** |
-| “Start day” export list | system-initialization | P1f |
-| Send to Student Edition | 04_CROSS_APP | P2 |
+| Old label | Master steps |
+|-----------|--------------|
+| P0 | 0.33–0.36 |
+| P1a board | 0.33–0.34 (done) |
+| P1b field guide | 0.35–0.36 (done) |
+| P1c drag | 0.52–0.53 |
+| P1d steward | 0.54 |
+| P2 | 0.79, 1.02, 1.51, 2.01+ |
+| P3 | 3.51–3.58 |
 
-**Content sources (doc-only today → import later)**
-
-| Document | Doc % | Use |
-|----------|-------|-----|
-| [curriculum-of-life.md](../../phoenix-forge-classroom-teacher-edition/docs/curriculum-of-life.md) | 95% | Human authority |
-| [starter-lessons-pack-01.md](../../phoenix-forge-classroom-teacher-edition/docs/starter-lessons-pack-01.md) | 90% | Seed tiles |
-| [curriculum-taxonomy.md](../../phoenix-forge-classroom-teacher-edition/docs/curriculum-taxonomy.md) | 90% | Tags/domains |
-
-**100% planned, 0% UI**
-
-| Document | When |
-|----------|------|
-| [PLAN_GENERATION_RULES.md](../../phoenix-forge-classroom-teacher-edition/docs/PLAN_GENERATION_RULES.md) | P3 — morning stack |
-| [CHILDHOOD_COMPASS_ENGINE.md](../../phoenix-forge-classroom-teacher-edition/docs/CHILDHOOD_COMPASS_ENGINE.md) | P2–P3 — sunlight |
-| [thematic-playthroughs.md](../../phoenix-forge-classroom-teacher-edition/docs/thematic-playthroughs.md) | P3 |
-
----
-
-## P2 Integrate
-
-| Task | Attached doc |
-|------|--------------|
-| Load reference tile YAML | secret-label-decoder.yaml |
-| Send tile to Student | sync-contract, INTENT_TILE |
-| Read Profile / Student signals for compass bias | CHILDHOOD_COMPASS, CURRICULUM_OS_SCHEMA |
-| Evidence notes on complete | TILE_EVENT_MAPPING |
-
----
-
-## P3 Vision
-
-| Feature | Attached doc |
-|---------|--------------|
-| 7-day overview | teacher-edition-product-spec |
-| Monthly thematic overview | thematic-playthroughs |
-| Search / tags | curriculum-taxonomy |
-| Narrative wrapper (day story) | QUEST_ENGINE_DESIGN — **core UX, not optional** |
-| Sovereign Deck AI story generation | External repo hook |
-| Forge Profile viewer tab | product-spec |
-
----
-
-## Claude Downloads merge plan (helpful parts only)
-
-| Keep | Skip |
-|------|------|
-| IntentTile.kt, ExpeditionBoard*, Room, Repository | Separate Gradle project |
-| Hilt setup | Package `com.phoenixforge.teacher` — use `classroom.teacher` |
-| | Newer AGP 8.7 until monorepo upgrades |
-
----
-
-## Dependencies
-
-- **Needs:** Shared IntentTile types (Cross-app P1) before send-to-student  
-- **Feeds:** Student quests, Profile memory, Compass  
-- **Does not replace:** curriculum-of-life prose — app is a **view** over that truth
+**Build:** `phoenix-forge-classroom-forge-profile/teacher-app` only — not `teacher-edition/android/`.

@@ -1,6 +1,8 @@
 # Phoenix Forge Classroom Development Rules
 
-Before making any changes, read [cline_essence/SKILL.md](cline_essence/SKILL.md) + [cline_essence/MASTER_PROTOCOL.md](cline_essence/MASTER_PROTOCOL.md); use [cline_essence/SKILL_STACK.md](cline_essence/SKILL_STACK.md) for domain skills. Check **Current step** in [roadmaps/00_MASTER_ROADMAP.md](roadmaps/00_MASTER_ROADMAP.md). Run `./scripts/cline-essence-drift-check.sh` after path/doc edits.
+Before making any changes, read [AI_AGENT_UNIVERSAL_RULES.md](AI_AGENT_UNIVERSAL_RULES.md) (all AI tools), [cline_essence/SKILL.md](cline_essence/SKILL.md) + [cline_essence/MASTER_PROTOCOL.md](cline_essence/MASTER_PROTOCOL.md); use [cline_essence/SKILL_STACK.md](cline_essence/SKILL_STACK.md) for domain skills. Check **Current step** in [roadmaps/00_MASTER_ROADMAP.md](roadmaps/00_MASTER_ROADMAP.md) (`0.01`, `0.02`, … — never `0.00-A` style). Run `./scripts/cline-essence-drift-check.sh` after path/doc edits.
+
+**AI entry points:** `AGENTS.md`, `.cursor/rules/`, `.windsurfrules`, `GEMINI.md`, `.github/copilot-instructions.md`, `.clinerules`.
 
 ## Authoritative planning
 
@@ -34,14 +36,16 @@ Develop the existing system; do not redesign it.
 
 ## Roadmap discipline
 
-| Path | Meaning |
-|------|---------|
-| P0 | Stabilize |
-| P1 | Standalone usefulness |
-| P2 | Integration |
-| P3 | Vision |
+**Schedule only by master decimals** in [00_MASTER_ROADMAP.md](roadmaps/00_MASTER_ROADMAP.md). New work = new `X.XX` row (forward-only, before `5.00`).
 
-Never work on P3 if the relevant P0/P1 requirements are still failing.
+| Legacy label | Meaning (map to master steps, do not use as task IDs) |
+|--------------|--------------------------------------------------------|
+| P0 | Stabilize → e.g. `0.26`–`0.49` device band |
+| P1 | Standalone usefulness → e.g. `0.51`–`0.74` |
+| P2 | Integration → e.g. `1.00`–`2.07` |
+| P3 | Vision → e.g. `2.50`+ depth bands |
+
+Never work on high milestone depth if the relevant lower master steps for that app are still failing.
 
 ## Implementation priority
 
