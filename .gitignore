@@ -1,0 +1,13 @@
+# Local / IDE
+local.properties
+.idea/
+*.iml
+.DS_Store
+*.kate-swp
+*~
+
+# Gradle
+.gradle/
+**/build/
+*.apk
+*.aab

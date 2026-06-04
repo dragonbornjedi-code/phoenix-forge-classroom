@@ -1,5 +1,35 @@
 # Phoenix Forge: Unified Vision
 
+**Status:** North star for all roadmaps and implementation. If another doc contradicts this file, update that doc — not this one.
+
+## Who this is for
+
+**Ezra** is the center — not “the ecosystem,” not “the suite.” Every product exists to preserve and enrich one child’s real life from age 5 through 25.
+
+## Three products (canonical names — do not rename)
+
+| Product | Role |
+|---------|------|
+| **Forge Profile** | Lifelong identity record (CMOS direction) |
+| **Phoenix Forge Classroom Student Edition** | Child experience shell (`:student-app`) |
+| **Phoenix Forge Classroom Teacher Edition** | Parent expedition / curriculum command surface (`:teacher-app`) |
+
+**Execution order:** [roadmaps/00_MASTER_ROADMAP.md](roadmaps/00_MASTER_ROADMAP.md) · **Dev rules:** [DEVELOPMENT_RULES.md](DEVELOPMENT_RULES.md)
+
+## Near-term product goal (one loop)
+
+```text
+Teacher creates IntentTile
+  → Student receives Quest
+  → Student completes Quest
+  → Forge Profile records MemoryEvent
+  → Teacher sees resulting signal
+```
+
+Until that loop runs on device, treat CMOS-complete vision docs as **direction**, not **done**.
+
+---
+
 ## The Prime Mandate: Childhood as the Product
 Phoenix Forge is not educational software. It is a **Sovereign Childhood Archive** that preserves, enriches, and celebrates a child's life from age 5 through age 25. The most valuable asset in the entire ecosystem is the **Chronicle**—the living record of who the child is becoming.
 

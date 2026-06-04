@@ -5,7 +5,9 @@ This directory contains the **Core Architecture** and **Constitutional Mandates*
 ## The Sovereign Constitution
 - **[REPOSITORY_CONSTITUTION.md](REPOSITORY_CONSTITUTION.md):** The highest-level governing document and the **2046 Test**.
 - **[THREE_LAYER_ARCHITECTURE.md](THREE_LAYER_ARCHITECTURE.md):** CMOS (Database) vs PCAS (Interpreter) vs Experience Shells.
-- **[UNIFIED_VISION.md](UNIFIED_VISION.md):** The PCAS philosophy and "Childhood as the Product."
+- **[UNIFIED_VISION.md](UNIFIED_VISION.md):** North star — Ezra-centered, three products, one Tile→Memory loop.
+- **[DEVELOPMENT_RULES.md](DEVELOPMENT_RULES.md):** Extend roadmaps; do not redesign or add competing docs.
+- **[DOCUMENTATION_ALIGNMENT_REPORT.md](DOCUMENTATION_ALIGNMENT_REPORT.md):** Living-doc alignment status (update in place).
 
 ## Layer 1: Childhood Memory OS (CMOS - Core Asset)
 - **[MEMORY_ENGINE_ARCHITECTURE.md](MEMORY_ENGINE_ARCHITECTURE.md):** The core engine for life preservation.
@@ -31,6 +33,13 @@ This directory contains the **Core Architecture** and **Constitutional Mandates*
 - **[Student Edition Docs](../phoenix-forge-classroom-student-edition/docs/):** Experience Shell, Identity Lenses, Spark Companion.
 
 ## Contracts & Boundary
+- **[DEPLOYMENT_REALITY.md](DEPLOYMENT_REALITY.md):** What APKs build, which device gets what, ADB install steps.
+- **[PHOENIX_FORGE_SYSTEM_ATLAS.md](PHOENIX_FORGE_SYSTEM_ATLAS.md):** As-implemented system atlas (proof-based audit).
+- **[AUTHORITY_AND_REALITY_MAPPING.md](AUTHORITY_AND_REALITY_MAPPING.md):** Subsystem authority vs implementation mapping.
+- **[SYSTEM_ATLAS_SOURCE_INDEX.md](SYSTEM_ATLAS_SOURCE_INDEX.md):** Repository census for atlas audits.
+- **[contracts/CURRICULUM_OS_SCHEMA.md](contracts/CURRICULUM_OS_SCHEMA.md):** Operational curriculum model (capabilities, skill atoms, signals, Compass aggregates).
+- **[contracts/CURRICULUM_RUNTIME_FLOW.md](contracts/CURRICULUM_RUNTIME_FLOW.md):** End-to-end flow from curriculum to Living Chronicle; authority boundaries.
+- **[contracts/reference-tiles/](contracts/reference-tiles/):** Canonical Intent Tile integration tests (Secret Label Decoder).
 - **[contracts/INTENT_TILE_CONTRACT.md](contracts/INTENT_TILE_CONTRACT.md):** Canonical object specification for developmental intent.
 - **[contracts/MEMORY_EVENT_CONTRACT.md](contracts/MEMORY_EVENT_CONTRACT.md):** The unified ingestion schema.
 - **[contracts/TILE_EVENT_MAPPING.md](contracts/TILE_EVENT_MAPPING.md):** Mapping tile completion to CMOS ingestion.
@@ -39,7 +48,15 @@ This directory contains the **Core Architecture** and **Constitutional Mandates*
 - **[AGE_25_BACKCAST_DESIGN.md](AGE_25_BACKCAST_DESIGN.md):** Designing for the adult self looking back.
 - **[CHILDHOOD_TIME_CAPSULE_SPEC.md](CHILDHOOD_TIME_CAPSULE_SPEC.md):** The final handover protocol.
 
-## Roadmap & Migration
+## Roadmaps (execution)
+- **[roadmaps/00_MASTER_ROADMAP.md](roadmaps/00_MASTER_ROADMAP.md):** Master sequencing + four tracks.
+- **[roadmaps/01_FORGE_PROFILE_ROADMAP.md](roadmaps/01_FORGE_PROFILE_ROADMAP.md):** Forge Profile (four paths).
+- **[roadmaps/02_STUDENT_EDITION_ROADMAP.md](roadmaps/02_STUDENT_EDITION_ROADMAP.md):** Student Edition (four paths).
+- **[roadmaps/03_TEACHER_EDITION_ROADMAP.md](roadmaps/03_TEACHER_EDITION_ROADMAP.md):** Teacher Edition (four paths).
+- **[roadmaps/04_CROSS_APP_INTEGRATION_ROADMAP.md](roadmaps/04_CROSS_APP_INTEGRATION_ROADMAP.md):** Tile → Quest → Memory → Compass.
+- **[REPOSITORY_CENSUS_AND_CONNECTIONS.md](REPOSITORY_CENSUS_AND_CONNECTIONS.md):** Every doc/file, completion, connections.
+
+## Roadmap & Migration (legacy / long horizon)
 - **[PCAS_IMPLEMENTATION_ROADMAP.md](PCAS_IMPLEMENTATION_ROADMAP.md):** The path to building the Memory OS.
 - **[TEN_YEAR_EVOLUTION_STRATEGY.md](TEN_YEAR_EVOLUTION_STRATEGY.md):** Narrative and world expansion stages.
 - **[GODOT_MIGRATION_STRATEGY.md](GODOT_MIGRATION_STRATEGY.md):** Future-proofing for the 3D World.

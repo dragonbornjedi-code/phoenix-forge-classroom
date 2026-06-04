@@ -4,10 +4,14 @@ The roadmap is ordered to ensure structural integrity and 20-year durability bef
 
 ## Milestone -1: The Intent & Compass Contracts (Current Focus)
 **Goal:** Define the atomic units and navigation heuristics.
-- [√] **Intent Tile Contract:** YAML/JSON specification for metadata-rich tiles.
-- [√] **Childhood Compass Spec:** Navigation signals and "Sunlight" heuristics.
-- [√] **Lesson Generation Rules:** Logic for Month -> Week -> Day synthesis.
-- [√] **MemoryEvent Mapping:** Formal mapping of Tile Completion -> `MemoryEvent`.
+
+**Spec complete (docs/contracts)** — runtime still partial until YAML loads in Teacher and cross-app loop passes.
+
+- [x] **Intent Tile Contract:** YAML/JSON specification for metadata-rich tiles.
+- [x] **Childhood Compass Spec:** Navigation signals and "Sunlight" heuristics.
+- [x] **Lesson Generation Rules:** Logic for Month -> Week -> Day synthesis.
+- [x] **MemoryEvent Mapping:** Formal mapping of Tile Completion -> `MemoryEvent`.
+- [ ] **Teacher runtime alignment:** `teacher-app` Room tiles (P1a–P1b done); contract + reference YAML loader = Cross-app P1/P2.
 
 ## Milestone 0: The Capture Foundation
 **Goal:** Ensure the child and parent can record reality today.

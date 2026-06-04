@@ -1,0 +1,78 @@
+package com.phoenixforge.classroom.teacher.ui.tile
+
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.phoenixforge.classroom.teacher.data.repository.TileRepository
+import com.phoenixforge.classroom.teacher.domain.model.IntentTile
+import com.phoenixforge.classroom.teacher.domain.model.TileStatus
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+data class TileDetailUiState(
+    val tile: IntentTile? = null,
+    val evidenceNotes: String = "",
+    val coachingCues: String = "",
+    val materials: String = ""
+)
+
+@HiltViewModel
+class TileDetailViewModel @Inject constructor(
+    private val repo: TileRepository,
+    savedStateHandle: SavedStateHandle
+) : ViewModel() {
+
+    private val tileId: String = savedStateHandle.get<String>("tileId").orEmpty()
+
+    private val _state = MutableStateFlow(TileDetailUiState())
+    val state = _state.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            val tile = repo.findById(tileId) ?: return@launch
+            _state.value = TileDetailUiState(
+                tile = tile,
+                evidenceNotes = tile.evidenceNotes,
+                coachingCues = tile.coachingCues,
+                materials = tile.materials
+            )
+        }
+    }
+
+    fun updateEvidence(notes: String) = _state.update { it.copy(evidenceNotes = notes) }
+    fun updateCoaching(cues: String) = _state.update { it.copy(coachingCues = cues) }
+    fun updateMaterials(materials: String) = _state.update { it.copy(materials = materials) }
+
+    fun saveDetails() {
+        val current = _state.value.tile ?: return
+        viewModelScope.launch {
+            repo.update(
+                current.copy(
+                    evidenceNotes = _state.value.evidenceNotes,
+                    coachingCues = _state.value.coachingCues,
+                    materials = _state.value.materials
+                )
+            )
+            _state.update { it.copy(tile = repo.findById(tileId)) }
+        }
+    }
+
+    fun markComplete() {
+        viewModelScope.launch {
+            repo.markComplete(tileId, _state.value.evidenceNotes)
+            _state.update { it.copy(tile = repo.findById(tileId)) }
+        }
+    }
+
+    fun setStatus(status: TileStatus) {
+        val current = _state.value.tile ?: return
+        viewModelScope.launch {
+            repo.update(current.copy(status = status.name))
+            _state.update { it.copy(tile = repo.findById(tileId)) }
+        }
+    }
+}

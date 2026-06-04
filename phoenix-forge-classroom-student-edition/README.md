@@ -2,6 +2,10 @@
 
 Student APK for lessons, learning games, assignments, and offline study.
 
+**Runnable code:** `../phoenix-forge-classroom-forge-profile/student-app` (Gradle module `:student-app`).  
+**UX specs:** `docs/` in this folder.  
+**Roadmap:** [docs/roadmaps/02_STUDENT_EDITION_ROADMAP.md](../docs/roadmaps/02_STUDENT_EDITION_ROADMAP.md)
+
 ## Scope
 - Complete assigned lessons and activities.
 - Play learning games tied to subjects and skill goals.
@@ -11,13 +15,17 @@ Student APK for lessons, learning games, assignments, and offline study.
 - Show child-facing missions, games, rewards, and simple progress only.
 
 ## Product Boundary
-- `docs/student-experience-boundary.md`: what belongs in Student Edition and what stays adult-only.
+- [docs/STUDENT_TEACHER_BOUNDARY.md](../docs/STUDENT_TEACHER_BOUNDARY.md): what belongs in Student Edition and what stays adult-only.
 
-## Android
-Android app sources belong in `android/`.
+## Android (runnable)
 
-Suggested package name:
+All Kotlin lives in the shared monorepo — not the empty `android/` folder here:
 
-```text
-com.phoenixforge.classroom.student
+```bash
+export JAVA_HOME=/home/joshuar/.local/jdk
+cd ../phoenix-forge-classroom-forge-profile
+./gradlew :student-app:assembleDebug
 ```
+
+APK: `phoenix-forge-classroom-forge-profile/student-app/build/outputs/apk/debug/student-app-debug.apk`  
+Package: `com.phoenixforge.student`

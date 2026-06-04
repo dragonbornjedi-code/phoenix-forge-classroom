@@ -3,6 +3,8 @@
 ## Vision
 Phoenix Forge exists to preserve, enrich, and celebrate a child's real life. It is not educational software; it is a **Persistent Childhood Adventure System (PCAS)** built upon a **Childhood Memory Operating System (CMOS)**.
 
+**North star (product + loop):** [UNIFIED_VISION.md](UNIFIED_VISION.md) · **Execution:** [roadmaps/00_MASTER_ROADMAP.md](roadmaps/00_MASTER_ROADMAP.md) · **Dev rules:** [DEVELOPMENT_RULES.md](DEVELOPMENT_RULES.md)
+
 ## The Core Mandates
 
 ### Article I: Sovereign Memory

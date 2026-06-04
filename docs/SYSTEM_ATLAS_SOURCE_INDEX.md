@@ -5,10 +5,15 @@
 - phoenix-forge-classroom-forge-profile/forge-profile-app
 - phoenix-forge-classroom-forge-profile/forge-profile-core
 - phoenix-forge-classroom-forge-profile/student-app
+- phoenix-forge-classroom-forge-profile/teacher-app
 
 ## Docs (Constitution, Design, Contracts)
 - docs/REPOSITORY_CONSTITUTION.md
 - docs/UNIFIED_VISION.md
+- docs/DEVELOPMENT_RULES.md
+- docs/roadmaps/00_MASTER_ROADMAP.md
+- docs/REPOSITORY_CENSUS_AND_CONNECTIONS.md
+- docs/DEPLOYMENT_REALITY.md
 - docs/THREE_LAYER_ARCHITECTURE.md
 - docs/MEMORY_ENGINE_ARCHITECTURE.md
 - docs/MEMORY_PERSISTENCE_STRATEGY.md
@@ -60,8 +65,14 @@
 - phoenix-forge-classroom-teacher-edition/docs/teaching-methods-research.md
 
 ## Orphaned Candidates
-- gradlew
-- local.properties
-- local.properties.example
-- registry/
-- scripts/
+- gradlew (repo root — duplicate; use phoenix-forge-classroom-forge-profile/gradlew)
+- phoenix-forge-classroom-student-edition/ (UX specs; runnable code is student-app in forge-profile)
+- phoenix-forge-classroom-teacher-edition/android/ (empty — APK is teacher-app in forge-profile monorepo)
+- phoenix-forge-classroom-student-edition/android/ (empty placeholder)
+- registry/ (README stub only)
+- scripts/ (README stub only)
+- docs/MAGIC_LAYER.md (not on operational spine)
+
+## Atlas outputs
+- docs/PHOENIX_FORGE_SYSTEM_ATLAS.md
+- docs/AUTHORITY_AND_REALITY_MAPPING.md
