@@ -1,6 +1,8 @@
 # Experience Shell Overview: Layer 3
 
-Experience Shells are the interchangeable frontends of Phoenix Forge. They do not own the childhood memory; they consume the **CMOS** and **PCAS** layers to provide a context-appropriate window into the child's world.
+Experience Shells are the interchangeable frontends of Phoenix Forge. They do not own the childhood memory; they consume **Forge Profile (CMOS)** and **PCAS** to show Ezra’s world.
+
+**Anchor:** [FORGEPROFILE_SPEC.md](FORGEPROFILE_SPEC.md) — especially **Avatar Studio**, which defines how Ezra appears in Android shells today and in the future Godot world ([GODOT_MIGRATION_STRATEGY.md](GODOT_MIGRATION_STRATEGY.md)).
 
 ## 1. The Multi-Shell Lifecycle
 

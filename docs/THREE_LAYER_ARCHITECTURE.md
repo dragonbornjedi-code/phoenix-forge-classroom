@@ -4,7 +4,8 @@ Phoenix Forge is structured as a three-layer stack to ensure that a child's life
 
 ## Layer 1: Childhood Memory OS (CMOS)
 **The Core Asset.** CMOS is the "Childhood Database." It is the only layer that must survive until age 25. It is designed for absolute durability and platform independence.
-- **Ownership:** ForgeProfile, Chronicle, Family Mythology, Artifacts, Relationship Graph, Identity Threads.
+- **Ownership:** ForgeProfile (including **AvatarConfig**), Chronicle, Family Mythology, Artifacts, Relationship Graph, Identity Threads.
+- **Runnable anchor today:** `forge-profile-core` + Forge Profile APK — Avatar Studio, timeline, ContentProvider export ([FORGEPROFILE_SPEC.md](FORGEPROFILE_SPEC.md)).
 - **Form:** Open-standard JSON, ZIP bundles (.pfc), and SQLite.
 - **Principle:** If all software dies, the data remains human-readable and accessible.
 

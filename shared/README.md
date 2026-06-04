@@ -1,59 +1,78 @@
-# Shared Schemas & Contracts
+# Shared — Cross-App Data Contracts
 
-This directory contains the source-of-truth definitions for data exchanged between Teacher and Student apps.
+**Forge Profile is the center.** This directory holds portable definitions that every app and future shell must speak — not game-engine fuel from a pre-pivot design.
 
-## Content Packs
-Content packs are the "fuel" for the Universal Engines.
+Ezra’s childhood data lives in **Forge Profile** (`forge-profile-core` Room + export). Student Edition and Teacher Edition are **role-based views** on that record. A future **Godot 3D reflection world** imports the same profile bundle (identity, avatar, chronicle refs) — see [docs/GODOT_MIGRATION_STRATEGY.md](../docs/GODOT_MIGRATION_STRATEGY.md).
 
-### Universal Matching Engine (UME) Schema
-```json
-{
-  "id": "ume_colors_01",
-  "engine": "UME",
-  "variant": "ONE_TO_ONE",
-  "items": [
-    {
-      "source": {"type": "IMAGE", "value": "res/berry_blue.png", "id": "blue"},
-      "target": {"type": "IMAGE", "value": "res/bird_blue.png", "id": "blue"}
-    },
-    {
-      "source": {"type": "IMAGE", "value": "res/berry_red.png", "id": "red"},
-      "target": {"type": "IMAGE", "value": "res/bird_red.png", "id": "red"}
-    }
-  ],
-  "feedback": {
-    "success": "Great job matching the colors!",
-    "hint": "Try matching the berry to the bird of the same color."
-  }
-}
+---
+
+## What lives here today
+
+| File | Purpose | Consumed by |
+|------|---------|-------------|
+| [sync-contract.md](sync-contract.md) | Teacher ↔ Student local exchange (missions, completion, link model) | Roadmap P2 — not fully implemented |
+| [schemas/PCAS_DB_SCHEMA.sql](schemas/PCAS_DB_SCHEMA.sql) | Long-horizon PCAS tables (spec) | Future CMOS runtime — not wired in APKs yet |
+
+**Authoritative contracts (markdown):** [docs/contracts/](../docs/contracts/) — IntentTile, MemoryEvent, Curriculum OS, reference tiles.
+
+**Authoritative identity + avatar:** [docs/FORGEPROFILE_SPEC.md](../docs/FORGEPROFILE_SPEC.md) — including **Avatar Studio** target schema and Godot export mapping.
+
+---
+
+## Forge Profile export surfaces (implemented path)
+
+| Surface | Authority | Today |
+|---------|-----------|--------|
+| ContentProvider | `ProfileContract.kt` | `/profile`, `/avatar`, `/timeline` read |
+| JSON export DTOs | `ProfileExportReader.kt` | Partial — extend for full `AvatarConfig` |
+| Share intent / `.pfc` bundle | MEMORY_PERSISTENCE_STRATEGY | P1 roadmap |
+
+**Avatar** is not a cosmetic extra — it is Ezra’s **visual identity anchor** across apps:
+
+```text
+Avatar Studio (Forge Profile app)
+  → Room avatar history + timeline event
+  → ContentProvider /avatar (Student reads summary today)
+  → JSON AvatarConfig export (target: Student + Godot mesh mapping)
+  → Chronicle + CDNS signals (future: missions reflect look choices)
 ```
 
-### Universal Sequencing Engine (USE) Schema
-```json
-{
-  "id": "use_counting_01",
-  "engine": "USE",
-  "sequence": [
-    {"type": "TEXT", "value": "1"},
-    {"type": "TEXT", "value": "2"},
-    {"type": "TEXT", "value": "3"},
-    {"type": "TEXT", "value": "4"}
-  ],
-  "shuffled": true
-}
-```
+Current Kotlin model (`Avatar`: hair, eyes, skin, clothing, version) is **P0**. Target `AvatarConfig` in FORGEPROFILE_SPEC is **P1–P3** (shards, accessories, Godot proportions).
 
-## Mission Definitions
-Missions wrap Content Packs in a narrative.
+---
 
-```json
-{
-  "id": "mission_001",
-  "childTitle": "The Blue Bird's Snack",
-  "childInstruction": "The blue birds are hungry! Can you find their favorite berries?",
-  "engineType": "UME",
-  "contentPackRef": "ume_colors_01",
-  "wispType": "MOSS",
-  "reward": {"type": "FLOWER", "id": "blue_rose"}
-}
-```
+## Role-based profile views (same child, different lens)
+
+| App / shell | Reads from profile | Writes |
+|-------------|-------------------|--------|
+| **Forge Profile** | Full CMOS direction | Steward: identity, avatar, artifacts, timeline |
+| **Student Edition** | Subset: visuals, quests, world state | MemoryEvents, completion (not CMOS delete) |
+| **Teacher Edition** | Subset + coaching overlay | IntentTiles, expedition, evidence (local today) |
+| **Godot (future)** | Full `AvatarConfig` + world IDs | Read-mostly reflection; emits MemoryEvents |
+
+All apps remain **offline-first** and **standalone-installable**; sync is optional file/provider exchange, never cloud-required.
+
+---
+
+## Godot import contract (summary)
+
+Godot does not own childhood data. It **imports** a Forge Profile export:
+
+1. `forge_profile.json` — identity, stage, threads (when implemented)
+2. `avatar_config.json` — layered appearance + `godotMeshHints` (bone scale, attachment slots)
+3. `chronicle_index.json` — episode refs for Memory Mirror / museum placement
+4. Universal IDs → `res://` scene paths ([GODOT_MIGRATION_STRATEGY.md](../docs/GODOT_MIGRATION_STRATEGY.md))
+
+---
+
+## Roadmaps that own this directory
+
+- [docs/roadmaps/01_FORGE_PROFILE_ROADMAP.md](../docs/roadmaps/01_FORGE_PROFILE_ROADMAP.md) — Avatar Studio expansion, export
+- [docs/roadmaps/04_CROSS_APP_INTEGRATION_ROADMAP.md](../docs/roadmaps/04_CROSS_APP_INTEGRATION_ROADMAP.md) — Tile → Quest → MemoryEvent
+- [docs/DEVELOPMENT_RULES.md](../docs/DEVELOPMENT_RULES.md) — extend, do not redesign
+
+---
+
+## Deferred: Universal Engines (UME / USE)
+
+Pre-pivot **Universal Matching Engine** and **Universal Sequencing Engine** JSON packs are **not** the current spine. When Student mission minigames return, their schemas belong under `registry/` (content packs), not as the identity contract for the OS. Until then, do not treat old UME/USE samples as source of truth.

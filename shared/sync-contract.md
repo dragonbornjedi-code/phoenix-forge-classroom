@@ -1,5 +1,7 @@
 # Cross-App Sync Contract
 
+**Forge Profile** remains the identity and avatar owner. This document covers **Teacher ↔ Student** pedagogical sync only. Profile/avatar handoff uses ContentProvider + JSON export ([FORGEPROFILE_SPEC.md](../docs/FORGEPROFILE_SPEC.md), [shared/README.md](README.md)).
+
 Teacher Edition and Student Edition are separate APKs with controlled local sync.
 
 ## Direction Names

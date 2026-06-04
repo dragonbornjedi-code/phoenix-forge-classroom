@@ -28,6 +28,8 @@ Teacher creates IntentTile
 
 Until that loop runs on device, treat CMOS-complete vision docs as **direction**, not **done**.
 
+**Avatar:** Ezra’s look is owned in Forge Profile **Avatar Studio** and exported to Student (2D) and Godot (3D) — not duplicated per app. Spec: [FORGEPROFILE_SPEC.md](FORGEPROFILE_SPEC.md) · Godot: [GODOT_MIGRATION_STRATEGY.md](GODOT_MIGRATION_STRATEGY.md).
+
 ---
 
 ## The Prime Mandate: Childhood as the Product

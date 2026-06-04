@@ -1,32 +1,88 @@
 # Phoenix Forge Classroom
 
-Offline-first homeschool system for Galaxy S24 Ultra — centered on **Ezra’s Forge Profile** (lifelong identity record).
+Offline-first childhood OS for **Ezra** — centered on **Forge Profile** (lifelong identity, avatar, chronicle), with Teacher and Student editions as role-based shells on the same record.
 
-## Three products (canonical names)
+Private: https://github.com/dragonbornjedi-code/phoenix-forge-classroom
 
-| Product | Docs folder | Runnable code |
-|---------|-------------|---------------|
-| **Forge Profile** | `docs/FORGEPROFILE_SPEC.md` | `phoenix-forge-classroom-forge-profile/forge-profile-app` + `forge-profile-core` |
-| **Phoenix Forge Classroom Student Edition** | `phoenix-forge-classroom-student-edition/docs/` | `phoenix-forge-classroom-forge-profile/student-app` |
-| **Phoenix Forge Classroom Teacher Edition** | `phoenix-forge-classroom-teacher-edition/docs/` | `phoenix-forge-classroom-forge-profile/teacher-app` |
+---
 
-**Build all APKs:** see [docs/DEPLOYMENT_REALITY.md](docs/DEPLOYMENT_REALITY.md) or `./scripts/install-phone-apks.sh`.
+## Forge Profile (start here)
 
-**Roadmaps:** [docs/roadmaps/00_MASTER_ROADMAP.md](docs/roadmaps/00_MASTER_ROADMAP.md)  
-**Full file census:** [docs/REPOSITORY_CENSUS_AND_CONNECTIONS.md](docs/REPOSITORY_CENSUS_AND_CONNECTIONS.md)
+**Forge Profile** is not “one of three apps.” It is the **CMOS direction** — the encrypted local store for who Ezra is becoming: identity, **Avatar Studio**, timeline, artifacts, and future chronicle promotion.
+
+| Concern | Doc | Code |
+|---------|-----|------|
+| Identity & 2046 durability | [docs/FORGEPROFILE_SPEC.md](docs/FORGEPROFILE_SPEC.md) | `forge-profile-core` |
+| Avatar Studio (expand next) | FORGEPROFILE_SPEC § Avatar | `forge-profile-app/ui/studio/` |
+| Steward UI APK | [docs/DEPLOYMENT_REALITY.md](docs/DEPLOYMENT_REALITY.md) | `forge-profile-app` |
+| Cross-app read API | Profile ContentProvider | `/profile`, `/avatar`, `/timeline` |
+| Godot 3D import path | [docs/GODOT_MIGRATION_STRATEGY.md](docs/GODOT_MIGRATION_STRATEGY.md) | Future repo |
+
+**Build Profile APK:** `./scripts/install-phone-apks.sh` or see DEPLOYMENT_REALITY.
+
+---
+
+## Three experience shells (canonical names)
+
+| Product | Specs | Runnable module |
+|---------|-------|-----------------|
+| **Forge Profile** | `docs/FORGEPROFILE_SPEC.md` | `:forge-profile-app` + `:forge-profile-core` |
+| **Phoenix Forge Classroom Student Edition** | `phoenix-forge-classroom-student-edition/docs/` | `:student-app` |
+| **Phoenix Forge Classroom Teacher Edition** | `phoenix-forge-classroom-teacher-edition/docs/` | `:teacher-app` |
+
+Gradle monorepo: `phoenix-forge-classroom-forge-profile/`
+
+---
+
+## Architecture (one picture)
+
+```text
+                    Ezra (human)
+                         │
+              ┌──────────▼──────────┐
+              │   Forge Profile      │  ◄── Avatar Studio, timeline, CMOS
+              │   (single record)    │
+              └──────────┬──────────┘
+         ┌────────────────┼────────────────┐
+         ▼                ▼                ▼
+   Student Edition   Teacher Edition    Godot world
+   (child shell)     (steward shell)    (future 3D shell)
+         │                │                │
+         └────────────────┴────────────────┘
+                    shared contracts
+              docs/contracts/ + shared/
+```
+
+**North star:** [docs/UNIFIED_VISION.md](docs/UNIFIED_VISION.md) · **Execution:** [docs/roadmaps/00_MASTER_ROADMAP.md](docs/roadmaps/00_MASTER_ROADMAP.md)
+
+**Near-term loop:** Teacher IntentTile → Student Quest → MemoryEvent → Profile timeline → Teacher signal ([docs/DEVELOPMENT_RULES.md](docs/DEVELOPMENT_RULES.md)).
+
+---
+
+## Documentation index
+
+| Area | Entry |
+|------|--------|
+| Constitution & vision | [docs/README.md](docs/README.md) |
+| Full file census | [docs/REPOSITORY_CENSUS_AND_CONNECTIONS.md](docs/REPOSITORY_CENSUS_AND_CONNECTIONS.md) |
+| Implementation truth | [docs/PHOENIX_FORGE_SYSTEM_ATLAS.md](docs/PHOENIX_FORGE_SYSTEM_ATLAS.md) |
+| Cross-app contracts | [shared/README.md](shared/README.md) |
+
+---
 
 ## Repo layout
 
-- `phoenix-forge-classroom-forge-profile/` — Gradle monorepo (all three APK modules)
-- `phoenix-forge-classroom-teacher-edition/` — Teacher pedagogy & UX specs
-- `phoenix-forge-classroom-student-edition/` — Student UX specs (runtime is `student-app`)
+- `phoenix-forge-classroom-forge-profile/` — all three APK modules + core library
+- `phoenix-forge-classroom-teacher-edition/` — pedagogy & Expedition Board UX specs
+- `phoenix-forge-classroom-student-edition/` — Hearthhome / Spark UX specs (runtime = `student-app`)
 - `docs/` — constitution, contracts, atlas, roadmaps
-- `shared/` — sync contract + PCAS SQL (spec)
-- `scripts/` — install automation
+- `shared/` — sync contract, PCAS SQL spec, export contracts (see shared README)
+- `registry/` — future structured content packs (lessons, games)
+- `scripts/` — `install-phone-apks.sh`
+
+---
 
 ## External (other repos)
 
-- **Sovereign Deck** — personal AI / mesh (optional narrative layer)
-- **Godot reflection world** — future experience shell
-
-Private: https://github.com/dragonbornjedi-code/phoenix-forge-classroom
+- **Sovereign Deck** — optional AI narrative layer (not required for offline childhood record)
+- **Godot reflection world** — 3D experience shell; imports Forge Profile + AvatarConfig JSON

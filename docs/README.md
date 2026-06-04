@@ -9,9 +9,11 @@ This directory contains the **Core Architecture** and **Constitutional Mandates*
 - **[DEVELOPMENT_RULES.md](DEVELOPMENT_RULES.md):** Extend roadmaps; do not redesign or add competing docs.
 - **[DOCUMENTATION_ALIGNMENT_REPORT.md](DOCUMENTATION_ALIGNMENT_REPORT.md):** Living-doc alignment status (update in place).
 
-## Layer 1: Childhood Memory OS (CMOS - Core Asset)
-- **[MEMORY_ENGINE_ARCHITECTURE.md](MEMORY_ENGINE_ARCHITECTURE.md):** The core engine for life preservation.
-- **[FORGEPROFILE_SPEC.md](FORGEPROFILE_SPEC.md):** The 10+ year persistent identity (DNA) specification.
+## Forge Profile (CMOS core — read first)
+- **[FORGEPROFILE_SPEC.md](FORGEPROFILE_SPEC.md):** Identity DNA, **Avatar Studio** target schema, export to Student/Godot.
+- **[GODOT_MIGRATION_STRATEGY.md](GODOT_MIGRATION_STRATEGY.md):** 3D shell import bundle + avatar mesh mapping.
+- **[MEMORY_ENGINE_ARCHITECTURE.md](MEMORY_ENGINE_ARCHITECTURE.md):** Chronicle and artifact registry.
+- **[../shared/README.md](../shared/README.md):** Cross-app contracts (not legacy UME engines).
 - **[IDENTITY_FORMATION_ENGINE.md](IDENTITY_FORMATION_ENGINE.md):** Tracking identity evolution via evidence-based "Threads."
 - **[HUMAN_MEMORY_PRESERVATION.md](HUMAN_MEMORY_PRESERVATION.md):** Prioritizing real human voices over AI narration.
 - **[FAMILY_LEGACY_SYSTEM.md](FAMILY_LEGACY_SYSTEM.md):** Preserving family mythology and traditions as world lore.

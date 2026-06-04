@@ -39,6 +39,23 @@
 
 ## P1 Core
 
+### P1-A Avatar Studio (Ezra priority — expansive)
+
+| Step | Files | Exit criteria |
+|------|-------|---------------|
+| A1 Layered preview composable | `ui/studio/AvatarPreview.kt`, `AvatarStudioScreen.kt` | Live head/hair/eyes/clothes stack, not placeholder emoji |
+| A2 Category panels + colors | `AvatarStudioScreen.kt`, `AvatarViewModel.kt` | Hair, eyes, face, body, clothing, accessories chips + pickers |
+| A3 Auto-save + Randomize | `ProfileRepositoryImpl.saveAvatar`, ViewModel | Every change persists; Randomize produces valid config |
+| A4 Expand `Avatar` → `AvatarConfig` | `domain/model/`, `AvatarEntity`, `ProfileExportDto` | Schema matches FORGEPROFILE_SPEC JSON |
+| A5 Export JSON + share intent | `ProfileExportReader.kt`, export util | File Ezra/Teacher can hand to Student device or archive |
+| A6 Provider `/avatar` full payload | `ProfileContentProvider.kt`, `ProfileContract.kt` | Student import shows full summary, not pipe-delimited stub |
+| A7 Shard level 0–6 | ViewModel + UI indicator | Wacky traits gated by milestone |
+| A8 Thread-biased suggestions | IDENTITY_FORMATION_ENGINE (when threads exist) | Explorer bias highlights adventure clothing |
+
+**Godot-ready:** every trait ID is stable snake_case; export includes `godotMeshHints` (P1 A4/A5).
+
+### P1-B Steward capture & timeline
+
 | Task | Attached doc | Code % | Needs |
 |------|--------------|--------|-------|
 | Artifact capture (camera/audio) | FORGEPROFILE_SPEC, EVENT_CAPTURE_PROTOCOL | 10% | **Dev** |
@@ -86,7 +103,9 @@
 | Room DB | `forge-profile-core/.../ProfileDatabase.kt` | P0 |
 | ContentProvider | `ProfileContentProvider.kt` | P0 |
 | Export DTOs | `ProfileExportReader.kt` | P1 |
-| Dashboard / Studio / Timeline | `forge-profile-app/ui/*` | P0–P1 |
+| Dashboard / Timeline | `forge-profile-app/ui/*` | P0 |
+| Avatar Studio | `ui/studio/AvatarStudioScreen.kt` | P0 shell → **P1-A** expansion |
+| Godot export fields | FORGEPROFILE_SPEC, GODOT_MIGRATION_STRATEGY | P3 spec → P1-A5 emit JSON |
 
 ---
 

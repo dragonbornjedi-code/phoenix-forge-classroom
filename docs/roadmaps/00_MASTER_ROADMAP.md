@@ -44,7 +44,7 @@ Tracks run **in parallel** where possible; **D** depends on A/B/C reaching P0 st
 
 | Track | Deliverable |
 |-------|-------------|
-| A | Profile: artifact capture stub → real; export smoke test |
+| A | Profile: **Avatar Studio P1-A** (layered preview, AvatarConfig export) + artifact capture |
 | B | Student: no crash paths; import verified; home/quests usable |
 | C | Teacher: P1c drag reorder; then P2 send tile → Student |
 

@@ -78,7 +78,7 @@
 | `scripts/install-phone-apks.sh` | Build+install 3 APKs | 90 | — | **CURRENT** | DEPLOYMENT_REALITY | All P0 | **Improve** after field test notes |
 | `scripts/README.md` | Script index | 50 | — | **PARTIAL** | install script | Master | **Update** |
 | `registry/README.md` | Content registry stub | 10 | 0 | **ORPHAN** | Future curriculum packs | Teacher P3 | **Plan** or implement |
-| `shared/README.md` | Shared layer intro | 40 | 0 | **PARTIAL** | sync-contract, PCAS SQL | Cross-app P1 | **Evolve** into Kotlin module |
+| `shared/README.md` | Cross-app + Forge Profile export index | 95 | 0 | **CURRENT** | sync-contract, PCAS SQL, FORGEPROFILE | Cross-app P1 | Kotlin `shared` module when contracts stabilize |
 | `shared/sync-contract.md` | Cross-app sync spec | 70 | 0 | **DOC-COMPLETE** | Teacher, Student, Profile | Cross-app P1 | **Implement** |
 | `shared/schemas/PCAS_DB_SCHEMA.sql` | PCAS tables | 60 | 0 | **PARTIAL** | PCAS_ARCHITECTURE | Student P2 | **Wire** or trim |
 
