@@ -53,7 +53,7 @@ Gradle monorepo: `phoenix-forge-classroom-forge-profile/`
               docs/contracts/ + shared/
 ```
 
-**North star:** [docs/UNIFIED_VISION.md](docs/UNIFIED_VISION.md) · **Execution:** [docs/roadmaps/00_MASTER_ROADMAP.md](docs/roadmaps/00_MASTER_ROADMAP.md) (**Current step: 0.00**)  
+**North star:** [docs/UNIFIED_VISION.md](docs/UNIFIED_VISION.md) · **Execution:** [docs/roadmaps/00_MASTER_ROADMAP.md](docs/roadmaps/00_MASTER_ROADMAP.md) (**Current step: 0.04** — decimal ledger `0.01`→`5.00`)  
 **Agent protocol:** [docs/cline_essence/MASTER_PROTOCOL.md](docs/cline_essence/MASTER_PROTOCOL.md) · **Drift check:** `./scripts/cline-essence-drift-check.sh`
 
 **Near-term loop:** Teacher IntentTile → Student Quest → MemoryEvent → Profile timeline → Teacher signal ([docs/DEVELOPMENT_RULES.md](docs/DEVELOPMENT_RULES.md)).

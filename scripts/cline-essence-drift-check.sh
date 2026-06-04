@@ -70,6 +70,14 @@ if ! grep -qE 'Current step:\s*[0-9]+\.[0-9]{2}' docs/roadmaps/00_MASTER_ROADMAP
   warn "00_MASTER_ROADMAP.md missing 'Current step: X.XX' line"
 fi
 
+# --- No letter-suffix step IDs (e.g. 0.00-A) in master roadmap ---
+if grep -qE '\|[[:space:]]*[0-9]+\.[0-9]{2}-[A-Z]' docs/roadmaps/00_MASTER_ROADMAP.md 2>/dev/null; then
+  warn "00_MASTER_ROADMAP.md uses forbidden letter-suffix step IDs (use 0.01, 0.02, ... only)"
+fi
+if grep -qE '^[[:space:]]*[0-9]+\.[0-9]{2}-[A-Z]' docs/roadmaps/00_MASTER_ROADMAP.md 2>/dev/null; then
+  warn "00_MASTER_ROADMAP.md uses forbidden letter-suffix step IDs"
+fi
+
 # --- shared/README must not lead with UME as spine ---
 if head -20 shared/README.md | grep -q 'Universal Matching Engine' && ! head -5 shared/README.md | grep -q 'Forge Profile'; then
   warn "shared/README.md still presents UME as primary (pre-pivot)"

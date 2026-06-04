@@ -91,9 +91,11 @@ Use full contract from [SKILL.md](SKILL.md). Additionally:
 | 4.50 | Chronicle |
 | **5.00** | **Repo 100%** |
 
-**Current step:** `0.00` (sync with registry `current_step` when advancing).
+**Step IDs:** `0.01`, `0.02`, … `5.00` only — **never** letter suffixes (`0.00-A`). Minimum +0.01 between steps. Insertions allowed (`2.53`, `4.92`).
 
-Sub-roadmaps `01`–`04` = file-level detail for active step only.
+**Current step:** sync with registry `current_step` and `Current step:` line in master roadmap (next incomplete row).
+
+Sub-roadmaps `01`–`04` = file-level detail only — not step IDs.
 
 ---
 

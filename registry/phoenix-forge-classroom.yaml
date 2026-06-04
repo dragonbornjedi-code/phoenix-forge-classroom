@@ -31,7 +31,7 @@ tier0_docs:
   - registry/phoenix-forge-classroom.yaml
 
 master_timeline: docs/roadmaps/00_MASTER_ROADMAP.md
-current_step: "0.00"
+current_step: "0.04"
 
 cline_essence:
   version: "1.1.0"
