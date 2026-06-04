@@ -78,6 +78,7 @@ Maps each major subsystem to **authority** (where the design lives), **implement
 | Compass engine | `docs/CHILDHOOD_COMPASS_ENGINE.md` | No Kotlin aggregates | DOCUMENTED | Grep |
 | Plan generation rules | `docs/PLAN_GENERATION_RULES.md` | No generator code | DOCUMENTED | Grep |
 | Reference tile YAML | `reference-tiles/secret-label-decoder.yaml` | Not loaded by app | PARTIAL | Contract review |
+| Forge Profile viewer | `teacher-edition-product-spec.md` | `ForgeProfileViewerScreen.kt` (stub) | PARTIAL | UI exists; full provider read TBD |
 | Send to Student | `04_CROSS_APP_INTEGRATION_ROADMAP.md` | Not implemented | DOCUMENTED | No handoff code |
 | Weekly audit | `curriculum-of-life.md` § Weekly Teacher Audit | Prose only | DOCUMENTED | File read |
 

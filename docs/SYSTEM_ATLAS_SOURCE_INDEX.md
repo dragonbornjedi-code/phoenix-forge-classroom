@@ -69,8 +69,8 @@
 - phoenix-forge-classroom-student-edition/ (UX specs; runnable code is student-app in forge-profile)
 - phoenix-forge-classroom-teacher-edition/android/ (empty — APK is teacher-app in forge-profile monorepo)
 - phoenix-forge-classroom-student-edition/android/ (empty placeholder)
-- registry/ (README stub only)
-- scripts/ (README stub only)
+- registry/ (content packs — not identity; see registry/README.md)
+- docs/superpowers/plans/ (SUPERSEDED — use roadmaps/)
 - docs/MAGIC_LAYER.md (not on operational spine)
 
 ## Atlas outputs

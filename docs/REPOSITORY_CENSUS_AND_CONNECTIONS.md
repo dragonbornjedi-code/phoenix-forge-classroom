@@ -79,7 +79,7 @@
 | `gradlew` (root) | Wrapper duplicate | — | — | **ORPHAN** | forge-profile gradlew | Master | Delete or delegate doc |
 | `scripts/install-phone-apks.sh` | Build+install 3 APKs | 90 | — | **CURRENT** | DEPLOYMENT_REALITY | All P0 | **Improve** after field test notes |
 | `scripts/README.md` | Script index | 50 | — | **PARTIAL** | install script | Master | **Update** |
-| `registry/README.md` | Content registry stub | 10 | 0 | **ORPHAN** | Future curriculum packs | Teacher P3 | **Plan** or implement |
+| `registry/README.md` | Content pack registry (future UME) | 85 | 0 | **CURRENT** | CURRICULUM_OS, shared/README | Teacher P3 | Implement packs |
 | `shared/README.md` | Cross-app + Forge Profile export index | 95 | 0 | **CURRENT** | sync-contract, PCAS SQL, FORGEPROFILE | Cross-app P1 | Kotlin `shared` module when contracts stabilize |
 | `shared/sync-contract.md` | Cross-app sync spec | 70 | 0 | **DOC-COMPLETE** | Teacher, Student, Profile | Cross-app P1 | **Implement** |
 | `shared/schemas/PCAS_DB_SCHEMA.sql` | PCAS tables | 60 | 0 | **PARTIAL** | PCAS_ARCHITECTURE | Student P2 | **Wire** or trim |
@@ -250,7 +250,7 @@
 | Student life event | Forge MemoryEvent | CMOS contract | **Not built** |
 | Student completion | Teacher Compass | Aggregate signals | **Not built** |
 | Forge Profile | Student | ContentProvider read | **Built** (import) |
-| Forge Profile | Teacher | Future viewer | **Not built** |
+| Forge Profile | Teacher | `ForgeProfileViewerScreen` stub | **PARTIAL** |
 | reference-tile YAML | Teacher loader | Parse → Room | **Not built** |
 | curriculum-of-life | Curriculum OS | Human → atoms | **Doc only** |
 | WorldOrchestrator | CURRICULUM_RUNTIME_FLOW | De facto student spine | **Partial** |
