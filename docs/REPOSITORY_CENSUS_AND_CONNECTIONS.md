@@ -1,7 +1,9 @@
 # Repository Census & Connections
 
-**Generated:** 2026-06-04  
-**Purpose:** Every tracked artifact in `phoenix-forge-classroom`, what it is for, how complete it is, what it connects to, and which roadmap owns it.
+**Generated:** 2026-06-04 · **Last audit:** 2026-06-04  
+**Purpose:** Authoritative **per-file register** for all **76** `.md` / `.yaml` artifacts plus Kotlin modules (104 `.kt` files).  
+**Alignment policy:** [DOCUMENTATION_ALIGNMENT_REPORT.md](DOCUMENTATION_ALIGNMENT_REPORT.md) — distinguishes **contradiction** (fix doc) vs **code-lag** (fix code, doc stays).  
+**Proof of runtime:** [PHOENIX_FORGE_SYSTEM_ATLAS.md](PHOENIX_FORGE_SYSTEM_ATLAS.md) · [AUTHORITY_AND_REALITY_MAPPING.md](AUTHORITY_AND_REALITY_MAPPING.md).
 
 **Canonical product names (do not rename):**
 
@@ -95,7 +97,8 @@
 | `AGE_25_BACKCAST_DESIGN.md` | Adult legacy viewer | 80 | 0 | **DOC-COMPLETE** | CMOS export | Profile P4 | **Plan** |
 | `CHILDHOOD_TIME_CAPSULE_SPEC.md` | Handover bundle | 75 | 10 | **PARTIAL** | .pfc export | Profile P3 | **Implement** export |
 | `TEN_YEAR_EVOLUTION_STRATEGY.md` | Long horizon | 70 | — | **CURRENT** | Godot, shells | Master P4 | **Evolve** yearly |
-| `DOCUMENTATION_ALIGNMENT_REPORT.md` | Doc consistency audit | 65 | — | **PARTIAL** | Atlas | Master | **Refresh** post-roadmap |
+| `DOCUMENTATION_ALIGNMENT_REPORT.md` | Alignment policy + tiers | 95 | — | **CURRENT** | This census | Master | Update when phases complete |
+| `DEVELOPMENT_RULES.md` | Agent/human build rules | 95 | — | **CURRENT** | roadmaps/ | Master | — |
 | `COMMIT_PREVIEW.md` | Commit notes | 50 | — | **ORPHAN** | — | — | Archive or delete |
 | `MAGIC_LAYER.md` | Immersion / delight | 60 | 0 | **ORPHAN** | Not on spine | Master P4 | **Relink** or defer |
 | `SHELL_OVERVIEW.md` | Shell lifecycle | 85 | 20 | **CURRENT** | Student, Godot | Student P3 | **Update** Student naming |
@@ -103,8 +106,8 @@
 | `DEPLOYMENT_REALITY.md` | Install truth | 95 | 80 | **CURRENT** | 3 APKs | All P0 | Field matrix fill-in |
 | `PHOENIX_FORGE_SYSTEM_ATLAS.md` | Proof-based audit | 90 | — | **CURRENT** | Authority map | Master | **Update** Teacher APK + naming |
 | `AUTHORITY_AND_REALITY_MAPPING.md` | Row-level status | 90 | — | **CURRENT** | Atlas | Master | Same refresh |
-| `SYSTEM_ATLAS_SOURCE_INDEX.md` | File census | 70 | — | **STALE** | Missing teacher-app | Master | **Update** |
-| `README.md` (docs index) | Doc map | 85 | — | **CURRENT** | All docs | Master | Add roadmaps link |
+| `SYSTEM_ATLAS_SOURCE_INDEX.md` | Atlas input file list | 90 | — | **CURRENT** | teacher-app, roadmaps | Master | Keep in sync with census |
+| `README.md` (docs index) | Doc map | 90 | — | **CURRENT** | All docs, shared/ | Master | — |
 
 ---
 
@@ -163,7 +166,7 @@
 | `CURRICULUM_ATOMIZATION_GUIDE.md` | Pattern → atoms | 85 | 0 | **DOC-COMPLETE** | CURRICULUM_OS | Teacher P2 | Tooling |
 | `curriculum-taxonomy.md` | Categories | 90 | 0 | **DOC-COMPLETE** | Starter pack | Teacher P2 | — |
 | `CHILDHOOD_COMPASS_ENGINE.md` | CDNS engine | 80 | 0 | **DOC-COMPLETE** | Compass doc | Teacher P2 | **Compute** |
-| `EXPEDITION_BOARD_UX.md` | Daily board UX | 90 | 5 | **PARTIAL** | teacher-app shell | Teacher P0–P1 | **Implement** drag/detail |
+| `EXPEDITION_BOARD_UX.md` | Daily board UX | 90 | 45 | **PARTIAL** | teacher-app P1a–P1b | Teacher P1c | Drag reorder; 7-day view |
 | `PLAN_GENERATION_RULES.md` | Morning stack generation | 85 | 0 | **DOC-COMPLETE** | Tiles | Teacher P2 | **Engine** |
 | `teacher-edition-product-spec.md` | Tabs, sync, views | 85 | 10 | **PARTIAL** | teacher-app | Teacher P1 | 7-day/month views |
 | `teacher-edition-feature-backlog.md` | Feature list | 80 | — | **CURRENT** | Roadmaps | Teacher P1–P4 | Prioritize |
@@ -175,7 +178,7 @@
 | `inclusive-learning-supports.md` | Supports | 85 | 0 | **DOC-COMPLETE** | Tile detail | Teacher P1 | In tile popup |
 | `thematic-playthroughs.md` | Multi-day arcs | 80 | 0 | **DOC-COMPLETE** | Narrative | Teacher P3 | — |
 | `education-research-map.md` | Research index | 75 | 0 | **DOC-COMPLETE** | — | Teacher P4 | — |
-| `teacher-app` (Kotlin) | MVP APK | — | 10 | **PARTIAL** | Expedition UX | Teacher P0 | Port Claude board |
+| `teacher-app` (Kotlin, 14 files) | Teacher APK | — | 40 | **PARTIAL** | Board + tiles + detail | Teacher P1c–P2 | Drag; send to Student |
 
 ---
 
@@ -195,8 +198,8 @@
 
 | File | Purpose | Doc % | Code % | Tag | Connects to | Roadmap | Needs |
 |------|---------|-------|--------|-----|-------------|---------|-------|
-| `superpowers/plans/2026-06-02-forge-profile-app.md` | Build plan | 50 | 60 | **PLAN-OUTDATED** | forge-profile-app | Profile | **Archive** or check off |
-| `superpowers/plans/2026-06-02-student-edition-mvp.md` | Student MVP plan | 40 | 50 | **PLAN-OUTDATED** | Wrong android path | Student | **Rewrite** → student-app |
+| `superpowers/plans/2026-06-02-forge-profile-app.md` | Historical build plan | 50 | 60 | **SUPERSEDED** | Use roadmaps/01 + census | Profile | Do not execute paths verbatim |
+| `superpowers/plans/2026-06-02-student-edition-mvp.md` | Historical UME plan | 40 | 30 | **SUPERSEDED** | Wrong `android/` path | Student | Use `:student-app`; UME deferred |
 | `teacher-edition/android/` | Placeholder | — | 0 | **ORPHAN** | teacher-app module | Teacher | README only |
 | `student-edition/android/` | Placeholder | — | 0 | **ORPHAN** | student-app | Student | README only |
 | `GODOT_MIGRATION_STRATEGY.md` | Future shell | 70 | 0 | **DOC-COMPLETE** | External repo | Master P4 | — |
@@ -211,7 +214,19 @@
 | `forge-profile-core` | 21 | CMOS persistence, provider | 55% | Forge Profile |
 | `forge-profile-app` | 17 | Steward UI | 50% | Forge Profile |
 | `student-app` | 48 | Student Edition runtime | 60% | Student Edition |
-| `teacher-app` | 3 | Teacher shell | 10% | Teacher Edition |
+| `teacher-app` | 14 | Teacher APK (Expedition Board MVP) | 40% | Teacher Edition |
+
+---
+
+## Layer 1b — Execution roadmaps (`docs/roadmaps/`)
+
+| File | Purpose | Tag | North-star aligned? |
+|------|---------|-----|---------------------|
+| `00_MASTER_ROADMAP.md` | Sequencing, four tracks | **CURRENT** | Yes |
+| `01_FORGE_PROFILE_ROADMAP.md` | Profile + Avatar P1-A | **CURRENT** | Yes |
+| `02_STUDENT_EDITION_ROADMAP.md` | student-app paths | **CURRENT** | Yes |
+| `03_TEACHER_EDITION_ROADMAP.md` | teacher-app P1a–P1d | **CURRENT** | Yes |
+| `04_CROSS_APP_INTEGRATION_ROADMAP.md` | Tile→Memory spine | **CURRENT** | Yes |
 
 ---
 

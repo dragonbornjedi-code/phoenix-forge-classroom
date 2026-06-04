@@ -41,7 +41,7 @@ Phoenix Forge is not educational software. It is a **Sovereign Childhood Archive
 The **Childhood Memory Operating System** is the permanent DNA of the childhood. It is built for 20-year durability, platform independence, and total data sovereignty. It stores the truth: voice notes, photos, family mythology, and identity threads.
 
 ### 2. The Interpreter (PCAS)
-The **Persistent Childhood Adventure System** is the magic layer. it consumes CMOS data to generate stories, quests, and world states. It translates raw memories into a meaningful narrative world where the child can see their life reflected.
+The **Persistent Childhood Adventure System** is the magic layer. It consumes CMOS data to generate stories, quests, and world states. It translates raw memories into a meaningful narrative world where the child can see their life reflected.
 
 ### 3. The Frontends (Experience Shells)
 The replaceable windows into the world. Whether it is the current Android APK or a future Godot RPG, the shells are temporary. They emit **MemoryEvents** to CMOS and display the resulting world from PCAS.

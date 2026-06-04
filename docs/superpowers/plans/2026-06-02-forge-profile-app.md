@@ -1,5 +1,9 @@
 # Forge Profile Application Implementation Plan
 
+> **⚠ SUPERSEDED (2026-06-04)** — Module layout here uses `app/`; repo uses `forge-profile-app/` + `forge-profile-core/`.  
+> **Execute from:** [roadmaps/01_FORGE_PROFILE_ROADMAP.md](../../roadmaps/01_FORGE_PROFILE_ROADMAP.md) (Avatar P1-A is current priority).  
+> Kept as historical context only.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Build the "Forge Profile" Android application as the canonical identity backbone for the Phoenix Forge ecosystem.

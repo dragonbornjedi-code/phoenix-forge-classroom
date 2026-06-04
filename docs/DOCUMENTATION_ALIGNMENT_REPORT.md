@@ -1,100 +1,152 @@
 # Documentation Alignment Report
 
 **North star:** [UNIFIED_VISION.md](UNIFIED_VISION.md) · [REPOSITORY_CONSTITUTION.md](REPOSITORY_CONSTITUTION.md)  
-**Proof of implementation:** [PHOENIX_FORGE_SYSTEM_ATLAS.md](PHOENIX_FORGE_SYSTEM_ATLAS.md) · [AUTHORITY_AND_REALITY_MAPPING.md](AUTHORITY_AND_REALITY_MAPPING.md)  
+**Every file register (76 docs):** [REPOSITORY_CENSUS_AND_CONNECTIONS.md](REPOSITORY_CENSUS_AND_CONNECTIONS.md)  
+**Runtime proof:** [PHOENIX_FORGE_SYSTEM_ATLAS.md](PHOENIX_FORGE_SYSTEM_ATLAS.md) · [AUTHORITY_AND_REALITY_MAPPING.md](AUTHORITY_AND_REALITY_MAPPING.md)  
 **Last updated:** 2026-06-04
 
-This report tracks **living docs only** — files that exist on disk today. No separate audit file; update this report when code or docs move.
+---
+
+## Can we guarantee zero contradictions repo-wide?
+
+**No.** Nobody can honestly promise that for a living repo with 76 spec documents, 104 Kotlin files, and intentional **vision ahead of code**.
+
+What we **do** guarantee:
+
+| Guarantee | Meaning |
+|-----------|---------|
+| **Single north star** | If docs disagree on *purpose*, [UNIFIED_VISION.md](UNIFIED_VISION.md) wins; other docs get updated. |
+| **Single path truth** | Runnable APKs are only under `phoenix-forge-classroom-forge-profile/{forge-profile-app,student-app,teacher-app}` — never `*/android/` placeholders. |
+| **Single product names** | Forge Profile · Phoenix Forge Classroom Student Edition · Phoenix Forge Classroom Teacher Edition ([DEVELOPMENT_RULES.md](DEVELOPMENT_RULES.md)). |
+| **Per-file register** | Every `.md`/`.yaml` is listed in [REPOSITORY_CENSUS_AND_CONNECTIONS.md](REPOSITORY_CENSUS_AND_CONNECTIONS.md) with tag + roadmap owner. |
+| **Proof-based status** | Atlas/Authority rows cite code paths or say **Not found** — not wishful “IMPLEMENTED”. |
 
 ---
 
-## Summary
+## Two kinds of “misalignment” (do not confuse them)
 
-| Status | Count | Meaning |
-|--------|-------|---------|
-| ALIGNED | 45 | Matches constitution + north star; keep |
-| ALIGNED-CODE-LAG | 22 | Doc good; implementation behind — roadmaps own work |
-| STALE | 0 | After 2026-06-04 atlas/authority fix |
-| PHANTOM-REF | 0 | Removed from this report |
-| ARCHIVE | 3 | `COMMIT_PREVIEW`, `MAGIC_LAYER` (optional), superpowers plans |
+| Type | Definition | Example | Fix |
+|------|------------|---------|-----|
+| **CONTRADICTION** | Doc A and Doc B disagree on facts or paths | Old `shared/README` UME vs CMOS vision | **Update doc** immediately |
+| **CODE-LAG** | Doc describes target; Kotlin not there yet | Avatar `AvatarConfig` in spec vs 5-field `Avatar` | **Roadmap owns code**; doc stays |
 
----
-
-## Tier 0 — Must stay valid
-
-| File | Status | Notes |
-|------|--------|-------|
-| `REPOSITORY_CONSTITUTION.md` | ALIGNED | Constitutional mandates |
-| `THREE_LAYER_ARCHITECTURE.md` | ALIGNED | CMOS / PCAS / shells |
-| `UNIFIED_VISION.md` | ALIGNED | **Canonical** end state + three products + one loop |
-| `DEVELOPMENT_RULES.md` | ALIGNED | Extend roadmaps; no redesign |
+Code-lag is **not** a documentation bug. It is the planned gap between P3 vision and P1 implementation.
 
 ---
 
-## Tier 1 — Product & deploy truth
+## Repository inventory (why “23 files” on GitHub ≠ full audit)
 
-| `shared/README.md` | ALIGNED | Rewritten 2026-06-04 — Forge Profile center, Godot path; UME/USE deferred |
-| `registry/README.md` | ALIGNED | Content packs only; not identity |
+Recent commits touched **~14–23 paths per commit**. The **full** register is **76** markdown/yaml files + **104** Kotlin sources — see census layers 0–7.
 
-| File | Status | Action |
-|------|--------|--------|
-| `DEPLOYMENT_REALITY.md` | ALIGNED | Update matrix when field test done |
-| `PHOENIX_FORGE_SYSTEM_ATLAS.md` | ALIGNED | Updated 2026-06-04 for `teacher-app` |
-| `AUTHORITY_AND_REALITY_MAPPING.md` | ALIGNED | Updated 2026-06-04 |
-| `roadmaps/*.md` | ALIGNED | Decompose under P0–P3 |
+**Do not use GitHub’s “files changed” count as alignment coverage.**
 
 ---
 
-## Tier 2 — Contracts (DOCUMENTED, not IMPLEMENTED)
+## Alignment status (summary)
 
-| File | Status | Code |
-|------|--------|------|
-| `contracts/INTENT_TILE_CONTRACT.md` | ALIGNED-CODE-LAG | Slim `IntentTile` in teacher-app |
-| `contracts/MEMORY_EVENT_CONTRACT.md` | ALIGNED-CODE-LAG | Student `LifeEvent` local |
-| `contracts/CURRICULUM_OS_SCHEMA.md` | ALIGNED-CODE-LAG | No curriculum-core |
-| `contracts/CURRICULUM_RUNTIME_FLOW.md` | ALIGNED-CODE-LAG | Student orchestrator partial |
-| `reference-tiles/secret-label-decoder.yaml` | ALIGNED-CODE-LAG | Not loaded |
-
-**Do not** mark Milestone -1 [√] in `PCAS_IMPLEMENTATION_ROADMAP.md` as implemented until YAML loads in Teacher.
+| Tag | Count (approx.) | Meaning |
+|-----|-----------------|--------|
+| **CURRENT** / **ALIGNED** | 50+ | Same end goal; paths and names correct |
+| **PARTIAL** / **ALIGNED-CODE-LAG** | 25+ | Doc correct; implementation incomplete |
+| **SUPERSEDED** | 2 | `docs/superpowers/plans/*` — historical only |
+| **ORPHAN** | 4 | Empty `android/`, root `gradlew`, `COMMIT_PREVIEW`, `MAGIC_LAYER` off-spine |
+| **CONTRADICTION** | **0 known** | After 2026-06-04 shared/README + Atlas Teacher rows |
 
 ---
 
-## Tier 3 — Teacher pedagogy (doc-complete)
+## Tier 0 — Constitutional (must not contradict)
 
 | File | Status |
 |------|--------|
-| `teacher-edition/docs/curriculum-of-life.md` | ALIGNED — human canon |
-| `teacher-edition/docs/EXPEDITION_BOARD_UX.md` | ALIGNED-CODE-LAG — board MVP exists |
-| `teacher-edition/docs/teacher-edition-product-spec.md` | ALIGNED-CODE-LAG |
-| All other `teacher-edition/docs/*.md` | ALIGNED — content authority |
+| `REPOSITORY_CONSTITUTION.md` | ALIGNED |
+| `THREE_LAYER_ARCHITECTURE.md` | ALIGNED |
+| `UNIFIED_VISION.md` | ALIGNED — Ezra, three products, one loop, Avatar/Godot pointers |
+| `DEVELOPMENT_RULES.md` | ALIGNED |
+
+---
+
+## Tier 1 — Product entry points
+
+| File | Status |
+|------|--------|
+| `/README.md` | ALIGNED — Forge Profile first |
+| `shared/README.md` | ALIGNED — CMOS center; UME/USE deferred |
+| `registry/README.md` | ALIGNED — content packs only |
+| `DEPLOYMENT_REALITY.md` | ALIGNED — update matrix after field test |
+| `PHOENIX_FORGE_SYSTEM_ATLAS.md` | ALIGNED — teacher-app P1a–P1b |
+| `AUTHORITY_AND_REALITY_MAPPING.md` | ALIGNED |
+| `REPOSITORY_CENSUS_AND_CONNECTIONS.md` | ALIGNED — **master file list** |
+| `roadmaps/00`–`04` | ALIGNED |
+| `FORGEPROFILE_SPEC.md` | ALIGNED — Avatar Studio target schema |
+| `GODOT_MIGRATION_STRATEGY.md` | ALIGNED — import bundle + avatar 3D |
 
 **Runnable code:** `phoenix-forge-classroom-forge-profile/teacher-app` (not `teacher-edition/android/`).
 
 ---
 
-## Tier 4 — Student UX (doc-complete)
+## Tier 2 — Contracts (doc-complete, code-lag expected)
 
 | File | Status |
 |------|--------|
-| `student-edition/docs/EXPERIENCE_SHELL_SPEC.md` | ALIGNED-CODE-LAG |
-| `student-edition/docs/HEARTHHOME_*`, `SPARK_*`, `IDENTITY_*` | ALIGNED-CODE-LAG |
-
-**Runnable code:** `student-app` module.
-
-**Boundary doc:** [STUDENT_TEACHER_BOUNDARY.md](STUDENT_TEACHER_BOUNDARY.md) (not `student-experience-boundary.md`).
-
----
-
-## Removed from old report (never existed here)
-
-Do not search for: `ARCHITECTURAL_BLUEPRINT.md`, `SPARK_MEMORY_KEEPER_SPEC.md`, `SPARK_LIFECYCLE_DESIGN.md`, `COMPANION_SPARK_DESIGN.md`, `WISP_SYSTEM_DESIGN.md`, `MEMORY_MUSEUM_DESIGN.md`, `HOUSE_AND_MUSEUM_DESIGN.md`, `MVP_AND_ROADMAP.md`, `FORGEPROFILE_EXTENSIONS.md`, `teacher-edition/docs/product-spec.md`, `student-edition/docs/experience-boundary.md`.
+| `contracts/INTENT_TILE_CONTRACT.md` | CODE-LAG — slim Room `IntentTile` in teacher-app |
+| `contracts/MEMORY_EVENT_CONTRACT.md` | CODE-LAG — Student `LifeEvent` local |
+| `contracts/CURRICULUM_OS_SCHEMA.md` | CODE-LAG |
+| `contracts/CURRICULUM_RUNTIME_FLOW.md` | CODE-LAG — Student orchestrator partial |
+| `reference-tiles/secret-label-decoder.yaml` | CODE-LAG — not loaded |
+| `shared/sync-contract.md` | CODE-LAG — not implemented |
+| `PCAS_IMPLEMENTATION_ROADMAP.md` | ALIGNED — Milestone -1 = **spec done**, runtime open |
 
 ---
 
-## Priority updates (documentation only when code moves)
+## Tier 3 — Teacher pedagogy (16 files in `teacher-edition/docs/`)
 
-1. When loop stage passes → update Atlas + Authority + `04_CROSS_APP` checklist  
-2. When IntentTile model matches contract → update `INTENT_TILE_CONTRACT` appendix with Kotlin mapping  
-3. When Hearthhome ships → update `EXPERIENCE_SHELL_SPEC` with screenshots/paths  
+All **ALIGNED** with north star. Expedition Board UX is **CODE-LAG** for drag/7-day only — P1a–P1b **implemented** in `teacher-app`.
 
-Do **not** rewrite constitution or unified vision unless Ezra-centered premise changes.
+---
+
+## Tier 4 — Student UX (4 files in `student-edition/docs/`)
+
+All **ALIGNED-CODE-LAG** — Hearthhome/Spark vision vs `student-app` Home/NPC UI.
+
+**Runnable code:** `:student-app` only.
+
+**Boundary:** [STUDENT_TEACHER_BOUNDARY.md](STUDENT_TEACHER_BOUNDARY.md) — not `student-experience-boundary.md`.
+
+---
+
+## Tier 5 — Historical plans (do not execute)
+
+| File | Status |
+|------|--------|
+| `superpowers/plans/2026-06-02-forge-profile-app.md` | **SUPERSEDED** → `roadmaps/01`, `forge-profile-app` module |
+| `superpowers/plans/2026-06-02-student-edition-mvp.md` | **SUPERSEDED** → `:student-app`; UME path wrong |
+
+---
+
+## Phantom files (never existed — do not cite)
+
+`ARCHITECTURAL_BLUEPRINT.md`, `SPARK_MEMORY_KEEPER_SPEC.md`, `END_GOAL_AND_NORTH_STAR.md`, `ALIGNMENT_AUDIT_2026-06-04.md`, `student-edition/docs/experience-boundary.md`, `teacher-edition/docs/product-spec.md`.
+
+---
+
+## Known intentional gaps (not contradictions)
+
+| Gap | Owner |
+|-----|--------|
+| Cross-app Tile → Quest → MemoryEvent loop | `04_CROSS_APP_INTEGRATION_ROADMAP.md` |
+| Avatar Studio P1-A (full `AvatarConfig`) | `01_FORGE_PROFILE_ROADMAP.md` |
+| Teacher P1c drag reorder | `03_TEACHER_EDITION_ROADMAP.md` |
+| CMOS / unified MemoryEvent runtime | Profile + Cross-app P2 |
+| Godot project | External repo; import spec in `GODOT_MIGRATION_STRATEGY.md` |
+| UME/USE minigames | Deferred → `registry/` |
+
+---
+
+## When to update what
+
+1. **Phase completes** → roadmap checkbox + Atlas + Authority + census row  
+2. **New Kotlin module** → census Layer 8 + forge-profile README  
+3. **Doc path wrong** → fix immediately (contradiction)  
+4. **Vision expands** → UNIFIED_VISION first, then FORGEPROFILE_SPEC, then roadmaps  
+
+Do **not** add new top-level audit markdown files — update **this report** and **REPOSITORY_CENSUS**.

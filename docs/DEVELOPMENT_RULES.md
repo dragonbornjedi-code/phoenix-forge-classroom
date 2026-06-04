@@ -57,7 +57,9 @@ Do not provide replacement architectures. Provide:
 
 **Feature → Build steps → Files to modify → Exit criteria**
 
-Assume existing documents are intentional unless directly contradicted by [REPOSITORY_CENSUS_AND_CONNECTIONS.md](REPOSITORY_CENSUS_AND_CONNECTIONS.md) or code.
+Assume existing documents are intentional unless directly contradicted by [REPOSITORY_CENSUS_AND_CONNECTIONS.md](REPOSITORY_CENSUS_AND_CONNECTIONS.md) (all **76** docs) or code.
+
+**Alignment:** [DOCUMENTATION_ALIGNMENT_REPORT.md](DOCUMENTATION_ALIGNMENT_REPORT.md) — code-lag ≠ contradiction. Do not create parallel audit files.
 
 ## Current product goal
 

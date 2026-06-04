@@ -1,5 +1,10 @@
 # Student Edition MVP Implementation Plan
 
+> **⚠ SUPERSEDED (2026-06-04)** — Do not execute file paths in this plan.  
+> **Runnable code:** `phoenix-forge-classroom-forge-profile/student-app` (`:student-app`).  
+> **UME/Hearthhome paths** here are deferred; north star: [UNIFIED_VISION.md](../../UNIFIED_VISION.md), execution: [roadmaps/02_STUDENT_EDITION_ROADMAP.md](../../roadmaps/02_STUDENT_EDITION_ROADMAP.md).  
+> Kept as historical context only.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Build a functional Student Edition prototype featuring the Hearthhome hub and a Universal Matching Engine (UME).

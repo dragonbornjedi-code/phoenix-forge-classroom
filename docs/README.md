@@ -2,6 +2,8 @@
 
 This directory contains the **Core Architecture** and **Constitutional Mandates** that govern the Sovereign Childhood Archive.
 
+**Full file-by-file register (76 docs):** [REPOSITORY_CENSUS_AND_CONNECTIONS.md](REPOSITORY_CENSUS_AND_CONNECTIONS.md) · **Alignment policy:** [DOCUMENTATION_ALIGNMENT_REPORT.md](DOCUMENTATION_ALIGNMENT_REPORT.md)
+
 ## The Sovereign Constitution
 - **[REPOSITORY_CONSTITUTION.md](REPOSITORY_CONSTITUTION.md):** The highest-level governing document and the **2046 Test**.
 - **[THREE_LAYER_ARCHITECTURE.md](THREE_LAYER_ARCHITECTURE.md):** CMOS (Database) vs PCAS (Interpreter) vs Experience Shells.

@@ -1,5 +1,7 @@
 # Teacher Edition: Daily Expedition Board UX
 
+**Implementation (2026-06-04):** `phoenix-forge-classroom-forge-profile/teacher-app` — board, create tile, field guide, save, mark complete, Room persist. **Not yet:** drag reorder (P1c), 7-day/month views. **Build:** `:teacher-app:assembleDebug` — not `teacher-edition/android/`.
+
 The **Daily Expedition Board** is the primary interface for the Teacher Edition. It is designed as a living, breathing field guide for parents navigating a mobile or unpredictable childhood.
 
 ## 1. Core Visual Layout
