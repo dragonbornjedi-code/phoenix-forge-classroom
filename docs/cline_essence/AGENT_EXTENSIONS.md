@@ -1,6 +1,7 @@
 # Cline Essence — Agent Extensions
 
-Extends [MASTER_PROTOCOL.md](MASTER_PROTOCOL.md). Load master protocol first.
+Extends [SKILL.md](SKILL.md) (v1.1.0) and [MASTER_PROTOCOL.md](MASTER_PROTOCOL.md).  
+Skill routing table: [SKILL_STACK.md](SKILL_STACK.md).
 
 ---
 

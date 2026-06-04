@@ -15,10 +15,15 @@ echo "Root: $ROOT"
 
 # --- Tier 0 files exist ---
 for f in docs/CONSTITUTION.md docs/REPOSITORY_CONSTITUTION.md docs/UNIFIED_VISION.md \
-         registry/phoenix-forge-classroom.yaml docs/cline_essence/MASTER_PROTOCOL.md \
-         docs/roadmaps/00_MASTER_ROADMAP.md; do
+         registry/phoenix-forge-classroom.yaml docs/cline_essence/SKILL.md \
+         docs/cline_essence/MASTER_PROTOCOL.md docs/roadmaps/00_MASTER_ROADMAP.md; do
   [[ -f "$f" ]] || warn "Missing tier0/protocol file: $f"
 done
+
+# --- cline-essence version pin ---
+if ! grep -q 'version: 1.1.0' docs/cline_essence/SKILL.md 2>/dev/null; then
+  warn "docs/cline_essence/SKILL.md missing version: 1.1.0 frontmatter"
+fi
 
 # --- Forbidden build paths must not appear as instructions in docs ---
 FORBIDDEN=(

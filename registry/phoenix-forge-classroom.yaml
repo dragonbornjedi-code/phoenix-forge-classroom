@@ -33,6 +33,13 @@ tier0_docs:
 master_timeline: docs/roadmaps/00_MASTER_ROADMAP.md
 current_step: "0.00"
 
+cline_essence:
+  version: "1.1.0"
+  skill: docs/cline_essence/SKILL.md
+  master_protocol: docs/cline_essence/MASTER_PROTOCOL.md
+  skill_stack: docs/cline_essence/SKILL_STACK.md
+  agent_extensions: docs/cline_essence/AGENT_EXTENSIONS.md
+
 advisory_protocol: docs/cline_essence/MASTER_PROTOCOL.md
 
 phantom_files:

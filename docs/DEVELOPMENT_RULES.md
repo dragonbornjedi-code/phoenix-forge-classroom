@@ -1,6 +1,6 @@
 # Phoenix Forge Classroom Development Rules
 
-Before making any changes, read [cline_essence/MASTER_PROTOCOL.md](cline_essence/MASTER_PROTOCOL.md) and check **Current step** in [roadmaps/00_MASTER_ROADMAP.md](roadmaps/00_MASTER_ROADMAP.md). Run `./scripts/cline-essence-drift-check.sh` after path/doc edits.
+Before making any changes, read [cline_essence/SKILL.md](cline_essence/SKILL.md) + [cline_essence/MASTER_PROTOCOL.md](cline_essence/MASTER_PROTOCOL.md); use [cline_essence/SKILL_STACK.md](cline_essence/SKILL_STACK.md) for domain skills. Check **Current step** in [roadmaps/00_MASTER_ROADMAP.md](roadmaps/00_MASTER_ROADMAP.md). Run `./scripts/cline-essence-drift-check.sh` after path/doc edits.
 
 ## Authoritative planning
 

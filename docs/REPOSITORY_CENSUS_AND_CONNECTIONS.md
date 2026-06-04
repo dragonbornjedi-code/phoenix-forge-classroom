@@ -228,7 +228,7 @@
 
 | File | Purpose | Tag | North-star aligned? |
 |------|---------|-----|---------------------|
-| `00_MASTER_ROADMAP.md` | Sequencing, four tracks | **CURRENT** | Yes |
+| `00_MASTER_ROADMAP.md` | Repo-wide `0.00`–`5.00` only | **CURRENT** | Yes — step 0.00 |
 | `01_FORGE_PROFILE_ROADMAP.md` | Profile + Avatar P1-A | **CURRENT** | Yes |
 | `02_STUDENT_EDITION_ROADMAP.md` | student-app paths | **CURRENT** | Yes |
 | `03_TEACHER_EDITION_ROADMAP.md` | teacher-app P1a–P1d | **CURRENT** | Yes |
@@ -240,7 +240,7 @@
 
 | Roadmap | Owns |
 |---------|------|
-| [00_MASTER_ROADMAP.md](roadmaps/00_MASTER_ROADMAP.md) | Sequencing, dependencies, four tracks overview |
+| [00_MASTER_ROADMAP.md](roadmaps/00_MASTER_ROADMAP.md) | **Only** global timeline `0.00`–`5.00`; sub-roadmaps are detail |
 | [01_FORGE_PROFILE_ROADMAP.md](roadmaps/01_FORGE_PROFILE_ROADMAP.md) | All Profile docs + core + app |
 | [02_STUDENT_EDITION_ROADMAP.md](roadmaps/02_STUDENT_EDITION_ROADMAP.md) | student-edition/docs + student-app |
 | [03_TEACHER_EDITION_ROADMAP.md](roadmaps/03_TEACHER_EDITION_ROADMAP.md) | teacher-edition/docs + teacher-app |
