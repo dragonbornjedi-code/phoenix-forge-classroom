@@ -1,0 +1,46 @@
+# Phoenix Forge Classroom — Tier 0 registry manifest
+# Version: 1.0.0
+# Consumed by: scripts/cline-essence-drift-check.sh, agents (read-first)
+
+schema_version: 1
+
+products:
+  - id: forge_profile
+    display_name: Forge Profile
+    modules: [forge-profile-core, forge-profile-app]
+    package: com.phoenixforge.profile
+  - id: student_edition
+    display_name: Phoenix Forge Classroom Student Edition
+    modules: [student-app]
+    package: com.phoenixforge.student
+  - id: teacher_edition
+    display_name: Phoenix Forge Classroom Teacher Edition
+    modules: [teacher-app]
+    package: com.phoenixforge.classroom.teacher
+
+gradle_root: phoenix-forge-classroom-forge-profile
+
+forbidden_build_paths:
+  - phoenix-forge-classroom-teacher-edition/android/
+  - phoenix-forge-classroom-student-edition/android/
+
+tier0_docs:
+  - docs/CONSTITUTION.md
+  - docs/REPOSITORY_CONSTITUTION.md
+  - docs/UNIFIED_VISION.md
+  - registry/phoenix-forge-classroom.yaml
+
+master_timeline: docs/roadmaps/00_MASTER_ROADMAP.md
+current_step: "0.00"
+
+advisory_protocol: docs/cline_essence/MASTER_PROTOCOL.md
+
+phantom_files:
+  - docs/END_GOAL_AND_NORTH_STAR.md
+  - docs/ALIGNMENT_AUDIT_2026-06-04.md
+  - student-edition/docs/experience-boundary.md
+
+verification_commands:
+  build_all: "./phoenix-forge-classroom-forge-profile/gradlew :forge-profile-app:assembleDebug :student-app:assembleDebug :teacher-app:assembleDebug"
+  drift_check: "./scripts/cline-essence-drift-check.sh"
+  install_phone: "./scripts/install-phone-apks.sh"

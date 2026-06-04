@@ -1,10 +1,11 @@
 # Phoenix Forge Classroom Development Rules
 
-Before making any changes, understand the current project structure.
+Before making any changes, read [cline_essence/MASTER_PROTOCOL.md](cline_essence/MASTER_PROTOCOL.md) and check **Current step** in [roadmaps/00_MASTER_ROADMAP.md](roadmaps/00_MASTER_ROADMAP.md). Run `./scripts/cline-essence-drift-check.sh` after path/doc edits.
 
 ## Authoritative planning
 
-1. [roadmaps/00_MASTER_ROADMAP.md](roadmaps/00_MASTER_ROADMAP.md)
+0. [CONSTITUTION.md](CONSTITUTION.md) · [registry/phoenix-forge-classroom.yaml](../registry/phoenix-forge-classroom.yaml) (Tier 0)
+1. [roadmaps/00_MASTER_ROADMAP.md](roadmaps/00_MASTER_ROADMAP.md) — **only** repo-wide `0.00`–`5.00` timeline
 2. [roadmaps/01_FORGE_PROFILE_ROADMAP.md](roadmaps/01_FORGE_PROFILE_ROADMAP.md)
 3. [roadmaps/02_STUDENT_EDITION_ROADMAP.md](roadmaps/02_STUDENT_EDITION_ROADMAP.md)
 4. [roadmaps/03_TEACHER_EDITION_ROADMAP.md](roadmaps/03_TEACHER_EDITION_ROADMAP.md)

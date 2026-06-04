@@ -77,9 +77,15 @@
 |------|---------|-------|--------|-----|-------------|---------|-------|
 | `README.md` | Entry point | 90 | — | **CURRENT** | Three APK paths, roadmaps | Master P0 | Field-test matrix in DEPLOYMENT_REALITY |
 | `gradlew` (root) | Wrapper duplicate | — | — | **ORPHAN** | forge-profile gradlew | Master | Delete or delegate doc |
-| `scripts/install-phone-apks.sh` | Build+install 3 APKs | 90 | — | **CURRENT** | DEPLOYMENT_REALITY | All P0 | **Improve** after field test notes |
-| `scripts/README.md` | Script index | 50 | — | **PARTIAL** | install script | Master | **Update** |
-| `registry/README.md` | Content pack registry (future UME) | 85 | 0 | **CURRENT** | CURRICULUM_OS, shared/README | Teacher P3 | Implement packs |
+| `scripts/install-phone-apks.sh` | Build+install 3 APKs | 90 | — | **CURRENT** | DEPLOYMENT_REALITY | Master 0.25 | Field-test matrix |
+| `scripts/cline-essence-drift-check.sh` | Drift guard | 95 | — | **CURRENT** | registry, MASTER_PROTOCOL | Master 0.00 | Run in CI optional |
+| `scripts/systemd/*` | Daily drift timer | 90 | — | **CURRENT** | drift-check.sh | Master 0.00 | User install |
+| `scripts/README.md` | Script index | 90 | — | **CURRENT** | install + drift | Master | — |
+| `registry/README.md` | Tier 0 registry index | 95 | 0 | **CURRENT** | phoenix-forge-classroom.yaml | Master 0.00 | — |
+| `registry/phoenix-forge-classroom.yaml` | Tier 0 manifest | 95 | 0 | **CURRENT** | CONSTITUTION, drift script | Master 0.00 | Bump `current_step` |
+| `docs/CONSTITUTION.md` | Tier 0 pointer | 95 | — | **CURRENT** | REPOSITORY_CONSTITUTION | Master | — |
+| `docs/cline_essence/MASTER_PROTOCOL.md` | Agent execution protocol | 95 | — | **CURRENT** | 00_MASTER step gate | Master 0.00 | — |
+| `docs/cline_essence/AGENT_EXTENSIONS.md` | Per-role extensions | 90 | — | **CURRENT** | MASTER_PROTOCOL | Master | — |
 | `shared/README.md` | Cross-app + Forge Profile export index | 95 | 0 | **CURRENT** | sync-contract, PCAS SQL, FORGEPROFILE | Cross-app P1 | Kotlin `shared` module when contracts stabilize |
 | `shared/sync-contract.md` | Cross-app sync spec | 70 | 0 | **DOC-COMPLETE** | Teacher, Student, Profile | Cross-app P1 | **Implement** |
 | `shared/schemas/PCAS_DB_SCHEMA.sql` | PCAS tables | 60 | 0 | **PARTIAL** | PCAS_ARCHITECTURE | Student P2 | **Wire** or trim |

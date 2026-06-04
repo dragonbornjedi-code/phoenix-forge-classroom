@@ -4,8 +4,11 @@ This directory contains the **Core Architecture** and **Constitutional Mandates*
 
 **Full file-by-file register (76 docs):** [REPOSITORY_CENSUS_AND_CONNECTIONS.md](REPOSITORY_CENSUS_AND_CONNECTIONS.md) · **Alignment policy:** [DOCUMENTATION_ALIGNMENT_REPORT.md](DOCUMENTATION_ALIGNMENT_REPORT.md)
 
-## The Sovereign Constitution
-- **[REPOSITORY_CONSTITUTION.md](REPOSITORY_CONSTITUTION.md):** The highest-level governing document and the **2046 Test**.
+## Tier 0 + agent discipline
+- **[CONSTITUTION.md](CONSTITUTION.md):** Tier 0 pointer (constitution + registry + protocol).
+- **[cline_essence/MASTER_PROTOCOL.md](cline_essence/MASTER_PROTOCOL.md):** Cline Essence — verification tags, drift guard, `0.00`–`5.00` gate.
+- **[roadmaps/00_MASTER_ROADMAP.md](roadmaps/00_MASTER_ROADMAP.md):** **Repo-wide timeline only** (current step in header).
+- **[REPOSITORY_CONSTITUTION.md](REPOSITORY_CONSTITUTION.md):** Articles I–IV and the **2046 Test**.
 - **[THREE_LAYER_ARCHITECTURE.md](THREE_LAYER_ARCHITECTURE.md):** CMOS (Database) vs PCAS (Interpreter) vs Experience Shells.
 - **[UNIFIED_VISION.md](UNIFIED_VISION.md):** North star — Ezra-centered, three products, one Tile→Memory loop.
 - **[DEVELOPMENT_RULES.md](DEVELOPMENT_RULES.md):** Extend roadmaps; do not redesign or add competing docs.
@@ -53,7 +56,7 @@ This directory contains the **Core Architecture** and **Constitutional Mandates*
 - **[CHILDHOOD_TIME_CAPSULE_SPEC.md](CHILDHOOD_TIME_CAPSULE_SPEC.md):** The final handover protocol.
 
 ## Roadmaps (execution)
-- **[roadmaps/00_MASTER_ROADMAP.md](roadmaps/00_MASTER_ROADMAP.md):** Master sequencing + four tracks.
+- **[roadmaps/00_MASTER_ROADMAP.md](roadmaps/00_MASTER_ROADMAP.md):** Master `0.00`–`5.00` — **start here** (sub-roadmaps are detail).
 - **[roadmaps/01_FORGE_PROFILE_ROADMAP.md](roadmaps/01_FORGE_PROFILE_ROADMAP.md):** Forge Profile (four paths).
 - **[roadmaps/02_STUDENT_EDITION_ROADMAP.md](roadmaps/02_STUDENT_EDITION_ROADMAP.md):** Student Edition (four paths).
 - **[roadmaps/03_TEACHER_EDITION_ROADMAP.md](roadmaps/03_TEACHER_EDITION_ROADMAP.md):** Teacher Edition (four paths).

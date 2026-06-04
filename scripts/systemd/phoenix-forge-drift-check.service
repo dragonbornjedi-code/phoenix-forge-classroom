@@ -1,0 +1,13 @@
+[Unit]
+Description=Phoenix Forge Classroom Cline Essence drift check
+After=network.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/phoenix-forge-classroom
+ExecStart=%h/phoenix-forge-classroom/scripts/cline-essence-drift-check.sh
+# Override WorkingDirectory if repo lives elsewhere:
+# Environment=PF_REPO=/var/lib/phoenix-ai/workspace/phoenix-forge-classroom
+
+[Install]
+WantedBy=default.target
