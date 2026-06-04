@@ -6,7 +6,9 @@ This directory contains the **Core Architecture** and **Constitutional Mandates*
 
 ## Tier 0 + agent discipline
 - **[CONSTITUTION.md](CONSTITUTION.md):** Tier 0 pointer (constitution + registry + protocol).
-- **[cline_essence/MASTER_PROTOCOL.md](cline_essence/MASTER_PROTOCOL.md):** Cline Essence — verification tags, drift guard, `0.00`–`5.00` gate.
+- **[cline_essence/SKILL.md](cline_essence/SKILL.md):** Cline Essence v1.1.0 (portable skill).
+- **[cline_essence/MASTER_PROTOCOL.md](cline_essence/MASTER_PROTOCOL.md):** Phoenix bindings — drift guard, `0.00`–`5.00` gate.
+- **[cline_essence/SKILL_STACK.md](cline_essence/SKILL_STACK.md):** When to use android/offline/agent skills in this repo.
 - **[roadmaps/00_MASTER_ROADMAP.md](roadmaps/00_MASTER_ROADMAP.md):** **Repo-wide timeline only** (current step in header).
 - **[REPOSITORY_CONSTITUTION.md](REPOSITORY_CONSTITUTION.md):** Articles I–IV and the **2046 Test**.
 - **[THREE_LAYER_ARCHITECTURE.md](THREE_LAYER_ARCHITECTURE.md):** CMOS (Database) vs PCAS (Interpreter) vs Experience Shells.

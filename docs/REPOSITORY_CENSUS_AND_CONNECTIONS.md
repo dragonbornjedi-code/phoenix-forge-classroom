@@ -84,8 +84,10 @@
 | `registry/README.md` | Tier 0 registry index | 95 | 0 | **CURRENT** | phoenix-forge-classroom.yaml | Master 0.00 | — |
 | `registry/phoenix-forge-classroom.yaml` | Tier 0 manifest | 95 | 0 | **CURRENT** | CONSTITUTION, drift script | Master 0.00 | Bump `current_step` |
 | `docs/CONSTITUTION.md` | Tier 0 pointer | 95 | — | **CURRENT** | REPOSITORY_CONSTITUTION | Master | — |
-| `docs/cline_essence/MASTER_PROTOCOL.md` | Agent execution protocol | 95 | — | **CURRENT** | 00_MASTER step gate | Master 0.00 | — |
-| `docs/cline_essence/AGENT_EXTENSIONS.md` | Per-role extensions | 90 | — | **CURRENT** | MASTER_PROTOCOL | Master | — |
+| `docs/cline_essence/SKILL.md` | Cline Essence v1.1.0 (canonical) | 95 | — | **CURRENT** | MASTER_PROTOCOL | Master 0.00 | Sync with global skill |
+| `docs/cline_essence/MASTER_PROTOCOL.md` | Phoenix bindings | 95 | — | **CURRENT** | 00_MASTER step gate | Master 0.00 | — |
+| `docs/cline_essence/SKILL_STACK.md` | Domain skill routing | 90 | — | **CURRENT** | SKILL.md | Master | — |
+| `docs/cline_essence/AGENT_EXTENSIONS.md` | Per-role extensions | 90 | — | **CURRENT** | SKILL + MASTER | Master | — |
 | `shared/README.md` | Cross-app + Forge Profile export index | 95 | 0 | **CURRENT** | sync-contract, PCAS SQL, FORGEPROFILE | Cross-app P1 | Kotlin `shared` module when contracts stabilize |
 | `shared/sync-contract.md` | Cross-app sync spec | 70 | 0 | **DOC-COMPLETE** | Teacher, Student, Profile | Cross-app P1 | **Implement** |
 | `shared/schemas/PCAS_DB_SCHEMA.sql` | PCAS tables | 60 | 0 | **PARTIAL** | PCAS_ARCHITECTURE | Student P2 | **Wire** or trim |
