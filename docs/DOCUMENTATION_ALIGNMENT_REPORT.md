@@ -33,6 +33,9 @@ This report tracks **living docs only** — files that exist on disk today. No s
 
 ## Tier 1 — Product & deploy truth
 
+| `shared/README.md` | ALIGNED | Rewritten 2026-06-04 — Forge Profile center, Godot path; UME/USE deferred |
+| `registry/README.md` | ALIGNED | Content packs only; not identity |
+
 | File | Status | Action |
 |------|--------|--------|
 | `DEPLOYMENT_REALITY.md` | ALIGNED | Update matrix when field test done |
