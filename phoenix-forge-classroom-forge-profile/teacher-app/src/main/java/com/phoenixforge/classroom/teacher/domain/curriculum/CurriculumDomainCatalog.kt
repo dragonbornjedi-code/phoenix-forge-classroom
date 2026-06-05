@@ -21,6 +21,7 @@ object CurriculumDomainCatalog {
     val domains: List<CurriculumDomain> = listOf(
         CurriculumDomain(
             id = CurriculumDomainId.COGNITIVE_ACADEMIC,
+            focusLine = "Mastering the tools of thought, communication, and systematic inquiry.",
             teacherFraming = "Literacy, numeracy, scientific thinking, first-principles reasoning, history as systems, and abstraction mapping.",
             studentFraming = "Secret-code reading, guess-and-check science, spot-the-error games, then-and-now stories, and \"what job does this thing do?\"",
             lessonPatterns = listOf(
@@ -45,10 +46,11 @@ object CurriculumDomainCatalog {
                 "Verbal: \"I wonder...\" prompts and simple why chains.",
                 "Choice-based: offer two possible answers and let him test."
             ),
-            subcategoryCount = 16
+            subdomains = CurriculumSubdomainCatalog.forDomain(CurriculumDomainId.COGNITIVE_ACADEMIC)
         ),
         CurriculumDomain(
             id = CurriculumDomainId.EMOTIONAL_REGULATION,
+            focusLine = "Managing the internal state and processing the human experience.",
             teacherFraming = "Emotional literacy, state awareness, protocol execution, self-regulation, agency, and mindfulness.",
             studentFraming = "System temperature, pause button, deep breath trick, safe fort, \"I did this,\" and body check.",
             lessonPatterns = listOf(
@@ -74,10 +76,11 @@ object CurriculumDomainCatalog {
                 "Sensory: dimmer light, headphones, blanket, water, quiet.",
                 "Repair: short post-moment review — what happened, what helped, what next?"
             ),
-            subcategoryCount = 12
+            subdomains = CurriculumSubdomainCatalog.forDomain(CurriculumDomainId.EMOTIONAL_REGULATION)
         ),
         CurriculumDomain(
             id = CurriculumDomainId.PRACTICAL_LIFE,
+            focusLine = "The mechanics of managing life as an independent agent.",
             teacherFraming = "Body maintenance, financial literacy, household competence, tool safety, and digital citizenship.",
             studentFraming = "Charge the battery, fuel sort, token shop, room bug hunt, fix-it station, and private-stuff rules.",
             lessonPatterns = listOf(
@@ -100,10 +103,11 @@ object CurriculumDomainCatalog {
                 "Visual checklist.", "First-then board.", "Timer or song.",
                 "Token board.", "Model-copy-practice."
             ),
-            subcategoryCount = 14
+            subdomains = CurriculumSubdomainCatalog.forDomain(CurriculumDomainId.PRACTICAL_LIFE)
         ),
         CurriculumDomain(
             id = CurriculumDomainId.SOCIAL_DYNAMICS,
+            focusLine = "Navigating the multi-player environment of society.",
             teacherFraming = "Empathy, perspective-taking, conflict resolution, boundaries, access control, and collaboration.",
             studentFraming = "Puppet feelings, talk-it-out, turn timer, my bubble, ask first, and helper missions.",
             lessonPatterns = listOf(
@@ -125,10 +129,11 @@ object CurriculumDomainCatalog {
                 "Social story.", "Puppet rehearsal.", "Visual turn cards.",
                 "Timer.", "Role swap."
             ),
-            subcategoryCount = 12
+            subdomains = CurriculumSubdomainCatalog.forDomain(CurriculumDomainId.SOCIAL_DYNAMICS)
         ),
         CurriculumDomain(
             id = CurriculumDomainId.PHYSICAL_MASTERY,
+            focusLine = "The hardware interface and environmental interaction.",
             teacherFraming = "Body control, proprioception, manual dexterity, resource loops, survival, and situational awareness.",
             studentFraming = "Balance machine, tiny-hands missions, trash sorting, light patrol, house map, and safe spot.",
             lessonPatterns = listOf(
@@ -151,10 +156,11 @@ object CurriculumDomainCatalog {
                 "Heavier objects for proprioceptive input.", "Demonstrate slowly.",
                 "Use real household jobs."
             ),
-            subcategoryCount = 12
+            subdomains = CurriculumSubdomainCatalog.forDomain(CurriculumDomainId.PHYSICAL_MASTERY)
         ),
         CurriculumDomain(
             id = CurriculumDomainId.CREATIVE_CURIOSITY,
+            focusLine = "The software of innovation and self-actualization.",
             teacherFraming = "Procedural art, maker pipeline, philosophical inquiry, curiosity, and failure recovery.",
             studentFraming = "Pattern art, draw-plan-build-upgrade, great why, what-if stories, and oops patch.",
             lessonPatterns = listOf(
@@ -177,10 +183,11 @@ object CurriculumDomainCatalog {
                 "One-upgrade rule.", "Adult scribing for ideas.",
                 "Celebrate retries more than outcomes."
             ),
-            subcategoryCount = 12
+            subdomains = CurriculumSubdomainCatalog.forDomain(CurriculumDomainId.CREATIVE_CURIOSITY)
         ),
         CurriculumDomain(
             id = CurriculumDomainId.ETHICS_CIVIC,
+            focusLine = "The kernel — decision-making framework for life.",
             teacherFraming = "Moral reasoning, integrity, decision architecture, community contribution, calibration, and version control.",
             studentFraming = "Fairness games, daily promise, truth box, two paths, helper mission, and version check.",
             lessonPatterns = listOf(
@@ -203,7 +210,7 @@ object CurriculumDomainCatalog {
                 "Story examples.", "Toy roleplay.", "Concrete fairness objects.",
                 "Repair script.", "Star or version log."
             ),
-            subcategoryCount = 12
+            subdomains = CurriculumSubdomainCatalog.forDomain(CurriculumDomainId.ETHICS_CIVIC)
         )
     )
 

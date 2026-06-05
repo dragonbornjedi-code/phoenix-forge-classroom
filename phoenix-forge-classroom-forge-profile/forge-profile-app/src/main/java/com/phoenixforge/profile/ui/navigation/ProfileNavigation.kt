@@ -35,7 +35,10 @@ fun ProfileNavHost(
         modifier = modifier
     ) {
         composable(Screen.Dashboard.route) {
-            DashboardScreen(onNavigate = { route -> navController.navigate(route) })
+            DashboardScreen(
+                onNavigate = { route -> navController.navigate(route) },
+                onSignOut = onSignOut
+            )
         }
         composable(Screen.Studio.route) {
             AvatarStudioScreen()

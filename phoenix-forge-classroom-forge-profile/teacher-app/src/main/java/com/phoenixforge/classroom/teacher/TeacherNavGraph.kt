@@ -16,9 +16,9 @@ import com.phoenixforge.classroom.teacher.ui.tile.TileDetailScreen
 import com.phoenixforge.classroom.teacher.ui.students.StudentSnapshotScreen
 
 private object Routes {
+    const val CURRICULUM = "curriculum_home"
     const val BOARD = "expedition_board"
     const val PROFILE = "forge_profile"
-    const val CURRICULUM = "curriculum_home"
     const val CURRICULUM_DOMAIN = "curriculum_domain/{domainId}"
     const val STARTER_LESSON = "starter_lesson/{lessonId}"
     const val WEEKLY_AUDIT = "weekly_audit"
@@ -34,9 +34,20 @@ private object Routes {
 fun TeacherNavGraph() {
     val nav = rememberNavController()
 
-    NavHost(navController = nav, startDestination = Routes.BOARD) {
+    NavHost(navController = nav, startDestination = Routes.CURRICULUM) {
+        composable(Routes.CURRICULUM) {
+            CurriculumHomeScreen(
+                onOpenExpedition = { nav.navigate(Routes.BOARD) },
+                onViewProfile = { nav.navigate(Routes.PROFILE) },
+                onViewStudentSnapshot = { nav.navigate(Routes.STUDENT_SNAPSHOT) },
+                onOpenDomain = { domainId -> nav.navigate(Routes.curriculumDomain(domainId.name)) },
+                onOpenLesson = { lessonId -> nav.navigate(Routes.starterLesson(lessonId)) },
+                onOpenWeeklyAudit = { nav.navigate(Routes.WEEKLY_AUDIT) }
+            )
+        }
         composable(Routes.BOARD) {
             ExpeditionBoardScreen(
+                onBack = { nav.popBackStack() },
                 onViewProfile = { nav.navigate(Routes.PROFILE) },
                 onViewStudentSnapshot = { nav.navigate(Routes.STUDENT_SNAPSHOT) },
                 onOpenCurriculum = { nav.navigate(Routes.CURRICULUM) },
@@ -48,14 +59,6 @@ fun TeacherNavGraph() {
         }
         composable(Routes.STUDENT_SNAPSHOT) {
             StudentSnapshotScreen(onBack = { nav.popBackStack() })
-        }
-        composable(Routes.CURRICULUM) {
-            CurriculumHomeScreen(
-                onBack = { nav.popBackStack() },
-                onOpenDomain = { domainId -> nav.navigate(Routes.curriculumDomain(domainId.name)) },
-                onOpenLesson = { lessonId -> nav.navigate(Routes.starterLesson(lessonId)) },
-                onOpenWeeklyAudit = { nav.navigate(Routes.WEEKLY_AUDIT) }
-            )
         }
         composable(
             route = Routes.CURRICULUM_DOMAIN,

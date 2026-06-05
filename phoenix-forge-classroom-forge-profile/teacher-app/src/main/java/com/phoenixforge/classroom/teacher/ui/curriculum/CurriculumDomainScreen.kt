@@ -3,6 +3,8 @@ package com.phoenixforge.classroom.teacher.ui.curriculum
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,11 +13,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -24,10 +26,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.phoenixforge.classroom.teacher.domain.curriculum.CurriculumSubdomain
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun CurriculumDomainScreen(
     onBack: () -> Unit,
@@ -41,7 +45,15 @@ fun CurriculumDomainScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("${domain.id.emoji} ${domain.id.displayName}") },
+                title = {
+                    Column {
+                        Text("${domain.id.emoji} ${domain.id.displayName}")
+                        Text(
+                            "Domain ${domain.id.sectionNumber} of 7",
+                            style = MaterialTheme.typography.labelSmall
+                        )
+                    }
+                },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
@@ -55,15 +67,46 @@ fun CurriculumDomainScreen(
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            item { SectionBlock("Teacher framing", domain.teacherFraming) }
-            item { SectionBlock("Student framing", domain.studentFraming) }
+            item {
+                Card(modifier = Modifier.fillMaxWidth()) {
+                    Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                        Text(domain.focusLine, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
+                        Text(domain.teacherFraming, style = MaterialTheme.typography.bodyMedium)
+                        Text(
+                            "Student Edition: ${domain.studentFraming}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+            }
+
+            item {
+                Text(
+                    "Subdomains (${domain.subdomains.size})",
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    "Skill groups within this domain — reading, money, breathwork, telling time, and similar topics.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+
+            items(domain.subdomains) { subdomain ->
+                SubdomainCard(subdomain = subdomain)
+            }
+
             item { BulletSection("Lesson patterns", domain.lessonPatterns) }
             item { BulletSection("Progress metrics", domain.progressMetrics) }
             item { BulletSection("Teacher cues", domain.teacherCues) }
             item { BulletSection("Support methods", domain.supportMethods) }
 
             if (lessons.isNotEmpty()) {
-                item { Text("Pack 01 lessons", style = MaterialTheme.typography.titleMedium) }
+                item {
+                    Text("Pack 01 lessons", style = MaterialTheme.typography.titleMedium)
+                }
                 items(lessons) { lesson ->
                     Card(
                         modifier = Modifier
@@ -81,12 +124,26 @@ fun CurriculumDomainScreen(
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun SectionBlock(title: String, body: String) {
+private fun SubdomainCard(subdomain: CurriculumSubdomain) {
     Card(modifier = Modifier.fillMaxWidth()) {
-        Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            Text(title, style = MaterialTheme.typography.titleSmall)
-            Text(body, style = MaterialTheme.typography.bodyMedium)
+        Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text(subdomain.name, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
+            Text(subdomain.summary, style = MaterialTheme.typography.bodyMedium)
+            if (subdomain.topics.isNotEmpty()) {
+                FlowRow(
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                    verticalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    subdomain.topics.forEach { topic ->
+                        AssistChip(
+                            onClick = {},
+                            label = { Text(topic, style = MaterialTheme.typography.labelSmall) }
+                        )
+                    }
+                }
+            }
         }
     }
 }
@@ -97,7 +154,7 @@ private fun BulletSection(title: String, items: List<String>) {
         Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text(title, style = MaterialTheme.typography.titleSmall)
             items.forEach { item ->
-                ListItem(headlineContent = { Text(item, style = MaterialTheme.typography.bodySmall) })
+                Text("• $item", style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(vertical = 2.dp))
             }
         }
     }

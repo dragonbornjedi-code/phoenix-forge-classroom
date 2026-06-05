@@ -21,10 +21,11 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.automirrored.outlined.MenuBook
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.automirrored.outlined.MenuBook
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -62,6 +63,7 @@ import com.phoenixforge.classroom.teacher.domain.model.TileStatus
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExpeditionBoardScreen(
+    onBack: (() -> Unit)? = null,
     onViewProfile: () -> Unit,
     onViewStudentSnapshot: () -> Unit,
     onOpenCurriculum: () -> Unit = {},
@@ -83,6 +85,15 @@ fun ExpeditionBoardScreen(
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
+                },
+                navigationIcon = if (onBack != null) {
+                    {
+                        IconButton(onClick = onBack) {
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back to Curriculum")
+                        }
+                    }
+                } else {
+                    {}
                 },
                 actions = {
                     IconButton(onClick = onOpenCurriculum) {

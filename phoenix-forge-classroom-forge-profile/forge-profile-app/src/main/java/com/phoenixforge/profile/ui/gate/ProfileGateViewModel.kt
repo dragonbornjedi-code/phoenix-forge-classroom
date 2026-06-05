@@ -91,10 +91,10 @@ class ProfileGateViewModel @Inject constructor(
 
     fun signOut() {
         viewModelScope.launch {
-            profileBootstrap.resetAllProfileData()
             sessionStore.clearRememberDevice()
             sessionActive = false
-            _state.value = ProfileGateState(phase = ProfileGatePhase.SignIn, existingProfile = null)
+            val profile = repository.getProfile().firstOrNull()
+            _state.value = ProfileGateState(phase = ProfileGatePhase.SignIn, existingProfile = profile)
         }
     }
 }

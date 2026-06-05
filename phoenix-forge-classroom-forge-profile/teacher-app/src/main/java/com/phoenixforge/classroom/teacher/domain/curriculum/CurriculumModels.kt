@@ -1,15 +1,25 @@
 package com.phoenixforge.classroom.teacher.domain.curriculum
 
+data class CurriculumSubdomain(
+    val id: String,
+    val name: String,
+    val summary: String,
+    val topics: List<String>
+)
+
 data class CurriculumDomain(
     val id: CurriculumDomainId,
+    val focusLine: String,
     val teacherFraming: String,
     val studentFraming: String,
     val lessonPatterns: List<String>,
     val progressMetrics: List<String>,
     val teacherCues: List<String>,
     val supportMethods: List<String>,
-    val subcategoryCount: Int
-)
+    val subdomains: List<CurriculumSubdomain>
+) {
+    val subcategoryCount: Int get() = subdomains.size
+}
 
 data class StarterLesson(
     val id: String,

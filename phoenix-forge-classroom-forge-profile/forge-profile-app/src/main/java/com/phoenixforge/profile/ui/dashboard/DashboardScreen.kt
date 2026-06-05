@@ -20,6 +20,7 @@ import com.phoenixforge.profile.ui.interop.ExternalApps
 @Composable
 fun DashboardScreen(
     onNavigate: (String) -> Unit = {},
+    onSignOut: () -> Unit = {},
     viewModel: DashboardViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsState()
@@ -112,7 +113,16 @@ fun DashboardScreen(
             }
         }
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(16.dp))
+
+        OutlinedButton(
+            onClick = onSignOut,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Sign out")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         Text(
             "Recent Activity",
