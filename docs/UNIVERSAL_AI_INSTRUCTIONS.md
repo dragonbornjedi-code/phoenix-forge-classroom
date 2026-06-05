@@ -539,11 +539,11 @@ Stop here. Report commit hash + verification proof. Do not continue to [NEXT_STE
 *(Update this block at the end of every session)*
 
 ```
-Last known good commit:  de20c36  feat(profile): all bottom-nav tabs wired (step 0.12 [VERIFIED])
-Current step in registry: 0.12
-Next pending step:        0.13  ← UPDATE THIS EACH SESSION
-Next deliverable:         Launcher label final (Student Edition)
-Next verification:        strings.xml
+Last known good commit:  e6329d8  chore(strings): Student Edition launcher label final (step 0.13 [VERIFIED])
+Current step in registry: 0.13
+Next pending step:        0.14  ← UPDATE THIS EACH SESSION
+Next deliverable:         Remove "Digital House" from user-facing strings (Student Edition)
+Next verification:        grep UI
 Roadmap sub-index:        docs/roadmaps/02_STUDENT_EDITION_ROADMAP.md
 ```
 

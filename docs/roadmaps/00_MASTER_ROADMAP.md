@@ -5,9 +5,9 @@
 | Field | Value |
 |-------|--------|
 | **Finish line** | `5.00` |
-| **Current step** | `0.12` — next: `0.13` |
+| **Current step** | `0.13` — next: `0.14` |
 
-Current step: 0.12 — next: 0.13
+Current step: 0.13 — next: 0.14
 
 | **Protocol** | [cline_essence/SKILL.md](../cline_essence/SKILL.md) · [MASTER_PROTOCOL.md](../cline_essence/MASTER_PROTOCOL.md) |
 | **Tier 0** | [CONSTITUTION.md](../CONSTITUTION.md) · [registry/phoenix-forge-classroom.yaml](../../registry/phoenix-forge-classroom.yaml) |
@@ -70,7 +70,7 @@ Current step: 0.12 — next: 0.13
 | 0.10 | Cross | DEPLOYMENT_REALITY install section accurate | Read paths | [VERIFIED] |
 | 0.11 | Profile | Bootstrap profile for Ezra on first launch | ProfileBootstrap | [VERIFIED] |
 | 0.12 | Profile | Dashboard + all bottom-nav tabs navigate | Phone | [VERIFIED] |
-| 0.13 | Student | Launcher label final | strings.xml | pending |
+| 0.13 | Student | Launcher label final | strings.xml | [VERIFIED] |
 | 0.14 | Student | Remove “Digital House” from user-facing strings | grep UI | pending |
 | 0.15 | Teacher | Launcher label final | strings.xml | pending |
 | 0.16 | Cross | `install-phone-apks.sh` executable | chmod + run | pending |
