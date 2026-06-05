@@ -216,8 +216,9 @@ Current step: 4.61 — next: 4.62
 | 4.57 | Profile | Sign-in gate + empty dream board + Help me think | gradle | [VERIFIED] |
 | 4.58 | Teacher | Curriculum browser: 7 domains + Pack 01 + weekly audit | gradle | [VERIFIED] |
 | 4.59 | Cross | Forge Profile identity-only; mentorship terminology purge; Student→Teacher read-only snapshot provider + UI | `rg -i no stewardship` + `./gradlew assembleDebug (3 APKs)` + `./scripts/cline-essence-drift-check.sh` | [TESTED] |
-| 4.60 | Profile | Sign out button (session end, profile retained) | Phone | pending |
-| 4.61 | Teacher | Curriculum Of Life landing + 7 domain subdomain pages | Phone | pending |
+| 4.60 | Profile | Sign out button (session end, profile retained) | Phone | [VERIFIED] |
+| 4.61 | Teacher | Curriculum Of Life landing + 7 domain subdomain pages | Phone | [VERIFIED] |
+| 4.62 | Teacher | Full subdomain catalog (74 skills across 7 domains) | gradle | [VERIFIED] |
 | 4.91 | Cross | *(gap before finish)* | — | reserved |
 | 4.92 | Cross | *(gap before finish)* | — | reserved |
 | | | | | |
