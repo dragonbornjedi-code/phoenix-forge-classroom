@@ -185,8 +185,10 @@
 | `subcategory-method-map.md` | Methods per category | 85 | 0 | **DOC-COMPLETE** | Taxonomy | Teacher P3 | — |
 | `inclusive-learning-supports.md` | Supports | 85 | 0 | **DOC-COMPLETE** | Tile detail | Teacher P1 | In tile popup |
 | `thematic-playthroughs.md` | Multi-day arcs | 80 | 0 | **DOC-COMPLETE** | Narrative | Teacher P3 | — |
+| `LESSON_PLANNER_SPEC.md` | Subdomain → quest draft planner | 85 | 55 | **PARTIAL** | `LessonPlannerEngine` | 4.64–4.65 | Phone verify |
+| `SAGE_ADVISOR_SPEC.md` | Online Sage eval + encrypted keys | 85 | 50 | **PARTIAL** | `SageChatService` | 4.66–4.68 | Live API test |
 | `education-research-map.md` | Research index | 75 | 0 | **DOC-COMPLETE** | — | Teacher P4 | — |
-| `teacher-app` (Kotlin, 14 files) | Teacher APK | — | 40 | **PARTIAL** | Board + tiles + detail | Teacher P1c–P2 | Drag; send to Student |
+| `teacher-app` (Kotlin) | Teacher APK | — | 55 | **PARTIAL** | Board + curriculum + planner + Sage | 4.58–4.68 | Drag; send to Student |
 
 ---
 
@@ -196,9 +198,10 @@
 |------|---------|-------|--------|-----|-------------|---------|-------|
 | `EXPERIENCE_SHELL_SPEC.md` | Shell mandates | 85 | 30 | **PARTIAL** | student-app | Student P1 | Align UI to Hearthhome |
 | `HEARTHHOME_MUSEUM_UX.md` | World-as-menu vision | 80 | 10 | **PARTIAL** | Home screen | Student P2 | **Implement** hub |
-| `SPARK_COMPANION_UX.md` | Spark companion | 75 | 20 | **PARTIAL** | NPCEngine | Student P2 | Stateful companion |
+| `SPARK_COMPANION_UX.md` | Spark companion | 75 | 35 | **PARTIAL** | NPCEngine | 3.02 / 4.63 | Stateful loop |
+| `COMPANIONS_HUB_LAYOUT.md` | Companion / Whisps / Pet Space UI | 90 | 50 | **PARTIAL** | `CompanionsHubScreen` | 4.63 | Phone verify |
 | `IDENTITY_LENSES_UX.md` | Wisps / lenses | 70 | 0 | **DOC-COMPLETE** | IFE | Student P3 | **UI** |
-| `student-app` (Kotlin) | Runnable Student Edition | — | 60 | **IMPLEMENTED** | Profile import | Student P0 | Teacher feed |
+| `student-app` (Kotlin) | Runnable Student Edition | — | 62 | **IMPLEMENTED** | Profile import + companions hub | 4.63 | Teacher feed |
 
 ---
 

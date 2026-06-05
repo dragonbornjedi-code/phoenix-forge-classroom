@@ -13,6 +13,8 @@ import com.phoenixforge.classroom.teacher.ui.curriculum.WeeklyAuditScreen
 import com.phoenixforge.classroom.teacher.ui.expedition.ExpeditionBoardScreen
 import com.phoenixforge.classroom.teacher.ui.profile.ForgeProfileViewerScreen
 import com.phoenixforge.classroom.teacher.ui.tile.TileDetailScreen
+import com.phoenixforge.classroom.teacher.ui.lesson.LessonPlannerScreen
+import com.phoenixforge.classroom.teacher.ui.sage.SageAdvisorScreen
 import com.phoenixforge.classroom.teacher.ui.students.StudentSnapshotScreen
 
 private object Routes {
@@ -24,6 +26,8 @@ private object Routes {
     const val WEEKLY_AUDIT = "weekly_audit"
     const val TILE = "tile_detail/{tileId}"
     const val STUDENT_SNAPSHOT = "student_snapshot"
+    const val LESSON_PLANNER = "lesson_planner"
+    const val SAGE_ADVISOR = "sage_advisor"
 
     fun curriculumDomain(domainId: String) = "curriculum_domain/$domainId"
     fun starterLesson(lessonId: String) = "starter_lesson/$lessonId"
@@ -42,7 +46,9 @@ fun TeacherNavGraph() {
                 onViewStudentSnapshot = { nav.navigate(Routes.STUDENT_SNAPSHOT) },
                 onOpenDomain = { domainId -> nav.navigate(Routes.curriculumDomain(domainId.name)) },
                 onOpenLesson = { lessonId -> nav.navigate(Routes.starterLesson(lessonId)) },
-                onOpenWeeklyAudit = { nav.navigate(Routes.WEEKLY_AUDIT) }
+                onOpenWeeklyAudit = { nav.navigate(Routes.WEEKLY_AUDIT) },
+                onOpenLessonPlanner = { nav.navigate(Routes.LESSON_PLANNER) },
+                onOpenSageAdvisor = { nav.navigate(Routes.SAGE_ADVISOR) }
             )
         }
         composable(Routes.BOARD) {
@@ -77,6 +83,12 @@ fun TeacherNavGraph() {
         }
         composable(Routes.WEEKLY_AUDIT) {
             WeeklyAuditScreen(onBack = { nav.popBackStack() })
+        }
+        composable(Routes.LESSON_PLANNER) {
+            LessonPlannerScreen(onBack = { nav.popBackStack() })
+        }
+        composable(Routes.SAGE_ADVISOR) {
+            SageAdvisorScreen(onBack = { nav.popBackStack() })
         }
         composable(
             route = Routes.TILE,

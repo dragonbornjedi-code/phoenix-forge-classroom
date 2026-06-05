@@ -48,6 +48,8 @@ fun CurriculumHomeScreen(
     onOpenDomain: (CurriculumDomainId) -> Unit,
     onOpenLesson: (String) -> Unit,
     onOpenWeeklyAudit: () -> Unit,
+    onOpenLessonPlanner: () -> Unit,
+    onOpenSageAdvisor: () -> Unit,
     viewModel: CurriculumHomeViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsState()
@@ -120,6 +122,18 @@ fun CurriculumHomeScreen(
 
             items(state.domains) { domain ->
                 DomainCard(domain = domain, onClick = { onOpenDomain(domain.id) })
+            }
+
+            item {
+                Button(onClick = onOpenLessonPlanner, modifier = Modifier.fillMaxWidth()) {
+                    Text("Lesson Planner — subdomain → quest draft")
+                }
+            }
+
+            item {
+                OutlinedButton(onClick = onOpenSageAdvisor, modifier = Modifier.fillMaxWidth()) {
+                    Text("Sage Advisor — monthly eval (online)")
+                }
             }
 
             item {

@@ -28,7 +28,7 @@ fun SettingsScreen(onNavigate: (String) -> Unit) {
         item {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Button(onClick = { onNavigate(StudentRoutes.NPC) }, modifier = Modifier.fillMaxWidth()) {
-                    Text("NPC Room")
+                    Text("Companions")
                 }
                 Button(onClick = { onNavigate(StudentRoutes.IMPORT) }, modifier = Modifier.fillMaxWidth()) {
                     Text("Import Forge Profile (Optional)")

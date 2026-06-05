@@ -20,6 +20,7 @@
 | 1.52–1.53 | Loop 50% quest flow |
 | 2.01–2.02 | Full loop participant |
 | 2.54 | Full avatar import |
+| 4.63 | Companions hub (Companion / Whisps / Pet Space) |
 | 3.01–3.06 | Hearthhome, Spark, lenses, cleanup |
 | 4.02 | TILE_EVENT_MAPPING emitter |
 
@@ -36,6 +37,7 @@
 | 0.71 | `StudentGallery.kt`, `MemoryVault.kt` |
 | 1.03 | quest ingest route + VM |
 | 1.52–1.53 | `LifeEventCollector.kt`, completion path |
+| 4.63 | `CompanionsHubScreen.kt`, `NpcRoomViewModel.kt` |
 | 3.01 | `HomeScreen.kt` → Hearthhome hub |
 
 ---

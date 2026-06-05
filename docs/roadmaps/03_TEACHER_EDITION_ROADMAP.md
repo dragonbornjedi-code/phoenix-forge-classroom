@@ -22,6 +22,8 @@
 | 2.55 | Profile viewer complete |
 | 3.51–3.58 | 7-day, month, search, narrative, compass, curriculum tags |
 | 4.58 | Curriculum browser: 7 domains, Pack 01 lessons, weekly audit, tile import |
+| 4.64–4.65 | Lesson planner + quest draft → expedition tile |
+| 4.66–4.68 | Sage persona, encrypted API keys, online chat w/ curriculum RAG |
 | 4.05 | Chronicle approval UI |
 
 ---
@@ -37,6 +39,8 @@
 | 0.41, 2.55 | `ForgeProfileViewerScreen.kt` |
 | 0.79 | YAML loader (new) |
 | 4.58 | `ui/curriculum/*`, `domain/curriculum/*`, `CurriculumAuditStore.kt` |
+| 4.64–4.65 | `ui/lesson/*`, `domain/lesson/*`, `TileRepository.createFromLessonPlan()` |
+| 4.66–4.68 | `ui/sage/*`, `domain/sage/*`, `SecureCredentialStore.kt` |
 | 1.02 | handoff from `TileRepository` |
 
 ---

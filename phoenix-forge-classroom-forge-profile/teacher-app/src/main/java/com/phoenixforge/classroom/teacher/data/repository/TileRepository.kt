@@ -4,6 +4,7 @@ import com.phoenixforge.classroom.teacher.data.local.IntentTileDao
 import com.phoenixforge.classroom.teacher.domain.curriculum.CurriculumDomainCatalog
 import com.phoenixforge.classroom.teacher.domain.curriculum.StarterLessonsPack01
 import com.phoenixforge.classroom.teacher.domain.curriculum.StarterLesson
+import com.phoenixforge.classroom.teacher.domain.lesson.LessonPlanDraft
 import com.phoenixforge.classroom.teacher.domain.model.ForgeDomain
 import com.phoenixforge.classroom.teacher.domain.model.IntentTile
 import com.phoenixforge.classroom.teacher.domain.model.TileStatus
@@ -43,6 +44,27 @@ class TileRepository @Inject constructor(
     }
 
     suspend fun delete(id: String) = dao.deleteById(id)
+
+    suspend fun createFromLessonPlan(plan: LessonPlanDraft): IntentTile {
+        val forgeDomain = CurriculumDomainCatalog.forgeDomainFor(plan.domainId)
+        val tile = IntentTile(
+            title = plan.title,
+            description = plan.objective,
+            domain = forgeDomain.name,
+            curriculumDomainId = plan.domainId.name,
+            studentMission = plan.studentMission,
+            lessonPatternId = plan.lessonPatternId,
+            materials = plan.materials,
+            coachingCues = buildString {
+                append("Narrative hook: ${plan.narrativeHook}\n")
+                append("Quest: ${plan.questTitle}\n")
+                append("Recovery: ${plan.recovery}\n")
+                append("Supports: ${plan.supports}")
+            }
+        )
+        save(tile)
+        return tile
+    }
 
     suspend fun createFromStarterLesson(lesson: StarterLesson): IntentTile {
         val forgeDomain = CurriculumDomainCatalog.forgeDomainFor(lesson.domainId)

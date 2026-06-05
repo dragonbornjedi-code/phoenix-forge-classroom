@@ -38,8 +38,8 @@ This directory contains the **Core Architecture** and **Constitutional Mandates*
 - **[OFFLINE_DATA_AND_SYNC_DESIGN.md](OFFLINE_DATA_AND_SYNC_DESIGN.md):** Offline persistence and local sync.
 
 ### Shell-Specific Documentation
-- **[Teacher Edition Docs](../phoenix-forge-classroom-teacher-edition/docs/):** Expedition Board, Compass Engine, Plan Rules.
-- **[Student Edition Docs](../phoenix-forge-classroom-student-edition/docs/):** Experience Shell, Identity Lenses, Spark Companion.
+- **[Teacher Edition Docs](../phoenix-forge-classroom-teacher-edition/docs/):** Expedition Board, Curriculum Of Life, [Lesson Planner](../phoenix-forge-classroom-teacher-edition/docs/LESSON_PLANNER_SPEC.md), [Sage Advisor](../phoenix-forge-classroom-teacher-edition/docs/SAGE_ADVISOR_SPEC.md).
+- **[Student Edition Docs](../phoenix-forge-classroom-student-edition/docs/):** Experience Shell, [Companions Hub](../phoenix-forge-classroom-student-edition/docs/COMPANIONS_HUB_LAYOUT.md), Spark Companion, Identity Lenses.
 
 ## Contracts & Boundary
 - **[DEPLOYMENT_REALITY.md](DEPLOYMENT_REALITY.md):** What APKs build, which device gets what, ADB install steps.

@@ -1,6 +1,6 @@
 # Deployment Reality (Field Test)
 
-**Last verified:** 2026-06-04  
+**Last verified:** 2026-06-05 (build + install; phone UI re-check after device restart)  
 **Build host:** `/var/lib/phoenix-ai/workspace/phoenix-forge-classroom`  
 **Naming (canonical):** **Forge Profile** · **Phoenix Forge Classroom Student Edition** · **Phoenix Forge Classroom Teacher Edition**
 
@@ -70,17 +70,22 @@ adb -s $SERIAL install -r $BASE/teacher-app/build/outputs/apk/debug/teacher-app-
 
 | Check | Pass? | Notes |
 |-------|-------|-------|
-| `adb devices` shows phone | | |
-| Forge Profile installs | | |
-| Forge Profile launches | | Bottom nav: Home, Studio, Timeline, Memories, Steward |
-| Taps navigate (not static dashboard) | | Reinstall after 2026-06-04 nav fix |
-| Student Edition installs | | |
-| Student Edition launches | | Home shows **Phoenix Forge Classroom Student Edition** |
-| Teacher Edition installs | | |
-| Teacher Edition launches | | Sample expedition tiles (MVP shell) |
-| Import Forge Profile (Student, optional) | | Settings → Import |
+| `adb devices` shows phone | Pass | Wireless adb `adb-R5CXB09D32N-expfjf._adb-tls-connect._tcp` (Samsung SM_S928U); unset stale `ANDROID_SERIAL` |
+| Forge Profile installs | Pass | `./scripts/install-phone-apks.sh` 2026-06-05 |
+| Forge Profile launches | Pass | Bottom nav: Home, Studio, Timeline, Memories; Identity card via stat grid |
+| Taps navigate (not static dashboard) | Pass | All bottom-nav tabs + dashboard stat cards (step 0.27–0.29) |
+| Student Edition installs | Pass | Same install script |
+| Student Edition launches | Pass | Home shows **Phoenix Forge Classroom Student Edition** |
+| Teacher Edition installs | Pass | Same install script |
+| Teacher Edition launches | Pass | Curriculum landing → Expedition Board; seed + created tiles |
+| Import Forge Profile (Student, optional) | Pass | More → Import Forge Profile (Optional) reads provider |
+| Student Companions hub (4.63) | Install OK | More → **Companions** — Spark / Whisps / Pet Space zones; re-verify UI after reboot |
+| Teacher Lesson Planner (4.64–4.65) | Build OK | Curriculum → **Lesson Planner** → subdomain → Add to Expedition Board |
+| Teacher Sage Advisor (4.66–4.68) | Build OK | Curriculum → **Sage Advisor** → encrypted API key → online chat w/ curriculum context |
 
-Failures: `adb logcat -s AndroidRuntime:E`
+Failures: `adb logcat -s AndroidRuntime:E` · Wireless adb: `unset ANDROID_SERIAL` · If `offline`: `adb kill-server && adb start-server`
+
+**After device restart:** `adb devices` → `./scripts/install-phone-apks.sh` → spot-check Companions + Lesson Planner + Sage settings.
 
 ---
 
@@ -88,11 +93,11 @@ Failures: `adb logcat -s AndroidRuntime:E`
 
 | App | Builds? | On parent phone? | On Ezra tablet? | Cross-app wired? |
 |-----|---------|------------------|-----------------|------------------|
-| Forge Profile | Yes | ? | ? | Provider read by Student (import only) |
-| Student Edition | Yes | ? (debug) | ? | No live Teacher feed yet |
-| Teacher Edition | Yes (shell) | ? | N/A | Not wired to Student/Profile yet |
+| Forge Profile | Yes | **Pass** (debug, Joshua rowland teacher profile) | Not tested | Provider `/profile` + `/avatar` registered (shell Permission Denial = OK) |
+| Student Edition | Yes | **Pass** (debug) | Not tested | Import-only provider read; no live Teacher feed |
+| Teacher Edition | Yes | **Pass** (debug) | N/A | Curriculum + Lesson Planner + Sage (online); expedition board; not wired to Student quests |
 
-**Current bottleneck:** stabilize three APKs on parent phone → prove one Intent Tile loop → then Ezra tablet.
+**Current bottleneck:** after reboot — re-verify Companions hub (4.63) on phone → prove one Intent Tile loop → Ezra tablet.
 
 ---
 

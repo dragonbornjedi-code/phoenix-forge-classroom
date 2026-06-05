@@ -8,7 +8,7 @@ import androidx.navigation.compose.composable
 import com.phoenixforge.student.ui.gallery.GalleryScreen
 import com.phoenixforge.student.ui.home.HomeScreen
 import com.phoenixforge.student.ui.importprofile.ImportForgeProfileScreen
-import com.phoenixforge.student.ui.npc.NpcRoomScreen
+import com.phoenixforge.student.ui.npc.CompanionsHubScreen
 import com.phoenixforge.student.ui.quests.QuestsScreen
 import com.phoenixforge.student.ui.settings.SettingsScreen
 import com.phoenixforge.student.ui.story.StoryArchiveScreen
@@ -25,7 +25,7 @@ fun StudentNavHost(navController: NavHostController, modifier: Modifier = Modifi
         composable(StudentRoutes.GALLERY) { GalleryScreen() }
         composable(StudentRoutes.VAULT) { MemoryVaultScreen() }
         composable(StudentRoutes.QUESTS) { QuestsScreen() }
-        composable(StudentRoutes.NPC) { NpcRoomScreen() }
+        composable(StudentRoutes.NPC) { CompanionsHubScreen() }
         composable(StudentRoutes.IMPORT) { ImportForgeProfileScreen() }
         composable(StudentRoutes.SETTINGS) { SettingsScreen(onNavigate = navController::navigate) }
         composable(StudentRoutes.STORY_ARCHIVE) { StoryArchiveScreen() }

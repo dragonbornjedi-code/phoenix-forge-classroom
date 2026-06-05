@@ -104,7 +104,7 @@ fun HomeScreen(
                     Text(companion?.name ?: "—", style = MaterialTheme.typography.headlineSmall)
                     Text(companion?.lastReaction ?: "Explore to meet your companion.", style = MaterialTheme.typography.bodyMedium)
                     Spacer(modifier = Modifier.height(8.dp))
-                    Button(onClick = { onNavigate(StudentRoutes.NPC) }) { Text("Visit NPC Room") }
+                    Button(onClick = { onNavigate(StudentRoutes.NPC) }) { Text("Visit Companions") }
                 }
             }
         }

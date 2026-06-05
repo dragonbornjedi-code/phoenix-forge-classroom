@@ -5,9 +5,9 @@
 | Field | Value |
 |-------|--------|
 | **Finish line** | `5.00` |
-| **Current step** | `4.61` — next: `4.62` |
+| **Current step** | `4.68` — next: `4.69` |
 
-Current step: 4.61 — next: 4.62
+Current step: 4.68 — next: 4.69
 
 | **Protocol** | [cline_essence/SKILL.md](../cline_essence/SKILL.md) · [MASTER_PROTOCOL.md](../cline_essence/MASTER_PROTOCOL.md) |
 | **Tier 0** | [CONSTITUTION.md](../CONSTITUTION.md) · [registry/phoenix-forge-classroom.yaml](../../registry/phoenix-forge-classroom.yaml) |
@@ -85,31 +85,31 @@ Current step: 4.61 — next: 4.62
 | | | | | |
 | **0.25** | — | **MILESTONE: Device P0 begins** | — | [VERIFIED] |
 | 0.26 | Cross | Install 3 APKs on parent phone | install script | [VERIFIED] |
-| 0.27 | Profile | Bottom navigation works | Phone | pending |
+| 0.27 | Profile | Bottom navigation works | Phone | [VERIFIED] |
 | 0.28 | Profile | Cold start no crash (3×) | Phone | [VERIFIED] |
-| 0.29 | Profile | Identity card screen loads | Phone | pending |
+| 0.29 | Profile | Identity card screen loads | Phone | [VERIFIED] |
 | 0.30 | Student | Cold start no crash (3×) | Phone | [VERIFIED] |
 | 0.31 | Student | StudentWorldBootstrap completes | Log/no crash | [VERIFIED] |
 | 0.32 | Student | Home screen loads | Phone | [VERIFIED] |
 | 0.33 | Teacher | Expedition board opens with seed tiles | Phone | [VERIFIED] |
-| 0.34 | Teacher | Create new tile from FAB | Phone | pending |
-| 0.35 | Teacher | Tile field guide: save materials/coaching | Phone | pending |
-| 0.36 | Teacher | Mark tile complete + force-close persist | Phone | pending |
-| 0.37 | Student | Import Forge Profile screen reads provider | Phone | pending |
+| 0.34 | Teacher | Create new tile from FAB | Phone | [VERIFIED] |
+| 0.35 | Teacher | Tile field guide: save materials/coaching | Phone | [VERIFIED] |
+| 0.36 | Teacher | Mark tile complete + force-close persist | Phone | [VERIFIED] |
+| 0.37 | Student | Import Forge Profile screen reads provider | Phone | [VERIFIED] |
 | 0.38 | Cross | ContentProvider `/profile` read smoke | adb/log | [VERIFIED] |
-| 0.39 | Cross | ContentProvider `/avatar` read smoke | adb/log | pending |
-| 0.40 | Cross | DEPLOYMENT matrix Pass/Fail filled | DEPLOYMENT_REALITY | pending |
-| 0.41 | Teacher | ForgeProfileViewerScreen opens | Phone | pending |
-| 0.42 | Student | Quests screen runs one quest | Phone | pending |
-| 0.43 | Student | Gallery + vault screens open | Phone | pending |
-| 0.44 | Profile | Timeline screen shows events | Phone | pending |
-| 0.45 | Profile | Memory capsule screen opens | Phone | pending |
-| 0.46 | Student | Settings screen opens | Phone | pending |
-| 0.47 | Student | Story archive opens | Phone | pending |
-| 0.48 | Student | NPC room opens | Phone | pending |
-| 0.49 | Cross | Device P0 complete: all 0.26–0.48 verified | Checklist | pending |
+| 0.39 | Cross | ContentProvider `/avatar` read smoke | adb/log | [VERIFIED] |
+| 0.40 | Cross | DEPLOYMENT matrix Pass/Fail filled | DEPLOYMENT_REALITY | [VERIFIED] |
+| 0.41 | Teacher | ForgeProfileViewerScreen opens | Phone | [VERIFIED] |
+| 0.42 | Student | Quests screen runs one quest | Phone | [VERIFIED] |
+| 0.43 | Student | Gallery + vault screens open | Phone | [VERIFIED] |
+| 0.44 | Profile | Timeline screen shows events | Phone | [VERIFIED] |
+| 0.45 | Profile | Memory capsule screen opens | Phone | [VERIFIED] |
+| 0.46 | Student | Settings screen opens | Phone | [VERIFIED] |
+| 0.47 | Student | Story archive opens | Phone | [VERIFIED] |
+| 0.48 | Student | NPC room opens | Phone | [VERIFIED] |
+| 0.49 | Cross | Device P0 complete: all 0.26–0.48 verified | Checklist | [VERIFIED] |
 | | | | | |
-| **0.50** | — | **MILESTONE: Standalone P1 begins** | — | pending |
+| **0.50** | — | **MILESTONE: Standalone P1 begins** | — | [VERIFIED] |
 | 0.51 | Teacher | Expedition board scroll + empty state | Phone | pending |
 | 0.52 | Teacher | Drag-and-drop reorder UI | Phone | pending |
 | 0.53 | Teacher | `sortOrder` persist after reorder | Phone | pending |
@@ -219,6 +219,12 @@ Current step: 4.61 — next: 4.62
 | 4.60 | Profile | Sign out button (session end, profile retained) | Phone | [VERIFIED] |
 | 4.61 | Teacher | Curriculum Of Life landing + 7 domain subdomain pages | Phone | [VERIFIED] |
 | 4.62 | Teacher | Full subdomain catalog (74 skills across 7 domains) | gradle | [VERIFIED] |
+| 4.63 | Student | Companions hub: Companion + Whisps + Pet Space zones | Phone | pending |
+| 4.64 | Teacher | Lesson planner scaffold (7 domains + all subdomains) | gradle | [VERIFIED] |
+| 4.65 | Teacher | Quest draft generator from planner → expedition tile | gradle | [VERIFIED] |
+| 4.66 | Teacher | Sage persona + curriculum knowledge-base context builder | gradle | [VERIFIED] |
+| 4.67 | Teacher | Secure API key / provider credential store (encrypted) | gradle | [VERIFIED] |
+| 4.68 | Teacher | Online Sage chat (free-tier provider, offline gate) | gradle | [VERIFIED] |
 | 4.91 | Cross | *(gap before finish)* | — | reserved |
 | 4.92 | Cross | *(gap before finish)* | — | reserved |
 | | | | | |
