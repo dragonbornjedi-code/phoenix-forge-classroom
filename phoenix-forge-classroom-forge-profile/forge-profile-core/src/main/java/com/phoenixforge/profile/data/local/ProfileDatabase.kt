@@ -16,9 +16,10 @@ import com.phoenixforge.profile.data.local.entity.*
         TeacherMetadataEntity::class,
         AboutMeEntryEntity::class,
         FavoriteEntryEntity::class,
-        DreamEntryEntity::class
+        DreamEntryEntity::class,
+        LinkedStudentEntity::class
     ],
-    version = 2,
+    version = 4,
     exportSchema = false
 )
 @TypeConverters(Converters::class)

@@ -7,7 +7,9 @@ data class ProfileExportDto(
     val uid: String,
     val forgeName: String,
     val currentStage: String,
-    val currentTitle: String?
+    val currentTitle: String?,
+    val ageYears: Int?,
+    val profileRole: String?
 )
 
 data class AvatarExportDto(

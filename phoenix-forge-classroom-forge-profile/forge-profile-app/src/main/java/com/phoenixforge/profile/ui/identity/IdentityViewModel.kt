@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
-import java.util.UUID
 import javax.inject.Inject
 
 data class IdentityState(
@@ -36,7 +35,7 @@ class IdentityViewModel @Inject constructor(
 
     fun updateField(fieldName: String, value: String) {
         viewModelScope.launch {
-            val current = repository.getProfile().firstOrNull() ?: defaultProfile()
+            val current = repository.getProfile().firstOrNull() ?: return@launch
             val updated = when (fieldName) {
                 "forgeName" -> current.copy(forgeName = value)
                 "favoriteColor" -> current.copy(favoriteColor = value)
@@ -46,16 +45,4 @@ class IdentityViewModel @Inject constructor(
             repository.updateProfile(updated)
         }
     }
-
-    private fun defaultProfile(): ForgeProfile = ForgeProfile(
-        uid = UUID.randomUUID().toString(),
-        forgeName = "New Forger",
-        realName = null,
-        birthDate = null,
-        pronouns = null,
-        favoriteColor = null,
-        currentTitle = null,
-        currentStage = "EARLY_DISCOVERY",
-        sparkMaturationTier = 1
-    )
 }

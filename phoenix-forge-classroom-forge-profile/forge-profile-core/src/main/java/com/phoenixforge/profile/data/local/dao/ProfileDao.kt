@@ -9,6 +9,7 @@ import com.phoenixforge.profile.data.local.entity.AvatarEntity
 import com.phoenixforge.profile.data.local.entity.DreamEntryEntity
 import com.phoenixforge.profile.data.local.entity.FavoriteEntryEntity
 import com.phoenixforge.profile.data.local.entity.IdentitySnapshotEntity
+import com.phoenixforge.profile.data.local.entity.LinkedStudentEntity
 import com.phoenixforge.profile.data.local.entity.MemoryArtifactEntity
 import com.phoenixforge.profile.data.local.entity.ProfileEntity
 import com.phoenixforge.profile.data.local.entity.TeacherMetadataEntity
@@ -73,4 +74,43 @@ interface ProfileDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDreamEntry(entry: DreamEntryEntity)
+
+    @Query("DELETE FROM profiles")
+    suspend fun deleteAllProfiles()
+
+    @Query("DELETE FROM dreams")
+    suspend fun deleteAllDreams()
+
+    @Query("DELETE FROM about_me")
+    suspend fun deleteAllAboutMe()
+
+    @Query("DELETE FROM favorites")
+    suspend fun deleteAllFavorites()
+
+    @Query("DELETE FROM avatars")
+    suspend fun deleteAllAvatars()
+
+    @Query("DELETE FROM timeline_events")
+    suspend fun deleteAllTimelineEvents()
+
+    @Query("DELETE FROM memory_artifacts")
+    suspend fun deleteAllMemoryArtifacts()
+
+    @Query("DELETE FROM identity_snapshots")
+    suspend fun deleteAllIdentitySnapshots()
+
+    @Query("DELETE FROM teacher_metadata")
+    suspend fun deleteAllTeacherMetadata()
+
+    @Query("SELECT * FROM linked_students ORDER BY linkedAt DESC")
+    fun getLinkedStudents(): Flow<List<LinkedStudentEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertLinkedStudent(student: LinkedStudentEntity)
+
+    @Query("DELETE FROM linked_students WHERE profileUid = :profileUid")
+    suspend fun deleteLinkedStudent(profileUid: String)
+
+    @Query("DELETE FROM linked_students")
+    suspend fun deleteAllLinkedStudents()
 }

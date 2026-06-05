@@ -5,6 +5,7 @@ import com.phoenixforge.profile.domain.model.Avatar
 import com.phoenixforge.profile.domain.model.DreamEntry
 import com.phoenixforge.profile.domain.model.FavoriteEntry
 import com.phoenixforge.profile.domain.model.ForgeProfile
+import com.phoenixforge.profile.domain.model.LinkedStudentProfile
 import com.phoenixforge.profile.domain.model.MemoryArtifact
 import com.phoenixforge.profile.domain.model.TeacherMetadata
 import com.phoenixforge.profile.domain.model.TimelineEvent
@@ -27,4 +28,13 @@ interface ProfileRepository {
 
     fun getMemoryArtifacts(): Flow<List<MemoryArtifact>>
     suspend fun saveMemoryArtifact(artifact: MemoryArtifact)
+
+    fun getDreamEntries(): Flow<List<DreamEntry>>
+    fun getAboutMeEntries(): Flow<List<AboutMeEntry>>
+
+    suspend fun clearAllData()
+
+    fun getLinkedStudents(): Flow<List<LinkedStudentProfile>>
+    suspend fun linkStudentProfile(displayName: String, profileUid: String, notes: String?)
+    suspend fun unlinkStudentProfile(profileUid: String)
 }

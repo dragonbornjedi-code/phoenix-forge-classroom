@@ -106,7 +106,9 @@ class ProfileContentProvider : ContentProvider() {
         ProfileContract.Columns.UID to dto.uid,
         ProfileContract.Columns.FORGE_NAME to dto.forgeName,
         ProfileContract.Columns.CURRENT_STAGE to dto.currentStage,
-        ProfileContract.Columns.CURRENT_TITLE to dto.currentTitle
+        ProfileContract.Columns.CURRENT_TITLE to dto.currentTitle,
+        ProfileContract.Columns.AGE_YEARS to dto.ageYears,
+        ProfileContract.Columns.PROFILE_ROLE to dto.profileRole
     )
 
     private fun avatarRow(dto: AvatarExportDto): Map<String, Any?> = mapOf(

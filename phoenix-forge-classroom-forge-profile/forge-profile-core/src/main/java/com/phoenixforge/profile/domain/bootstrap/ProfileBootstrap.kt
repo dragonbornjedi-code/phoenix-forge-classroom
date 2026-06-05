@@ -1,8 +1,8 @@
 package com.phoenixforge.profile.domain.bootstrap
 
 import com.phoenixforge.profile.domain.model.ForgeProfile
+import com.phoenixforge.profile.domain.model.ProfileRole
 import com.phoenixforge.profile.domain.repository.ProfileRepository
-import kotlinx.coroutines.flow.firstOrNull
 import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -11,29 +11,36 @@ import javax.inject.Singleton
 class ProfileBootstrap @Inject constructor(
     private val repository: ProfileRepository
 ) {
-    suspend fun ensureProfileExists() {
-        if (repository.getProfile().firstOrNull() == null) {
-            repository.updateProfile(defaultEzraProfile())
-        }
-    }
-
-    private fun defaultEzraProfile(): ForgeProfile =
-        ForgeProfile(
+    /**
+     * Creates a blank profile from steward/learner input — no seeded names or facts.
+     */
+    suspend fun createBlankProfile(
+        forgeName: String,
+        ageYears: Int?,
+        profileRole: ProfileRole
+    ): ForgeProfile {
+        val profile = ForgeProfile(
             uid = UUID.randomUUID().toString(),
-            forgeName = DEFAULT_FORGE_NAME,
+            forgeName = forgeName.trim(),
             realName = null,
             birthDate = null,
-            pronouns = DEFAULT_PRONOUNS,
+            ageYears = ageYears,
+            pronouns = null,
             favoriteColor = null,
             currentTitle = null,
-            currentStage = DEFAULT_STAGE,
-            sparkMaturationTier = DEFAULT_SPARK_TIER
+            currentStage = STAGE_JUST_BEGINNING,
+            sparkMaturationTier = 0,
+            profileRole = profileRole.storageKey
         )
+        repository.updateProfile(profile)
+        return profile
+    }
 
-    private companion object {
-        const val DEFAULT_FORGE_NAME = "Ezra"
-        const val DEFAULT_PRONOUNS = "he/him"
-        const val DEFAULT_STAGE = "EARLY_DISCOVERY"
-        const val DEFAULT_SPARK_TIER = 1
+    suspend fun resetAllProfileData() {
+        repository.clearAllData()
+    }
+
+    companion object {
+        const val STAGE_JUST_BEGINNING = "JUST_BEGINNING"
     }
 }

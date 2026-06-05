@@ -9,6 +9,7 @@ import com.phoenixforge.profile.ui.dashboard.DashboardScreen
 import com.phoenixforge.profile.ui.dreams.DreamBoardScreen
 import com.phoenixforge.profile.ui.identity.IdentityCardScreen
 import com.phoenixforge.profile.ui.memory.MemoryCapsuleScreen
+import com.phoenixforge.profile.ui.students.StudentsScreen
 import com.phoenixforge.profile.ui.studio.AvatarStudioScreen
 import com.phoenixforge.profile.ui.teacher.TeacherGateScreen
 import com.phoenixforge.profile.ui.timeline.ChildhoodTimelineScreen
@@ -20,20 +21,16 @@ sealed class Screen(val route: String) {
     object Timeline : Screen("timeline")
     object Memory : Screen("memory")
     object Dreams : Screen("dreams")
+    object Students : Screen("students")
     object TeacherGate : Screen("teacher_gate")
 }
 
-/** Bottom-bar tabs; each route must have a matching [composable] in [ProfileNavHost]. */
-val profileBottomNavScreens: List<Screen> = listOf(
-    Screen.Dashboard,
-    Screen.Studio,
-    Screen.Timeline,
-    Screen.Memory,
-    Screen.TeacherGate
-)
-
 @Composable
-fun ProfileNavHost(navController: NavHostController, modifier: Modifier = Modifier) {
+fun ProfileNavHost(
+    navController: NavHostController,
+    modifier: Modifier = Modifier,
+    onSignOut: () -> Unit = {}
+) {
     NavHost(
         navController = navController,
         startDestination = Screen.Dashboard.route,
@@ -57,8 +54,11 @@ fun ProfileNavHost(navController: NavHostController, modifier: Modifier = Modifi
         composable(Screen.Dreams.route) {
             DreamBoardScreen()
         }
+        composable(Screen.Students.route) {
+            StudentsScreen()
+        }
         composable(Screen.TeacherGate.route) {
-            TeacherGateScreen()
+            TeacherGateScreen(onSignOut = onSignOut)
         }
     }
 }

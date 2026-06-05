@@ -11,11 +11,13 @@ data class ProfileEntity(
     val forgeName: String,
     val realName: String?,
     val birthDate: Long?,
+    val ageYears: Int?,
     val pronouns: String?,
     val favoriteColor: String?,
     val currentTitle: String?,
     val currentStage: String,
-    val sparkMaturationTier: Int
+    val sparkMaturationTier: Int,
+    val profileRole: String?
 )
 
 @Entity(tableName = "avatars")

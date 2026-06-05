@@ -2,6 +2,7 @@ package com.phoenixforge.profile.ui.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face
+import androidx.compose.material.icons.filled.Groups
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.PhotoLibrary
 import androidx.compose.material.icons.filled.Settings
@@ -11,37 +12,36 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.phoenixforge.profile.domain.access.ProfileAccessPolicy
+import com.phoenixforge.profile.ui.session.ActiveProfileViewModel
 
 private data class BottomNavItem(val route: String, val label: String, val icon: ImageVector)
 
-private fun bottomNavLabel(screen: Screen): String = when (screen) {
-    Screen.Dashboard -> "Home"
-    Screen.Studio -> "Studio"
-    Screen.Timeline -> "Timeline"
-    Screen.Memory -> "Memories"
-    Screen.TeacherGate -> "Steward"
-    else -> screen.route
-}
-
-private fun bottomNavIcon(screen: Screen): ImageVector = when (screen) {
-    Screen.Dashboard -> Icons.Default.Home
-    Screen.Studio -> Icons.Default.Face
-    Screen.Timeline -> Icons.Default.Timeline
-    Screen.Memory -> Icons.Default.PhotoLibrary
-    Screen.TeacherGate -> Icons.Default.Settings
-    else -> Icons.Default.Home
-}
-
-private val bottomItems: List<BottomNavItem> = profileBottomNavScreens.map { screen ->
-    BottomNavItem(screen.route, bottomNavLabel(screen), bottomNavIcon(screen))
+private fun iconFor(surface: ProfileAccessPolicy.Surface): ImageVector = when (surface) {
+    ProfileAccessPolicy.Surface.DASHBOARD -> Icons.Default.Home
+    ProfileAccessPolicy.Surface.STUDIO -> Icons.Default.Face
+    ProfileAccessPolicy.Surface.TIMELINE -> Icons.Default.Timeline
+    ProfileAccessPolicy.Surface.MEMORY -> Icons.Default.PhotoLibrary
+    ProfileAccessPolicy.Surface.STUDENTS -> Icons.Default.Groups
+    ProfileAccessPolicy.Surface.STEWARD -> Icons.Default.Settings
 }
 
 @Composable
-fun ProfileBottomBar(navController: NavController) {
+fun ProfileBottomBar(
+    navController: NavController,
+    activeProfileViewModel: ActiveProfileViewModel = hiltViewModel()
+) {
+    val visibleSurfaces by activeProfileViewModel.visibleSurfaces.collectAsState()
+    val bottomItems = visibleSurfaces.map { surface ->
+        BottomNavItem(surface.route, surface.label, iconFor(surface))
+    }
+
     val backStack by navController.currentBackStackEntryAsState()
     val currentRoute = backStack?.destination?.route
 

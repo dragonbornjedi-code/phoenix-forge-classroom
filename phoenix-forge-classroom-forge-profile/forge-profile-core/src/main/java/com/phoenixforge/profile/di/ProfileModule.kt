@@ -9,6 +9,7 @@ import com.phoenixforge.profile.data.serialization.ForgeProfileJson
 import com.phoenixforge.profile.domain.auth.AuthProvider
 import com.phoenixforge.profile.domain.auth.LocalSecureAuthProvider
 import com.phoenixforge.profile.domain.repository.ProfileRepository
+import com.phoenixforge.profile.domain.session.ProfileSessionStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,6 +22,7 @@ import javax.inject.Singleton
 object ProfileModule {
 
     private const val PREFS_STEWARD_SECURE = "steward_secure"
+    private const val PREFS_PROFILE_SESSION = "profile_session"
 
     @Provides
     @Singleton
@@ -33,7 +35,9 @@ object ProfileModule {
             context,
             ProfileDatabase::class.java,
             "forge_profile.db"
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides
@@ -54,5 +58,14 @@ object ProfileModule {
     ): AuthProvider {
         val prefs = context.getSharedPreferences(PREFS_STEWARD_SECURE, Context.MODE_PRIVATE)
         return LocalSecureAuthProvider(prefs)
+    }
+
+    @Provides
+    @Singleton
+    fun provideProfileSessionStore(
+        @ApplicationContext context: Context
+    ): ProfileSessionStore {
+        val prefs = context.getSharedPreferences(PREFS_PROFILE_SESSION, Context.MODE_PRIVATE)
+        return ProfileSessionStore(prefs)
     }
 }

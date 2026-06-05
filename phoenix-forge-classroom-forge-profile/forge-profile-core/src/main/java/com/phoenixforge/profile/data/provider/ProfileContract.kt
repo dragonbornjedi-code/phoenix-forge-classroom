@@ -24,6 +24,8 @@ object ProfileContract {
         const val FORGE_NAME = "forge_name"
         const val CURRENT_STAGE = "current_stage"
         const val CURRENT_TITLE = "current_title"
+        const val AGE_YEARS = "age_years"
+        const val PROFILE_ROLE = "profile_role"
         const val AVATAR_HAIR = "hair_type"
         const val AVATAR_EYES = "eye_color"
         const val AVATAR_SKIN = "skin_tone"
@@ -39,7 +41,9 @@ object ProfileContract {
             Columns.UID,
             Columns.FORGE_NAME,
             Columns.CURRENT_STAGE,
-            Columns.CURRENT_TITLE
+            Columns.CURRENT_TITLE,
+            Columns.AGE_YEARS,
+            Columns.PROFILE_ROLE
         )
     }
 

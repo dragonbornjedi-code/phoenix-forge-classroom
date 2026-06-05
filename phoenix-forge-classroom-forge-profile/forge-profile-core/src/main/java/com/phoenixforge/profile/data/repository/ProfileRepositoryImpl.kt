@@ -22,6 +22,8 @@ import com.phoenixforge.profile.domain.model.DreamEntry
 import com.phoenixforge.profile.domain.model.EventType
 import com.phoenixforge.profile.domain.model.FavoriteEntry
 import com.phoenixforge.profile.domain.model.ForgeProfile
+import com.phoenixforge.profile.domain.model.LinkedStudentProfile
+import com.phoenixforge.profile.data.local.entity.LinkedStudentEntity
 import com.phoenixforge.profile.domain.model.MemoryArtifact
 import com.phoenixforge.profile.domain.model.TeacherMetadata
 import com.phoenixforge.profile.domain.model.TimelineEvent
@@ -194,6 +196,71 @@ class ProfileRepositoryImpl @Inject constructor(
         appendChildhoodStateSnapshot(requireProfileUid(), captureCurrentPayload())
     }
 
+    override fun getDreamEntries(): Flow<List<DreamEntry>> =
+        dao.getDreamEntries().map { list ->
+            list.map {
+                DreamEntry(
+                    id = it.id,
+                    type = it.type,
+                    content = it.content,
+                    timestamp = Instant.ofEpochMilli(it.timestamp)
+                )
+            }
+        }
+
+    override fun getAboutMeEntries(): Flow<List<AboutMeEntry>> =
+        dao.getAboutMeEntries().map { list ->
+            list.map {
+                AboutMeEntry(
+                    id = it.id,
+                    prompt = it.prompt,
+                    answer = it.answer,
+                    timestamp = Instant.ofEpochMilli(it.timestamp)
+                )
+            }
+        }
+
+    override suspend fun clearAllData() {
+        dao.deleteAllDreams()
+        dao.deleteAllAboutMe()
+        dao.deleteAllFavorites()
+        dao.deleteAllAvatars()
+        dao.deleteAllTimelineEvents()
+        dao.deleteAllMemoryArtifacts()
+        dao.deleteAllIdentitySnapshots()
+        dao.deleteAllTeacherMetadata()
+        dao.deleteAllLinkedStudents()
+        dao.deleteAllProfiles()
+    }
+
+    override fun getLinkedStudents(): Flow<List<LinkedStudentProfile>> =
+        dao.getLinkedStudents().map { list ->
+            list.map {
+                LinkedStudentProfile(
+                    profileUid = it.profileUid,
+                    displayName = it.displayName,
+                    linkedAt = Instant.ofEpochMilli(it.linkedAt),
+                    notes = it.notes
+                )
+            }
+        }
+
+    override suspend fun linkStudentProfile(displayName: String, profileUid: String, notes: String?) {
+        requireInitializedProfile(dao.getProfile().firstOrNull()?.toDomain())
+        dao.insertLinkedStudent(
+            LinkedStudentEntity(
+                profileUid = profileUid.trim(),
+                displayName = displayName.trim(),
+                linkedAt = Instant.now().toEpochMilli(),
+                notes = notes?.trim()?.takeIf { it.isNotEmpty() }
+            )
+        )
+    }
+
+    override suspend fun unlinkStudentProfile(profileUid: String) {
+        dao.deleteLinkedStudent(profileUid)
+    }
+
     private suspend fun commitDomainMutation(
         profileUid: String,
         fieldName: String?,
@@ -360,11 +427,13 @@ class ProfileRepositoryImpl @Inject constructor(
         forgeName = forgeName,
         realName = realName,
         birthDate = birthDate?.let { Instant.ofEpochMilli(it) },
+        ageYears = ageYears,
         pronouns = pronouns,
         favoriteColor = favoriteColor,
         currentTitle = currentTitle,
         currentStage = currentStage,
-        sparkMaturationTier = sparkMaturationTier
+        sparkMaturationTier = sparkMaturationTier,
+        profileRole = profileRole
     )
 
     private fun ForgeProfile.toEntity(): ProfileEntity = ProfileEntity(
@@ -372,11 +441,13 @@ class ProfileRepositoryImpl @Inject constructor(
         forgeName = forgeName,
         realName = realName,
         birthDate = birthDate?.toEpochMilli(),
-        pronouns = pronouns,
+        ageYears = ageYears,
+        pronouns = null,
         favoriteColor = favoriteColor,
         currentTitle = currentTitle,
         currentStage = currentStage,
-        sparkMaturationTier = sparkMaturationTier
+        sparkMaturationTier = sparkMaturationTier,
+        profileRole = profileRole
     )
 
     private fun AvatarEntity.toDomain(): Avatar = Avatar(

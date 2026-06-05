@@ -16,7 +16,9 @@ class ProfileExportReader @Inject constructor(
                 uid = profile.uid,
                 forgeName = profile.forgeName,
                 currentStage = profile.currentStage,
-                currentTitle = profile.currentTitle
+                currentTitle = profile.currentTitle,
+                ageYears = profile.ageYears,
+                profileRole = profile.profileRole
             )
         }
 

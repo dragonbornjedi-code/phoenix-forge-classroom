@@ -11,9 +11,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.phoenixforge.profile.ui.navigation.Screen
+import com.phoenixforge.profile.ui.interop.ExternalApps
 
 @Composable
 fun DashboardScreen(
@@ -21,6 +23,7 @@ fun DashboardScreen(
     viewModel: DashboardViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsState()
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
@@ -45,7 +48,7 @@ fun DashboardScreen(
                         style = MaterialTheme.typography.titleLarge
                     )
                     Text(
-                        state.profile?.currentStage ?: "Beginning the Journey",
+                        formatProfileSubtitle(state.profile),
                         style = MaterialTheme.typography.labelMedium
                     )
                 }
@@ -72,6 +75,24 @@ fun DashboardScreen(
             }
         }
 
+        Spacer(modifier = Modifier.height(8.dp))
+
+        if (state.profile?.profileRole == "student_self" || state.profile?.profileRole == "steward_for_student") {
+            state.profile?.uid?.let { uid ->
+                Card(modifier = Modifier.fillMaxWidth()) {
+                    Column(modifier = Modifier.padding(12.dp)) {
+                        Text("Profile ID", style = MaterialTheme.typography.labelMedium)
+                        Text(uid, style = MaterialTheme.typography.bodySmall)
+                        Text(
+                            "Share this ID with your teacher to link profiles.",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+            }
+        }
+
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
@@ -79,6 +100,16 @@ fun DashboardScreen(
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Dream Board")
+        }
+
+        if (state.profile?.profileRole == "teacher_self") {
+            Spacer(modifier = Modifier.height(8.dp))
+            OutlinedButton(
+                onClick = { ExternalApps.launchTeacherEdition(context) },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Open Teacher Edition")
+            }
         }
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -107,6 +138,25 @@ fun DashboardScreen(
             }
         }
     }
+}
+
+private fun formatProfileSubtitle(profile: com.phoenixforge.profile.domain.model.ForgeProfile?): String {
+    if (profile == null) return "Just getting started"
+    val age = profile.ageYears?.let { "Age $it" }
+    val role = when (profile.profileRole) {
+        "steward_for_student" -> "Profile for a student"
+        "student_self" -> "Student profile"
+        "teacher_self" -> "Teacher profile"
+        else -> null
+    }
+    return listOfNotNull(age, role, formatStageLabel(profile.currentStage))
+        .joinToString(" · ")
+}
+
+private fun formatStageLabel(stage: String?): String = when (stage) {
+    null, "" -> "Just getting started"
+    "JUST_BEGINNING" -> "Just getting started"
+    else -> stage.replace('_', ' ').lowercase().replaceFirstChar { it.titlecase() }
 }
 
 data class StatItem(val label: String, val value: String, val route: String)

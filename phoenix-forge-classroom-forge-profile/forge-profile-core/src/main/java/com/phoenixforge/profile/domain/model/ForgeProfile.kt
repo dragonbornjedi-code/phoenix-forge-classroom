@@ -7,11 +7,13 @@ data class ForgeProfile(
     val forgeName: String,
     val realName: String?,
     val birthDate: Instant?,
+    val ageYears: Int?,
     val pronouns: String?,
     val favoriteColor: String?,
     val currentTitle: String?,
     val currentStage: String,
-    val sparkMaturationTier: Int
+    val sparkMaturationTier: Int,
+    val profileRole: String?
 )
 
 data class Avatar(
