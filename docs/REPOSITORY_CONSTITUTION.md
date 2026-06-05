@@ -36,7 +36,7 @@ The runtime interpretation layer. Consumes CMOS to generate world state.
 ### Layer 3: Experience Shells (The Frontends)
 Replaceable windows into the world.
 - **Student Edition:** Daily childhood interaction. Emits MemoryEvents.
-- **Teacher Edition:** Stewardship, curation, and approval. Annotates CMOS records.
+- **Teacher Edition:** Mentorship, curation, and approval. Annotates CMOS records.
 - **Godot World:** High-fidelity 3D interpretation of the archive.
 - **Legacy Viewer:** Read-only adult access to the PFC bundle.
 

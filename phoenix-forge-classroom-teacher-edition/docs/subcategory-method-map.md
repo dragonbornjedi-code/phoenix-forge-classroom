@@ -90,7 +90,7 @@ Method key:
 | Social Problem Solving | SN, EX, PB | choices and consequences | what-could-we-do cards |
 | Community Participation | SN, PB, TA | public space, manners, helper role | library/store practice map |
 
-## 5. Physical Mastery & Environmental Stewardship
+## 5. Physical Mastery & Environmental Guidance
 
 | Subcategory | Best Methods | What To Build First | Starter Lesson Direction |
 |---|---|---|---|
@@ -102,7 +102,7 @@ Method key:
 | Hand-Eye Coordination | PB, EX, PS | aim, pour, catch, connect | beanbag target, safe pouring |
 | Tool Dexterity | EX, TA, VS | fasteners, clips, buttons, connectors | nut-and-bolt board |
 | Health And Fitness | PB, EX, RS | warm-up, strength, endurance, cool-down | mini fitness circuit |
-| Environmental Stewardship | PB, EX, TA | recycle, compost, conserve, repair | lunch trash sort |
+| Environmental Guidance | PB, EX, TA | recycle, compost, conserve, repair | lunch trash sort |
 | Nature Study | INQ, PB, UDL | observe, compare, classify, respect nature | leaf compare, weather log |
 | Situational Awareness | EX, SN, VS, PB | exits, landmarks, listening, safe spot | house map |
 | Field Survival Basics | EX, TA, SN, PB | stay-put, pack, weather, water | emergency walk bag |
@@ -135,7 +135,7 @@ Method key:
 | Decision Architecture | CRA, EX, PB | two choices, consequence, later result | two paths board |
 | Service And Contribution | PB, TA, EX | help family/community | family node mission |
 | Gratitude And Appreciation | PB, SN, RS | notice help, say thanks, care for gifts | thank-you card |
-| Stewardship | EX, TA, PB | care for tools, toys, home, nature | tool return ritual |
+| Guidance | EX, TA, PB | care for tools, toys, home, nature | tool return ritual |
 | Courage And Advocacy | SN, CO, EX | ask help, speak up, safe no | brave words puppet |
 | Civic Awareness | PB, SN, EX | community helpers, rules, public spaces | helper walk |
 | Calibration And Growth | PS, EX, RS | version notes, improve from evidence | V1/V2 compare |

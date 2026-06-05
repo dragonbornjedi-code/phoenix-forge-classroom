@@ -31,4 +31,4 @@ After reordering tiles, the parent sees a "Compass Preview."
 ## 4. Continuity & Resilience
 If life gets chaotic and the board isn't used for a week, the Compass observes the gap without "Resetting."
 - **Recalibration:** Upon return, the Compass suggests "Minimum Wins" to gently get back into a balanced rhythm.
-- **Parental Mastery:** The system rewards the parent's stewardship with encouraging reflections on their consistency over months and years.
+- **Parental Mastery:** The system rewards the parent's mentorship with encouraging reflections on their consistency over months and years.

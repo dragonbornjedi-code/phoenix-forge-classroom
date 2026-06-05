@@ -5,9 +5,9 @@
 | Field | Value |
 |-------|--------|
 | **Finish line** | `5.00` |
-| **Current step** | `0.13` — next: `0.14` |
+| **Current step** | `4.59` — next: `4.60` |
 
-Current step: 0.13 — next: 0.14
+Current step: 4.59 — next: 4.60
 
 | **Protocol** | [cline_essence/SKILL.md](../cline_essence/SKILL.md) · [MASTER_PROTOCOL.md](../cline_essence/MASTER_PROTOCOL.md) |
 | **Tier 0** | [CONSTITUTION.md](../CONSTITUTION.md) · [registry/phoenix-forge-classroom.yaml](../../registry/phoenix-forge-classroom.yaml) |
@@ -215,7 +215,7 @@ Current step: 0.13 — next: 0.14
 | 4.56 | Cross | Chronicle tier complete | Checklist | pending |
 | 4.57 | Profile | Sign-in gate + empty dream board + Help me think | gradle | [VERIFIED] |
 | 4.58 | Teacher | Curriculum browser: 7 domains + Pack 01 + weekly audit | gradle | [VERIFIED] |
-| 4.59 | Cross | *(gap)* | — | reserved |
+| 4.59 | Cross | Forge Profile identity-only; mentorship terminology purge; Student→Teacher read-only snapshot provider + UI | `rg -i no stewardship` + `./gradlew assembleDebug (3 APKs)` + `./scripts/cline-essence-drift-check.sh` | [TESTED] |
 | 4.91 | Cross | *(gap before finish)* | — | reserved |
 | 4.92 | Cross | *(gap before finish)* | — | reserved |
 | | | | | |

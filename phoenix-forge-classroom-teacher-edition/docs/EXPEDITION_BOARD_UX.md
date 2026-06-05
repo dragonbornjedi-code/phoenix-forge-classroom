@@ -38,7 +38,7 @@ Tapping a tile expands it into a comprehensive "Field Guide." This is where the 
 
 ## 3. The Completion Loop (Double Tap)
 
-Double-tapping a card triggers the **Stewardship Selection**.
+Double-tapping a card triggers the **Mentorship Selection**.
 
 ### Level 1: Complete Only
 - **Speed:** < 1 second.

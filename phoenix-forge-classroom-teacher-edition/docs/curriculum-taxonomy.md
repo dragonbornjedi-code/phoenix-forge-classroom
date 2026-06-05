@@ -146,7 +146,7 @@ Lesson seeds:
 - Practice "ask first" with household items.
 - Use a timer to share a favorite tool or toy.
 
-## 5. Physical Mastery & Environmental Stewardship
+## 5. Physical Mastery & Environmental Guidance
 
 Purpose: Build body control, confidence, safety, sensory integration, fine-motor strength, outdoor competence, and care for the environment.
 
@@ -159,7 +159,7 @@ Subcategories:
 - Hand-Eye Coordination: target games, catching, pouring, bead work, simple circuits.
 - Tool Dexterity: child-safe tools, fasteners, clips, buttons, zippers, connectors.
 - Health And Fitness: endurance, strength, flexibility, warm-up, cool-down.
-- Environmental Stewardship: reduce, reuse, recycle, compost, repair, conserve.
+- Environmental Guidance: reduce, reuse, recycle, compost, repair, conserve.
 - Nature Study: plants, animals, weather, soil, water, seasons.
 - Situational Awareness: exits, safe spots, landmarks, listening, observation.
 - Field Survival Basics: map, simple packing, weather, water, stay-put rule.
@@ -220,7 +220,7 @@ Subcategories:
 - Decision Architecture: choices, consequences, risk/reward, short/long term.
 - Service And Contribution: help family, neighbor, community, shared spaces.
 - Gratitude And Appreciation: notice help, say thanks, care for gifts.
-- Stewardship: care for tools, toys, home, nature, time, attention.
+- Guidance: care for tools, toys, home, nature, time, attention.
 - Courage And Advocacy: ask for help, speak up safely, protect boundaries.
 - Civic Awareness: community helpers, rules, public spaces, voting as choice model.
 - Calibration And Growth: version notes, not perfect, improve from evidence.

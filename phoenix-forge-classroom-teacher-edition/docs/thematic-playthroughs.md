@@ -90,7 +90,7 @@ Theme: Observe living systems and resource loops.
 Core goals:
 - Scientific inquiry.
 - Nature study.
-- environmental stewardship.
+- environmental guidance.
 - spatial mapping.
 - movement/outdoor learning.
 

@@ -28,7 +28,7 @@ Once the parent has accepted the day's intent, the system generates a cohesive s
 
 ---
 
-## 4. Archive Stewardship & Stewardship
+## 4. Archive Mentorship & Mentorship
 - **MemoryEvent Approval:** Promoting child discoveries to the permanent **Living Chronicle**.
 - **Parental Echoes:** Recording human context (voice/text) for the 20-year legacy.
 - **Identity Thread Review:** Confirming long-term patterns discovered by the **Identity Formation Engine**.

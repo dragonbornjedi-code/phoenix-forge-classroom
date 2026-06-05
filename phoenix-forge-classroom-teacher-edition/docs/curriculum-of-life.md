@@ -143,7 +143,7 @@ Support methods:
 - Timer.
 - Role swap.
 
-## 5. Physical Mastery & Environmental Stewardship
+## 5. Physical Mastery & Environmental Guidance
 
 Teacher framing: body control, proprioception, manual dexterity, resource loops, survival, and situational awareness.
 

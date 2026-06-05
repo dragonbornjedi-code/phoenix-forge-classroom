@@ -334,7 +334,7 @@ Show puppet faces and solution buttons: Timer, Trade, Ask First.
 
 ## Lesson 5: Field Kit And Safe Map
 
-Category: Physical Mastery & Environmental Stewardship.
+Category: Physical Mastery & Environmental Guidance.
 
 Subcategories:
 - Situational Awareness.

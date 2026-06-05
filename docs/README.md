@@ -52,7 +52,7 @@ This directory contains the **Core Architecture** and **Constitutional Mandates*
 - **[contracts/INTENT_TILE_CONTRACT.md](contracts/INTENT_TILE_CONTRACT.md):** Canonical object specification for developmental intent.
 - **[contracts/MEMORY_EVENT_CONTRACT.md](contracts/MEMORY_EVENT_CONTRACT.md):** The unified ingestion schema.
 - **[contracts/TILE_EVENT_MAPPING.md](contracts/TILE_EVENT_MAPPING.md):** Mapping tile completion to CMOS ingestion.
-- **[STUDENT_TEACHER_BOUNDARY.md](STUDENT_TEACHER_BOUNDARY.md):** Defining Experience vs Stewardship domains.
+- **[STUDENT_TEACHER_BOUNDARY.md](STUDENT_TEACHER_BOUNDARY.md):** Defining Experience vs Mentorship domains.
 - **[EVENT_CAPTURE_PROTOCOL.md](EVENT_CAPTURE_PROTOCOL.md):** How real-world life enters the archive.
 - **[AGE_25_BACKCAST_DESIGN.md](AGE_25_BACKCAST_DESIGN.md):** Designing for the adult self looking back.
 - **[CHILDHOOD_TIME_CAPSULE_SPEC.md](CHILDHOOD_TIME_CAPSULE_SPEC.md):** The final handover protocol.
