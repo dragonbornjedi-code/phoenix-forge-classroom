@@ -6,7 +6,41 @@
 > Phantom files never existed — names listed in §5.8 and §10 are forbidden citations only.
 
 ---
+## ⚠ LAPTOP / MOBILE WORKSPACE OVERRIDE — READ FIRST IF ON CONSTRAINED HARDWARE
 
+This session may be running on a constrained laptop, not the Tower build machine.
+Adjust all operations accordingly.
+
+### Environment — laptop paths (update if different from Tower)
+export JAVA_HOME=~/android-studio/jbr        # or wherever JDK lives on THIS machine
+export ANDROID_HOME=~/Android/Sdk
+export PATH="$JAVA_HOME/bin:$ANDROID_HOME/platform-tools:$PATH"
+export PROJECT=~/workspace/phoenix-forge-classroom   # update to laptop clone path
+cd "$PROJECT"
+
+### If Tower is reachable via Tailscale (preferred for heavy builds)
+# SSH into Tower and run Gradle there instead of locally:
+ssh joshuar@100.x.x.x
+# Then run all assembleDebug commands on Tower; pull resulting APKs back via scp
+
+### What to skip on constrained hardware
+- DO NOT run Infinigen (requires Conda + heavy Python + Blender GPU) — skip entirely
+- DO NOT run full `./gradlew clean assembleDebug` if RAM < 8 GB — use `compileDebugKotlin` 
+  to type-check only, then build on Tower
+- DO NOT install Android emulator — use physical device or adb over Tailscale to Tower
+
+### Lightweight verify instead of full build (when RAM is tight)
+cd phoenix-forge-classroom-forge-profile
+./gradlew :forge-profile-app:compileDebugKotlin   # type-check only, ~1 GB RAM
+./gradlew :student-app:compileDebugKotlin
+./gradlew :teacher-app:compileDebugKotlin
+
+### Environment sync (first time on laptop only)
+git clone git@github.com:YOUR_ORG/phoenix-forge-classroom.git
+# Copy local.properties from Tower:
+scp joshuar@100.x.x.x:/var/lib/phoenix-ai/workspace/phoenix-forge-classroom/phoenix-forge-classroom-forge-profile/local.properties \
+    ~/workspace/phoenix-forge-classroom/phoenix-forge-classroom-forge-profile/local.properties
+  
 ## 0. WHO YOU ARE AND WHAT THIS IS
 
 You are a coding agent working on **Phoenix Forge Classroom**, a three-app Android monorepo
@@ -588,7 +622,60 @@ git checkout -- .   # reverts all uncommitted changes
 git clean -fd       # removes untracked files (careful — check git status first)
 git status          # confirm clean
 ```
+---
 
+## 16. GODOT HEARTHHOME PROJECT — FAST-TRACK CONTEXT
+
+This is a SEPARATE repo from the Phoenix Forge Classroom APKs.
+It connects to Phoenix Forge via the import bundle defined in docs/GODOT_MIGRATION_STRATEGY.md.
+
+### What this project is
+The Stage 1–3 Experience Shell (Ages 5–13): a 3D Hearthhome world where Ezra's
+ForgeProfile (avatar, identity threads, chronicle artifacts) drives the environment.
+This is Layer 3 of the Three-Layer Architecture (Experience Shell — replaceable frontend).
+
+### Project location
+~/workspace/phoenix-forge-hearthhome/         (create this repo separately)
+/mnt/digital-home/vault/godot-hearthhome/     (vault backup)
+
+### Tech stack — constrained-hardware approved
+- Godot 4.x (offline editor + Android export — runs fine on 8GB laptop)
+- Pre-built CC0 glTF assets ONLY (NO Infinigen — too heavy for laptop)
+  Sources: KhronosGroup/glTF-Sample-Assets, Quaternius CC0 packs, Kenney.nl
+- Sweet Home 3D for floor plans (Java JAR, runs on 4GB RAM, fully offline)
+- Blender for glTF polish/LODs (runs offline, use Cycles-lite or EEVEE)
+
+### Import bundle (what Godot reads from Phoenix Forge)
+forge_profile.json    → uid, forgeName, stage, threads, bonds
+avatar_config.json    → full AvatarConfig + godotMeshHints (step 2.51 in Phoenix roadmap)
+chronicle_index.json  → episode IDs, artifact refs
+universal_id_map.json → ObjectID → res://scenes/... paths
+Transport: USB / Tailscale file share / steward export from Forge Profile app
+
+### Roadmap discipline — same rules apply
+- Hearthhome gets its OWN 0.00–5.00 roadmap: hearthhome/docs/roadmaps/00_HEARTHHOME_ROADMAP.md
+- Do NOT add Godot steps to Phoenix Forge 00_MASTER_ROADMAP.md
+- Phoenix Forge only tracks the IMPORT CONTRACT side (steps 2.51–2.52 in its roadmap)
+- Hearthhome roadmap starts at 0.00 Genesis independently
+
+### Fast-track Step 0 (do this first, today)
+0.01  Godot 4 installed offline, new project created
+0.02  CC0 house glTF imported, visible in Godot viewport
+0.03  CharacterBody3D + NavigationMesh — Ezra walks around one room
+0.04  Area3D interaction on one object (door opens on tap)
+0.05  Android export APK — runs on phone without crash
+0.06  Read forge_profile.json from local file, set forgeName label in UI
+
+### Cursor prompt for Hearthhome sessions
+Follow docs/cline_essence/ from Phoenix Forge Classroom as your Cline Essence source.
+All git discipline, worktree, cascade, and session bridge rules from Sections 3–12
+of this document apply identically to the Hearthhome repo.
+
+### On constrained laptop
+- Godot editor itself: ~500MB RAM — fine
+- Godot + Android export: needs Android SDK (same ANDROID_HOME as above)
+- Heavy asset baking (lightmaps, LODs): do on Tower via SSH, copy .import files back
+- Keep scene polygon count under 50k for mobile perf (use Godot LOD nodes)
 ---
 
 *Document version: 1.0 · 2026-06-04 · Save to docs/ AND /mnt/digital-home/vault/*
