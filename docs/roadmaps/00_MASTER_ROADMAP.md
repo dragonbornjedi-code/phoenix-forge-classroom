@@ -5,9 +5,9 @@
 | Field | Value |
 |-------|--------|
 | **Finish line** | `5.00` |
-| **Current step** | `0.24` — next: `0.25` |
+| **Current step** | `0.33` — next: `0.34` |
 
-Current step: 0.24 — next: 0.25
+Current step: 0.33 — next: 0.34
 
 | **Protocol** | [cline_essence/SKILL.md](../cline_essence/SKILL.md) · [MASTER_PROTOCOL.md](../cline_essence/MASTER_PROTOCOL.md) |
 | **Tier 0** | [CONSTITUTION.md](../CONSTITUTION.md) · [registry/phoenix-forge-classroom.yaml](../../registry/phoenix-forge-classroom.yaml) |
@@ -83,20 +83,20 @@ Current step: 0.24 — next: 0.25
 | 0.23 | Cross | Atlas + Authority rows match genesis truth | Doc pass | [VERIFIED] |
 | 0.24 | Cross | Genesis complete: 0.01–0.23 verified | Checklist | [VERIFIED] |
 | | | | | |
-| **0.25** | — | **MILESTONE: Device P0 begins** | — | pending |
-| 0.26 | Cross | Install 3 APKs on parent phone | install script | pending |
+| **0.25** | — | **MILESTONE: Device P0 begins** | — | [VERIFIED] |
+| 0.26 | Cross | Install 3 APKs on parent phone | install script | [VERIFIED] |
 | 0.27 | Profile | Bottom navigation works | Phone | pending |
-| 0.28 | Profile | Cold start no crash (3×) | Phone | pending |
+| 0.28 | Profile | Cold start no crash (3×) | Phone | [VERIFIED] |
 | 0.29 | Profile | Identity card screen loads | Phone | pending |
-| 0.30 | Student | Cold start no crash (3×) | Phone | pending |
-| 0.31 | Student | StudentWorldBootstrap completes | Log/no crash | pending |
-| 0.32 | Student | Home screen loads | Phone | pending |
-| 0.33 | Teacher | Expedition board opens with seed tiles | Phone | pending |
+| 0.30 | Student | Cold start no crash (3×) | Phone | [VERIFIED] |
+| 0.31 | Student | StudentWorldBootstrap completes | Log/no crash | [VERIFIED] |
+| 0.32 | Student | Home screen loads | Phone | [VERIFIED] |
+| 0.33 | Teacher | Expedition board opens with seed tiles | Phone | [VERIFIED] |
 | 0.34 | Teacher | Create new tile from FAB | Phone | pending |
 | 0.35 | Teacher | Tile field guide: save materials/coaching | Phone | pending |
 | 0.36 | Teacher | Mark tile complete + force-close persist | Phone | pending |
 | 0.37 | Student | Import Forge Profile screen reads provider | Phone | pending |
-| 0.38 | Cross | ContentProvider `/profile` read smoke | adb/log | pending |
+| 0.38 | Cross | ContentProvider `/profile` read smoke | adb/log | [VERIFIED] |
 | 0.39 | Cross | ContentProvider `/avatar` read smoke | adb/log | pending |
 | 0.40 | Cross | DEPLOYMENT matrix Pass/Fail filled | DEPLOYMENT_REALITY | pending |
 | 0.41 | Teacher | ForgeProfileViewerScreen opens | Phone | pending |
