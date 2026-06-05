@@ -28,8 +28,6 @@ private fun iconFor(surface: ProfileAccessPolicy.Surface): ImageVector = when (s
     ProfileAccessPolicy.Surface.STUDIO -> Icons.Default.Face
     ProfileAccessPolicy.Surface.TIMELINE -> Icons.Default.Timeline
     ProfileAccessPolicy.Surface.MEMORY -> Icons.Default.PhotoLibrary
-    ProfileAccessPolicy.Surface.STUDENTS -> Icons.Default.Groups
-    ProfileAccessPolicy.Surface.STEWARD -> Icons.Default.Settings
 }
 
 @Composable

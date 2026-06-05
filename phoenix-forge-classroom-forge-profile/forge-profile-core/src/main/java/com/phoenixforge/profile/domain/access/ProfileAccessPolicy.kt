@@ -4,7 +4,7 @@ import com.phoenixforge.profile.domain.model.ProfileRole
 
 /**
  * Which Forge Profile surfaces each role may see.
- * Teachers get steward + student-management tabs; students do not.
+ * Forge Profile stays identity/chronicle-only. Teacher Edition owns student data views.
  */
 object ProfileAccessPolicy {
 
@@ -12,9 +12,7 @@ object ProfileAccessPolicy {
         DASHBOARD("dashboard", "Home"),
         STUDIO("studio", "Studio"),
         TIMELINE("timeline", "Timeline"),
-        MEMORY("memory", "Memories"),
-        STUDENTS("students", "Students"),
-        STEWARD("teacher_gate", "Steward")
+        MEMORY("memory", "Memories")
     }
 
     fun visibleSurfaces(role: ProfileRole?): List<Surface> = when (role) {
@@ -40,5 +38,5 @@ object ProfileAccessPolicy {
     }
 
     fun canManageLinkedStudents(role: ProfileRole?): Boolean =
-        role == ProfileRole.TEACHER_SELF
+        false
 }

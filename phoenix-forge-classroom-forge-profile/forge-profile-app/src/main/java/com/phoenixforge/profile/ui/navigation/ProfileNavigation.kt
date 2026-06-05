@@ -9,7 +9,6 @@ import com.phoenixforge.profile.ui.dashboard.DashboardScreen
 import com.phoenixforge.profile.ui.dreams.DreamBoardScreen
 import com.phoenixforge.profile.ui.identity.IdentityCardScreen
 import com.phoenixforge.profile.ui.memory.MemoryCapsuleScreen
-import com.phoenixforge.profile.ui.students.StudentsScreen
 import com.phoenixforge.profile.ui.studio.AvatarStudioScreen
 import com.phoenixforge.profile.ui.teacher.TeacherGateScreen
 import com.phoenixforge.profile.ui.timeline.ChildhoodTimelineScreen
@@ -21,7 +20,6 @@ sealed class Screen(val route: String) {
     object Timeline : Screen("timeline")
     object Memory : Screen("memory")
     object Dreams : Screen("dreams")
-    object Students : Screen("students")
     object TeacherGate : Screen("teacher_gate")
 }
 
@@ -53,9 +51,6 @@ fun ProfileNavHost(
         }
         composable(Screen.Dreams.route) {
             DreamBoardScreen()
-        }
-        composable(Screen.Students.route) {
-            StudentsScreen()
         }
         composable(Screen.TeacherGate.route) {
             TeacherGateScreen(onSignOut = onSignOut)

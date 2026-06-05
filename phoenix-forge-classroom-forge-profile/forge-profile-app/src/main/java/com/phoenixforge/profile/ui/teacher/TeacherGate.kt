@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.phoenixforge.profile.domain.model.TeacherMetadata
 import com.phoenixforge.profile.ui.interop.ExternalApps
 
 @Composable
@@ -38,12 +37,12 @@ fun TeacherGateScreen(
             Text("Parental Gate", style = MaterialTheme.typography.headlineMedium)
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                "Steward access requires secure parent setup on this device.",
+                "Mentorship access requires secure parent setup on this device.",
                 style = MaterialTheme.typography.bodyMedium
             )
             Spacer(modifier = Modifier.height(16.dp))
             Button(onClick = { viewModel.requestStewardAccess() }) {
-                Text("Request Steward Access")
+                Text("Request Mentorship Access")
             }
             Spacer(modifier = Modifier.height(8.dp))
             Button(onClick = { viewModel.enableStewardOnDevice() }) {
@@ -55,7 +54,7 @@ fun TeacherGateScreen(
             }
             Spacer(modifier = Modifier.height(24.dp))
             Text(
-                "Teacher Edition now owns Stewardship. Open it for curriculum planning and daily expedition work.",
+                "Teacher Edition now owns mentorship. Open it for curriculum planning and daily expedition work.",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -69,32 +68,29 @@ fun TeacherGateScreen(
             }
         }
     } else {
-        TeacherDashboard(
-            metadata = state.metadata,
-            onStewardSignOut = { viewModel.signOut() },
-            onProfileSignOut = onSignOut
-        )
-    }
-}
-
-@Composable
-fun TeacherDashboard(
-    metadata: List<TeacherMetadata>,
-    onStewardSignOut: () -> Unit,
-    onProfileSignOut: () -> Unit
-) {
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-        Text("Steward Dashboard", style = MaterialTheme.typography.headlineLarge)
-        Spacer(modifier = Modifier.height(16.dp))
-        Text("Academic Records & Observations", style = MaterialTheme.typography.titleMedium)
-        Text("${metadata.size} steward records on file", style = MaterialTheme.typography.bodyMedium)
-        Spacer(modifier = Modifier.height(24.dp))
-        Button(onClick = onStewardSignOut) {
-            Text("Sign Out Steward")
-        }
-        Spacer(modifier = Modifier.height(8.dp))
-        OutlinedButton(onClick = onProfileSignOut) {
-            Text("Switch profile")
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text("Mentorship access enabled", style = MaterialTheme.typography.headlineMedium)
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                "Open Teacher Edition to plan curriculum and view student check-ins in a read-only view.",
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Spacer(modifier = Modifier.height(24.dp))
+            Button(onClick = { ExternalApps.launchTeacherEdition(context) }) {
+                Text("Open Teacher Edition")
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(onClick = { viewModel.signOut() }) {
+                Text("Disable this device access")
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            OutlinedButton(onClick = onSignOut) {
+                Text("Switch profile")
+            }
         }
     }
 }
