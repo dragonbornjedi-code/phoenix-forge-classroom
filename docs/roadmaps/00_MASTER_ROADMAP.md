@@ -5,9 +5,9 @@
 | Field | Value |
 |-------|--------|
 | **Finish line** | `5.00` |
-| **Current step** | `0.10` — next: `0.11` |
+| **Current step** | `0.11` — next: `0.12` |
 
-Current step: 0.10 — next: 0.11
+Current step: 0.11 — next: 0.12
 
 | **Protocol** | [cline_essence/SKILL.md](../cline_essence/SKILL.md) · [MASTER_PROTOCOL.md](../cline_essence/MASTER_PROTOCOL.md) |
 | **Tier 0** | [CONSTITUTION.md](../CONSTITUTION.md) · [registry/phoenix-forge-classroom.yaml](../../registry/phoenix-forge-classroom.yaml) |
@@ -68,7 +68,7 @@ Current step: 0.10 — next: 0.11
 | 0.08 | Cross | `assembleDebug` student-app | gradle | [VERIFIED] |
 | 0.09 | Cross | `assembleDebug` teacher-app | gradle | [VERIFIED] |
 | 0.10 | Cross | DEPLOYMENT_REALITY install section accurate | Read paths | [VERIFIED] |
-| 0.11 | Profile | Bootstrap profile for Ezra on first launch | ProfileBootstrap | pending |
+| 0.11 | Profile | Bootstrap profile for Ezra on first launch | ProfileBootstrap | [VERIFIED] |
 | 0.12 | Profile | Dashboard + all bottom-nav tabs navigate | Phone | pending |
 | 0.13 | Student | Launcher label final | strings.xml | pending |
 | 0.14 | Student | Remove “Digital House” from user-facing strings | grep UI | pending |

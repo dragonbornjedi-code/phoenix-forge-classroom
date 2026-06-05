@@ -13,19 +13,27 @@ class ProfileBootstrap @Inject constructor(
 ) {
     suspend fun ensureProfileExists() {
         if (repository.getProfile().firstOrNull() == null) {
-            repository.updateProfile(
-                ForgeProfile(
-                    uid = UUID.randomUUID().toString(),
-                    forgeName = "New Forger",
-                    realName = null,
-                    birthDate = null,
-                    pronouns = null,
-                    favoriteColor = null,
-                    currentTitle = null,
-                    currentStage = "EARLY_DISCOVERY",
-                    sparkMaturationTier = 1
-                )
-            )
+            repository.updateProfile(defaultEzraProfile())
         }
+    }
+
+    private fun defaultEzraProfile(): ForgeProfile =
+        ForgeProfile(
+            uid = UUID.randomUUID().toString(),
+            forgeName = DEFAULT_FORGE_NAME,
+            realName = null,
+            birthDate = null,
+            pronouns = DEFAULT_PRONOUNS,
+            favoriteColor = null,
+            currentTitle = null,
+            currentStage = DEFAULT_STAGE,
+            sparkMaturationTier = DEFAULT_SPARK_TIER
+        )
+
+    private companion object {
+        const val DEFAULT_FORGE_NAME = "Ezra"
+        const val DEFAULT_PRONOUNS = "he/him"
+        const val DEFAULT_STAGE = "EARLY_DISCOVERY"
+        const val DEFAULT_SPARK_TIER = 1
     }
 }
