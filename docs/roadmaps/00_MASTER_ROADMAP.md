@@ -5,9 +5,9 @@
 | Field | Value |
 |-------|--------|
 | **Finish line** | `5.00` |
-| **Current step** | `4.59` — next: `4.60` |
+| **Current step** | `0.24` — next: `0.25` |
 
-Current step: 4.59 — next: 4.60
+Current step: 0.24 — next: 0.25
 
 | **Protocol** | [cline_essence/SKILL.md](../cline_essence/SKILL.md) · [MASTER_PROTOCOL.md](../cline_essence/MASTER_PROTOCOL.md) |
 | **Tier 0** | [CONSTITUTION.md](../CONSTITUTION.md) · [registry/phoenix-forge-classroom.yaml](../../registry/phoenix-forge-classroom.yaml) |
@@ -72,16 +72,16 @@ Current step: 4.59 — next: 4.60
 | 0.12 | Profile | Dashboard + all bottom-nav tabs navigate | Phone | [VERIFIED] |
 | 0.13 | Student | Launcher label final | strings.xml | [VERIFIED] |
 | 0.14 | Student | Remove “Digital House” from user-facing strings | grep UI | [VERIFIED] |
-| 0.15 | Teacher | Launcher label final | strings.xml | pending |
-| 0.16 | Cross | `install-phone-apks.sh` executable | chmod + run | pending |
-| 0.17 | Cross | reference-tile YAML on disk | secret-label-decoder.yaml | pending |
-| 0.18 | Cross | sync-contract + PCAS SQL present | shared/ | pending |
-| 0.19 | Cross | Superpowers plans marked SUPERSEDED | plans/*.md headers | pending |
-| 0.20 | Cross | Systemd drift timer documented | scripts/systemd/ | pending |
-| 0.21 | Cross | Root + docs README point to this ledger | Links | pending |
-| 0.22 | Cross | Sub-roadmaps 01–04 index-only (no P0/P1) | grep no “P1c” as ID | pending |
-| 0.23 | Cross | Atlas + Authority rows match genesis truth | Doc pass | pending |
-| 0.24 | Cross | Genesis complete: 0.01–0.23 verified | Checklist | pending |
+| 0.15 | Teacher | Launcher label final | strings.xml | [VERIFIED] |
+| 0.16 | Cross | `install-phone-apks.sh` executable | chmod + run | [VERIFIED] |
+| 0.17 | Cross | reference-tile YAML on disk | secret-label-decoder.yaml | [VERIFIED] |
+| 0.18 | Cross | sync-contract + PCAS SQL present | shared/ | [VERIFIED] |
+| 0.19 | Cross | Superpowers plans marked SUPERSEDED | plans/*.md headers | [VERIFIED] |
+| 0.20 | Cross | Systemd drift timer documented | scripts/systemd/ | [VERIFIED] |
+| 0.21 | Cross | Root + docs README point to this ledger | Links | [VERIFIED] |
+| 0.22 | Cross | Sub-roadmaps 01–04 index-only (no P0/P1) | grep no “P1c” as ID | [VERIFIED] |
+| 0.23 | Cross | Atlas + Authority rows match genesis truth | Doc pass | [VERIFIED] |
+| 0.24 | Cross | Genesis complete: 0.01–0.23 verified | Checklist | [VERIFIED] |
 | | | | | |
 | **0.25** | — | **MILESTONE: Device P0 begins** | — | pending |
 | 0.26 | Cross | Install 3 APKs on parent phone | install script | pending |

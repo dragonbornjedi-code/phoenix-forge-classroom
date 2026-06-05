@@ -55,7 +55,7 @@
 
 | Old label | Master steps |
 |-----------|--------------|
-| P0 Stabilize | 0.27–0.29, 0.38–0.45 |
+| Device + provider smoke | 0.27–0.29, 0.38–0.45 |
 | P1-A Avatar | 0.56–0.62 |
 | P1-B Capture | 0.63–0.67 |
 | P2 Integrate | 1.04, 2.03, 4.03 |

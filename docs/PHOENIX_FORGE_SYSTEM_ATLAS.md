@@ -286,7 +286,7 @@ Compass Recalibration
 | WorldDriftEngine | same | student-app/.../WorldDriftEngine.kt | IMPLEMENTED | 2026-06-03 | Orchestrator + Room | — |
 | CMOS MemoryEvent | MEMORY_EVENT_CONTRACT.md | Not found unified | DOCUMENTED | 2026-06-03 | Contract vs code | Local LifeEvent only |
 | PCAS SQL schema | PCAS_ARCHITECTURE.md | shared/schemas/PCAS_DB_SCHEMA.sql | PARTIAL | 2026-06-03 | File exists | No runtime DB |
-| Teacher Edition APK | teacher-edition-product-spec.md | teacher-app/ | IMPLEMENTED | 2026-06-04 | assembleDebug + source | P1c drag; cross-app send |
+| Teacher Edition APK | teacher-edition-product-spec.md | teacher-app/ | IMPLEMENTED | 2026-06-05 | assembleDebug + install-phone-apks | Drag reorder (0.52–0.53); cross-app send |
 | Student-edition shell docs | EXPERIENCE_SHELL_SPEC.md | student-edition/docs only | ORPHANED | 2026-06-03 | vs student-app | Superseded in practice |
 | ForgeProfileImporter | STUDENT_TEACHER_BOUNDARY.md | student-app forgeimport | PARTIAL | 2026-06-03 | Source | No live sync |
 
@@ -298,7 +298,7 @@ Explicit gaps (not roadmap promises):
 
 | ID | Debt | State today | Impact |
 |----|------|-------------|--------|
-| TD-01 | Teacher **P1c** drag reorder + **P2** send tile to Student not built | PARTIAL | Loop blocked at handoff |
+| TD-01 | Teacher drag reorder (0.52–0.53) + cross-app send (1.02+) not built | PARTIAL | Loop blocked at handoff |
 | TD-02 | Curriculum OS **not loaded from code** — YAML/contracts only | PARTIAL | Reference tile proof blocked at step 1 |
 | TD-03 | **No unified MemoryEvent** ingestion — student local events ≠ CMOS contract | PARTIAL | Spine break at MemoryEvent stage |
 | TD-04 | **CompassSnapshot** not computed | DOCUMENTED | Capability-longitudinal analytics absent |
@@ -316,7 +316,7 @@ Ordered by dependency on operational spine ([CURRICULUM_RUNTIME_FLOW.md](contrac
 
 1. **Validate reference tile** — run 10-step proof on Secret Label Decoder (manual or harness).
 2. **curriculum-core** — Kotlin types + YAML loader for Intent Tiles (enables step 1 automation).
-3. **Teacher Edition P1c + P2** — drag reorder; send tile → Student quest (Expedition Board P1a–P1b **done** 2026-06-04).
+3. **Teacher Edition 0.52–0.53 + 1.02** — drag reorder; send tile → Student quest (Expedition Board 0.33–0.36 **done**).
 4. **CompassSnapshot** — compute capability trends from session evidence (observation language only).
 5. **MemoryEvent bridge** — map tile completion + student WorldEvent → CMOS buffer contract.
 6. **Forge Profile chronicle** — align timeline with promoted MemoryEvents.

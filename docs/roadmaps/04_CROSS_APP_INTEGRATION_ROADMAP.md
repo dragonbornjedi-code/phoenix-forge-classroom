@@ -70,7 +70,7 @@
 
 | Old label | Master steps |
 |-----------|--------------|
-| P0 bridge | 0.38–0.40 |
+| Provider smoke (device) | 0.38–0.40 |
 | P1 contracts | 0.76–0.85 |
 | P2 one loop | 2.01–2.07 |
 | P3 platform | 4.01–4.06, 4.53 |

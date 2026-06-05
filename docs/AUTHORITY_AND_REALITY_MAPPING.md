@@ -9,7 +9,7 @@ Maps each major subsystem to **authority** (where the design lives), **implement
 2. **Exists ≠ integrated** — file present but unwired → `PARTIAL`, not `IMPLEMENTED`.
 3. Every row must be re-verifiable via **Verification Method**.
 
-**Last verified:** 2026-06-04 (source inspection; `teacher-app` Expedition Board P1a–P1b; `./gradlew :student-app:assembleDebug` prior session)
+**Last verified:** 2026-06-05 (genesis steps 0.13–0.15 launcher labels; Student `StudentHouse`/`HouseState`; three APKs install via `install-phone-apks.sh`)
 
 ---
 
@@ -21,7 +21,7 @@ Maps each major subsystem to **authority** (where the design lives), **implement
 | Curriculum OS | `docs/contracts/CURRICULUM_OS_SCHEMA.md`, `CURRICULUM_RUNTIME_FLOW.md` | Contract docs + `reference-tiles/secret-label-decoder.yaml` | No Kotlin module; not loaded by any app | PARTIAL | Repo census; no `curriculum-core` code |
 | Compass | `phoenix-forge-classroom-teacher-edition/docs/CHILDHOOD_COMPASS_ENGINE.md`, `docs/CHILDHOOD_COMPASS.md` | Not found in Kotlin | No | DOCUMENTED | No CompassSnapshot runtime |
 | Intent Tiles | `docs/contracts/INTENT_TILE_CONTRACT.md` | `teacher-app/.../IntentTile.kt`, Room DAO; reference YAML | teacher-app local tiles only | PARTIAL | App persists tiles; YAML loader absent |
-| Expedition Board | `teacher-edition/docs/EXPEDITION_BOARD_UX.md` | `teacher-app/ui/expedition/`, `TileRepository` | Yes — board + detail + complete | PARTIAL | Drag reorder (P1c) not built |
+| Expedition Board | `teacher-edition/docs/EXPEDITION_BOARD_UX.md` | `teacher-app/ui/expedition/`, `TileRepository` | Yes — board + detail + complete | PARTIAL | Drag reorder (steps 0.52–0.53) not built |
 | Lesson Evidence | `reference-tiles/secret-label-decoder.yaml` `evidence_template` | Schema in YAML only | No Teacher UI | PARTIAL | Contract review |
 | MemoryEvent | `docs/contracts/MEMORY_EVENT_CONTRACT.md` | Spec only; Student uses local `LifeEvent` / `StoryFragment` Room | Partial bridge via life events, not CMOS | PARTIAL | Code vs contract diff |
 | Student Simulation | `student-app/domain/world/WorldOrchestrator.kt` | `phoenix-forge-classroom-forge-profile/student-app/` | Yes — closed loop in student-app | IMPLEMENTED | Source + build |
@@ -68,7 +68,7 @@ Maps each major subsystem to **authority** (where the design lives), **implement
 | Subsystem | Authority Source | Implementation Source | State | Verification Method |
 |-----------|------------------|----------------------|-------|---------------------|
 | Teacher APK | `teacher-edition-product-spec.md` | `phoenix-forge-classroom-forge-profile/teacher-app/` | IMPLEMENTED | Module build + install |
-| Expedition Board | `docs/EXPEDITION_BOARD_UX.md` | `ExpeditionBoardScreen.kt`, `TileRepository` | PARTIAL | P1a–P1b done; P1c drag pending |
+| Expedition Board | `docs/EXPEDITION_BOARD_UX.md` | `ExpeditionBoardScreen.kt`, `TileRepository` | PARTIAL | Board + field guide (0.33–0.36); drag reorder (0.52–0.53) pending |
 | Intent tiles (local) | `INTENT_TILE_CONTRACT.md` | `IntentTile.kt`, `IntentTileDao.kt`, seed data | PARTIAL | Slim model; no YAML loader |
 | Tile field guide | `EXPEDITION_BOARD_UX.md` | `TileDetailScreen.kt`, `TileDetailViewModel.kt` | IMPLEMENTED | Save + mark complete persist |
 | Curriculum Of Life | `phoenix-forge-classroom-teacher-edition/docs/curriculum-of-life.md` | `teacher-app` `domain/curriculum/*`, `ui/curriculum/*` | PARTIAL | 7 domains + Pack 01 + weekly audit in app; human docs remain canonical |

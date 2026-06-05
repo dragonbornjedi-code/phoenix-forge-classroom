@@ -61,9 +61,9 @@ LifeEventCollector → WorldOrchestrator → StoryEngine / NPCEngine / Drift / B
 
 ## Legacy path names
 
-| Old label | Master steps |
-|-----------|--------------|
-| P0 | 0.30–0.37, 0.42–0.48 |
-| P1 | 0.68–0.73 |
-| P2 | 1.03, 1.52–1.53, 2.01–2.02 |
-| P3 | 3.01–3.06 |
+| Legacy phase (historical) | Master steps |
+|---------------------------|--------------|
+| Device stabilization | 0.30–0.37, 0.42–0.48 |
+| Standalone polish | 0.68–0.73 |
+| Loop participant | 1.03, 1.52–1.53, 2.01–2.02 |
+| Student depth | 3.01–3.06 |

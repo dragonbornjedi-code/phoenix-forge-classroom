@@ -54,14 +54,14 @@
 
 ## Legacy path names
 
-| Old label | Master steps |
-|-----------|--------------|
-| P0 | 0.33–0.36 |
-| P1a board | 0.33–0.34 (done) |
-| P1b field guide | 0.35–0.36 (done) |
-| P1c drag | 0.52–0.53 |
-| P1d steward | 0.54 |
-| P2 | 0.79, 1.02, 1.51, 2.01+ |
-| P3 | 3.51–3.58 |
+| Legacy phase (historical) | Master steps |
+|---------------------------|--------------|
+| Device expedition MVP | 0.33–0.36 |
+| Board create/open | 0.33–0.34 |
+| Field guide save/complete | 0.35–0.36 |
+| Drag reorder | 0.52–0.53 |
+| Steward L3 on complete | 0.54 |
+| Cross-app handoff | 0.79, 1.02, 1.51, 2.01+ |
+| Teacher depth | 3.51–3.58 |
 
 **Build:** `phoenix-forge-classroom-forge-profile/teacher-app` only — not `teacher-edition/android/`.
