@@ -31,7 +31,7 @@ tier0_docs:
   - registry/phoenix-forge-classroom.yaml
 
 master_timeline: docs/roadmaps/00_MASTER_ROADMAP.md
-current_step: "0.09"
+current_step: "0.10"
 
 agent_rules:
   canonical: docs/AI_AGENT_UNIVERSAL_RULES.md
