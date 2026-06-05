@@ -18,13 +18,27 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 
 private data class BottomNavItem(val route: String, val label: String, val icon: ImageVector)
 
-private val bottomItems = listOf(
-    BottomNavItem(Screen.Dashboard.route, "Home", Icons.Default.Home),
-    BottomNavItem(Screen.Studio.route, "Studio", Icons.Default.Face),
-    BottomNavItem(Screen.Timeline.route, "Timeline", Icons.Default.Timeline),
-    BottomNavItem(Screen.Memory.route, "Memories", Icons.Default.PhotoLibrary),
-    BottomNavItem(Screen.TeacherGate.route, "Steward", Icons.Default.Settings)
-)
+private fun bottomNavLabel(screen: Screen): String = when (screen) {
+    Screen.Dashboard -> "Home"
+    Screen.Studio -> "Studio"
+    Screen.Timeline -> "Timeline"
+    Screen.Memory -> "Memories"
+    Screen.TeacherGate -> "Steward"
+    else -> screen.route
+}
+
+private fun bottomNavIcon(screen: Screen): ImageVector = when (screen) {
+    Screen.Dashboard -> Icons.Default.Home
+    Screen.Studio -> Icons.Default.Face
+    Screen.Timeline -> Icons.Default.Timeline
+    Screen.Memory -> Icons.Default.PhotoLibrary
+    Screen.TeacherGate -> Icons.Default.Settings
+    else -> Icons.Default.Home
+}
+
+private val bottomItems: List<BottomNavItem> = profileBottomNavScreens.map { screen ->
+    BottomNavItem(screen.route, bottomNavLabel(screen), bottomNavIcon(screen))
+}
 
 @Composable
 fun ProfileBottomBar(navController: NavController) {

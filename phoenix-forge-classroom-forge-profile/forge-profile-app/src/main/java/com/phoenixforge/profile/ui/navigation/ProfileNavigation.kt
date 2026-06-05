@@ -23,6 +23,15 @@ sealed class Screen(val route: String) {
     object TeacherGate : Screen("teacher_gate")
 }
 
+/** Bottom-bar tabs; each route must have a matching [composable] in [ProfileNavHost]. */
+val profileBottomNavScreens: List<Screen> = listOf(
+    Screen.Dashboard,
+    Screen.Studio,
+    Screen.Timeline,
+    Screen.Memory,
+    Screen.TeacherGate
+)
+
 @Composable
 fun ProfileNavHost(navController: NavHostController, modifier: Modifier = Modifier) {
     NavHost(
