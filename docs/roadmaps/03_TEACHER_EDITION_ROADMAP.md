@@ -21,6 +21,7 @@
 | 2.04 | Compass signal stub |
 | 2.55 | Profile viewer complete |
 | 3.51–3.58 | 7-day, month, search, narrative, compass, curriculum tags |
+| 4.58 | Curriculum browser: 7 domains, Pack 01 lessons, weekly audit, tile import |
 | 4.05 | Chronicle approval UI |
 
 ---
@@ -35,6 +36,7 @@
 | 0.54 | `TileDetailScreen.kt` L3 fields |
 | 0.41, 2.55 | `ForgeProfileViewerScreen.kt` |
 | 0.79 | YAML loader (new) |
+| 4.58 | `ui/curriculum/*`, `domain/curriculum/*`, `CurriculumAuditStore.kt` |
 | 1.02 | handoff from `TileRepository` |
 
 ---

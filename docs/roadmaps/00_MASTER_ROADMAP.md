@@ -213,8 +213,9 @@ Current step: 0.13 — next: 0.14
 | 4.54 | Cross | Identity threads parent confirm | IFE | pending |
 | 4.55 | Cross | PCAS runtime DB eval (implement or defer doc) | PCAS SQL | pending |
 | 4.56 | Cross | Chronicle tier complete | Checklist | pending |
-| 4.57 | Cross | *(gap — insert new steps here)* | — | reserved |
-| 4.58 | Cross | *(gap)* | — | reserved |
+| 4.57 | Profile | Sign-in gate + empty dream board + Help me think | gradle | [VERIFIED] |
+| 4.58 | Teacher | Curriculum browser: 7 domains + Pack 01 + weekly audit | gradle | [VERIFIED] |
+| 4.59 | Cross | *(gap)* | — | reserved |
 | 4.91 | Cross | *(gap before finish)* | — | reserved |
 | 4.92 | Cross | *(gap before finish)* | — | reserved |
 | | | | | |

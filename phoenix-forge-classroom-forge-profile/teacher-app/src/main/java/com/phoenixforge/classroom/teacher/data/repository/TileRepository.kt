@@ -1,6 +1,9 @@
 package com.phoenixforge.classroom.teacher.data.repository
 
 import com.phoenixforge.classroom.teacher.data.local.IntentTileDao
+import com.phoenixforge.classroom.teacher.domain.curriculum.CurriculumDomainCatalog
+import com.phoenixforge.classroom.teacher.domain.curriculum.StarterLessonsPack01
+import com.phoenixforge.classroom.teacher.domain.curriculum.StarterLesson
 import com.phoenixforge.classroom.teacher.domain.model.ForgeDomain
 import com.phoenixforge.classroom.teacher.domain.model.IntentTile
 import com.phoenixforge.classroom.teacher.domain.model.TileStatus
@@ -40,6 +43,40 @@ class TileRepository @Inject constructor(
     }
 
     suspend fun delete(id: String) = dao.deleteById(id)
+
+    suspend fun createFromStarterLesson(lesson: StarterLesson): IntentTile {
+        val forgeDomain = CurriculumDomainCatalog.forgeDomainFor(lesson.domainId)
+        val tile = IntentTile(
+            title = lesson.title,
+            description = lesson.objective,
+            domain = forgeDomain.name,
+            curriculumDomainId = lesson.domainId.name,
+            starterLessonId = lesson.id,
+            studentMission = lesson.studentMission,
+            lessonPatternId = lesson.lessonPatternId,
+            materials = lesson.materials,
+            coachingCues = buildString {
+                append("Recovery: ${lesson.recovery}\n")
+                append("Make easier: ${lesson.makeEasier}\n")
+                append("Supports: ${lesson.supports}")
+            }
+        )
+        save(tile)
+        return tile
+    }
+
+    suspend fun importPack01IfEmpty(): Int {
+        val existing = dao.observeAll().first()
+        val alreadyImported = existing.any { it.starterLessonId?.startsWith("pack01_") == true }
+        if (alreadyImported) return 0
+        StarterLessonsPack01.lessons.forEach { lesson ->
+            createFromStarterLesson(lesson)
+        }
+        return StarterLessonsPack01.lessons.size
+    }
+
+    suspend fun hasPack01Tiles(): Boolean =
+        dao.observeAll().first().any { it.starterLessonId?.startsWith("pack01_") == true }
 
     suspend fun ensureSeedData() {
         if (dao.observeAll().first().isNotEmpty()) return

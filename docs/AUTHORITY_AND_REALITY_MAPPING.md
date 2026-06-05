@@ -17,7 +17,7 @@ Maps each major subsystem to **authority** (where the design lives), **implement
 
 | Stage | Authority Source | Implementation Source | Integrated? | State | Verification Method |
 |-------|------------------|----------------------|-------------|-------|---------------------|
-| Curriculum Of Life | `phoenix-forge-classroom-teacher-edition/docs/curriculum-of-life.md` | Same (human markdown) | N/A (canonical prose) | DOCUMENTED | File read |
+| Curriculum Of Life | `phoenix-forge-classroom-teacher-edition/docs/curriculum-of-life.md` | `teacher-app` `domain/curriculum/*`, `ui/curriculum/*` | PARTIAL | 7 domains + Pack 01 + weekly audit in app; human docs remain canonical |
 | Curriculum OS | `docs/contracts/CURRICULUM_OS_SCHEMA.md`, `CURRICULUM_RUNTIME_FLOW.md` | Contract docs + `reference-tiles/secret-label-decoder.yaml` | No Kotlin module; not loaded by any app | PARTIAL | Repo census; no `curriculum-core` code |
 | Compass | `phoenix-forge-classroom-teacher-edition/docs/CHILDHOOD_COMPASS_ENGINE.md`, `docs/CHILDHOOD_COMPASS.md` | Not found in Kotlin | No | DOCUMENTED | No CompassSnapshot runtime |
 | Intent Tiles | `docs/contracts/INTENT_TILE_CONTRACT.md` | `teacher-app/.../IntentTile.kt`, Room DAO; reference YAML | teacher-app local tiles only | PARTIAL | App persists tiles; YAML loader absent |
@@ -39,7 +39,7 @@ Maps each major subsystem to **authority** (where the design lives), **implement
 | Artifact Registry | `MEMORY_ENGINE_ARCHITECTURE.md` | Not in forge-profile-core | DOCUMENTED | Grep — no registry impl |
 | ContentProvider read | Profile contract | `ProfileContentProvider.kt`, `ProfileContract.kt` | IMPLEMENTED | Source + manifest |
 | Import / export | Provider + export DTOs | `ProfileExportReader.kt`, `ProfileExportDto.kt` | PARTIAL | Export path exists; PFC bundle TBD |
-| Forge Profile App UI | `forge-profile-app` | Compose screens, `DashboardViewModel` | IMPLEMENTED | Module builds |
+| Forge Profile App UI | `forge-profile-app` | Compose screens, sign-in gate, `DreamBoardViewModel` | PARTIAL | Sign-in + empty dream board; avatar/identity depth pending |
 
 ---
 
@@ -71,16 +71,17 @@ Maps each major subsystem to **authority** (where the design lives), **implement
 | Expedition Board | `docs/EXPEDITION_BOARD_UX.md` | `ExpeditionBoardScreen.kt`, `TileRepository` | PARTIAL | P1a–P1b done; P1c drag pending |
 | Intent tiles (local) | `INTENT_TILE_CONTRACT.md` | `IntentTile.kt`, `IntentTileDao.kt`, seed data | PARTIAL | Slim model; no YAML loader |
 | Tile field guide | `EXPEDITION_BOARD_UX.md` | `TileDetailScreen.kt`, `TileDetailViewModel.kt` | IMPLEMENTED | Save + mark complete persist |
-| Curriculum (human) | `docs/curriculum-of-life.md` | Markdown only | DOCUMENTED | File read |
+| Curriculum Of Life | `phoenix-forge-classroom-teacher-edition/docs/curriculum-of-life.md` | `teacher-app` `domain/curriculum/*`, `ui/curriculum/*` | PARTIAL | 7 domains + Pack 01 + weekly audit in app; human docs remain canonical |
+| Curriculum (human) | `docs/curriculum-of-life.md` | Bundled in Teacher app catalog | PARTIAL | App mirrors prose; markdown stays source of truth |
 | Curriculum taxonomy | `docs/curriculum-taxonomy.md` | Markdown only | DOCUMENTED | File read |
 | Atomization guide | `docs/CURRICULUM_ATOMIZATION_GUIDE.md` | Markdown only | DOCUMENTED | File read |
-| Starter lessons | `docs/starter-lessons-pack-01.md` | Markdown only | DOCUMENTED | File read |
+| Starter lessons Pack 01 | `docs/starter-lessons-pack-01.md` | `StarterLessonsPack01.kt` | IMPLEMENTED | 7 lessons + expedition import |
 | Compass engine | `docs/CHILDHOOD_COMPASS_ENGINE.md` | No Kotlin aggregates | DOCUMENTED | Grep |
 | Plan generation rules | `docs/PLAN_GENERATION_RULES.md` | No generator code | DOCUMENTED | Grep |
 | Reference tile YAML | `reference-tiles/secret-label-decoder.yaml` | Not loaded by app | PARTIAL | Contract review |
 | Forge Profile viewer | `teacher-edition-product-spec.md` | `ForgeProfileViewerScreen.kt` (stub) | PARTIAL | UI exists; full provider read TBD |
 | Send to Student | `04_CROSS_APP_INTEGRATION_ROADMAP.md` | Not implemented | DOCUMENTED | No handoff code |
-| Weekly audit | `curriculum-of-life.md` § Weekly Teacher Audit | Prose only | DOCUMENTED | File read |
+| Weekly audit | `curriculum-of-life.md` § Weekly Teacher Audit | `WeeklyAuditScreen.kt` + prefs | IMPLEMENTED | Draft save on device |
 
 **Note:** `phoenix-forge-classroom-teacher-edition/android/` is empty. Runnable code is `:teacher-app` in the forge-profile monorepo.
 

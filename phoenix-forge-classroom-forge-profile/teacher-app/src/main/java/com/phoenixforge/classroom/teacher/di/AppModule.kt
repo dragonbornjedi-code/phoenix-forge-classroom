@@ -2,6 +2,7 @@ package com.phoenixforge.classroom.teacher.di
 
 import android.content.Context
 import androidx.room.Room
+import com.phoenixforge.classroom.teacher.data.local.CurriculumAuditStore
 import com.phoenixforge.classroom.teacher.data.local.IntentTileDao
 import com.phoenixforge.classroom.teacher.data.local.TeacherDatabase
 import dagger.Module
@@ -24,4 +25,13 @@ object AppModule {
 
     @Provides
     fun provideIntentTileDao(db: TeacherDatabase): IntentTileDao = db.intentTileDao()
+
+    @Provides
+    @Singleton
+    fun provideCurriculumAuditStore(@ApplicationContext ctx: Context): CurriculumAuditStore {
+        val prefs = ctx.getSharedPreferences(PREFS_CURRICULUM_AUDIT, Context.MODE_PRIVATE)
+        return CurriculumAuditStore(prefs)
+    }
+
+    private const val PREFS_CURRICULUM_AUDIT = "curriculum_weekly_audit"
 }

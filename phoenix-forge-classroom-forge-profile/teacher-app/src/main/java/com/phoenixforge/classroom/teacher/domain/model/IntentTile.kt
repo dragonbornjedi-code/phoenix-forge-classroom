@@ -18,7 +18,11 @@ data class IntentTile(
     val evidenceNotes: String = "",
     val sentToStudentAt: Long? = null,
     val coachingCues: String = "",
-    val materials: String = ""
+    val materials: String = "",
+    val curriculumDomainId: String? = null,
+    val starterLessonId: String? = null,
+    val studentMission: String = "",
+    val lessonPatternId: String = ""
 )
 
 enum class ForgeDomain(val emoji: String, val displayName: String) {

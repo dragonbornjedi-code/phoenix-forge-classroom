@@ -24,6 +24,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.phoenixforge.classroom.teacher.domain.curriculum.CurriculumDomainId
 import com.phoenixforge.classroom.teacher.domain.model.ForgeDomain
 import com.phoenixforge.classroom.teacher.domain.model.TileStatus
 
@@ -68,6 +69,20 @@ fun TileDetailScreen(
             Text(status.displayName, style = MaterialTheme.typography.titleMedium)
             if (tile.description.isNotBlank()) {
                 Text(tile.description, style = MaterialTheme.typography.bodyLarge)
+            }
+
+            CurriculumDomainId.fromId(tile.curriculumDomainId)?.let { curriculum ->
+                Text(
+                    "${curriculum.emoji} ${curriculum.displayName}",
+                    style = MaterialTheme.typography.labelMedium
+                )
+            }
+            if (tile.studentMission.isNotBlank()) {
+                Text("Student mission", style = MaterialTheme.typography.titleSmall)
+                Text(tile.studentMission, style = MaterialTheme.typography.bodyMedium)
+            }
+            if (tile.lessonPatternId.isNotBlank()) {
+                Text("Lesson pattern: ${tile.lessonPatternId}", style = MaterialTheme.typography.bodySmall)
             }
 
             Text("Field guide", style = MaterialTheme.typography.titleSmall)
