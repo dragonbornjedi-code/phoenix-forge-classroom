@@ -4,7 +4,9 @@ All autonomous coding agents must use the same rules.
 
 ## Canonical source
 
-**[docs/AI_AGENT_UNIVERSAL_RULES.md](docs/AI_AGENT_UNIVERSAL_RULES.md)**
+**[docs/AI_AGENT_UNIVERSAL_RULES.md](docs/AI_AGENT_UNIVERSAL_RULES.md)** — short rules for tool entry points.
+
+**New session:** paste **[docs/UNIVERSAL_AI_INSTRUCTIONS.md](docs/UNIVERSAL_AI_INSTRUCTIONS.md)** at the top of the chat (cascade matrix, session bridge, forbidden actions).
 
 ## Tool-specific entry points
 

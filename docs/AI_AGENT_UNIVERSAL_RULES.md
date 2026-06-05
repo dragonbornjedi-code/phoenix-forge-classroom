@@ -2,6 +2,8 @@
 
 **Every coding agent** (Cursor, Windsurf, Gemini, Copilot, Cline, Codex, etc.) must follow this file plus the linked Tier 0 and Cline Essence sources.
 
+**Session paste (full discipline):** [UNIVERSAL_AI_INSTRUCTIONS.md](UNIVERSAL_AI_INSTRUCTIONS.md) — paste at the start of each new chat; includes documentation cascade matrix (§5), session bridge (§12), and quick state (§13). Vault mirror: `/mnt/digital-home/vault/PHOENIX_FORGE_UNIVERSAL_AI_INSTRUCTIONS.md`.
+
 ---
 
 ## Tier 0 (wins all conflicts)
