@@ -13,6 +13,7 @@ import com.phoenixforge.classroom.teacher.ui.curriculum.WeeklyAuditScreen
 import com.phoenixforge.classroom.teacher.ui.expedition.ExpeditionBoardScreen
 import com.phoenixforge.classroom.teacher.ui.profile.ForgeProfileViewerScreen
 import com.phoenixforge.classroom.teacher.ui.tile.TileDetailScreen
+import com.phoenixforge.classroom.teacher.ui.students.StudentSnapshotScreen
 
 private object Routes {
     const val BOARD = "expedition_board"
@@ -22,6 +23,7 @@ private object Routes {
     const val STARTER_LESSON = "starter_lesson/{lessonId}"
     const val WEEKLY_AUDIT = "weekly_audit"
     const val TILE = "tile_detail/{tileId}"
+    const val STUDENT_SNAPSHOT = "student_snapshot"
 
     fun curriculumDomain(domainId: String) = "curriculum_domain/$domainId"
     fun starterLesson(lessonId: String) = "starter_lesson/$lessonId"
@@ -36,12 +38,16 @@ fun TeacherNavGraph() {
         composable(Routes.BOARD) {
             ExpeditionBoardScreen(
                 onViewProfile = { nav.navigate(Routes.PROFILE) },
+                onViewStudentSnapshot = { nav.navigate(Routes.STUDENT_SNAPSHOT) },
                 onOpenCurriculum = { nav.navigate(Routes.CURRICULUM) },
                 onTileClick = { id -> nav.navigate(Routes.tile(id)) }
             )
         }
         composable(Routes.PROFILE) {
             ForgeProfileViewerScreen(onBack = { nav.popBackStack() })
+        }
+        composable(Routes.STUDENT_SNAPSHOT) {
+            StudentSnapshotScreen(onBack = { nav.popBackStack() })
         }
         composable(Routes.CURRICULUM) {
             CurriculumHomeScreen(

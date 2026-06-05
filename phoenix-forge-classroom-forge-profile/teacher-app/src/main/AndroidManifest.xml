@@ -2,9 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="com.phoenixforge.profile.READ" />
+    <uses-permission android:name="com.phoenixforge.student.sync.READ" />
 
     <queries>
         <provider android:authorities="com.phoenixforge.profile.provider" />
+        <provider android:authorities="com.phoenixforge.student.sync.provider" />
     </queries>
 
     <application

@@ -80,6 +80,7 @@ Maps each major subsystem to **authority** (where the design lives), **implement
 | Plan generation rules | `docs/PLAN_GENERATION_RULES.md` | No generator code | DOCUMENTED | Grep |
 | Reference tile YAML | `reference-tiles/secret-label-decoder.yaml` | Not loaded by app | PARTIAL | Contract review |
 | Forge Profile viewer | `teacher-edition-product-spec.md` | `ForgeProfileViewerScreen.kt` (stub) | PARTIAL | UI exists; full provider read TBD |
+| Student Snapshot viewer (read-only) | `docs/STUDENT_TEACHER_BOUNDARY.md`, `shared/sync-contract.md` | `StudentSyncContentProvider` + `StudentSnapshotScreen` | PARTIAL | ContentProvider read + UI render |
 | Send to Student | `04_CROSS_APP_INTEGRATION_ROADMAP.md` | Not implemented | DOCUMENTED | No handoff code |
 | Weekly audit | `curriculum-of-life.md` § Weekly Teacher Audit | `WeeklyAuditScreen.kt` + prefs | IMPLEMENTED | Draft save on device |
 
@@ -92,7 +93,7 @@ Maps each major subsystem to **authority** (where the design lives), **implement
 | Subsystem | Authority Source | Implementation Source | State | Verification Method |
 |-----------|------------------|----------------------|-------|---------------------|
 | PCAS DB schema | `docs/PCAS_ARCHITECTURE.md` | `shared/schemas/PCAS_DB_SCHEMA.sql` | PARTIAL | SQL only, no runtime DB |
-| Sync contract | `shared/sync-contract.md` | Markdown | DOCUMENTED | No sync impl in apps |
+| Sync contract | `shared/sync-contract.md` | Markdown | PARTIAL | StudentSyncContentProvider read + Teacher Student Snapshot UI |
 | Identity Formation Engine | `docs/IDENTITY_FORMATION_ENGINE.md` | Not wired to student-app threads | DOCUMENTED | Vision doc |
 | Narrative Wrapper | `docs/QUEST_ENGINE_DESIGN.md` | Not implemented (Teacher accept flow absent) | DOCUMENTED | No engine code |
 | TILE → MemoryEvent map | `docs/contracts/TILE_EVENT_MAPPING.md` | Spec only | DOCUMENTED | No emission code |

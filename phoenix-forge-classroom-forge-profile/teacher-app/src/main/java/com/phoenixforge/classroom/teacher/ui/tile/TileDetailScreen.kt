@@ -103,7 +103,7 @@ fun TileDetailScreen(
             OutlinedTextField(
                 value = state.evidenceNotes,
                 onValueChange = viewModel::updateEvidence,
-                label = { Text("Evidence / steward note") },
+                label = { Text("Evidence / mentorship note") },
                 modifier = Modifier.fillMaxWidth(),
                 minLines = 3
             )

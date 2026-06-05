@@ -78,7 +78,7 @@ fun ForgeProfileViewerScreen(
                     }
                 }
                 Text(
-                    "Teacher Edition reads your identity from Forge Profile on this device. Steward student links live in Forge Profile → Students.",
+                    "Teacher Edition reads your identity from Forge Profile on this device. Student Snapshot data is provided by Student Edition in a read-only view.",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

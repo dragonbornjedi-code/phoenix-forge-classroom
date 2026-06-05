@@ -23,6 +23,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.automirrored.outlined.MenuBook
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.AlertDialog
@@ -62,6 +63,7 @@ import com.phoenixforge.classroom.teacher.domain.model.TileStatus
 @Composable
 fun ExpeditionBoardScreen(
     onViewProfile: () -> Unit,
+    onViewStudentSnapshot: () -> Unit,
     onOpenCurriculum: () -> Unit = {},
     onTileClick: (String) -> Unit,
     viewModel: ExpeditionBoardViewModel = hiltViewModel()
@@ -88,6 +90,9 @@ fun ExpeditionBoardScreen(
                     }
                     IconButton(onClick = onViewProfile) {
                         Icon(Icons.Outlined.Person, contentDescription = "Forge Profile")
+                    }
+                    IconButton(onClick = onViewStudentSnapshot) {
+                        Icon(Icons.Default.Star, contentDescription = "Student Snapshot")
                     }
                 }
             )

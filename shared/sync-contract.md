@@ -4,6 +4,9 @@
 
 Teacher Edition and Student Edition are separate APKs with controlled local sync.
 
+## Current implementation note (read-only snapshot)
+In this repo, Teacher Edition currently reads a read-only snapshot from Student Edition (progress, behavior signals, and recent story fragments) via Student Edition's ContentProvider endpoints. Teacher Edition does not yet write back to Student Edition data, and the full link-model + bidirectional exchange is still planned.
+
 ## Direction Names
 
 Use these names in the app:
