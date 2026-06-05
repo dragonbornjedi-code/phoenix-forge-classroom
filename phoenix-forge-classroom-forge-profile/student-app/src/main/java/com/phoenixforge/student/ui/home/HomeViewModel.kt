@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.phoenixforge.student.domain.engine.NPCEngine
 import com.phoenixforge.student.domain.engine.QuestEngine
-import com.phoenixforge.student.domain.house.DigitalHouse
-import com.phoenixforge.student.domain.model.DigitalHouseState
+import com.phoenixforge.student.domain.house.StudentHouse
+import com.phoenixforge.student.domain.model.HouseState
 import com.phoenixforge.student.domain.model.StudentProgress
 import com.phoenixforge.student.domain.model.StudentWorldState
 import com.phoenixforge.student.domain.model.WorldState
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    digitalHouse: DigitalHouse,
+    studentHouse: StudentHouse,
     questEngine: QuestEngine,
     npcEngine: NPCEngine,
     repository: StudentRepository
@@ -27,7 +27,7 @@ class HomeViewModel @Inject constructor(
 
     val worldState: StateFlow<StudentWorldState> = combine(
         combine(
-            digitalHouse.observeHouse(),
+            studentHouse.observeHouse(),
             repository.observeProgress(),
             repository.observeLatestStory()
         ) { house, progress, story -> Triple(house, progress, story) },
@@ -65,7 +65,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope,
         SharingStarted.WhileSubscribed(5_000),
         StudentWorldState(
-            house = DigitalHouseState(emptyList(), emptySet(), emptyList()),
+            house = HouseState(emptyList(), emptySet(), emptyList()),
             progress = StudentProgress(0, 1, 0, 0, emptySet(), emptySet()),
             world = WorldState(1, 0, 0, emptyList(), emptyList(), null, false),
             activeCompanion = null,

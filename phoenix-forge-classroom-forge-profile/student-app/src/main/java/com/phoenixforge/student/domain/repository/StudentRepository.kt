@@ -1,6 +1,6 @@
 package com.phoenixforge.student.domain.repository
 
-import com.phoenixforge.student.domain.model.DigitalHouseState
+import com.phoenixforge.student.domain.model.HouseState
 import com.phoenixforge.student.domain.model.ImportedProfileSnapshot
 import com.phoenixforge.student.domain.model.LifeEvent
 import com.phoenixforge.student.domain.model.MemoryArtifact
@@ -16,8 +16,8 @@ interface StudentRepository {
     fun observeProgress(): Flow<StudentProgress>
     suspend fun saveProgress(progress: StudentProgress)
 
-    fun observeHouse(): Flow<DigitalHouseState>
-    suspend fun saveHouse(state: DigitalHouseState)
+    fun observeHouse(): Flow<HouseState>
+    suspend fun saveHouse(state: HouseState)
 
     fun observeMemories(): Flow<List<MemoryArtifact>>
     fun observeRecentMemories(limit: Int): Flow<List<MemoryArtifact>>

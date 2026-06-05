@@ -134,7 +134,7 @@
 | `forge-profile-app` (Kotlin) | Steward UI | — | 50 | **PARTIAL** | Navigation fixed 06-04 | Profile P0 | Artifact capture |
 | `ProfileContentProvider` | Cross-app read API | — | 70 | **IMPLEMENTED** | Student importer | Cross-app P0 | Write paths |
 
-**Internal code note:** `DigitalHouse` / `DigitalHouseState` in Student Edition are **legacy internal class names** (house simulation state), not the product name. User-facing label is Phoenix Forge Classroom Student Edition.
+**Product name:** User-facing label is **Phoenix Forge Classroom Student Edition** (step 0.13–0.14). Internal house simulation types: `StudentHouse`, `HouseState`.
 
 ---
 

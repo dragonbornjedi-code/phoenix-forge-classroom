@@ -12,7 +12,7 @@ import com.phoenixforge.student.data.local.entity.StoryFragmentEntity
 import com.phoenixforge.student.data.local.entity.StudentProgressEntity
 import com.phoenixforge.student.data.local.entity.WorldStateMetaEntity
 import com.phoenixforge.student.data.serialization.StudentJson
-import com.phoenixforge.student.domain.model.DigitalHouseState
+import com.phoenixforge.student.domain.model.HouseState
 import com.phoenixforge.student.domain.model.HouseRoomType
 import com.phoenixforge.student.domain.model.ImportedProfileSnapshot
 import com.phoenixforge.student.domain.model.LifeChapter
@@ -50,10 +50,10 @@ class StudentRepositoryImpl @Inject constructor(
         dao.upsertProgress(progress.toEntity(studentJson))
     }
 
-    override fun observeHouse(): Flow<DigitalHouseState> =
+    override fun observeHouse(): Flow<HouseState> =
         dao.observeHouseState().map { it?.toDomain(studentJson) ?: defaultHouse() }
 
-    override suspend fun saveHouse(state: DigitalHouseState) {
+    override suspend fun saveHouse(state: HouseState) {
         dao.upsertHouseState(state.toEntity(studentJson))
     }
 
@@ -159,9 +159,9 @@ class StudentRepositoryImpl @Inject constructor(
         achievementIds = emptySet()
     )
 
-    private fun defaultHouse(): DigitalHouseState {
+    private fun defaultHouse(): HouseState {
         val unlocked = setOf(HouseRoomType.BEDROOM, HouseRoomType.QUEST_BOARD)
-        return DigitalHouseState(
+        return HouseState(
             rooms = HouseRoomType.entries.map { type ->
                 RoomNode(type = type, isUnlocked = type in unlocked)
             },
@@ -188,11 +188,11 @@ class StudentRepositoryImpl @Inject constructor(
         achievementIdsJson = json.encodeStringSet(achievementIds)
     )
 
-    private fun HouseStateEntity.toDomain(json: StudentJson): DigitalHouseState {
+    private fun HouseStateEntity.toDomain(json: StudentJson): HouseState {
         val unlockedNames = json.decodeStringList(unlockedRoomsJson).toSet()
         val unlocked = unlockedNames.mapNotNull { runCatching { HouseRoomType.valueOf(it) }.getOrNull() }.toSet()
         val decorations = json.decodeStringList(decorationsJson)
-        return DigitalHouseState(
+        return HouseState(
             rooms = HouseRoomType.entries.map { type ->
                 RoomNode(type = type, isUnlocked = type in unlocked, decorationIds = decorations.filter { it.startsWith(type.name) })
             },
@@ -201,7 +201,7 @@ class StudentRepositoryImpl @Inject constructor(
         )
     }
 
-    private fun DigitalHouseState.toEntity(json: StudentJson) = HouseStateEntity(
+    private fun HouseState.toEntity(json: StudentJson) = HouseStateEntity(
         unlockedRoomsJson = json.encodeStringList(unlockedRoomTypes.map { it.name }),
         decorationsJson = json.encodeStringList(decorations)
     )

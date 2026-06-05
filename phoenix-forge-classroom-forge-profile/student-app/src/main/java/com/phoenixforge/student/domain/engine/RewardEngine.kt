@@ -1,6 +1,6 @@
 package com.phoenixforge.student.domain.engine
 
-import com.phoenixforge.student.domain.house.DigitalHouse
+import com.phoenixforge.student.domain.house.StudentHouse
 import com.phoenixforge.student.domain.model.HouseRoomType
 import com.phoenixforge.student.domain.model.StudentProgress
 import javax.inject.Inject
@@ -9,7 +9,7 @@ import javax.inject.Singleton
 @Singleton
 class RewardEngine @Inject constructor(
     private val progressionEngine: ProgressionEngine,
-    private val digitalHouse: DigitalHouse,
+    private val studentHouse: StudentHouse,
     private val npcEngine: NPCEngine
 ) {
     suspend fun grantUnlock(unlockId: String, reason: String) {
@@ -17,7 +17,7 @@ class RewardEngine @Inject constructor(
         progressionEngine.addUnlockFlag(unlockId)
         when {
             unlockId.startsWith("decoration:") ->
-                digitalHouse.addDecoration(unlockId.removePrefix("decoration:"))
+                studentHouse.addDecoration(unlockId.removePrefix("decoration:"))
             unlockId.startsWith("pet:") ->
                 npcEngine.unlockPet(unlockId.removePrefix("pet:"))
             unlockId.startsWith("theme:") ->

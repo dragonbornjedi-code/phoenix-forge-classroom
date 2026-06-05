@@ -1,7 +1,7 @@
 package com.phoenixforge.student.domain.bootstrap
 
 import com.phoenixforge.student.domain.engine.QuestEngine
-import com.phoenixforge.student.domain.house.DigitalHouse
+import com.phoenixforge.student.domain.house.StudentHouse
 import com.phoenixforge.student.domain.model.NpcState
 import com.phoenixforge.student.domain.model.NpcType
 import com.phoenixforge.student.domain.model.StudentProgress
@@ -13,7 +13,7 @@ import javax.inject.Singleton
 @Singleton
 class StudentWorldBootstrap @Inject constructor(
     private val repository: StudentRepository,
-    private val digitalHouse: DigitalHouse,
+    private val studentHouse: StudentHouse,
     private val questEngine: QuestEngine
 ) {
     suspend fun ensureWorldInitialized() {
@@ -29,7 +29,7 @@ class StudentWorldBootstrap @Inject constructor(
                     achievementIds = emptySet()
                 )
             )
-            digitalHouse.initializeDefaultHouse()
+            studentHouse.initializeDefaultHouse()
             repository.saveNpc(
                 NpcState(
                     id = "companion_spark",

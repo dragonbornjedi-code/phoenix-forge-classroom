@@ -71,7 +71,7 @@ Current step: 4.59 — next: 4.60
 | 0.11 | Profile | Bootstrap profile for Ezra on first launch | ProfileBootstrap | [VERIFIED] |
 | 0.12 | Profile | Dashboard + all bottom-nav tabs navigate | Phone | [VERIFIED] |
 | 0.13 | Student | Launcher label final | strings.xml | [VERIFIED] |
-| 0.14 | Student | Remove “Digital House” from user-facing strings | grep UI | pending |
+| 0.14 | Student | Remove “Digital House” from user-facing strings | grep UI | [VERIFIED] |
 | 0.15 | Teacher | Launcher label final | strings.xml | pending |
 | 0.16 | Cross | `install-phone-apks.sh` executable | chmod + run | pending |
 | 0.17 | Cross | reference-tile YAML on disk | secret-label-decoder.yaml | pending |

@@ -1,6 +1,6 @@
 package com.phoenixforge.student.domain.world
 
-import com.phoenixforge.student.domain.model.DigitalHouseState
+import com.phoenixforge.student.domain.model.HouseState
 import com.phoenixforge.student.domain.model.HouseRoomType
 import com.phoenixforge.student.domain.model.QuestStatus
 import com.phoenixforge.student.domain.model.RoomNode
@@ -95,7 +95,7 @@ class WorldEngine @Inject constructor(
             HouseRoomType.entries.filter { world.level >= it.unlockLevel }
 
         repository.saveHouse(
-            DigitalHouseState(
+            HouseState(
                 rooms = HouseRoomType.entries.map { type ->
                     RoomNode(type = type, isUnlocked = type in mergedUnlocked)
                 },

@@ -1,7 +1,7 @@
 package com.phoenixforge.student.domain.house
 
-import com.phoenixforge.student.domain.model.DigitalHouseState
 import com.phoenixforge.student.domain.model.HouseRoomType
+import com.phoenixforge.student.domain.model.HouseState
 import com.phoenixforge.student.domain.model.RoomNode
 import com.phoenixforge.student.domain.model.StudentProgress
 import com.phoenixforge.student.domain.repository.StudentRepository
@@ -12,15 +12,15 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DigitalHouse @Inject constructor(
+class StudentHouse @Inject constructor(
     private val repository: StudentRepository
 ) {
-    fun observeHouse(): Flow<DigitalHouseState> = repository.observeHouse()
+    fun observeHouse(): Flow<HouseState> = repository.observeHouse()
 
     suspend fun initializeDefaultHouse() {
         val unlocked = setOf(HouseRoomType.BEDROOM, HouseRoomType.QUEST_BOARD)
         repository.saveHouse(
-            DigitalHouseState(
+            HouseState(
                 rooms = HouseRoomType.entries.map { RoomNode(it, it in unlocked) },
                 unlockedRoomTypes = unlocked,
                 decorations = emptyList()

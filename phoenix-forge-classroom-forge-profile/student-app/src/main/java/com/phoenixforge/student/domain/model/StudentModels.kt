@@ -16,7 +16,7 @@ data class RoomNode(
     val decorationIds: List<String> = emptyList()
 )
 
-data class DigitalHouseState(
+data class HouseState(
     val rooms: List<RoomNode>,
     val unlockedRoomTypes: Set<HouseRoomType>,
     val decorations: List<String>
@@ -130,7 +130,7 @@ data class RewardGrant(
 )
 
 data class StudentWorldState(
-    val house: DigitalHouseState,
+    val house: HouseState,
     val progress: StudentProgress,
     val world: WorldState,
     val activeCompanion: NpcState?,
