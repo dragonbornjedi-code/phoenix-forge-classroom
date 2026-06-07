@@ -22,7 +22,13 @@ data class IntentTile(
     val curriculumDomainId: String? = null,
     val starterLessonId: String? = null,
     val studentMission: String = "",
-    val lessonPatternId: String = ""
+    val lessonPatternId: String = "",
+    val reflectionMental: Int? = null,
+    val reflectionEmotional: Int? = null,
+    val reflectionPhysical: Int? = null,
+    val reflectionEducational: Int? = null,
+    val reflectionBehavioral: Int? = null,
+    val carFriendly: Boolean = false,
 )
 
 enum class ForgeDomain(val emoji: String, val displayName: String) {

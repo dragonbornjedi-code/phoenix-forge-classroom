@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phoenixforge.local/schemas/forge_profile_push.schema.json",
+  "title": "ForgeProfilePushBundle",
+  "description": "Manual steward push from Forge Profile. No auto-sync.",
+  "type": "object",
+  "required": ["pushedAtEpochMillis", "pushKind", "profile"],
+  "properties": {
+    "pushedAtEpochMillis": { "type": "integer" },
+    "pushKind": { "type": "string", "const": "manual_steward_push" },
+    "profile": {
+      "type": "object",
+      "required": ["uid", "forgeName", "currentStage"],
+      "properties": {
+        "uid": { "type": "string" },
+        "forgeName": { "type": "string" },
+        "currentStage": { "type": "string" },
+        "currentTitle": { "type": ["string", "null"] },
+        "ageYears": { "type": ["integer", "null"] },
+        "profileRole": { "type": ["string", "null"] }
+      }
+    },
+    "avatar": { "$ref": "#/$defs/AvatarConfigV2" }
+  },
+  "$defs": {
+    "AvatarConfigV2": {
+      "type": "object",
+      "required": [
+        "childId",
+        "forgeName",
+        "schemaVersion",
+        "heroStyle",
+        "heroColor",
+        "skinTone",
+        "clothingId",
+        "avatarVersion",
+        "godotMeshHints"
+      ],
+      "properties": {
+        "childId": { "type": "string" },
+        "forgeName": { "type": "string" },
+        "schemaVersion": { "type": "integer", "const": 2 },
+        "heroStyle": {
+          "type": "string",
+          "enum": ["explorer", "builder", "artist", "guardian", "scout"]
+        },
+        "heroColor": {
+          "type": "string",
+          "enum": ["blue", "green", "gold", "pink", "purple"]
+        },
+        "skinTone": { "type": "string" },
+        "clothingId": { "type": "string" },
+        "avatarVersion": { "type": "integer" },
+        "godotMeshHints": {
+          "type": "object",
+          "required": ["modelPath", "attachmentSlots"],
+          "properties": {
+            "modelPath": { "type": "string" },
+            "attachmentSlots": {
+              "type": "object",
+              "additionalProperties": { "type": ["string", "null"] }
+            }
+          }
+        }
+      }
+    }
+  }
+}

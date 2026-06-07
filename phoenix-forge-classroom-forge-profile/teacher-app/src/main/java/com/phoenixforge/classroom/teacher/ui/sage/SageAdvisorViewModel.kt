@@ -52,7 +52,8 @@ class SageAdvisorViewModel @Inject constructor(
                     SageUiMessage(
                         "assistant",
                         "I'm ${SagePersona.DISPLAY_NAME}. When you're online with an API key configured, " +
-                            "I can help with monthly eval and lesson planning using your full Curriculum Of Life catalog."
+                            "I help with monthly eval and quest drafting using the full Curriculum Of Life — " +
+                            "SAGE quest format, Pack 01 quality, and your expedition tiles."
                     )
                 )
             )

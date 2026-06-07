@@ -7,6 +7,7 @@ import com.phoenixforge.classroom.teacher.domain.curriculum.StarterLesson
 import com.phoenixforge.classroom.teacher.domain.lesson.LessonPlanDraft
 import com.phoenixforge.classroom.teacher.domain.model.ForgeDomain
 import com.phoenixforge.classroom.teacher.domain.model.IntentTile
+import com.phoenixforge.classroom.teacher.domain.model.StewardReflection
 import com.phoenixforge.classroom.teacher.domain.model.TileStatus
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -32,18 +33,29 @@ class TileRepository @Inject constructor(
 
     suspend fun update(tile: IntentTile) = dao.update(tile)
 
-    suspend fun markComplete(id: String, notes: String) {
+    suspend fun markComplete(id: String, notes: String, reflection: StewardReflection = StewardReflection()) {
         val tile = dao.findById(id) ?: return
+        val fields = reflection.toTileFields()
         dao.update(
             tile.copy(
                 status = TileStatus.COMPLETED.name,
                 completedAt = System.currentTimeMillis(),
-                evidenceNotes = notes.trim()
+                evidenceNotes = notes.trim(),
+                reflectionMental = fields.reflectionMental,
+                reflectionEmotional = fields.reflectionEmotional,
+                reflectionPhysical = fields.reflectionPhysical,
+                reflectionEducational = fields.reflectionEducational,
+                reflectionBehavioral = fields.reflectionBehavioral,
             )
         )
     }
 
     suspend fun delete(id: String) = dao.deleteById(id)
+
+    suspend fun persistSortOrder(tiles: List<IntentTile>) {
+        val normalized = tiles.mapIndexed { index, tile -> tile.copy(sortOrder = index) }
+        dao.updateAll(normalized)
+    }
 
     suspend fun createFromLessonPlan(plan: LessonPlanDraft): IntentTile {
         val forgeDomain = CurriculumDomainCatalog.forgeDomainFor(plan.domainId)

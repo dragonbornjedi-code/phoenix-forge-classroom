@@ -18,6 +18,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.phoenixforge.student.domain.avatar.ImportedHeroLookParser
+import com.phoenixforge.student.ui.avatar.HearthWelcomeCard
 
 @Composable
 fun ImportForgeProfileScreen(viewModel: ImportForgeProfileViewModel = hiltViewModel()) {
@@ -33,7 +35,7 @@ fun ImportForgeProfileScreen(viewModel: ImportForgeProfileViewModel = hiltViewMo
         item {
             Text("Import Forge Profile", style = MaterialTheme.typography.headlineLarge)
             Text(
-                "Optional one-time copy. Student Edition works without Forge Profile.",
+                "Manual pull only — your steward pushes from Forge Profile when you're ready.",
                 style = MaterialTheme.typography.bodyMedium
             )
         }
@@ -50,12 +52,19 @@ fun ImportForgeProfileScreen(viewModel: ImportForgeProfileViewModel = hiltViewMo
                         Text("Stage: ${preview.currentStage ?: "—"}", style = MaterialTheme.typography.bodySmall)
                         Text("Timeline events: ${preview.timelineEventCount}", style = MaterialTheme.typography.bodySmall)
                         Text("Avatar: ${preview.avatarSummary ?: "—"}", style = MaterialTheme.typography.bodySmall)
+                        ImportedHeroLookParser.parse(preview.avatarSummary)?.let { look ->
+                            HearthWelcomeCard(
+                                forgeName = preview.forgeName,
+                                heroLook = look,
+                                modifier = Modifier.padding(top = 12.dp),
+                            )
+                        }
                         Button(
                             onClick = { viewModel.importSelectedProfile() },
                             enabled = !state.isImporting,
                             modifier = Modifier.padding(top = 8.dp)
                         ) {
-                            Text(if (state.isImporting) "Importing…" else "Import Snapshot")
+                            Text(if (state.isImporting) "Pulling…" else "Pull snapshot from Forge Profile")
                         }
                     }
                     Button(onClick = { viewModel.refreshPreview() }, modifier = Modifier.padding(top = 8.dp)) {

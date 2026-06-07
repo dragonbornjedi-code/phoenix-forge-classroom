@@ -12,6 +12,7 @@ Ezra’s childhood data lives in **Forge Profile** (`forge-profile-core` Room + 
 |------|---------|-------------|
 | [sync-contract.md](sync-contract.md) | Teacher ↔ Student local exchange (missions, completion, link model) | Roadmap P2 — not fully implemented |
 | [schemas/PCAS_DB_SCHEMA.sql](schemas/PCAS_DB_SCHEMA.sql) | Long-horizon PCAS tables (spec) | Future CMOS runtime — not wired in APKs yet |
+| [schemas/forge_profile_push.schema.json](schemas/forge_profile_push.schema.json) | Manual steward push + avatar v2 | Forge Profile writer, Forge World reader |
 
 **Authoritative contracts (markdown):** [docs/contracts/](../docs/contracts/) — IntentTile, MemoryEvent, Curriculum OS, reference tiles.
 

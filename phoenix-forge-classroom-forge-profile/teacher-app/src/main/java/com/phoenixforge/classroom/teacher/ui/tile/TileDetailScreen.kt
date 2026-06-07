@@ -2,6 +2,7 @@ package com.phoenixforge.classroom.teacher.ui.tile
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,16 +17,22 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Slider
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.phoenixforge.classroom.teacher.domain.curriculum.CurriculumDomainId
 import com.phoenixforge.classroom.teacher.domain.model.ForgeDomain
+import com.phoenixforge.classroom.teacher.domain.model.StewardReflection
+import com.phoenixforge.classroom.teacher.domain.model.StewardReflectionAxis
+import com.phoenixforge.classroom.teacher.domain.model.StewardReflectionCatalog
 import com.phoenixforge.classroom.teacher.domain.model.TileStatus
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -85,6 +92,25 @@ fun TileDetailScreen(
                 Text("Lesson pattern: ${tile.lessonPatternId}", style = MaterialTheme.typography.bodySmall)
             }
 
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text("Car-friendly (Chariot)", style = MaterialTheme.typography.titleSmall)
+                    Text(
+                        "Include on Kia Soul dashboard quest stack.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                Switch(
+                    checked = tile.carFriendly,
+                    onCheckedChange = viewModel::setCarFriendly,
+                )
+            }
+
             Text("Field guide", style = MaterialTheme.typography.titleSmall)
             OutlinedTextField(
                 value = state.materials,
@@ -108,6 +134,15 @@ fun TileDetailScreen(
                 minLines = 3
             )
 
+            if (status != TileStatus.COMPLETED) {
+                StewardReflectionSection(
+                    reflection = state.reflection,
+                    onAxisChange = viewModel::updateReflectionAxis
+                )
+            } else {
+                CompletedReflectionSummary(reflection = state.reflection)
+            }
+
             Button(onClick = viewModel::saveDetails, modifier = Modifier.fillMaxWidth()) {
                 Text("Save details")
             }
@@ -122,3 +157,78 @@ fun TileDetailScreen(
         }
     }
 }
+
+@Composable
+private fun StewardReflectionSection(
+    reflection: StewardReflection,
+    onAxisChange: (StewardReflectionAxis, Int) -> Unit,
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        Text("Deep reflection (L3)", style = MaterialTheme.typography.titleSmall)
+        Text(
+            "Optional check-in across five axes before you mark complete.",
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        StewardReflectionCatalog.axes.forEach { axis ->
+            val value = StewardReflectionCatalog.valueFor(reflection, axis)
+            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(axis.label, style = MaterialTheme.typography.labelLarge)
+                    Text(
+                        StewardReflectionCatalog.poleLabel(axis, value),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(axis.lowLabel, style = MaterialTheme.typography.labelSmall)
+                    Text(axis.highLabel, style = MaterialTheme.typography.labelSmall)
+                }
+                Slider(
+                    value = value.toFloat(),
+                    onValueChange = { onAxisChange(axis, it.toInt()) },
+                    valueRange = 0f..100f,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun CompletedReflectionSummary(
+    reflection: StewardReflection,
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Text("Reflection recorded", style = MaterialTheme.typography.titleSmall)
+        StewardReflectionCatalog.axes.forEach { axis ->
+            val stored = StewardReflectionCatalog.valueFor(reflection, axis)
+            if (reflectionHasStoredValue(reflection, axis)) {
+                Text(
+                    "${axis.label}: ${StewardReflectionCatalog.poleLabel(axis, stored)}",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
+        }
+    }
+}
+
+private fun reflectionHasStoredValue(
+    reflection: StewardReflection,
+    axis: StewardReflectionAxis,
+): Boolean =
+    when (axis.id) {
+        StewardReflectionAxis.AxisId.MENTAL -> reflection.mental != null
+        StewardReflectionAxis.AxisId.EMOTIONAL -> reflection.emotional != null
+        StewardReflectionAxis.AxisId.PHYSICAL -> reflection.physical != null
+        StewardReflectionAxis.AxisId.EDUCATIONAL -> reflection.educational != null
+        StewardReflectionAxis.AxisId.BEHAVIORAL -> reflection.behavioral != null
+    }

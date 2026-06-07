@@ -1,8 +1,10 @@
 # PCAS Implementation Roadmap: The Sovereign Archive
 
+> **INDEX ONLY (2026-06-06)** — Runtime scheduling lives in `docs/roadmaps/00_MASTER_ROADMAP.md`. This file is contract/vision context; do not treat "Milestone -1 Current Focus" as active work.
+
 The roadmap is ordered to ensure structural integrity and 20-year durability before building runtime UI.
 
-## Milestone -1: The Intent & Compass Contracts (Current Focus)
+## Milestone -1: The Intent & Compass Contracts (spec context — not current scheduler)
 **Goal:** Define the atomic units and navigation heuristics.
 
 **Spec complete (docs/contracts)** — runtime still partial until YAML loads in Teacher and cross-app loop passes.

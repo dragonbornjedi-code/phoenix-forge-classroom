@@ -5,6 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.phoenixforge.classroom.teacher.data.repository.TileRepository
 import com.phoenixforge.classroom.teacher.domain.model.IntentTile
+import com.phoenixforge.classroom.teacher.domain.model.StewardReflection
+import com.phoenixforge.classroom.teacher.domain.model.StewardReflectionAxis
+import com.phoenixforge.classroom.teacher.domain.model.StewardReflectionCatalog
 import com.phoenixforge.classroom.teacher.domain.model.TileStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +20,8 @@ data class TileDetailUiState(
     val tile: IntentTile? = null,
     val evidenceNotes: String = "",
     val coachingCues: String = "",
-    val materials: String = ""
+    val materials: String = "",
+    val reflection: StewardReflection = StewardReflection(),
 )
 
 @HiltViewModel
@@ -38,7 +42,8 @@ class TileDetailViewModel @Inject constructor(
                 tile = tile,
                 evidenceNotes = tile.evidenceNotes,
                 coachingCues = tile.coachingCues,
-                materials = tile.materials
+                materials = tile.materials,
+                reflection = StewardReflection.fromTile(tile),
             )
         }
     }
@@ -47,14 +52,28 @@ class TileDetailViewModel @Inject constructor(
     fun updateCoaching(cues: String) = _state.update { it.copy(coachingCues = cues) }
     fun updateMaterials(materials: String) = _state.update { it.copy(materials = materials) }
 
+    fun updateReflectionAxis(axis: StewardReflectionAxis, value: Int) {
+        _state.update {
+            it.copy(
+                reflection = StewardReflectionCatalog.withValue(it.reflection, axis, value.coerceIn(0, 100))
+            )
+        }
+    }
+
     fun saveDetails() {
         val current = _state.value.tile ?: return
         viewModelScope.launch {
+            val fields = _state.value.reflection.toTileFields()
             repo.update(
                 current.copy(
                     evidenceNotes = _state.value.evidenceNotes,
                     coachingCues = _state.value.coachingCues,
-                    materials = _state.value.materials
+                    materials = _state.value.materials,
+                    reflectionMental = fields.reflectionMental,
+                    reflectionEmotional = fields.reflectionEmotional,
+                    reflectionPhysical = fields.reflectionPhysical,
+                    reflectionEducational = fields.reflectionEducational,
+                    reflectionBehavioral = fields.reflectionBehavioral,
                 )
             )
             _state.update { it.copy(tile = repo.findById(tileId)) }
@@ -63,8 +82,21 @@ class TileDetailViewModel @Inject constructor(
 
     fun markComplete() {
         viewModelScope.launch {
-            repo.markComplete(tileId, _state.value.evidenceNotes)
-            _state.update { it.copy(tile = repo.findById(tileId)) }
+            val reflection = _state.value.reflection.copy(
+                mental = _state.value.reflection.mental ?: StewardReflectionCatalog.NEUTRAL,
+                emotional = _state.value.reflection.emotional ?: StewardReflectionCatalog.NEUTRAL,
+                physical = _state.value.reflection.physical ?: StewardReflectionCatalog.NEUTRAL,
+                educational = _state.value.reflection.educational ?: StewardReflectionCatalog.NEUTRAL,
+                behavioral = _state.value.reflection.behavioral ?: StewardReflectionCatalog.NEUTRAL,
+            )
+            repo.markComplete(tileId, _state.value.evidenceNotes, reflection)
+            val updated = repo.findById(tileId)
+            _state.update {
+                it.copy(
+                    tile = updated,
+                    reflection = updated?.let(StewardReflection::fromTile) ?: it.reflection,
+                )
+            }
         }
     }
 
@@ -72,6 +104,14 @@ class TileDetailViewModel @Inject constructor(
         val current = _state.value.tile ?: return
         viewModelScope.launch {
             repo.update(current.copy(status = status.name))
+            _state.update { it.copy(tile = repo.findById(tileId)) }
+        }
+    }
+
+    fun setCarFriendly(enabled: Boolean) {
+        val current = _state.value.tile ?: return
+        viewModelScope.launch {
+            repo.update(current.copy(carFriendly = enabled))
             _state.update { it.copy(tile = repo.findById(tileId)) }
         }
     }

@@ -23,6 +23,9 @@ interface IntentTileDao {
     @Update
     suspend fun update(tile: IntentTile)
 
+    @Update
+    suspend fun updateAll(tiles: List<IntentTile>)
+
     @Query("DELETE FROM intent_tiles WHERE id = :id")
     suspend fun deleteById(id: String)
 }

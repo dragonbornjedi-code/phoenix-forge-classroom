@@ -1,13 +1,16 @@
 # Godot Migration Strategy: The Future Bridge
 
-Phoenix Forge Classroom is designed with a **10-Year Trajectory**. The current Android APKs are the **First Chapter.** The future Godot RPG is the **Full World** — a Layer 3 experience shell that **imports** Ezra’s Forge Profile; it does not replace CMOS.
+Phoenix Forge Classroom is designed with a **10-Year Trajectory**. The current Android APKs are the **First Chapter.** **Phoenix Forge World** (`phoenix-forge-world/`) is the offline 3D reflection shell — a Layer 3 experience that **imports** Ezra’s Forge Profile; it does not replace CMOS.
 
-**Data owner:** Forge Profile on device → export bundle → Godot import. See [FORGEPROFILE_SPEC.md](FORGEPROFILE_SPEC.md) § Avatar Studio and [shared/README.md](../shared/README.md).
+**Data owner:** Forge Profile on device → manual steward push (`forge_profile_push.json`) → Godot import. See [FORGEPROFILE_SPEC.md](FORGEPROFILE_SPEC.md) § Avatar Studio and [shared/README.md](../shared/README.md).
+
+**Embral** is superseded — see [archives/EMBRAL_SUPERSEDED.md](archives/EMBRAL_SUPERSEDED.md).
 
 ## 0. Import bundle (what Godot loads)
 
 | File | Contents |
 |------|----------|
+| `forge_profile_push.json` | Manual steward push: profile + `AvatarConfigV2` + `godotMeshHints` |
 | `forge_profile.json` | uid, forgeName, stage, threads, bonds (as implemented) |
 | `avatar_config.json` | Full `AvatarConfig` + `godotMeshHints` for rig mapping |
 | `chronicle_index.json` | Episode IDs, artifact refs, human voice refs |

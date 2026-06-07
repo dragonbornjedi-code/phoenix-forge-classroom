@@ -22,6 +22,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.phoenixforge.student.domain.avatar.ImportedHeroLookParser
+import com.phoenixforge.student.ui.avatar.HearthWelcomeCard
 import com.phoenixforge.student.ui.navigation.StudentRoutes
 
 @Composable
@@ -31,13 +33,27 @@ fun HomeScreen(
 ) {
     val state by viewModel.worldState.collectAsState()
 
+    val heroLook = ImportedHeroLookParser.parse(state.importedHeroSummary)
+
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         item {
-            Text("Phoenix Forge Classroom Student Edition", style = MaterialTheme.typography.headlineLarge)
+            state.importedForgeName?.let { forgeName ->
+                HearthWelcomeCard(
+                    forgeName = forgeName,
+                    heroLook = heroLook,
+                )
+            } ?: run {
+                Text("Your Hearth", style = MaterialTheme.typography.headlineLarge)
+                Text(
+                    "Welcome, explorer. Import your Forge Profile when your steward is ready.",
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+            }
+            Spacer(modifier = Modifier.height(4.dp))
             Text(
                 "Level ${state.progress.level} · ${state.progress.xp} XP · ${state.progress.streakDays}-day streak",
                 style = MaterialTheme.typography.bodyMedium
@@ -72,7 +88,7 @@ fun HomeScreen(
         }
 
         item {
-            Text("Rooms", style = MaterialTheme.typography.titleMedium)
+            Text("Rooms in your hearth", style = MaterialTheme.typography.titleMedium)
             LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 items(state.house.rooms) { room ->
                     Card(

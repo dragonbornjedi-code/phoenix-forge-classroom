@@ -14,8 +14,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.phoenixforge.profile.ui.navigation.Screen
+import android.widget.Toast
+import com.phoenixforge.profile.domain.avatar.AvatarHeroCatalog
 import com.phoenixforge.profile.ui.interop.ExternalApps
+import com.phoenixforge.profile.ui.navigation.Screen
+import com.phoenixforge.profile.ui.studio.AvatarPreview
 
 @Composable
 fun DashboardScreen(
@@ -39,9 +42,11 @@ fun DashboardScreen(
                 modifier = Modifier.padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(modifier = Modifier.size(80.dp), contentAlignment = Alignment.Center) {
-                    Text("👤", style = MaterialTheme.typography.displayMedium)
-                }
+                AvatarPreview(
+                    avatar = state.latestAvatar,
+                    modifier = Modifier.size(80.dp),
+                    size = 80.dp,
+                )
                 Spacer(modifier = Modifier.width(16.dp))
                 Column {
                     Text(
@@ -52,8 +57,35 @@ fun DashboardScreen(
                         formatProfileSubtitle(state.profile),
                         style = MaterialTheme.typography.labelMedium
                     )
+                    state.latestAvatar?.let { avatar ->
+                        Text(
+                            "${AvatarHeroCatalog.displayStyle(avatar.hairType)} · ${AvatarHeroCatalog.displayColor(avatar.eyeColor)}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.primary,
+                        )
+                    }
                 }
             }
+        }
+
+        if (state.profile?.profileRole == "student_self" || state.profile?.profileRole == "steward_for_student") {
+            Spacer(modifier = Modifier.height(12.dp))
+            OutlinedButton(
+                onClick = {
+                    viewModel.pushToTablet(context) { message ->
+                        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+                    }
+                },
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text("Push avatar to Ezra's tablet")
+            }
+            Text(
+                "Manual push only — open Student Edition on his tablet and pull the snapshot when you're ready.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = 4.dp),
+            )
         }
 
         Spacer(modifier = Modifier.height(24.dp))

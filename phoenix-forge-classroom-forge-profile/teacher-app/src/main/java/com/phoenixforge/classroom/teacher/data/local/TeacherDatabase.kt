@@ -6,7 +6,7 @@ import com.phoenixforge.classroom.teacher.domain.model.IntentTile
 
 @Database(
     entities = [IntentTile::class],
-    version = 2,
+    version = 4,
     exportSchema = false
 )
 abstract class TeacherDatabase : RoomDatabase() {

@@ -2,6 +2,7 @@ package com.phoenixforge.profile.domain.bootstrap
 
 import com.phoenixforge.profile.domain.model.ForgeProfile
 import com.phoenixforge.profile.domain.model.ProfileRole
+import com.phoenixforge.profile.domain.avatar.AvatarHeroCatalog
 import com.phoenixforge.profile.domain.repository.ProfileRepository
 import java.util.UUID
 import javax.inject.Inject
@@ -33,6 +34,9 @@ class ProfileBootstrap @Inject constructor(
             profileRole = profileRole.storageKey
         )
         repository.updateProfile(profile)
+        if (profileRole.isStudentProfile) {
+            repository.saveAvatar(AvatarHeroCatalog.defaultAvatar())
+        }
         return profile
     }
 

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.serialization")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
 }
@@ -50,6 +51,7 @@ android {
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
@@ -60,6 +62,9 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
+    implementation("androidx.compose.foundation:foundation")
+
+    implementation("sh.calvin.reorderable:reorderable:2.4.2")
     implementation("androidx.navigation:navigation-compose:2.7.6")
 
     implementation("com.google.dagger:hilt-android:2.50")
@@ -74,4 +79,6 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     debugImplementation("androidx.compose.ui:ui-tooling")
+
+    testImplementation("junit:junit:4.13.2")
 }

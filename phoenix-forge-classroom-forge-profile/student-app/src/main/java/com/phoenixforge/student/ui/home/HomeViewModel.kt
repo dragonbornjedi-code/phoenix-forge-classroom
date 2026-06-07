@@ -29,8 +29,12 @@ class HomeViewModel @Inject constructor(
         combine(
             studentHouse.observeHouse(),
             repository.observeProgress(),
-            repository.observeLatestStory()
-        ) { house, progress, story -> Triple(house, progress, story) },
+            repository.observeLatestStory(),
+            repository.observeImportedProfiles(),
+        ) { house, progress, story, imports ->
+            val latestImport = imports.firstOrNull()
+            Triple(house, progress, story) to latestImport
+        },
         combine(
             npcEngine.observeCompanion(),
             questEngine.observeActiveQuests(),
@@ -39,7 +43,8 @@ class HomeViewModel @Inject constructor(
         ) { companion, quests, memories, meta ->
             Quad(companion, quests, memories, meta)
         }
-    ) { core, activity ->
+    ) { coreWithImport, activity ->
+        val (core, latestImport) = coreWithImport
         val (house, progress, story) = core
         val (companion, quests, memories, meta) = activity
         StudentWorldState(
@@ -59,7 +64,9 @@ class HomeViewModel @Inject constructor(
             activeCompanion = companion,
             activeQuests = quests.take(3),
             recentMemories = memories,
-            latestStory = story
+            latestStory = story,
+            importedForgeName = latestImport?.forgeName,
+            importedHeroSummary = latestImport?.avatarSummary,
         )
     }.stateIn(
         viewModelScope,

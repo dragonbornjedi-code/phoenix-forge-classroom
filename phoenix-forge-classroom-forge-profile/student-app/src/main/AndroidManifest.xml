@@ -39,6 +39,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".chariot.ChariotDisplayActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.StudentHouse">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="phoenixforge" android:host="chariot" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

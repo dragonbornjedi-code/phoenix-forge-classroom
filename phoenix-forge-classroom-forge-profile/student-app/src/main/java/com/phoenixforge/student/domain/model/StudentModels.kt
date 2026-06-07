@@ -136,5 +136,7 @@ data class StudentWorldState(
     val activeCompanion: NpcState?,
     val activeQuests: List<Quest>,
     val recentMemories: List<MemoryArtifact>,
-    val latestStory: StoryFragment?
+    val latestStory: StoryFragment?,
+    val importedForgeName: String? = null,
+    val importedHeroSummary: String? = null,
 )

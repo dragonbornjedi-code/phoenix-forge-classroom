@@ -5,15 +5,24 @@
 | Field | Value |
 |-------|--------|
 | **Finish line** | `5.00` |
-| **Current step** | `4.68` — next: `4.69` |
+| **Current step** | `0.60` — next: `0.61` |
 
-Current step: 4.68 — next: 4.69
+Current step: 0.60 — next: 0.61
 
 | **Protocol** | [cline_essence/SKILL.md](../cline_essence/SKILL.md) · [MASTER_PROTOCOL.md](../cline_essence/MASTER_PROTOCOL.md) |
 | **Tier 0** | [CONSTITUTION.md](../CONSTITUTION.md) · [registry/phoenix-forge-classroom.yaml](../../registry/phoenix-forge-classroom.yaml) |
 | **Sub-roadmaps** | [01](01_FORGE_PROFILE_ROADMAP.md) · [02](02_STUDENT_EDITION_ROADMAP.md) · [03](03_TEACHER_EDITION_ROADMAP.md) · [04](04_CROSS_APP_INTEGRATION_ROADMAP.md) — **indexes only**, no parallel IDs |
 
 **Drift:** `./scripts/cline-essence-drift-check.sh` · **Deploy:** [DEPLOYMENT_REALITY.md](../DEPLOYMENT_REALITY.md)
+
+### Suite gates (cross-repo)
+
+| Gate | Rule |
+|------|------|
+| **Spine `current_step`** | Tracks the **contiguous spine** (next: `0.61`). Bumping `current_step` follows the highest **contiguous** verified spine row — not parallel gap rows. |
+| **Parallel gap zone** | Rows `4.57`–`4.74` were verified **ahead of spine** (teacher/Godot/chariot slices). They do **not** advance `current_step` past `0.60` until spine catches up through `0.74`. |
+| **Loop freeze** | No **new** rows above `1.00` until steps `1.02` and `2.01`–`2.07` are `[VERIFIED]`. No new `4.xx` insertions until milestone `2.00` Loop proven. |
+| **Sovereign gate** | Steps **≥ `1.00` Integration** require Sovereign `MASTER_TODO` ACTIVE NOW all `[VERIFIED]` + operator sign-off. Until then, cap execution at `0.xx` standalone tranche. |
 
 ---
 
@@ -110,16 +119,16 @@ Current step: 4.68 — next: 4.69
 | 0.49 | Cross | Device P0 complete: all 0.26–0.48 verified | Checklist | [VERIFIED] |
 | | | | | |
 | **0.50** | — | **MILESTONE: Standalone P1 begins** | — | [VERIFIED] |
-| 0.51 | Teacher | Expedition board scroll + empty state | Phone | pending |
-| 0.52 | Teacher | Drag-and-drop reorder UI | Phone | pending |
-| 0.53 | Teacher | `sortOrder` persist after reorder | Phone | pending |
-| 0.54 | Teacher | Steward L3 dimension fields on complete | TileDetail | pending |
-| 0.55 | Teacher | “Start day” export list stub | system-initialization | pending |
-| 0.56 | Profile | Avatar layered preview composable | AvatarStudio | pending |
-| 0.57 | Profile | Avatar category panels + color pickers | AvatarStudio | pending |
-| 0.58 | Profile | Avatar auto-save + Randomize | Room | pending |
-| 0.59 | Profile | `Avatar` model → `AvatarConfig` schema | FORGEPROFILE_SPEC | pending |
-| 0.60 | Profile | Avatar export JSON + share intent | File | pending |
+| 0.51 | Teacher | Expedition board scroll + empty state | Phone | [VERIFIED] |
+| 0.52 | Teacher | Drag-and-drop reorder UI | Phone | [VERIFIED] |
+| 0.53 | Teacher | `sortOrder` persist after reorder | Phone | [VERIFIED] |
+| 0.54 | Teacher | Steward L3 dimension fields on complete | TileDetail | [VERIFIED] |
+| 0.55 | Teacher | “Start day” export list stub | system-initialization | [VERIFIED] |
+| 0.56 | Profile | Avatar layered preview composable | AvatarStudio | [TESTED] |
+| 0.57 | Profile | Avatar category panels + color pickers | AvatarStudio | [TESTED] |
+| 0.58 | Profile | Avatar auto-save + Randomize | Room | [TESTED] |
+| 0.59 | Profile | `Avatar` model → `AvatarConfig` schema | FORGEPROFILE_SPEC | [TESTED] |
+| 0.60 | Profile | Avatar export JSON + share intent | File | [TESTED] |
 | 0.61 | Profile | Provider `/avatar` full payload | Student import | pending |
 | 0.62 | Profile | Avatar shard level 0–6 UI | AvatarStudio | pending |
 | 0.63 | Profile | Photo artifact capture | Camera | pending |
@@ -212,8 +221,8 @@ Current step: 4.68 — next: 4.69
 | 4.53 | Cross | sync-contract implemented | shared/ | pending |
 | 4.54 | Cross | Identity threads parent confirm | IFE | pending |
 | 4.55 | Cross | PCAS runtime DB eval (implement or defer doc) | PCAS SQL | pending |
-| 4.56 | Cross | Chronicle tier complete | Checklist | pending |
-| 4.57 | Profile | Sign-in gate + empty dream board + Help me think | gradle | [VERIFIED] |
+| 4.56 | Cross | Chronicle tier complete | Checklist | pending *(spine — blocked until 4.51–4.55)* |
+| 4.57 | Profile | Sign-in gate + empty dream board + Help me think | gradle | [VERIFIED] *(parallel gap — ahead of spine)* |
 | 4.58 | Teacher | Curriculum browser: 7 domains + Pack 01 + weekly audit | gradle | [VERIFIED] |
 | 4.59 | Cross | Forge Profile identity-only; mentorship terminology purge; Student→Teacher read-only snapshot provider + UI | `rg -i no stewardship` + `./gradlew assembleDebug (3 APKs)` + `./scripts/cline-essence-drift-check.sh` | [TESTED] |
 | 4.60 | Profile | Sign out button (session end, profile retained) | Phone | [VERIFIED] |
@@ -225,6 +234,12 @@ Current step: 4.68 — next: 4.69
 | 4.66 | Teacher | Sage persona + curriculum knowledge-base context builder | gradle | [VERIFIED] |
 | 4.67 | Teacher | Secure API key / provider credential store (encrypted) | gradle | [VERIFIED] |
 | 4.68 | Teacher | Online Sage chat (free-tier provider, offline gate) | gradle | [VERIFIED] |
+| 4.69 | Cross | Chariot car dashboard: export + display + ADB helper | gradle + script | [TESTED] |
+| 4.70 | Cross | Embral supersession manifest + archive script | `docs/archives/` | [TESTED] |
+| 4.71 | Godot | `phoenix-forge-world` project scaffold (Forge Profile shell) | `project.godot` | [TESTED] |
+| 4.72 | Cross | Forge push JSON schema in `shared/schemas/` | schema validate | [TESTED] |
+| 4.73 | Godot | Offline import: `forge_profile_push.json` + hero spawn | headless | [TESTED] |
+| 4.74 | Godot | Embral asset salvage index + copy script (KayKit heroes) | script + assets | [TESTED] |
 | 4.91 | Cross | *(gap before finish)* | — | reserved |
 | 4.92 | Cross | *(gap before finish)* | — | reserved |
 | | | | | |
@@ -242,6 +257,21 @@ Current step: 4.68 — next: 4.69
 | Teacher Edition | Expedition board full + product-spec core + compass seed |
 | Cross-app | Loop automated offline; contracts implemented |
 | Out of repo | Godot binary, Sovereign Deck — import contracts only `[VERIFIED]` |
+
+---
+
+## Suite-wide (Phoenix Forge Home — not classroom-owned)
+
+Bootstrap + offline mesh roadmaps live in **`phoenix-forge-home`** (hub repo):
+
+| Topic | Path |
+|-------|------|
+| Full suite laptop button | `phoenix-forge-home/scripts/bootstrap-laptop.sh` |
+| Repo manifest (classroom + deck + watch + ops + world) | `phoenix-forge-home/registry/suite_manifest.yaml` |
+| Proactive Phoenix / no telephony / LAN mesh | `phoenix-forge-home/docs/ROADMAP_PROACTIVE_OFFLINE_MESH.md` |
+| Watch APK (sensor node) | `sovereign-deck/android/wear/` · `ROADMAP_DEVICE_INTEGRATIONS.md` W3–W4 |
+
+Classroom steps **do not** own Sovereign Deck or watch build — only `forge_profile_push.json` contract at integration steps `1.xx+`.
 
 ---
 

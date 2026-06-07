@@ -1,26 +1,33 @@
 package com.phoenixforge.profile.ui.studio
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.phoenixforge.profile.data.export.ProfileManualPushExporter
+import com.phoenixforge.profile.domain.avatar.AvatarHeroCatalog
 import com.phoenixforge.profile.domain.model.Avatar
 import com.phoenixforge.profile.domain.repository.ProfileRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
-import java.time.Instant
-import java.util.UUID
 import javax.inject.Inject
 
 data class AvatarStudioState(
     val currentAvatar: Avatar? = null,
-    val isLoading: Boolean = false
+    val draftStyle: String = "explorer",
+    val draftColor: String = "blue",
+    val draftSkinTone: String = "medium",
+    val isLoading: Boolean = false,
+    val lastSavedVersion: Int = 0,
 )
 
 @HiltViewModel
 class AvatarViewModel @Inject constructor(
-    private val repository: ProfileRepository
+    private val repository: ProfileRepository,
+    private val pushExporter: ProfileManualPushExporter,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(AvatarStudioState())
@@ -29,23 +36,96 @@ class AvatarViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             repository.getAvatarHistory().collect { history ->
-                _state.value = _state.value.copy(currentAvatar = history.firstOrNull())
+                val latest = history.firstOrNull()
+                if (latest == null) {
+                    val seeded = AvatarHeroCatalog.defaultAvatar()
+                    repository.saveAvatar(seeded)
+                    _state.value = AvatarStudioState(
+                        currentAvatar = seeded,
+                        draftStyle = seeded.hairType,
+                        draftColor = seeded.eyeColor,
+                        draftSkinTone = seeded.skinTone,
+                        lastSavedVersion = seeded.version,
+                    )
+                } else {
+                    _state.value = _state.value.copy(
+                        currentAvatar = latest,
+                        draftStyle = AvatarHeroCatalog.normalizeStyle(latest.hairType),
+                        draftColor = AvatarHeroCatalog.normalizeColor(latest.eyeColor),
+                        draftSkinTone = AvatarHeroCatalog.normalizeSkinTone(latest.skinTone),
+                        lastSavedVersion = latest.version,
+                    )
+                }
             }
         }
     }
 
-    fun updateAvatar(hair: String, eyes: String, skin: String, clothing: String) {
-        val newAvatar = Avatar(
-            id = UUID.randomUUID().toString(),
-            hairType = hair,
-            eyeColor = eyes,
-            skinTone = skin,
-            clothingId = clothing,
-            version = (_state.value.currentAvatar?.version ?: 0) + 1,
-            timestamp = Instant.now()
+    fun selectStyle(style: String) {
+        _state.value = _state.value.copy(draftStyle = AvatarHeroCatalog.normalizeStyle(style))
+        persistDraft()
+    }
+
+    fun selectColor(color: String) {
+        _state.value = _state.value.copy(draftColor = AvatarHeroCatalog.normalizeColor(color))
+        persistDraft()
+    }
+
+    fun selectSkinTone(skinTone: String) {
+        _state.value = _state.value.copy(draftSkinTone = AvatarHeroCatalog.normalizeSkinTone(skinTone))
+        persistDraft()
+    }
+
+    fun randomize() {
+        val randomized = AvatarHeroCatalog.randomAvatar(_state.value.currentAvatar)
+        _state.value = _state.value.copy(
+            draftStyle = randomized.hairType,
+            draftColor = randomized.eyeColor,
         )
         viewModelScope.launch {
-            repository.saveAvatar(newAvatar)
+            repository.saveAvatar(randomized)
+        }
+    }
+
+    fun previewAvatar(): Avatar {
+        val current = _state.value
+        return AvatarHeroCatalog.buildAvatar(
+            style = current.draftStyle,
+            color = current.draftColor,
+            skinTone = current.draftSkinTone,
+            version = current.currentAvatar?.version ?: 1,
+            timestamp = current.currentAvatar?.timestamp ?: java.time.Instant.now(),
+            id = current.currentAvatar?.id ?: java.util.UUID.randomUUID().toString(),
+        )
+    }
+
+    private fun persistDraft() {
+        val current = _state.value
+        val base = current.currentAvatar
+        val nextVersion = (base?.version ?: 0) + 1
+        val avatar = AvatarHeroCatalog.buildAvatar(
+            style = current.draftStyle,
+            color = current.draftColor,
+            skinTone = current.draftSkinTone,
+            version = nextVersion,
+            id = base?.id ?: java.util.UUID.randomUUID().toString(),
+        )
+        viewModelScope.launch {
+            repository.saveAvatar(avatar)
+            _state.value = _state.value.copy(lastSavedVersion = nextVersion)
+        }
+    }
+
+    fun pushToTablet(context: Context, onResult: (String) -> Unit) {
+        viewModelScope.launch {
+            val profile = repository.getProfile().firstOrNull()
+            val avatar = previewAvatar()
+            if (profile == null) {
+                onResult("Create a Forge Profile first.")
+                return@launch
+            }
+            val result = pushExporter.export(context, profile, avatar)
+            onResult(result.message)
+            context.startActivity(result.shareIntent.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK))
         }
     }
 }

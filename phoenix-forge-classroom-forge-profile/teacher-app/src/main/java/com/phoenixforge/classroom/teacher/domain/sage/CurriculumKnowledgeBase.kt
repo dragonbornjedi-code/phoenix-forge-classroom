@@ -39,6 +39,15 @@ class CurriculumKnowledgeBase @Inject constructor(
         }
         sb.appendLine()
 
+        sb.appendLine("QUEST GOLD STANDARD (reference: secret-label-decoder.yaml):")
+        sb.appendLine("- Title: Secret Label Decoder")
+        sb.appendLine("- Mission: Find the secret labels around the room and match them to the right objects.")
+        sb.appendLine("- Cards: Find Cup · Find Book · Find Light · Reward: Decoder Badge")
+        sb.appendLine("- Spark: That word is a secret code only you decoded.")
+        sb.appendLine("- SAGE framework: Sense of Urgency · Agency · Growth · Emotional Closure")
+        sb.appendLine("- Pipeline: narrative_hook → student_mission → xp_reward → spark_reaction_seed")
+        sb.appendLine()
+
         val tiles = tileRepository.observeAll().first()
         if (tiles.isNotEmpty()) {
             sb.appendLine("CURRENT EXPEDITION TILES:")

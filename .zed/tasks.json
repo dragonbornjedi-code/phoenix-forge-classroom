@@ -1,0 +1,37 @@
+[
+  {
+    "label": "Classroom: build + install 3 APKs",
+    "command": "bash",
+    "args": ["-lc", "./scripts/install-phone-apks.sh"],
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false
+  },
+  {
+    "label": "Classroom: assemble all debug",
+    "command": "bash",
+    "args": [
+      "-lc",
+      "cd phoenix-forge-classroom-forge-profile && ./gradlew :forge-profile-app:assembleDebug :student-app:assembleDebug :teacher-app:assembleDebug"
+    ],
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false
+  },
+  {
+    "label": "Classroom: drift check",
+    "command": "bash",
+    "args": ["-lc", "./scripts/cline-essence-drift-check.sh"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": true,
+    "reveal": "no_focus"
+  },
+  {
+    "label": "Classroom: teacher unit tests",
+    "command": "bash",
+    "args": [
+      "-lc",
+      "cd phoenix-forge-classroom-forge-profile && ./gradlew :teacher-app:testDebugUnitTest"
+    ],
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false
+  }
+]

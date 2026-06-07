@@ -2,6 +2,7 @@ package com.phoenixforge.profile.ui.dashboard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.phoenixforge.profile.data.export.ProfileManualPushExporter
 import com.phoenixforge.profile.domain.model.ForgeProfile
 import com.phoenixforge.profile.domain.repository.ProfileRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,6 +15,7 @@ import javax.inject.Inject
 
 data class DashboardState(
     val profile: ForgeProfile? = null,
+    val latestAvatar: com.phoenixforge.profile.domain.model.Avatar? = null,
     val timelineEventCount: Int = 0,
     val memoryCount: Int = 0,
     val avatarCount: Int = 0
@@ -21,7 +23,8 @@ data class DashboardState(
 
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
-    private val repository: ProfileRepository
+    private val repository: ProfileRepository,
+    private val pushExporter: ProfileManualPushExporter,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(DashboardState())
@@ -37,6 +40,7 @@ class DashboardViewModel @Inject constructor(
             ) { profile, timeline, memories, avatars ->
                 DashboardState(
                     profile = profile,
+                    latestAvatar = avatars.firstOrNull(),
                     timelineEventCount = timeline.size,
                     memoryCount = memories.size,
                     avatarCount = avatars.size
@@ -45,5 +49,16 @@ class DashboardViewModel @Inject constructor(
                 _state.value = dashboardState
             }
         }
+    }
+
+    fun pushToTablet(context: android.content.Context, onResult: (String) -> Unit) {
+        val profile = _state.value.profile ?: run {
+            onResult("No profile loaded.")
+            return
+        }
+        val avatar = _state.value.latestAvatar
+        val result = pushExporter.export(context, profile, avatar)
+        onResult(result.message)
+        context.startActivity(result.shareIntent.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK))
     }
 }
