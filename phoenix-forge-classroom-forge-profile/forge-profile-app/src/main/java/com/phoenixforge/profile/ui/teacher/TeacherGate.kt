@@ -4,9 +4,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -18,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.phoenixforge.profile.domain.copy.AppBoundaryCopy
 import com.phoenixforge.profile.ui.interop.ExternalApps
 
 @Composable
@@ -28,69 +33,82 @@ fun TeacherGateScreen(
     val state by viewModel.state.collectAsState()
     val context = LocalContext.current
 
-    if (!state.isAuthorized) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text("Parental Gate", style = MaterialTheme.typography.headlineMedium)
-            Spacer(modifier = Modifier.height(16.dp))
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(AppBoundaryCopy.PARENT_GATE_TITLE, style = MaterialTheme.typography.headlineMedium)
+        Text(
+            AppBoundaryCopy.PARENT_GATE_SUBTITLE,
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.padding(top = 8.dp),
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        BoundarySummaryCard()
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        if (!state.isAuthorized) {
             Text(
-                "Mentorship access requires secure parent setup on this device.",
-                style = MaterialTheme.typography.bodyMedium
+                AppBoundaryCopy.PARENT_GATE_LOCKED_BODY,
+                style = MaterialTheme.typography.bodyMedium,
             )
             Spacer(modifier = Modifier.height(16.dp))
-            Button(onClick = { viewModel.requestStewardAccess() }) {
-                Text("Request Mentorship Access")
+            Button(onClick = { viewModel.requestStewardAccess() }, modifier = Modifier.fillMaxWidth()) {
+                Text(AppBoundaryCopy.REQUEST_PARENT_ACCESS)
             }
             Spacer(modifier = Modifier.height(8.dp))
-            Button(onClick = { viewModel.enableStewardOnDevice() }) {
-                Text("Set Up Parent Access on This Device")
+            OutlinedButton(onClick = { viewModel.enableStewardOnDevice() }, modifier = Modifier.fillMaxWidth()) {
+                Text(AppBoundaryCopy.ENABLE_PARENT_ON_DEVICE)
             }
             state.gateMessage?.let { message ->
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(message, style = MaterialTheme.typography.bodySmall)
+                Text(message, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
             }
-            Spacer(modifier = Modifier.height(24.dp))
+        } else {
             Text(
-                "Teacher Edition now owns mentorship. Open it for curriculum planning and daily expedition work.",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                AppBoundaryCopy.PARENT_GATE_UNLOCKED_BODY,
+                style = MaterialTheme.typography.bodyMedium,
             )
-            Spacer(modifier = Modifier.height(12.dp))
-            Button(onClick = { ExternalApps.launchTeacherEdition(context) }) {
-                Text("Open Teacher Edition")
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                onClick = { ExternalApps.launchTeacherEdition(context) },
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(AppBoundaryCopy.OPEN_TEACHER_EDITION)
             }
-            Spacer(modifier = Modifier.height(12.dp))
-            OutlinedButton(onClick = onSignOut) {
-                Text("Switch profile")
+            Spacer(modifier = Modifier.height(8.dp))
+            OutlinedButton(onClick = { viewModel.signOut() }, modifier = Modifier.fillMaxWidth()) {
+                Text(AppBoundaryCopy.DISABLE_PARENT_ACCESS)
             }
         }
-    } else {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text("Mentorship access enabled", style = MaterialTheme.typography.headlineMedium)
-            Spacer(modifier = Modifier.height(16.dp))
+
+        Spacer(modifier = Modifier.height(16.dp))
+        OutlinedButton(onClick = onSignOut, modifier = Modifier.fillMaxWidth()) {
+            Text("Switch profile")
+        }
+    }
+}
+
+@Composable
+private fun BoundarySummaryCard() {
+    Card(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text("Three apps, one childhood", style = MaterialTheme.typography.titleSmall)
+            Text(AppBoundaryCopy.FORGE_PROFILE_OWNS, style = MaterialTheme.typography.bodySmall)
+            Text(AppBoundaryCopy.STUDENT_EDITION_OWNS, style = MaterialTheme.typography.bodySmall)
+            Text(AppBoundaryCopy.TEACHER_EDITION_OWNS, style = MaterialTheme.typography.bodySmall)
+            Text(AppBoundaryCopy.MANUAL_SYNC, style = MaterialTheme.typography.bodySmall)
             Text(
-                "Open Teacher Edition to plan curriculum and view student check-ins in a read-only view.",
-                style = MaterialTheme.typography.bodyMedium
+                AppBoundaryCopy.MEMORY_IMMUTABLE,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.primary,
             )
-            Spacer(modifier = Modifier.height(24.dp))
-            Button(onClick = { ExternalApps.launchTeacherEdition(context) }) {
-                Text("Open Teacher Edition")
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            Button(onClick = { viewModel.signOut() }) {
-                Text("Disable this device access")
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            OutlinedButton(onClick = onSignOut) {
-                Text("Switch profile")
-            }
         }
     }
 }

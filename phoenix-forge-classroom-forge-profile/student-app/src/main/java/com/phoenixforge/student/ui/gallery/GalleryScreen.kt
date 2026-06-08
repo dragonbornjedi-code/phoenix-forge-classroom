@@ -1,8 +1,11 @@
 package com.phoenixforge.student.ui.gallery
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -13,6 +16,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -26,6 +30,10 @@ import com.phoenixforge.student.domain.model.PhotoTag
 fun GalleryScreen(viewModel: GalleryViewModel = hiltViewModel()) {
     val state by viewModel.state.collectAsState()
 
+    val cloudLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.OpenDocument()
+    ) { uri -> uri?.let { viewModel.importFromCloud(it) } }
+
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(16.dp),
@@ -33,7 +41,26 @@ fun GalleryScreen(viewModel: GalleryViewModel = hiltViewModel()) {
     ) {
         item {
             Text("Photo Gallery", style = MaterialTheme.typography.headlineLarge)
-            Text("Import device photos into your Memory Vault.", style = MaterialTheme.typography.bodyMedium)
+            Text(
+                "School & adventure photos → Memory Vault. Offline from phone; Google Drive when on Wi‑Fi.",
+                style = MaterialTheme.typography.bodyMedium,
+            )
+        }
+
+        item {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedButton(
+                    onClick = {
+                        if (state.canImportCloud) cloudLauncher.launch(arrayOf("image/*"))
+                    },
+                    enabled = state.canImportCloud,
+                ) {
+                    Text(if (state.canImportCloud) "Import from Drive" else "Drive (Wi‑Fi only)")
+                }
+                OutlinedButton(onClick = { viewModel.pullSchoolFromForgeProfile() }) {
+                    Text("Pull school from Profile")
+                }
+            }
         }
 
         item {

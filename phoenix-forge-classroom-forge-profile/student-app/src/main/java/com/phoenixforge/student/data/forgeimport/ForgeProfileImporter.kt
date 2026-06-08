@@ -23,6 +23,7 @@ object ForgeProfileContract {
     val PROFILE_URI: Uri = Uri.parse("content://$AUTHORITY/profile")
     val AVATAR_URI: Uri = Uri.parse("content://$AUTHORITY/avatar")
     val TIMELINE_URI: Uri = Uri.parse("content://$AUTHORITY/timeline")
+    val MEMORIES_URI: Uri = Uri.parse("content://$AUTHORITY/memories")
 
     object Columns {
         const val UID = "uid"
@@ -34,9 +35,24 @@ object ForgeProfileContract {
         const val AVATAR_SKIN = "skin_tone"
         const val AVATAR_CLOTHING = "clothing_id"
         const val AVATAR_VERSION = "avatar_version"
+        const val AVATAR_SHARD_LEVEL = "avatar_shard_level"
+        const val HERO_STYLE = "hero_style"
+        const val HERO_COLOR = "hero_color"
+        const val GODOT_MODEL_PATH = "godot_model_path"
+        const val AVATAR_SUMMARY = "avatar_summary"
+        const val AVATAR_CONFIG_JSON = "avatar_config_json"
         const val EVENT_TITLE = "title"
         const val EVENT_TYPE = "type"
         const val EVENT_TIMESTAMP = "timestamp"
+        const val MEMORY_ID = "memory_id"
+        const val MEMORY_TYPE = "memory_type"
+        const val MEMORY_CATEGORY = "memory_category"
+        const val MEMORY_SOURCE = "memory_source"
+        const val MEMORY_CAPTURED_AT = "captured_at"
+        const val MEMORY_NOTE = "note"
+        const val MEMORY_CHECKSUM = "checksum"
+        const val MEMORY_SYNCED_TO_STUDENT = "synced_to_student"
+        const val MEMORY_CONTENT_URI = "content_uri"
     }
 }
 
@@ -46,6 +62,10 @@ data class ForgeProfilePreview(
     val currentStage: String?,
     val currentTitle: String?,
     val avatarSummary: String?,
+    val heroStyle: String?,
+    val heroColor: String?,
+    val godotModelPath: String?,
+    val avatarConfigJson: String?,
     val timelineEventCount: Int,
     val isAvailable: Boolean,
     val errorMessage: String?
@@ -68,6 +88,10 @@ class ForgeProfileImporter @Inject constructor(
                 currentStage = null,
                 currentTitle = null,
                 avatarSummary = null,
+                heroStyle = null,
+                heroColor = null,
+                godotModelPath = null,
+                avatarConfigJson = null,
                 timelineEventCount = 0,
                 isAvailable = false,
                 errorMessage = "Forge Profile not accessible. Install Forge Profile or grant read permission."
@@ -82,17 +106,26 @@ class ForgeProfileImporter @Inject constructor(
                     currentStage = null,
                     currentTitle = null,
                     avatarSummary = null,
+                    heroStyle = null,
+                    heroColor = null,
+                    godotModelPath = null,
+                    avatarConfigJson = null,
                     timelineEventCount = 0,
                     isAvailable = false,
                     errorMessage = "No Forge Profile found on this device."
                 )
             } else {
+                val avatar = readAvatarPayload()
                 ForgeProfilePreview(
                     uid = profile.uid,
                     forgeName = profile.forgeName,
                     currentStage = profile.currentStage,
                     currentTitle = profile.currentTitle,
-                    avatarSummary = readAvatarSummary(),
+                    avatarSummary = avatar?.summary,
+                    heroStyle = avatar?.heroStyle,
+                    heroColor = avatar?.heroColor,
+                    godotModelPath = avatar?.godotModelPath,
+                    avatarConfigJson = avatar?.configJson,
                     timelineEventCount = readTimelineCount(),
                     isAvailable = true,
                     errorMessage = null
@@ -105,6 +138,10 @@ class ForgeProfileImporter @Inject constructor(
                 currentStage = null,
                 currentTitle = null,
                 avatarSummary = null,
+                heroStyle = null,
+                heroColor = null,
+                godotModelPath = null,
+                avatarConfigJson = null,
                 timelineEventCount = 0,
                 isAvailable = false,
                 errorMessage = e.message ?: "Unauthorized Forge Profile access"
@@ -157,29 +194,59 @@ class ForgeProfileImporter @Inject constructor(
             )
         }
 
-    private fun readAvatarSummary(): String? =
+    private data class AvatarPayload(
+        val summary: String?,
+        val heroStyle: String?,
+        val heroColor: String?,
+        val godotModelPath: String?,
+        val configJson: String?,
+    )
+
+    private fun readAvatarPayload(): AvatarPayload? =
         context.contentResolver.query(
             ForgeProfileContract.AVATAR_URI,
-            arrayOf(
-                ForgeProfileContract.Columns.AVATAR_HAIR,
-                ForgeProfileContract.Columns.AVATAR_EYES,
-                ForgeProfileContract.Columns.AVATAR_SKIN,
-                ForgeProfileContract.Columns.AVATAR_CLOTHING,
-                ForgeProfileContract.Columns.AVATAR_VERSION
-            ),
+            AVATAR_PROJECTION,
             null,
             null,
             null
         )?.use { cursor ->
             if (!cursor.moveToFirst()) return null
-            listOf(
-                cursor.getString(cursor.col(ForgeProfileContract.Columns.AVATAR_HAIR)),
-                cursor.getString(cursor.col(ForgeProfileContract.Columns.AVATAR_EYES)),
-                cursor.getString(cursor.col(ForgeProfileContract.Columns.AVATAR_SKIN)),
-                cursor.getString(cursor.col(ForgeProfileContract.Columns.AVATAR_CLOTHING)),
-                "v${cursor.getInt(cursor.col(ForgeProfileContract.Columns.AVATAR_VERSION))}"
-            ).joinToString("|")
+            val summaryCol = cursor.colOrNull(ForgeProfileContract.Columns.AVATAR_SUMMARY)
+            val summary = summaryCol?.let { cursor.getString(it) }
+                ?: legacyAvatarSummary(cursor)
+            AvatarPayload(
+                summary = summary,
+                heroStyle = cursor.getStringOrNull(ForgeProfileContract.Columns.HERO_STYLE),
+                heroColor = cursor.getStringOrNull(ForgeProfileContract.Columns.HERO_COLOR),
+                godotModelPath = cursor.getStringOrNull(ForgeProfileContract.Columns.GODOT_MODEL_PATH),
+                configJson = cursor.getStringOrNull(ForgeProfileContract.Columns.AVATAR_CONFIG_JSON),
+            )
         }
+
+    private fun legacyAvatarSummary(cursor: Cursor): String? {
+        val hair = cursor.getStringOrNull(ForgeProfileContract.Columns.AVATAR_HAIR) ?: return null
+        val eyes = cursor.getStringOrNull(ForgeProfileContract.Columns.AVATAR_EYES) ?: return null
+        val skin = cursor.getStringOrNull(ForgeProfileContract.Columns.AVATAR_SKIN) ?: return null
+        val clothing = cursor.getStringOrNull(ForgeProfileContract.Columns.AVATAR_CLOTHING) ?: return null
+        val version = cursor.getIntOrNull(ForgeProfileContract.Columns.AVATAR_VERSION) ?: 1
+        return listOf(hair, eyes, skin, clothing, "v$version").joinToString("|")
+    }
+
+    private companion object {
+        val AVATAR_PROJECTION = arrayOf(
+            ForgeProfileContract.Columns.AVATAR_HAIR,
+            ForgeProfileContract.Columns.AVATAR_EYES,
+            ForgeProfileContract.Columns.AVATAR_SKIN,
+            ForgeProfileContract.Columns.AVATAR_CLOTHING,
+            ForgeProfileContract.Columns.AVATAR_VERSION,
+            ForgeProfileContract.Columns.AVATAR_SHARD_LEVEL,
+            ForgeProfileContract.Columns.HERO_STYLE,
+            ForgeProfileContract.Columns.HERO_COLOR,
+            ForgeProfileContract.Columns.GODOT_MODEL_PATH,
+            ForgeProfileContract.Columns.AVATAR_SUMMARY,
+            ForgeProfileContract.Columns.AVATAR_CONFIG_JSON,
+        )
+    }
 
     private fun readTimelineCount(): Int =
         context.contentResolver.query(
@@ -227,5 +294,15 @@ class ForgeProfileImporter @Inject constructor(
     private fun Cursor.getStringOrNull(column: String): String? {
         val index = getColumnIndex(column)
         return if (index >= 0 && !isNull(index)) getString(index) else null
+    }
+
+    private fun Cursor.colOrNull(name: String): Int? {
+        val index = getColumnIndex(name)
+        return if (index >= 0) index else null
+    }
+
+    private fun Cursor.getIntOrNull(column: String): Int? {
+        val index = getColumnIndex(column)
+        return if (index >= 0 && !isNull(index)) getInt(index) else null
     }
 }

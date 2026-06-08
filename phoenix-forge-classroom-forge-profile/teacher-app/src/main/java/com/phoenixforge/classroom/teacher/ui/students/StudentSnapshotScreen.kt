@@ -27,7 +27,7 @@ import kotlin.math.pow
 
 @Composable
 fun StudentSnapshotScreen(
-    onBack: () -> Unit,
+    onBack: (() -> Unit)? = null,
     viewModel: StudentSnapshotViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsState()
@@ -36,11 +36,15 @@ fun StudentSnapshotScreen(
         topBar = {
             TopAppBar(
                 title = { Text("Student Snapshot (read-only)") },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                navigationIcon = if (onBack != null) {
+                    {
+                        IconButton(onClick = onBack) {
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        }
                     }
-                }
+                } else {
+                    {}
+                },
             )
         }
     ) { padding ->

@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import android.widget.Toast
 import com.phoenixforge.profile.domain.avatar.AvatarHeroCatalog
+import com.phoenixforge.profile.domain.copy.AppBoundaryCopy
+import com.phoenixforge.profile.domain.model.ProfileRole
 import com.phoenixforge.profile.ui.interop.ExternalApps
 import com.phoenixforge.profile.ui.navigation.Screen
 import com.phoenixforge.profile.ui.studio.AvatarPreview
@@ -34,8 +36,14 @@ fun DashboardScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text("Forge Identity", style = MaterialTheme.typography.headlineLarge)
+        Text(
+            AppBoundaryCopy.dashboardBoundaryLine(ProfileRole.fromStorageKey(state.profile?.profileRole)),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(top = 4.dp),
+        )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         Card(modifier = Modifier.fillMaxWidth()) {
             Row(
@@ -81,11 +89,21 @@ fun DashboardScreen(
                 Text("Push avatar to Ezra's tablet")
             }
             Text(
-                "Manual push only — open Student Edition on his tablet and pull the snapshot when you're ready.",
+                AppBoundaryCopy.pushAvatarHint(),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 4.dp),
             )
+        }
+
+        if (AppBoundaryCopy.canAccessParentGate(ProfileRole.fromStorageKey(state.profile?.profileRole))) {
+            Spacer(modifier = Modifier.height(8.dp))
+            OutlinedButton(
+                onClick = { onNavigate(Screen.TeacherGate.route) },
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(AppBoundaryCopy.PARENT_GATE_TITLE)
+            }
         }
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -117,7 +135,7 @@ fun DashboardScreen(
                         Text("Profile ID", style = MaterialTheme.typography.labelMedium)
                         Text(uid, style = MaterialTheme.typography.bodySmall)
                         Text(
-                            "Share this ID with your teacher to link profiles.",
+                            "Share with Teacher Edition to link expedition snapshots — identity stays here.",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )

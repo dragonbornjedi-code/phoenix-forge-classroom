@@ -35,7 +35,7 @@ fun ImportForgeProfileScreen(viewModel: ImportForgeProfileViewModel = hiltViewMo
         item {
             Text("Import Forge Profile", style = MaterialTheme.typography.headlineLarge)
             Text(
-                "Manual pull only — your steward pushes from Forge Profile when you're ready.",
+                "Manual pull only — your parent pushes from Forge Profile when you're ready.",
                 style = MaterialTheme.typography.bodyMedium
             )
         }
@@ -52,6 +52,15 @@ fun ImportForgeProfileScreen(viewModel: ImportForgeProfileViewModel = hiltViewMo
                         Text("Stage: ${preview.currentStage ?: "—"}", style = MaterialTheme.typography.bodySmall)
                         Text("Timeline events: ${preview.timelineEventCount}", style = MaterialTheme.typography.bodySmall)
                         Text("Avatar: ${preview.avatarSummary ?: "—"}", style = MaterialTheme.typography.bodySmall)
+                        preview.heroStyle?.let { style ->
+                            Text(
+                                "Hero: $style · ${preview.heroColor ?: "—"}",
+                                style = MaterialTheme.typography.bodySmall,
+                            )
+                        }
+                        preview.godotModelPath?.let { path ->
+                            Text("Godot: $path", style = MaterialTheme.typography.labelSmall)
+                        }
                         ImportedHeroLookParser.parse(preview.avatarSummary)?.let { look ->
                             HearthWelcomeCard(
                                 forgeName = preview.forgeName,

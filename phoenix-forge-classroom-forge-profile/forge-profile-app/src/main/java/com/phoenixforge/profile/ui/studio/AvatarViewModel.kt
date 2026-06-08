@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.phoenixforge.profile.data.export.ProfileManualPushExporter
 import com.phoenixforge.profile.domain.avatar.AvatarHeroCatalog
+import com.phoenixforge.profile.domain.avatar.AvatarShardCatalog
 import com.phoenixforge.profile.domain.model.Avatar
 import com.phoenixforge.profile.domain.repository.ProfileRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,6 +21,8 @@ data class AvatarStudioState(
     val draftStyle: String = "explorer",
     val draftColor: String = "blue",
     val draftSkinTone: String = "medium",
+    val draftShardLevel: Int = 0,
+    val suggestedShardLevel: Int = 2,
     val isLoading: Boolean = false,
     val lastSavedVersion: Int = 0,
 )
@@ -35,16 +38,30 @@ class AvatarViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
+            repository.getProfile().collect { profile ->
+                val suggested = AvatarShardCatalog.suggestFromAge(profile?.ageYears)
+                _state.value = _state.value.copy(suggestedShardLevel = suggested)
+            }
+        }
+        viewModelScope.launch {
             repository.getAvatarHistory().collect { history ->
                 val latest = history.firstOrNull()
                 if (latest == null) {
-                    val seeded = AvatarHeroCatalog.defaultAvatar()
+                    val suggested = _state.value.suggestedShardLevel
+                    val seeded = AvatarHeroCatalog.buildAvatar(
+                        style = "explorer",
+                        color = "blue",
+                        skinTone = "medium",
+                        version = 1,
+                        shardLevel = suggested,
+                    )
                     repository.saveAvatar(seeded)
-                    _state.value = AvatarStudioState(
+                    _state.value = _state.value.copy(
                         currentAvatar = seeded,
                         draftStyle = seeded.hairType,
                         draftColor = seeded.eyeColor,
                         draftSkinTone = seeded.skinTone,
+                        draftShardLevel = seeded.shardLevel,
                         lastSavedVersion = seeded.version,
                     )
                 } else {
@@ -53,6 +70,7 @@ class AvatarViewModel @Inject constructor(
                         draftStyle = AvatarHeroCatalog.normalizeStyle(latest.hairType),
                         draftColor = AvatarHeroCatalog.normalizeColor(latest.eyeColor),
                         draftSkinTone = AvatarHeroCatalog.normalizeSkinTone(latest.skinTone),
+                        draftShardLevel = latest.shardLevel,
                         lastSavedVersion = latest.version,
                     )
                 }
@@ -75,6 +93,15 @@ class AvatarViewModel @Inject constructor(
         persistDraft()
     }
 
+    fun selectShardLevel(level: Int) {
+        _state.value = _state.value.copy(draftShardLevel = AvatarShardCatalog.clamp(level))
+        persistDraft()
+    }
+
+    fun applySuggestedShard() {
+        selectShardLevel(_state.value.suggestedShardLevel)
+    }
+
     fun randomize() {
         val randomized = AvatarHeroCatalog.randomAvatar(_state.value.currentAvatar)
         _state.value = _state.value.copy(
@@ -93,6 +120,7 @@ class AvatarViewModel @Inject constructor(
             color = current.draftColor,
             skinTone = current.draftSkinTone,
             version = current.currentAvatar?.version ?: 1,
+            shardLevel = current.draftShardLevel,
             timestamp = current.currentAvatar?.timestamp ?: java.time.Instant.now(),
             id = current.currentAvatar?.id ?: java.util.UUID.randomUUID().toString(),
         )
@@ -107,6 +135,7 @@ class AvatarViewModel @Inject constructor(
             color = current.draftColor,
             skinTone = current.draftSkinTone,
             version = nextVersion,
+            shardLevel = current.draftShardLevel,
             id = base?.id ?: java.util.UUID.randomUUID().toString(),
         )
         viewModelScope.launch {

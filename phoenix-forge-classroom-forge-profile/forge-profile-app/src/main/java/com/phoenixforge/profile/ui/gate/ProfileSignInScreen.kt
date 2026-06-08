@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.phoenixforge.profile.domain.copy.AppBoundaryCopy
 import com.phoenixforge.profile.domain.model.ForgeProfile
 import com.phoenixforge.profile.domain.model.ProfileRole
 
@@ -62,6 +63,11 @@ fun ProfileSignInScreen(
         Text(
             "Choose or create the profile for this device. You bring the story — nothing is assumed.",
             style = MaterialTheme.typography.bodyMedium
+        )
+        Text(
+            AppBoundaryCopy.FORGE_PROFILE_OWNS,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
 
         if (existingProfile != null) {
@@ -111,7 +117,7 @@ fun ProfileSignInScreen(
 
                     Text("Who is this profile for?", style = MaterialTheme.typography.labelLarge)
                     ProfileRole.entries.forEach { role ->
-                        Row(
+                        Column(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .selectable(
@@ -120,13 +126,22 @@ fun ProfileSignInScreen(
                                     role = Role.RadioButton
                                 )
                                 .padding(vertical = 4.dp),
-                            verticalAlignment = Alignment.CenterVertically
                         ) {
-                            RadioButton(
-                                selected = profileRole == role,
-                                onClick = null
-                            )
-                            Text(role.label, modifier = Modifier.padding(start = 8.dp))
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                RadioButton(
+                                    selected = profileRole == role,
+                                    onClick = null
+                                )
+                                Text(role.label, modifier = Modifier.padding(start = 8.dp))
+                            }
+                            if (profileRole == role) {
+                                Text(
+                                    AppBoundaryCopy.signInBoundaryHint(role),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.padding(start = 48.dp, top = 2.dp),
+                                )
+                            }
                         }
                     }
 

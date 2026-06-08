@@ -2,8 +2,10 @@ package com.phoenixforge.profile.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.phoenixforge.profile.domain.model.ArtifactSource
 import com.phoenixforge.profile.domain.model.ArtifactType
 import com.phoenixforge.profile.domain.model.EventType
+import com.phoenixforge.profile.domain.model.MemoryCategory
 
 @Entity(tableName = "profiles")
 data class ProfileEntity(
@@ -28,7 +30,8 @@ data class AvatarEntity(
     val skinTone: String,
     val clothingId: String,
     val version: Int,
-    val timestamp: Long
+    val shardLevel: Int = 0,
+    val timestamp: Long,
 )
 
 @Entity(tableName = "identity_snapshots")
@@ -48,7 +51,10 @@ data class MemoryArtifactEntity(
     val localPath: String,
     val checksum: String,
     val capturedAt: Long,
-    val note: String?
+    val note: String?,
+    val category: MemoryCategory = MemoryCategory.FAMILY,
+    val source: ArtifactSource = ArtifactSource.DEVICE_GALLERY,
+    val syncedToStudent: Boolean = false,
 )
 
 @Entity(tableName = "timeline_events")

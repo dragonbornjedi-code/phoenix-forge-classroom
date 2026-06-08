@@ -33,6 +33,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.phoenixforge.profile.domain.avatar.AvatarHeroCatalog
+import com.phoenixforge.profile.domain.avatar.AvatarShardCatalog
+import com.phoenixforge.profile.domain.copy.AppBoundaryCopy
 
 @Composable
 fun AvatarStudioScreen(
@@ -48,7 +50,7 @@ fun AvatarStudioScreen(
     ) {
         Text("Avatar Studio", style = MaterialTheme.typography.headlineLarge)
         Text(
-            "KayKit hero · saved v${state.lastSavedVersion}",
+            "KayKit hero · shard ${state.draftShardLevel} · v${state.lastSavedVersion}",
             style = MaterialTheme.typography.bodyMedium,
         )
         Text(
@@ -87,6 +89,13 @@ fun AvatarStudioScreen(
             label = AvatarHeroCatalog::displaySkinTone,
         )
 
+        ShardLevelSection(
+            selected = state.draftShardLevel,
+            suggested = state.suggestedShardLevel,
+            onSelect = viewModel::selectShardLevel,
+            onApplySuggested = viewModel::applySuggestedShard,
+        )
+
         Spacer(modifier = Modifier.weight(1f))
 
         Row(
@@ -112,7 +121,7 @@ fun AvatarStudioScreen(
         }
 
         Text(
-            "Manual push only — steward decides when Ezra's tablet updates.",
+            AppBoundaryCopy.pushAvatarHint(),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(top = 8.dp),
@@ -150,6 +159,62 @@ private fun HeroChipSection(
                         modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
                         style = MaterialTheme.typography.labelLarge,
                     )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ShardLevelSection(
+    selected: Int,
+    suggested: Int,
+    onSelect: (Int) -> Unit,
+    onApplySuggested: () -> Unit,
+) {
+    val tier = AvatarShardCatalog.tier(selected)
+    Column(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
+        Text("Shard tier (0–6)", style = MaterialTheme.typography.titleMedium)
+        Text(
+            "${tier.title} — ${tier.hint}",
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        if (selected != suggested) {
+            Text(
+                "Suggested for age: $suggested (${AvatarShardCatalog.tier(suggested).title})",
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier
+                    .padding(top = 4.dp)
+                    .clickable { onApplySuggested() },
+            )
+        }
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.padding(top = 8.dp),
+        ) {
+            items(AvatarShardCatalog.tiers) { shard ->
+                val isSelected = shard.level == selected
+                Card(
+                    modifier = Modifier
+                        .clickable { onSelect(shard.level) }
+                        .then(
+                            if (isSelected) {
+                                Modifier.border(
+                                    2.dp,
+                                    MaterialTheme.colorScheme.primary,
+                                    MaterialTheme.shapes.medium,
+                                )
+                            } else {
+                                Modifier
+                            },
+                        ),
+                ) {
+                    Column(modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)) {
+                        Text("${shard.level}", style = MaterialTheme.typography.titleMedium)
+                        Text(shard.title, style = MaterialTheme.typography.labelSmall)
+                    }
                 }
             }
         }

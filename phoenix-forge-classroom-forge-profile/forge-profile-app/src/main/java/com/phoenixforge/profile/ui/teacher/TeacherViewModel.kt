@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.phoenixforge.profile.domain.auth.AuthProvider
 import com.phoenixforge.profile.domain.auth.AuthResult
+import com.phoenixforge.profile.domain.copy.AppBoundaryCopy
 import com.phoenixforge.profile.domain.model.TeacherMetadata
 import com.phoenixforge.profile.domain.repository.ProfileRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -53,11 +54,11 @@ class TeacherViewModel @Inject constructor(
                 )
                 AuthResult.Denied -> _state.value = _state.value.copy(
                     isAuthorized = false,
-                    gateMessage = "Access denied."
+                    gateMessage = AppBoundaryCopy.GATE_DENIED
                 )
                 AuthResult.NotConfigured -> _state.value = _state.value.copy(
                     isAuthorized = false,
-                    gateMessage = "Parent access is not configured on this device yet."
+                    gateMessage = AppBoundaryCopy.GATE_NOT_CONFIGURED
                 )
             }
         }
@@ -72,11 +73,11 @@ class TeacherViewModel @Inject constructor(
                 )
                 AuthResult.Denied -> _state.value = _state.value.copy(
                     isAuthorized = false,
-                    gateMessage = "Could not enable parent access."
+                    gateMessage = AppBoundaryCopy.GATE_ENABLE_FAILED
                 )
                 AuthResult.NotConfigured -> _state.value = _state.value.copy(
                     isAuthorized = false,
-                    gateMessage = "Parent access setup is unavailable."
+                    gateMessage = AppBoundaryCopy.GATE_SETUP_UNAVAILABLE
                 )
             }
         }

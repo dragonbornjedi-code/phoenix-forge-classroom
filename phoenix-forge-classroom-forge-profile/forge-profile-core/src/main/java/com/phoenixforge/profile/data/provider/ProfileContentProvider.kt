@@ -7,8 +7,10 @@ import android.content.UriMatcher
 import android.database.Cursor
 import android.database.MatrixCursor
 import android.net.Uri
+import android.os.ParcelFileDescriptor
 import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.runBlocking
+import java.io.File
 
 /**
  * Exposes DTO-safe projections only. All reads go through [ProfileExportReader], not Room.
@@ -19,6 +21,8 @@ class ProfileContentProvider : ContentProvider() {
         addURI(ProfileContract.AUTHORITY, ProfileContract.PATH_PROFILE, MATCH_PROFILE)
         addURI(ProfileContract.AUTHORITY, ProfileContract.PATH_AVATAR, MATCH_AVATAR)
         addURI(ProfileContract.AUTHORITY, ProfileContract.PATH_TIMELINE, MATCH_TIMELINE)
+        addURI(ProfileContract.AUTHORITY, ProfileContract.PATH_MEMORIES, MATCH_MEMORIES)
+        addURI(ProfileContract.AUTHORITY, "${ProfileContract.PATH_MEMORY_FILE}/*", MATCH_MEMORY_FILE)
     }
 
     override fun onCreate(): Boolean = true
@@ -69,14 +73,42 @@ class ProfileContentProvider : ContentProvider() {
                     events.forEach { dto -> addMappedRow(columns, timelineRow(dto)) }
                 }
             }
+            MATCH_MEMORIES -> runBlocking {
+                val memories = reader.readMemories()
+                val columns = resolveProjection(
+                    projection,
+                    ProfileContract.MemoriesProjection.COLUMNS
+                )
+                matrixFromColumns(columns) {
+                    memories.forEach { dto -> addMappedRow(columns, memoryRow(dto)) }
+                }
+            }
             else -> null
         }
+    }
+
+    override fun openFile(uri: Uri, mode: String): ParcelFileDescriptor? {
+        enforceReadPermission()
+        if (uriMatcher.match(uri) != MATCH_MEMORY_FILE) return null
+        val artifactId = uri.lastPathSegment ?: return null
+        val ctx = context ?: return null
+        val memoriesDir = File(ctx.filesDir, "memories")
+        val photo = File(memoriesDir, "$artifactId.jpg")
+        val audio = File(memoriesDir, "$artifactId.m4a")
+        val file = when {
+            photo.exists() -> photo
+            audio.exists() -> audio
+            else -> return null
+        }
+        return ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY)
     }
 
     override fun getType(uri: Uri): String? = when (uriMatcher.match(uri)) {
         MATCH_PROFILE -> ProfileContract.MIME_PROFILE
         MATCH_AVATAR -> ProfileContract.MIME_AVATAR
         MATCH_TIMELINE -> ProfileContract.MIME_TIMELINE
+        MATCH_MEMORIES -> ProfileContract.MIME_MEMORIES
+        MATCH_MEMORY_FILE -> ProfileContract.MIME_MEMORY_FILE
         else -> null
     }
 
@@ -116,7 +148,13 @@ class ProfileContentProvider : ContentProvider() {
         ProfileContract.Columns.AVATAR_EYES to dto.eyeColor,
         ProfileContract.Columns.AVATAR_SKIN to dto.skinTone,
         ProfileContract.Columns.AVATAR_CLOTHING to dto.clothingId,
-        ProfileContract.Columns.AVATAR_VERSION to dto.version
+        ProfileContract.Columns.AVATAR_VERSION to dto.version,
+        ProfileContract.Columns.AVATAR_SHARD_LEVEL to dto.shardLevel,
+        ProfileContract.Columns.HERO_STYLE to dto.heroStyle,
+        ProfileContract.Columns.HERO_COLOR to dto.heroColor,
+        ProfileContract.Columns.GODOT_MODEL_PATH to dto.godotModelPath,
+        ProfileContract.Columns.AVATAR_SUMMARY to dto.avatarSummary,
+        ProfileContract.Columns.AVATAR_CONFIG_JSON to dto.avatarConfigJson,
     )
 
     private fun timelineRow(dto: TimelineEventExportDto): Map<String, Any?> = mapOf(
@@ -125,9 +163,23 @@ class ProfileContentProvider : ContentProvider() {
         ProfileContract.Columns.EVENT_TIMESTAMP to dto.timestampEpochMillis
     )
 
+    private fun memoryRow(dto: MemoryExportDto): Map<String, Any?> = mapOf(
+        ProfileContract.Columns.MEMORY_ID to dto.id,
+        ProfileContract.Columns.MEMORY_TYPE to dto.type,
+        ProfileContract.Columns.MEMORY_CATEGORY to dto.category,
+        ProfileContract.Columns.MEMORY_SOURCE to dto.source,
+        ProfileContract.Columns.MEMORY_CAPTURED_AT to dto.capturedAtEpochMillis,
+        ProfileContract.Columns.MEMORY_NOTE to dto.note,
+        ProfileContract.Columns.MEMORY_CHECKSUM to dto.checksum,
+        ProfileContract.Columns.MEMORY_SYNCED_TO_STUDENT to if (dto.syncedToStudent) 1 else 0,
+        ProfileContract.Columns.MEMORY_CONTENT_URI to dto.contentUri,
+    )
+
     private companion object {
         const val MATCH_PROFILE = 1
         const val MATCH_AVATAR = 2
         const val MATCH_TIMELINE = 3
+        const val MATCH_MEMORIES = 4
+        const val MATCH_MEMORY_FILE = 5
     }
 }

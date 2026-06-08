@@ -19,7 +19,7 @@ import com.phoenixforge.profile.data.local.entity.*
         DreamEntryEntity::class,
         LinkedStudentEntity::class
     ],
-    version = 4,
+    version = 6,
     exportSchema = false
 )
 @TypeConverters(Converters::class)

@@ -35,7 +35,7 @@ fun StudentsScreen(
         item {
             Text("Students", style = MaterialTheme.typography.headlineLarge)
             Text(
-                "Link student Forge Profiles you steward. Each student keeps their own profile on their device — you reference them here by profile ID.",
+                "Link student Forge Profiles you manage. Each student keeps their own profile on their device — you reference them here by profile ID.",
                 style = MaterialTheme.typography.bodyMedium
             )
         }

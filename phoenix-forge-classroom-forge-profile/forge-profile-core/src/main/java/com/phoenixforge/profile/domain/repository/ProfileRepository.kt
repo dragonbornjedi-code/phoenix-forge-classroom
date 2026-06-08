@@ -28,6 +28,7 @@ interface ProfileRepository {
 
     fun getMemoryArtifacts(): Flow<List<MemoryArtifact>>
     suspend fun saveMemoryArtifact(artifact: MemoryArtifact)
+    suspend fun markMemorySyncedToStudent(artifactId: String)
 
     fun getDreamEntries(): Flow<List<DreamEntry>>
     fun getAboutMeEntries(): Flow<List<AboutMeEntry>>

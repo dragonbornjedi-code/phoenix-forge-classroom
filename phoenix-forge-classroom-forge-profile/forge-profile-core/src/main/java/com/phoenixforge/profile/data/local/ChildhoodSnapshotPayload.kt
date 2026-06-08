@@ -28,5 +28,6 @@ data class AvatarSnapshot(
     val eyeColor: String,
     val skinTone: String,
     val clothingId: String,
-    val version: Int
+    val version: Int,
+    val shardLevel: Int = 0,
 )

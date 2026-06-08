@@ -23,7 +23,8 @@ data class Avatar(
     val skinTone: String,
     val clothingId: String,
     val version: Int,
-    val timestamp: Instant
+    val shardLevel: Int = 0,
+    val timestamp: Instant,
 )
 
 data class IdentitySnapshot(
@@ -56,13 +57,31 @@ data class DreamEntry(
     val timestamp: Instant
 )
 
+/** Where a memory belongs in Ezra's life archive (master step 0.63–0.65). */
+enum class MemoryCategory(val displayName: String) {
+    SELF("Ezra"),
+    FAMILY("Family time"),
+    SCHOOL("School & outings"),
+}
+
+/** How the artifact entered the capsule — offline-first by default. */
+enum class ArtifactSource(val displayName: String) {
+    CAMERA("Camera"),
+    DEVICE_GALLERY("Phone gallery"),
+    GOOGLE_DRIVE("Google Drive"),
+    AUDIO_MIC("Voice memo"),
+}
+
 data class MemoryArtifact(
     val id: String,
     val type: ArtifactType,
     val localPath: String,
     val checksum: String,
     val capturedAt: Instant,
-    val note: String?
+    val note: String?,
+    val category: MemoryCategory = MemoryCategory.FAMILY,
+    val source: ArtifactSource = ArtifactSource.DEVICE_GALLERY,
+    val syncedToStudent: Boolean = false,
 )
 
 enum class ArtifactType { PHOTO, AUDIO, DRAWING, SCAN, PROJECT }

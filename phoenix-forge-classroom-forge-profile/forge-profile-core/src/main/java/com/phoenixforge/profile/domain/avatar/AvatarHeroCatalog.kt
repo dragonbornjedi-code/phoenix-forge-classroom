@@ -77,6 +77,7 @@ object AvatarHeroCatalog {
         color: String,
         skinTone: String = "medium",
         version: Int,
+        shardLevel: Int = 0,
         timestamp: Instant = Instant.now(),
         id: String = UUID.randomUUID().toString(),
     ): Avatar {
@@ -88,6 +89,7 @@ object AvatarHeroCatalog {
             skinTone = normalizeSkinTone(skinTone),
             clothingId = clothingIdForStyle(normalizedStyle),
             version = version,
+            shardLevel = AvatarShardCatalog.clamp(shardLevel),
             timestamp = timestamp,
         )
     }
@@ -100,6 +102,7 @@ object AvatarHeroCatalog {
             color = color,
             skinTone = previous?.skinTone ?: "medium",
             version = (previous?.version ?: 0) + 1,
+            shardLevel = previous?.shardLevel ?: 0,
         )
     }
 
@@ -113,6 +116,7 @@ object AvatarHeroCatalog {
             skinTone = avatar.skinTone,
             clothingId = avatar.clothingId,
             avatarVersion = avatar.version,
+            shardLevel = avatar.shardLevel,
             godotMeshHints = GodotMeshHints(
                 modelPath = godotModelPath(avatar.hairType),
                 attachmentSlots = mapOf(
@@ -180,6 +184,7 @@ data class AvatarConfigV2(
     val skinTone: String,
     val clothingId: String,
     val avatarVersion: Int,
+    val shardLevel: Int = 0,
     val godotMeshHints: GodotMeshHints,
 )
 

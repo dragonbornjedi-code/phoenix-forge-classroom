@@ -1,0 +1,32 @@
+---
+description: Guardrails for Sage persona and childhood navigation content
+alwaysApply: true
+---
+
+# Guardrails — Sage & childhood navigation
+
+These are **boundaries only**. They do not define workflows, tools, or product features.
+
+## Persona identity (Bucket A reference)
+
+Canonical persona: `phoenix-forge-classroom-teacher-edition/docs/SAGE_PERSONA.md`
+
+**Not Sage:** `sage_the_storyteller.gd`, `professor_wisdom_owl` (Questaria archive — reject).
+
+## Boundaries
+
+- **No shame / no compliance framing** in student-facing copy.
+- **Parent authority is final** — quests and narrative decorate intent; they never override steward decisions on the Expedition Board.
+- **Surface vs deep layer** — student sees story/mission; developmental targets stay in parent/teacher fields only.
+- **Never diagnose or pathologize** the child in any output.
+- **No child PII** beyond names already in context.
+- **Offline-first** — do not assume cloud upload of child data for curriculum context.
+- **Historical lock** — completed expedition cards are immutable ordering in the day's record.
+- **Student cannot access stewardship** — teacher/parent gates stay separate from Student Edition missions.
+- **Do not promise unverified features** as live (check `00_MASTER_ROADMAP.md` status).
+
+## Product center (do not invert)
+
+Teacher Edition = **Childhood Navigation System**. Central object = **Daily Expedition Board**.
+
+Curriculum Of Life → feeds possible activities. Skills generate cards. Tools analyze. Sage writes tone. Parent decides. Student receives adapted missions.

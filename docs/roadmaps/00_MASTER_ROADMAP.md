@@ -5,9 +5,9 @@
 | Field | Value |
 |-------|--------|
 | **Finish line** | `5.00` |
-| **Current step** | `0.60` — next: `0.61` |
+| **Current step** | `0.67` — next: `0.68` |
 
-Current step: 0.60 — next: 0.61
+Current step: 0.67 — next: 0.68
 
 | **Protocol** | [cline_essence/SKILL.md](../cline_essence/SKILL.md) · [MASTER_PROTOCOL.md](../cline_essence/MASTER_PROTOCOL.md) |
 | **Tier 0** | [CONSTITUTION.md](../CONSTITUTION.md) · [registry/phoenix-forge-classroom.yaml](../../registry/phoenix-forge-classroom.yaml) |
@@ -129,13 +129,13 @@ Current step: 0.60 — next: 0.61
 | 0.58 | Profile | Avatar auto-save + Randomize | Room | [TESTED] |
 | 0.59 | Profile | `Avatar` model → `AvatarConfig` schema | FORGEPROFILE_SPEC | [TESTED] |
 | 0.60 | Profile | Avatar export JSON + share intent | File | [TESTED] |
-| 0.61 | Profile | Provider `/avatar` full payload | Student import | pending |
-| 0.62 | Profile | Avatar shard level 0–6 UI | AvatarStudio | pending |
-| 0.63 | Profile | Photo artifact capture | Camera | pending |
-| 0.64 | Profile | Audio artifact capture | Mic | pending |
-| 0.65 | Profile | Memory capsule records artifact | MemoryCapsule | pending |
-| 0.66 | Profile | Timeline from real capture events | Timeline | pending |
-| 0.67 | Profile | Steward gate copy clear | STUDENT_TEACHER_BOUNDARY | pending |
+| 0.61 | Profile | Provider `/avatar` full payload | Student import | [TESTED] |
+| 0.62 | Profile | Avatar shard level 0–6 UI | AvatarStudio | [TESTED] |
+| 0.63 | Profile | Photo artifact capture | Camera | [TESTED] |
+| 0.64 | Profile | Audio artifact capture | Mic | [TESTED] |
+| 0.65 | Profile | Memory capsule records artifact | MemoryCapsule | [TESTED] |
+| 0.66 | Profile | Timeline from real capture events | Timeline | [TESTED] |
+| 0.67 | Profile | Parent gate + three-app boundary copy | STUDENT_TEACHER_BOUNDARY | [TESTED] |
 | 0.68 | Student | Home usable 15 min parent-free | Field test | pending |
 | 0.69 | Student | QuestEngine + Quests UI stable | Phone | pending |
 | 0.70 | Student | WorldOrchestrator regression (no rip-out) | Unit/smoke | pending |

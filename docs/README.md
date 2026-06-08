@@ -38,7 +38,8 @@ This directory contains the **Core Architecture** and **Constitutional Mandates*
 - **[OFFLINE_DATA_AND_SYNC_DESIGN.md](OFFLINE_DATA_AND_SYNC_DESIGN.md):** Offline persistence and local sync.
 
 ### Shell-Specific Documentation
-- **[Teacher Edition Docs](../phoenix-forge-classroom-teacher-edition/docs/):** Expedition Board, Curriculum Of Life, [Lesson Planner](../phoenix-forge-classroom-teacher-edition/docs/LESSON_PLANNER_SPEC.md), [Sage Advisor](../phoenix-forge-classroom-teacher-edition/docs/SAGE_ADVISOR_SPEC.md).
+- **[Teacher Edition Docs](../phoenix-forge-classroom-teacher-edition/docs/):** Expedition Board, Curriculum Of Life, [Lesson Planner](../phoenix-forge-classroom-teacher-edition/docs/LESSON_PLANNER_SPEC.md), [Sage Advisor](../phoenix-forge-classroom-teacher-edition/docs/SAGE_ADVISOR_SPEC.md), [Sage Persona](../phoenix-forge-classroom-teacher-edition/docs/SAGE_PERSONA.md).
+- **[Gold-standard quests](content/quests/README.md):** `2026-02-gold-standard.json` (12 Sage quests — schema reference; rewrite Owl narrative before ship).
 - **[Student Edition Docs](../phoenix-forge-classroom-student-edition/docs/):** Experience Shell, [Companions Hub](../phoenix-forge-classroom-student-edition/docs/COMPANIONS_HUB_LAYOUT.md), Spark Companion, Identity Lenses.
 
 ## Contracts & Boundary

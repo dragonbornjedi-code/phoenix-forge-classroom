@@ -159,12 +159,15 @@ class ProfileRepositoryImpl @Inject constructor(
         dao.getMemoryArtifacts().map { list ->
             list.map {
                 MemoryArtifact(
-                    it.id,
-                    it.type,
-                    it.localPath,
-                    it.checksum,
-                    Instant.ofEpochMilli(it.capturedAt),
-                    it.note
+                    id = it.id,
+                    type = it.type,
+                    localPath = it.localPath,
+                    checksum = it.checksum,
+                    capturedAt = Instant.ofEpochMilli(it.capturedAt),
+                    note = it.note,
+                    category = it.category,
+                    source = it.source,
+                    syncedToStudent = it.syncedToStudent,
                 )
             }
         }
@@ -179,21 +182,30 @@ class ProfileRepositoryImpl @Inject constructor(
                 localPath = artifact.localPath,
                 checksum = artifact.checksum,
                 capturedAt = artifact.capturedAt.toEpochMilli(),
-                note = artifact.note
+                note = artifact.note,
+                category = artifact.category,
+                source = artifact.source,
+                syncedToStudent = artifact.syncedToStudent,
             )
         )
         insertTimelineEvent(
             TimelineEvent(
                 id = UUID.randomUUID().toString(),
-                title = "New Memory Captured",
+                title = "Memory: ${artifact.category.displayName}",
                 type = EventType.MEMORY_CAPTURED,
                 timestamp = Instant.now(),
                 metadata = listOf(
-                    timelineMetadata("artifact", category = "type", value = artifact.type.name)
+                    timelineMetadata("artifact", category = "type", value = artifact.type.name),
+                    timelineMetadata("artifact", category = "memory_category", value = artifact.category.name),
+                    timelineMetadata("artifact", category = "source", value = artifact.source.name),
                 )
             )
         )
         appendChildhoodStateSnapshot(requireProfileUid(), captureCurrentPayload())
+    }
+
+    override suspend fun markMemorySyncedToStudent(artifactId: String) {
+        dao.markMemorySyncedToStudent(artifactId)
     }
 
     override fun getDreamEntries(): Flow<List<DreamEntry>> =
@@ -377,7 +389,8 @@ class ProfileRepositoryImpl @Inject constructor(
                     eyeColor = it.eyeColor,
                     skinTone = it.skinTone,
                     clothingId = it.clothingId,
-                    version = it.version
+                    version = it.version,
+                    shardLevel = it.shardLevel,
                 )
             }
         )
@@ -457,7 +470,8 @@ class ProfileRepositoryImpl @Inject constructor(
         skinTone = skinTone,
         clothingId = clothingId,
         version = version,
-        timestamp = Instant.ofEpochMilli(timestamp)
+        shardLevel = shardLevel,
+        timestamp = Instant.ofEpochMilli(timestamp),
     )
 
     private fun AvatarEntity.toSummary(): String =
@@ -470,7 +484,8 @@ class ProfileRepositoryImpl @Inject constructor(
         skinTone = skinTone,
         clothingId = clothingId,
         version = version,
-        timestamp = timestamp.toEpochMilli()
+        shardLevel = shardLevel,
+        timestamp = timestamp.toEpochMilli(),
     )
 
     private fun AboutMeEntry.toEntity(): AboutMeEntryEntity = AboutMeEntryEntity(

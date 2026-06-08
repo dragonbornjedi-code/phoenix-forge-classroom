@@ -1,100 +1,87 @@
 package com.phoenixforge.classroom.teacher
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.phoenixforge.classroom.teacher.ui.curriculum.CurriculumDomainScreen
 import com.phoenixforge.classroom.teacher.ui.curriculum.CurriculumHomeScreen
 import com.phoenixforge.classroom.teacher.ui.curriculum.StarterLessonDetailScreen
 import com.phoenixforge.classroom.teacher.ui.curriculum.WeeklyAuditScreen
 import com.phoenixforge.classroom.teacher.ui.expedition.ExpeditionBoardScreen
-import com.phoenixforge.classroom.teacher.ui.profile.ForgeProfileViewerScreen
-import com.phoenixforge.classroom.teacher.ui.tile.TileDetailScreen
 import com.phoenixforge.classroom.teacher.ui.lesson.LessonPlannerScreen
+import com.phoenixforge.classroom.teacher.ui.navigation.TeacherRoutes
+import com.phoenixforge.classroom.teacher.ui.profile.ForgeProfileViewerScreen
 import com.phoenixforge.classroom.teacher.ui.sage.SageAdvisorScreen
 import com.phoenixforge.classroom.teacher.ui.students.StudentSnapshotScreen
-
-private object Routes {
-    const val CURRICULUM = "curriculum_home"
-    const val BOARD = "expedition_board"
-    const val PROFILE = "forge_profile"
-    const val CURRICULUM_DOMAIN = "curriculum_domain/{domainId}"
-    const val STARTER_LESSON = "starter_lesson/{lessonId}"
-    const val WEEKLY_AUDIT = "weekly_audit"
-    const val TILE = "tile_detail/{tileId}"
-    const val STUDENT_SNAPSHOT = "student_snapshot"
-    const val LESSON_PLANNER = "lesson_planner"
-    const val SAGE_ADVISOR = "sage_advisor"
-
-    fun curriculumDomain(domainId: String) = "curriculum_domain/$domainId"
-    fun starterLesson(lessonId: String) = "starter_lesson/$lessonId"
-    fun tile(id: String) = "tile_detail/$id"
-}
+import com.phoenixforge.classroom.teacher.ui.tile.TileDetailScreen
 
 @Composable
-fun TeacherNavGraph() {
-    val nav = rememberNavController()
-
-    NavHost(navController = nav, startDestination = Routes.CURRICULUM) {
-        composable(Routes.CURRICULUM) {
-            CurriculumHomeScreen(
-                onOpenExpedition = { nav.navigate(Routes.BOARD) },
-                onViewProfile = { nav.navigate(Routes.PROFILE) },
-                onViewStudentSnapshot = { nav.navigate(Routes.STUDENT_SNAPSHOT) },
-                onOpenDomain = { domainId -> nav.navigate(Routes.curriculumDomain(domainId.name)) },
-                onOpenLesson = { lessonId -> nav.navigate(Routes.starterLesson(lessonId)) },
-                onOpenWeeklyAudit = { nav.navigate(Routes.WEEKLY_AUDIT) },
-                onOpenLessonPlanner = { nav.navigate(Routes.LESSON_PLANNER) },
-                onOpenSageAdvisor = { nav.navigate(Routes.SAGE_ADVISOR) }
-            )
-        }
-        composable(Routes.BOARD) {
+fun TeacherNavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
+    NavHost(
+        navController = navController,
+        startDestination = TeacherRoutes.EXPEDITION,
+        modifier = modifier,
+    ) {
+        composable(TeacherRoutes.EXPEDITION) {
             ExpeditionBoardScreen(
-                onBack = { nav.popBackStack() },
-                onViewProfile = { nav.navigate(Routes.PROFILE) },
-                onViewStudentSnapshot = { nav.navigate(Routes.STUDENT_SNAPSHOT) },
-                onOpenCurriculum = { nav.navigate(Routes.CURRICULUM) },
-                onTileClick = { id -> nav.navigate(Routes.tile(id)) }
+                onBack = null,
+                onViewProfile = { navController.navigate(TeacherRoutes.PROFILE) },
+                onViewStudentSnapshot = { navController.navigate(TeacherRoutes.STUDENT) },
+                onOpenCurriculum = { navController.navigate(TeacherRoutes.CURRICULUM) },
+                onTileClick = { id -> navController.navigate(TeacherRoutes.tile(id)) },
             )
         }
-        composable(Routes.PROFILE) {
-            ForgeProfileViewerScreen(onBack = { nav.popBackStack() })
+        composable(TeacherRoutes.CURRICULUM) {
+            CurriculumHomeScreen(
+                onOpenExpedition = { navController.navigate(TeacherRoutes.EXPEDITION) },
+                onViewProfile = { navController.navigate(TeacherRoutes.PROFILE) },
+                onViewStudentSnapshot = { navController.navigate(TeacherRoutes.STUDENT) },
+                onOpenDomain = { domainId -> navController.navigate(TeacherRoutes.curriculumDomain(domainId.name)) },
+                onOpenLesson = { lessonId -> navController.navigate(TeacherRoutes.starterLesson(lessonId)) },
+                onOpenWeeklyAudit = { navController.navigate(TeacherRoutes.WEEKLY_AUDIT) },
+                onOpenLessonPlanner = { navController.navigate(TeacherRoutes.LESSON_PLANNER) },
+                onOpenSageAdvisor = { navController.navigate(TeacherRoutes.SAGE) },
+            )
         }
-        composable(Routes.STUDENT_SNAPSHOT) {
-            StudentSnapshotScreen(onBack = { nav.popBackStack() })
+        composable(TeacherRoutes.STUDENT) {
+            StudentSnapshotScreen(onBack = null)
+        }
+        composable(TeacherRoutes.SAGE) {
+            SageAdvisorScreen(onBack = null)
+        }
+        composable(TeacherRoutes.PROFILE) {
+            ForgeProfileViewerScreen(onBack = { navController.popBackStack() })
         }
         composable(
-            route = Routes.CURRICULUM_DOMAIN,
-            arguments = listOf(navArgument("domainId") { type = NavType.StringType })
+            route = TeacherRoutes.CURRICULUM_DOMAIN,
+            arguments = listOf(navArgument("domainId") { type = NavType.StringType }),
         ) {
             CurriculumDomainScreen(
-                onBack = { nav.popBackStack() },
-                onOpenLesson = { lessonId -> nav.navigate(Routes.starterLesson(lessonId)) }
+                onBack = { navController.popBackStack() },
+                onOpenLesson = { lessonId -> navController.navigate(TeacherRoutes.starterLesson(lessonId)) },
             )
         }
         composable(
-            route = Routes.STARTER_LESSON,
-            arguments = listOf(navArgument("lessonId") { type = NavType.StringType })
+            route = TeacherRoutes.STARTER_LESSON,
+            arguments = listOf(navArgument("lessonId") { type = NavType.StringType }),
         ) {
-            StarterLessonDetailScreen(onBack = { nav.popBackStack() })
+            StarterLessonDetailScreen(onBack = { navController.popBackStack() })
         }
-        composable(Routes.WEEKLY_AUDIT) {
-            WeeklyAuditScreen(onBack = { nav.popBackStack() })
+        composable(TeacherRoutes.WEEKLY_AUDIT) {
+            WeeklyAuditScreen(onBack = { navController.popBackStack() })
         }
-        composable(Routes.LESSON_PLANNER) {
-            LessonPlannerScreen(onBack = { nav.popBackStack() })
-        }
-        composable(Routes.SAGE_ADVISOR) {
-            SageAdvisorScreen(onBack = { nav.popBackStack() })
+        composable(TeacherRoutes.LESSON_PLANNER) {
+            LessonPlannerScreen(onBack = { navController.popBackStack() })
         }
         composable(
-            route = Routes.TILE,
-            arguments = listOf(navArgument("tileId") { type = NavType.StringType })
+            route = TeacherRoutes.TILE,
+            arguments = listOf(navArgument("tileId") { type = NavType.StringType }),
         ) {
-            TileDetailScreen(onBack = { nav.popBackStack() })
+            TileDetailScreen(onBack = { navController.popBackStack() })
         }
     }
 }

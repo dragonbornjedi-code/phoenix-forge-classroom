@@ -45,6 +45,9 @@ interface ProfileDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMemoryArtifact(artifact: MemoryArtifactEntity)
 
+    @Query("UPDATE memory_artifacts SET syncedToStudent = 1 WHERE id = :artifactId")
+    suspend fun markMemorySyncedToStudent(artifactId: String)
+
     @Query("SELECT * FROM identity_snapshots WHERE profileUid = :uid ORDER BY timestamp DESC")
     fun getIdentityHistory(uid: String): Flow<List<IdentitySnapshotEntity>>
 

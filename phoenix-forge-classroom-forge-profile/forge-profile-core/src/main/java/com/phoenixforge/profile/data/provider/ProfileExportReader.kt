@@ -22,16 +22,11 @@ class ProfileExportReader @Inject constructor(
             )
         }
 
-    suspend fun readLatestAvatar(): AvatarExportDto? =
-        repository.getAvatarHistory().firstOrNull()?.firstOrNull()?.let { avatar ->
-            AvatarExportDto(
-                hairType = avatar.hairType,
-                eyeColor = avatar.eyeColor,
-                skinTone = avatar.skinTone,
-                clothingId = avatar.clothingId,
-                version = avatar.version
-            )
-        }
+    suspend fun readLatestAvatar(): AvatarExportDto? {
+        val profile = repository.getProfile().firstOrNull() ?: return null
+        val avatar = repository.getAvatarHistory().firstOrNull()?.firstOrNull() ?: return null
+        return AvatarExportPayload.build(profile.uid, profile.forgeName, avatar)
+    }
 
     suspend fun readTimeline(): List<TimelineEventExportDto> =
         repository.getTimelineEvents().firstOrNull().orEmpty().map { event ->
@@ -39,6 +34,21 @@ class ProfileExportReader @Inject constructor(
                 title = event.title,
                 type = event.type.name,
                 timestampEpochMillis = event.timestamp.toEpochMilli()
+            )
+        }
+
+    suspend fun readMemories(): List<MemoryExportDto> =
+        repository.getMemoryArtifacts().firstOrNull().orEmpty().map { artifact ->
+            MemoryExportDto(
+                id = artifact.id,
+                type = artifact.type.name,
+                category = artifact.category.name,
+                source = artifact.source.name,
+                capturedAtEpochMillis = artifact.capturedAt.toEpochMilli(),
+                note = artifact.note,
+                checksum = artifact.checksum,
+                syncedToStudent = artifact.syncedToStudent,
+                contentUri = ProfileContract.memoryFileUri(artifact.id).toString(),
             )
         }
 }

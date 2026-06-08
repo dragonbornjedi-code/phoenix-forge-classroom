@@ -1,0 +1,939 @@
+[
+  {
+    "id": "SAGE-2026-02-001",
+    "realm": "thinking-tower",
+    "subcategory": "numeracy-pattern",
+    "title": "The Lost Constellation Map",
+    "story": "You found a scroll covered in stars \u2014 the night sky got scrambled! Constellations follow secret patterns, but a mischievous wind scattered the stars. Your job: study the patterns and put the stars back where they belong. Only someone who can see hidden order can restore the sky. Ready to be a Star Cartographer?",
+    "category_display": "The Thinking Tower",
+    "difficulty": 2,
+    "xp": 55,
+    "duration_minutes": 25,
+    "materials": [
+      "dark blue or black paper (large sheet)",
+      "gold or silver star stickers (at least 30)",
+      "a flashlight",
+      "crayons or markers",
+      "small objects for pattern-making (coins, buttons, pasta shapes)"
+    ],
+    "deep_objectives": {
+      "executive_function": "Pattern recognition and extension (AB, ABB, ABC), working memory (holding a 3-element pattern while reproducing it), planning (deciding where stars go before placing them)",
+      "social_emotional": "Frustration tolerance when a pattern is tricky, pride in creating something beautiful, experiencing competence in a mathematical domain",
+      "sensory": "Tactile input from sticker peeling and placement, proprioceptive grounding from pressing stickers firmly, visual processing of spatial arrangements against contrasting background",
+      "academic": "Pre-algebraic thinking (pattern recognition and extension), one-to-one correspondence, spatial reasoning, early geometry (shapes formed by star groupings)"
+    },
+    "steps": [
+      {
+        "instruction": "Lay the dark paper on the floor or table. This is your night sky. Shine the flashlight on it and say 'Stars, wake up!' three times.",
+        "timer": 30,
+        "sensory_load": 2,
+        "ef_demand": 1
+      },
+      {
+        "instruction": "Dad will place a row of star stickers in a pattern: big star, little star, big star, little star. Look carefully. Can you tell me what comes next? Place the next 4 stars to keep the pattern going.",
+        "timer": 120,
+        "sensory_load": 2,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "Now a trickier constellation! Dad makes: gold star, gold star, silver star, gold star, gold star, silver star. What comes next? Continue the pattern across the sky.",
+        "timer": 150,
+        "sensory_load": 2,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "MOVEMENT BREAK: Stand up and be a spinning star! Spin slowly with arms out for 5 seconds. Then freeze like a statue. Spin the other direction. Freeze! Do this 4 times.",
+        "timer": 60,
+        "sensory_load": 3,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "Now YOU are the Star Maker. Create your OWN constellation pattern using stickers. Make it so tricky that Dad can't figure out what comes next! Place at least 6 stars in your pattern, then challenge Dad.",
+        "timer": 240,
+        "sensory_load": 2,
+        "ef_demand": 4
+      },
+      {
+        "instruction": "Use crayons to draw lines connecting your star patterns into constellation shapes. Give each constellation a name. What does it look like? A dragon? A car? A dinosaur?",
+        "timer": 180,
+        "sensory_load": 1,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "COOL DOWN: Turn off the lights. Shine the flashlight on your star map and tell Dad the story of one of your constellations. Who lives there? What happens at night when the stars come out?",
+        "timer": 120,
+        "sensory_load": 1,
+        "ef_demand": 2
+      }
+    ],
+    "scaffolding": "If continuing a pattern is too hard, reduce to a simple AB pattern with only 2 types of stickers. Let Ezra place the sticker on top of a lightly drawn pencil mark showing where it goes. If creating his own pattern is overwhelming, offer a choice: 'Do you want your pattern to go big-small-big-small, or do you want to try three different sizes?' If sticker peeling is a fine motor challenge, pre-peel and stick them lightly to a plate so he only has to transfer them.",
+    "extension": "Introduce 3-element patterns (star-moon-heart) or growing patterns (1 star, 2 stars, 3 stars...). Use the constellation map to count total stars by groups. Challenge: Can he make a pattern using 4 different elements? Can he spot patterns in the actual night sky or in a star chart app?",
+    "celebration": "Star Cartographer Ezra! You cracked the code of the sky tonight. You didn't just follow patterns \u2014 you built them, and some were so clever they even stumped Dad. Your constellation map belongs in the Thinking Tower's Great Library.",
+    "parent_notes": "Pattern recognition is one of the strongest predictive skills for mathematical ability, and it's frequently a neurodivergent strength. Pay close attention to whether Ezra naturally gravitates toward more complex patterns than expected \u2014 many autistic children have exceptional pattern detection that goes unnoticed in traditional assessments. Watch his approach: does he need to verbalize the pattern ('big, small, big, small') or does he see it spatially? Both are valid but tell you about his processing style. If he creates patterns that YOU can't immediately detect, ask him to explain \u2014 he may be seeing dimensional relationships (color AND size simultaneously) that show advanced mathematical thinking. The flashlight storytelling at the end is a language production task disguised as creative play.",
+    "real_world_connection": "Pattern recognition shows up everywhere: in music (verse-chorus-verse), daily routines (wake up, eat, brush teeth, get dressed \u2014 same pattern every day), seasonal cycles, and eventually in reading (CVC words follow patterns) and math (number sequences, multiplication tables). When Ezra notices a pattern in real life \u2014 tiles on the floor, stripes on a shirt, rhythm in a song \u2014 that's this same skill at work."
+  },
+  {
+    "id": "SAGE-2026-02-002",
+    "realm": "thinking-tower",
+    "subcategory": "science-discovery",
+    "title": "The Gravity Experiment Station",
+    "story": "Mystery force alert: something pulls EVERYTHING down to the ground \u2014 rocks, feathers, water, even crumbs! But some things fall fast and some fall slow. Nobody has figured out why yet. You are the Gravity Scientist: ask 'What will happen?', then watch and see. Ready to run real experiments?",
+    "category_display": "The Thinking Tower",
+    "difficulty": 2,
+    "xp": 60,
+    "duration_minutes": 25,
+    "materials": [
+      "feather (or tissue paper piece)",
+      "small ball (tennis ball or similar)",
+      "piece of paper (flat, then crumpled)",
+      "coin or small rock",
+      "plastic cup",
+      "towel for cleanup",
+      "optional: timer or phone stopwatch"
+    ],
+    "deep_objectives": {
+      "executive_function": "Hypothesis formation (predicting before testing), sustained attention during observation, sequencing (predict-test-observe-record cycle), inhibitory control (waiting to drop items simultaneously, not just throwing them)",
+      "social_emotional": "Experiencing the scientific identity ('I am a scientist'), tolerating surprise when predictions are wrong (cognitive flexibility), pride in discovery regardless of whether predictions were correct",
+      "sensory": "Proprioceptive input from reaching and dropping, visual tracking of falling objects, vestibular awareness from looking up and down, tactile variety (feather, rock, paper, ball)",
+      "academic": "Physics foundations \u2014 gravity, air resistance, weight vs. size. Scientific method: hypothesis, experiment, observation, conclusion. Comparative language: faster, slower, heavier, lighter"
+    },
+    "steps": [
+      {
+        "instruction": "Gather your experiment items: a feather (or piece of tissue paper), a ball, a flat piece of paper, a coin or small rock, and a plastic cup. Lay them out on a table. Touch each one. Which feels heaviest? Lightest?",
+        "timer": 90,
+        "sensory_load": 2,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "PREDICTION TIME: Stand up and hold the feather in one hand and the ball in the other. If you drop them both at the same time, which one will hit the floor first? Point to the one you think wins. Tell Dad why you think so.",
+        "timer": 60,
+        "sensory_load": 1,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "DROP TEST #1: Hold both arms out at the same height. Dad counts 3-2-1-DROP! Let go of both at the exact same time. Watch carefully \u2014 which one hit the floor first? Was your prediction right?",
+        "timer": 60,
+        "sensory_load": 2,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "MOVEMENT BREAK: Be a feather! Float around the room moving as slowly and gently as you can. Now be a rock! Stomp heavy and fast. Switch back and forth when Dad calls out 'FEATHER!' or 'ROCK!'",
+        "timer": 90,
+        "sensory_load": 3,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "MYSTERY EXPERIMENT: Take the flat piece of paper and the coin. Drop them at the same time. Now CRUMPLE the paper into a tight ball. Drop the crumpled paper and the coin again. What changed? Why did the crumpled paper fall differently than the flat paper?",
+        "timer": 120,
+        "sensory_load": 2,
+        "ef_demand": 4
+      },
+      {
+        "instruction": "THE BIG QUESTION: Why do some things fall slowly? Tell Dad your best scientist answer. There's no wrong answer \u2014 real scientists guess and then keep testing!",
+        "timer": 90,
+        "sensory_load": 1,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "Draw your favorite experiment in your Scientist Notebook (any paper). Draw what you dropped, draw arrows showing which was fast and which was slow. Sign your name as a Real Gravity Scientist.",
+        "timer": 180,
+        "sensory_load": 1,
+        "ef_demand": 2
+      }
+    ],
+    "scaffolding": "If predicting is too abstract, offer binary choices: 'Do you think the feather hits first, or the ball?' If the simultaneous drop is motorically difficult, Dad holds both objects and Ezra watches and calls out which lands first. If the crumpled paper insight is too much, simply do more drop comparisons without requiring explanation \u2014 the observation itself is the learning. If drawing the experiment is frustrating, take a photo of the experiment setup instead and let Ezra narrate what happened.",
+    "extension": "Drop objects from different heights (standing on a step stool vs. kneeling). Try dropping objects into a cup of water \u2014 do the same rules apply? Introduce the concept of air resistance by dropping a paper parachute vs. a crumpled ball. Watch a slow-motion video of objects falling.",
+    "celebration": "Gravity Scientist Ezra \u2014 you ran experiments the way real scientists do! You predicted, tested, watched, and thought about why. Your discovery about crumpled paper vs. flat paper goes in the Tower's Book of Breakthroughs.",
+    "parent_notes": "The predict-test-observe cycle is the scientific method at its most basic, and at age 5, the most important part is the PREDICTING, not the correct answer. When Ezra predicts wrong and then sees what actually happens, that surprise moment is called a 'desirable difficulty' \u2014 it creates stronger memory encoding than getting it right the first time. Do NOT correct his predictions before the drop. Let reality be the teacher. Watch whether Ezra spontaneously tries variations beyond what you suggest \u2014 self-directed experimentation is a powerful indicator of scientific thinking and intrinsic curiosity. The feather/rock movement break is a proprioceptive regulation activity disguised as play \u2014 the heavy stomping provides grounding input before the higher-EF-demand crumpled paper task. If Ezra becomes fascinated and wants to drop EVERYTHING, let him. That's flow state, and it's more valuable than finishing the prescribed steps.",
+    "real_world_connection": "Understanding that things fall at different speeds connects to everyday observations: why a dropped sandwich hits the ground before a napkin blows away, why rain falls fast but snow floats, why you can catch a balloon but not a baseball. The predict-test-observe cycle is also how we solve everyday problems: 'I think this will work... let me try... what actually happened?'"
+  },
+  {
+    "id": "SAGE-2026-02-003",
+    "realm": "heart-garden",
+    "subcategory": "social-skills-friendship",
+    "title": "The Kindness Seed Planting Ceremony",
+    "story": "Three tiny glowing seeds wait for you \u2014 Kindness Seeds. They only grow when you do something kind: Helping Hands, Caring Words, or Sharing. Plant them today; every kindness you do makes the Heart Garden grow stronger. Will you be the gardener?",
+    "category_display": "The Heart Garden",
+    "difficulty": 2,
+    "xp": 50,
+    "duration_minutes": 25,
+    "materials": [
+      "3 small cups or pots with soil (real dirt)",
+      "3 real seeds (bean seeds work great \u2014 fast germination)",
+      "water in a small pitcher or cup",
+      "kindness cards (3 index cards or paper pieces)",
+      "crayons or markers",
+      "optional: actual small plant to see the 'end result'"
+    ],
+    "deep_objectives": {
+      "executive_function": "Planning (deciding what kind act to do before doing it), sequencing (multi-step planting process), working memory (holding the 3 types of kindness and matching them to actions), delayed gratification (the seed won't grow instantly)",
+      "social_emotional": "Identifying and categorizing prosocial behaviors (helping, verbal kindness, sharing), perspective-taking (what would make someone else feel good?), intrinsic motivation for kindness (the reward is the growing, not a prize), understanding cause and effect in social relationships",
+      "sensory": "Tactile engagement with soil, water, and seeds (rich texture variety), proprioceptive input from pressing soil and pouring water, calming nature-based sensory input",
+      "academic": "Biology basics \u2014 seeds need soil, water, and light to grow. Classification \u2014 sorting kindness into categories. Prediction \u2014 what will happen to the seeds over time?"
+    },
+    "steps": [
+      {
+        "instruction": "Look at the 3 empty cups with soil. Each one needs a Kindness Seed. Before we plant, let's learn the three kinds of kindness. Hold up your hands \u2014 'Helping Hands' means doing something useful for someone, like picking up something they dropped. Can you show me Helping Hands?",
+        "timer": 60,
+        "sensory_load": 2,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "Now 'Caring Words' \u2014 that's saying something nice that makes someone's heart feel warm, like 'I'm glad you're here' or 'I like playing with you.' Can you say a Caring Word to Dad right now?",
+        "timer": 60,
+        "sensory_load": 1,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "Last one: 'Sharing' \u2014 that's giving someone a turn with something you have, or splitting a snack, or making space for someone to sit next to you. Can you show me what sharing looks like with a toy or object near you?",
+        "timer": 60,
+        "sensory_load": 1,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "MOVEMENT BREAK: Let's be growing seeds! Start curled up tiny on the floor like a seed in the ground. Dad pours pretend rain (wiggle fingers above you). Slowly grow... push through the soil... stretch up tall like a flower reaching for the sun! Sway in the breeze. Do it 3 times, growing a little bigger each time.",
+        "timer": 90,
+        "sensory_load": 2,
+        "ef_demand": 1
+      },
+      {
+        "instruction": "PLANTING TIME: Take the first seed. This is the Helping Hands seed. Push your finger into the soil to make a little hole, drop the seed in, and cover it gently. While you plant it, tell Dad one Helping Hands thing you could do today (like putting your plate away or picking up toys).",
+        "timer": 120,
+        "sensory_load": 3,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "Plant seed #2 \u2014 the Caring Words seed. Same steps: poke a hole, drop the seed, cover it. While you plant, say one Caring Word to someone in your family (even a pet counts!).",
+        "timer": 120,
+        "sensory_load": 3,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "Plant seed #3 \u2014 the Sharing seed. Poke, drop, cover. While you plant, think of one thing you could share with someone today.",
+        "timer": 120,
+        "sensory_load": 3,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "Water all 3 seeds gently. Pour just a little bit \u2014 seeds don't like too much water. Put them in a sunny spot. On each card, draw a picture: Helping Hands on card 1, Caring Words on card 2, Sharing on card 3. Tape the cards to the matching cups.",
+        "timer": 180,
+        "sensory_load": 2,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "Every day this week, check on your seeds AND do one of the three kinds of kindness. When you do a kind thing, tell your seeds about it when you water them.",
+        "timer": 60,
+        "sensory_load": 1,
+        "ef_demand": 2
+      }
+    ],
+    "scaffolding": "If generating kindness examples is too abstract, offer multiple choice: 'Which is a Helping Hands kindness \u2014 picking up toys, or singing a song?' If the soil texture is aversive, use a spoon to dig the hole and let Ezra drop the seed in without touching soil directly. If the 3-type categorization is too much, simplify to just 'being kind' without categories and plant all 3 seeds with general kindness intentions. If the drawing step causes frustration, use stickers or magazine cutouts of people being kind instead.",
+    "extension": "Create a Kindness Calendar for the week where Ezra marks what type of kindness he did each day. Photograph the seeds daily and make a growth journal. Role-play scenarios where someone needs kindness and Ezra decides which type fits best. When the seeds sprout, give one plant to a neighbor or friend as an act of sharing.",
+    "celebration": "Heart Gardener Ezra! You planted three Kindness Seeds and already started them growing with real kindness. The Heart Garden got brighter the moment you planted. Watch them grow all week \u2014 every kind thing you do feeds them.",
+    "parent_notes": "This quest externalizes prosocial behavior in a way that makes it concrete and visible for a 5-year-old, which is critical for neurodivergent children who may struggle with the abstract concept of 'being kind.' The physical act of planting anchors the memory in motor and sensory experience, not just verbal instruction. The daily check-in creates a routine loop that reinforces prosocial thinking over time. Watch: does Ezra naturally generate kindness examples, or does he need prompting? Does he categorize correctly? Can he take the perspective of the receiver? These are all data points for his social cognition development. Critically, do NOT force genuine sharing if Ezra isn't ready \u2014 forced sharing teaches compliance, not generosity. The seed metaphor is key: kindness GROWS over time, it doesn't have to be perfect immediately.",
+    "real_world_connection": "The three types of kindness map directly to real social interactions: helping (picking up something someone dropped, holding a door), kind words (greeting someone, giving a compliment, saying thank you), and sharing (taking turns on a swing, splitting a snack, letting someone join a game). The daily seed check-in builds the habit of reflecting on social behavior, which is the foundation of social awareness."
+  },
+  {
+    "id": "SAGE-2026-02-004",
+    "realm": "heart-garden",
+    "subcategory": "inner-peace-mindfulness",
+    "title": "The Calm Cloud Journey",
+    "story": "Sometimes storms live inside us \u2014 heart beats fast, hands shaky, world too loud. There is a Calm Cloud above the noise where everything slows down. Today you learn the secret path to YOUR Calm Cloud. It's always there \u2014 you just need the path.",
+    "category_display": "The Heart Garden",
+    "difficulty": 1,
+    "xp": 40,
+    "duration_minutes": 20,
+    "materials": [
+      "a blanket or soft mat (the 'cloud')",
+      "a stuffed animal (the 'cloud companion')",
+      "a feather or cotton ball",
+      "optional: calming music or nature sounds on a phone",
+      "optional: lavender scent or favorite calming scent"
+    ],
+    "deep_objectives": {
+      "executive_function": "Inhibitory control (slowing the body and mind deliberately), attention regulation (focusing on breath/body during distraction), cognitive flexibility (shifting from activated state to calm state on purpose)",
+      "social_emotional": "Co-regulation modeling (doing it WITH Ezra, not TO him), developing an internal coping strategy that Ezra owns, normalizing big feelings ('Even the Giant gets storms'), emotional vocabulary \u2014 matching body states to feeling words",
+      "sensory": "Proprioceptive calming from deep pressure (weighted blanket or hugging stuffed animal), vestibular regulation from slow rocking, respiratory regulation from guided breathing, auditory calming from slow voice and optional music",
+      "academic": "Body science \u2014 lungs, breathing, heartbeat. Weather metaphor \u2014 storms, clouds, calm. Counting (breath counting up to 5)"
+    },
+    "steps": [
+      {
+        "instruction": "Spread your blanket on the floor. This is your Calm Cloud. Step onto it carefully \u2014 clouds are delicate! Pick up your stuffed animal. This is your Cloud Companion who rides with you.",
+        "timer": 45,
+        "sensory_load": 2,
+        "ef_demand": 1
+      },
+      {
+        "instruction": "Sit or lie down on your Cloud. Hold your Cloud Companion on your tummy. Take a biiiiig slow breath in through your nose \u2014 watch your Companion rise up on your tummy. Now breathe out slowly through your mouth \u2014 watch your Companion sink down. Do this 5 times. Your Companion is riding the waves of your breathing.",
+        "timer": 90,
+        "sensory_load": 1,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "Now let's find the calm. Close your eyes (or look at your Companion). Squeeze your Cloud Companion really tight for 5 seconds \u2014 tight, tight, tight! Now let go completely. Feel how your arms feel floppy and warm? That's the calm starting. Do it 3 more times: squeeze... and release.",
+        "timer": 90,
+        "sensory_load": 2,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "GENTLE MOVEMENT: Still on your Cloud, rock side to side veeeery slowly, like your cloud is floating through the sky. Rock 10 times. If your Companion starts to slide off, catch them gently.",
+        "timer": 60,
+        "sensory_load": 1,
+        "ef_demand": 1
+      },
+      {
+        "instruction": "Put the feather (or cotton ball) on your open palm. Breathe on it so gently that it barely moves. If it blows off your hand, that breath was too strong \u2014 try softer. See how many gentle breaths you can do before it falls. This is Cloud Breathing.",
+        "timer": 120,
+        "sensory_load": 1,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "Last step on the Cloud. Whisper 3 things you can hear right now. Whisper 2 things you can feel with your hands. Whisper 1 thing that makes you smile. This is your Landing Sequence \u2014 it brings you back from the Cloud.",
+        "timer": 90,
+        "sensory_load": 1,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "Step off your Cloud gently. How does your body feel compared to before? Is your heart fast or slow? Do you feel wiggly or calm? Tell Dad or show him with your hands (wide and fast, or slow and gentle).",
+        "timer": 60,
+        "sensory_load": 1,
+        "ef_demand": 2
+      }
+    ],
+    "scaffolding": "If lying still is too hard, do the entire quest sitting up against a wall or in a rocking chair (rhythmic vestibular input helps regulation). If breath counting is too abstract, use a pinwheel instead of a feather \u2014 the visual feedback of the spinning makes breath control visible. If eyes-closed is uncomfortable, that's fine \u2014 pick a single spot to look at. If the 3-2-1 grounding sequence is too many steps, simplify to: 'Tell me one thing you hear.' The entire quest can be shortened to just the breathing with Companion on the belly \u2014 that alone is a powerful tool.",
+    "extension": "Practice the Cloud Journey at different times of day and compare how it feels. Use it as a pre-bedtime routine. Teach Ezra to recognize when he NEEDS the Cloud ('My body feels stormy'). Eventually, he can do a mini-version anywhere: 3 breaths + squeeze hands + 3-2-1 grounding, without needing the blanket or stuffed animal. Create a 'Calm Cloud card' he can carry in his pocket as a visual reminder.",
+    "celebration": "Cloud Rider Ezra! You found your Calm Cloud and learned the secret path. Your Cloud will be there in the car, at the store, at bedtime \u2014 you carry the calm inside you now.",
+    "parent_notes": "This quest teaches progressive muscle relaxation (the squeeze-and-release), diaphragmatic breathing (belly breathing with the stuffed animal), and a modified 5-4-3-2-1 grounding technique \u2014 all evidence-based anxiety and regulation strategies adapted for a 5-year-old's concreteness. The stuffed animal on the belly is not a toy here; it's a biofeedback device \u2014 it makes the invisible (breath) visible and tangible. Critical: do this quest FIRST during a calm state, never during a meltdown. You're building a skill in safety so it's available during crisis. Practice it yourself alongside Ezra \u2014 co-regulation (your calm regulating his nervous system) is more powerful than any technique at this age. Watch: Does Ezra's breathing naturally deepen during the quest? Can he modulate the feather breath? Does his body visibly relax during the squeeze-release? If he resists any step, that's data about his regulation profile, not defiance. Over time, you can prompt 'Do you need your Cloud?' as an early intervention before escalation.",
+    "real_world_connection": "The breathing, squeezing, and grounding techniques in this quest are the same tools used by therapists, athletes, and astronauts to manage stress. When Ezra is overwhelmed at a store, overstimulated at a party, or can't fall asleep, these are the exact skills that help. The goal is that 'finding my Calm Cloud' becomes Ezra's own language for self-regulation \u2014 a phrase he can use to communicate what he needs."
+  },
+  {
+    "id": "SAGE-2026-02-005",
+    "realm": "adventure-grounds",
+    "subcategory": "gross-motor-whole-body",
+    "title": "The Obstacle Course of the Brave",
+    "story": "The Adventure Grounds have a tricky obstacle course \u2014 climbing, crawling, jumping, balancing. Even champions fall off the balance beam sometimes. Brave means getting back up and roaring! Ready to show this course who's boss?",
+    "category_display": "The Adventure Grounds",
+    "difficulty": 2,
+    "xp": 65,
+    "duration_minutes": 25,
+    "materials": [
+      "couch cushions (for stepping/jumping)",
+      "a blanket (tunnel to crawl under, draped over chairs)",
+      "a line of tape or string on the floor (balance beam)",
+      "a pillow (to jump over or onto safely)",
+      "a stuffed animal to carry (the 'rescue target')",
+      "timer or phone",
+      "optional: music to play during the course"
+    ],
+    "deep_objectives": {
+      "executive_function": "Sequencing (remembering the order of stations), working memory (holding the next step while doing the current one), planning (how to approach each obstacle), inhibitory control (waiting at the start line, not rushing dangerously)",
+      "social_emotional": "Persistence through challenge, reframing failure as 'practice' not 'losing,' body confidence, experiencing competence through physical mastery, requesting help appropriately when stuck",
+      "sensory": "Heavy proprioceptive input (crawling, jumping, climbing), vestibular stimulation (balance beam, spinning), deep pressure (crawling under weighted blanket), full-body sensory integration across multiple systems simultaneously",
+      "academic": "Spatial language (over, under, through, across, between), counting (stations, repetitions, timer), ordinal numbers (first, second, third station)"
+    },
+    "steps": [
+      {
+        "instruction": "BUILD YOUR COURSE: Help Dad set up 5 stations in a big loop. Station 1: Cushion Stepping Stones (couch cushions on the floor). Station 2: Tunnel Crawl (blanket over chairs). Station 3: Balance Beam (tape line on the floor). Station 4: Pillow Jump (jump over the pillow). Station 5: Animal Rescue (pick up the stuffed animal and carry it back to start).",
+        "timer": 300,
+        "sensory_load": 3,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "Walk the course SLOWLY first. Dad shows you each station and what to do. Don't rush \u2014 just learn the path. Step on the stones. Crawl through the tunnel. Walk the beam. Jump over the pillow. Grab the animal.",
+        "timer": 180,
+        "sensory_load": 2,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "PRACTICE ROUND: Go through the course at your own speed. If you fall off the beam, just step back on. If the tunnel is hard, take your time. This is just practice \u2014 there's no wrong way!",
+        "timer": 180,
+        "sensory_load": 3,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "REGULATION BREAK: Sit down and take 5 deep Drink some water. Shake your arms and legs out \u2014 let them go floppy like cooked spaghetti. This break recharges your muscles for the big run.",
+        "timer": 90,
+        "sensory_load": 1,
+        "ef_demand": 1
+      },
+      {
+        "instruction": "TIMED RUN: Ready? Dad starts the timer. Go through the whole course as well as you can \u2014 not just fast, but STRONG. Every stone stepped on. Full tunnel crawl. Whole balance beam. Clean jump. Rescue that animal! Dad tells you your time.",
+        "timer": 120,
+        "sensory_load": 4,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "VICTORY LAP: Go through once more, but this time in SLOW MOTION like a movie replay. Show Dad your best moves in sloooow motion. Make it dramatic and silly!",
+        "timer": 120,
+        "sensory_load": 2,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "Cool down: Lie flat on the floor like a starfish. Spread out as big as you can. Take 5 slow breaths. Tell Dad which station was your FAVORITE and which was HARDEST.",
+        "timer": 90,
+        "sensory_load": 1,
+        "ef_demand": 2
+      }
+    ],
+    "scaffolding": "If 5 stations are too many to remember, start with 3 and add one at a time as he masters the sequence. If the balance beam is too frustrating, widen the tape line or let Ezra hold Dad's hand. If the tunnel causes anxiety (enclosed space), make it shorter or drape the blanket loosely so he can see through it. If the timed run creates performance pressure, skip the timer and just do a 'show me your best' run. The slow-motion victory lap is specifically designed to down-regulate after the high-arousal timed run \u2014 don't skip it.",
+    "extension": "Add new stations: an army crawl under a jump rope held low, a spinning station (spin 3 times then walk straight), carrying a ball on a spoon while doing the course. Time multiple runs and see if Ezra beats his OWN time (competing with yourself, not others). Let Ezra design his own station and add it to the course. Try the course backward.",
+    "celebration": "Warrior Ezra! You built the course, practiced it, and conquered it. You fell off the balance beam and got RIGHT back on \u2014 that's real strength in body and heart.",
+    "parent_notes": "Obstacle courses are occupational therapy gold for neurodivergent children. They provide heavy proprioceptive and vestibular input that naturally regulates the nervous system, practice motor planning (praxis) which is often a challenge with dyspraxia or sensory processing differences, and build sequencing skills that transfer to academic tasks. The BUILD step is intentional \u2014 having Ezra help construct the course engages planning, spatial reasoning, and gives him ownership. Watch his motor planning: does he hesitate before each station? That's his brain building the motor plan \u2014 don't rush it. Does he avoid any station consistently? That likely maps to a specific sensory or motor challenge worth noting. The slow-motion victory lap serves a neurological purpose: it forces conscious motor control, which strengthens the brain-body connection more than fast execution. And it down-regulates the nervous system after the high-intensity timed run. The starfish cool-down is a grounding posture that provides broad proprioceptive feedback.",
+    "real_world_connection": "Obstacle courses practice the same skills used in playgrounds (climbing, balancing, navigating equipment), getting dressed (sequencing, body coordination, motor planning), handwriting (motor control develops gross-to-fine \u2014 big movements first build the foundation for small precise movements later), and navigating crowded spaces (spatial awareness, body control). The persistence piece \u2014 getting back up after falling \u2014 is a life skill that extends far beyond physical challenges."
+  },
+  {
+    "id": "SAGE-2026-02-006",
+    "realm": "adventure-grounds",
+    "subcategory": "fine-motor-hand-skills",
+    "title": "The Treasure Chest Workshop",
+    "story": "Treasure chest challenge: cut, fold, thread, and decorate a chest for adventure gems. It takes clever fingers and a patient heart. Are your fingers up for it?",
+    "category_display": "The Adventure Grounds",
+    "difficulty": 2,
+    "xp": 55,
+    "duration_minutes": 25,
+    "materials": [
+      "small cardboard box (like a tissue box or shoe box)",
+      "safety scissors",
+      "glue stick",
+      "hole punch (if available, otherwise pre-punch holes)",
+      "yarn or thick string (about 2 feet)",
+      "stickers, buttons, or small decorations",
+      "markers or crayons",
+      "small 'treasures' to put inside (coins, rocks, beads, small toys)"
+    ],
+    "deep_objectives": {
+      "executive_function": "Multi-step task completion (cut, fold, thread, decorate), planning (what goes where), sustained attention on a fine motor task (10+ minutes), task persistence when finger fatigue sets in",
+      "social_emotional": "Frustration tolerance (threading, cutting curves are hard), pride in creating something functional and beautiful, identity as a maker/builder, delayed gratification (building before playing with the finished product)",
+      "sensory": "Hand strengthening (cutting, squeezing glue), bilateral coordination (holding paper while cutting), tactile variety (cardboard, yarn, stickers, smooth beads), finger isolation (peeling stickers, threading), proprioceptive input to hands",
+      "academic": "Geometry (shapes, folding, spatial relationships), measurement concepts (enough yarn, right size), following sequential instructions, fine motor foundations for writing"
+    },
+    "steps": [
+      {
+        "instruction": "Look at your cardboard box. This is going to be your Treasure Chest! But first, a warrior needs strong fingers. Let's warm up: squeeze your hands into TIGHT fists for 5 seconds, then spread your fingers as wide as starfish. Do it 5 times. Now touch each finger to your thumb, one at a time \u2014 pointer, middle, ring, pinky. Go forward and backward.",
+        "timer": 60,
+        "sensory_load": 2,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "DECORATING THE OUTSIDE: Use markers or crayons to draw treasure designs on the outside of your box \u2014 gold coins, gems, stars, whatever treasure looks like to you. Cover every side you can reach.",
+        "timer": 240,
+        "sensory_load": 2,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "MOVEMENT BREAK: Stand up and shake your hands like you're flicking water off them. Now do 'bear claws' \u2014 reach up high and stretch your fingers, then pull down and squeeze into fists, like climbing a tree. Do 10 bear claw climbs.",
+        "timer": 60,
+        "sensory_load": 2,
+        "ef_demand": 1
+      },
+      {
+        "instruction": "ADDING BLING: Peel stickers carefully and place them where you want. If you have buttons, use the glue stick to glue them on. Press firmly and count to 10 while the glue holds. Try to make a pattern with your decorations!",
+        "timer": 180,
+        "sensory_load": 2,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "THE LOCK: If your box has a lid, let's add a yarn lock! With help from Dad, punch 2 holes on the front of the box and 1 hole on the lid. Thread the yarn through the lid hole, then wrap it in a figure-eight around the two box holes. This is your lock! Practice opening and closing it.",
+        "timer": 180,
+        "sensory_load": 3,
+        "ef_demand": 4
+      },
+      {
+        "instruction": "FILLING THE CHEST: Choose 5 small treasures to put inside. As you put each one in, say what makes it special. 'This rock is special because I found it at the park.' 'This coin is special because it's shiny.'",
+        "timer": 120,
+        "sensory_load": 1,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "Close your treasure chest and lock it with the yarn. Carry it to a special spot in your room. This is your Adventure Grounds Treasure Vault. You can add new treasures any time you earn them on a quest!",
+        "timer": 60,
+        "sensory_load": 1,
+        "ef_demand": 1
+      }
+    ],
+    "scaffolding": "If cutting is too challenging, pre-cut shapes for Ezra to glue on. If threading yarn is frustrating, wrap tape around the end of the yarn to make a stiff 'needle' (this is a standard OT trick), or switch to pipe cleaners which are stiffer. If the figure-eight locking mechanism is too complex, simply tie the yarn in a bow \u2014 the threading practice is the goal, not the specific knot. If sustained fine motor work causes hand fatigue or frustration, break the decorating into two sessions (decorate today, add the lock tomorrow). Offer a stress ball or hand squeeze break between steps.",
+    "extension": "Make a second treasure chest as a gift for someone. Add compartments inside using cardboard dividers (more cutting and measuring). Create a treasure map that shows where the chest is hidden in the house. Introduce a simple clasp or button closure instead of yarn. Write (or dictate) a label for the chest.",
+    "celebration": "Master Craftsperson Ezra! Your fingers cut, glued, threaded, and decorated \u2014 you built something only YOUR hands could make. Every treasure in that chest remembers an adventure you conquered.",
+    "parent_notes": "Fine motor skill development is essential for writing readiness, self-care (buttons, zippers, utensils), and tool use. For neurodivergent children, fine motor tasks often carry high frustration potential because the gap between what they envision and what their hands can execute is very visible. The finger warm-up is not filler \u2014 it's a real occupational therapy strategy called 'hand gymnastics' that improves dexterity and blood flow before fine motor demand. Watch: Does Ezra use a mature or immature pencil grip on the markers? Does he switch hands? Does he avoid crossing the midline (reaching to the opposite side of his body)? These are key OT observation points. The threading task is the highest-demand step and may trigger frustration \u2014 have the tape-tip yarn trick ready before you need it. The 'shake your hands' movement break specifically targets hand fatigue reset. If Ezra naturally narrates his treasures in the filling step, that's expressive language practice embedded in a fine motor quest.",
+    "real_world_connection": "The cutting, threading, and decorating skills in this quest directly support: handwriting (grip strength, hand control, finger isolation), getting dressed (buttons, zippers, shoelaces), eating (using utensils, opening containers), and creative play (building, drawing, crafting). The threading-and-locking mechanism is the same bilateral coordination used in tying shoes, which is typically a 5-7 year old milestone."
+  },
+  {
+    "id": "SAGE-2026-02-007",
+    "realm": "creation-studio",
+    "subcategory": "visual-art-making",
+    "title": "The Emotion Mural: Painting What You Feel",
+    "story": "Feelings can be bigger than words \u2014 they have colors and shapes. Today you paint what feelings LOOK like. No right or wrong colors \u2014 just you, paint, and what's in your heart. This is going to be magnificent!",
+    "category_display": "The Creation Studio",
+    "difficulty": 1,
+    "xp": 50,
+    "duration_minutes": 25,
+    "materials": [
+      "large paper (the bigger the better \u2014 butcher paper, poster board, or taped-together sheets)",
+      "washable paint (at least 4 colors: red, blue, yellow, green \u2014 more is better)",
+      "paint brushes (at least 2 sizes)",
+      "cups of water for rinsing",
+      "paper towels",
+      "a smock or old shirt",
+      "optional: sponges, cotton balls, or fingers for alternative painting tools",
+      "optional: calming background music"
+    ],
+    "deep_objectives": {
+      "executive_function": "Decision-making (choosing colors, strokes, and placement), inhibitory control (not mixing all colors into brown immediately, controlled brush movements), sustained creative attention, planning composition",
+      "social_emotional": "Emotional expression through non-verbal medium (critical for children who struggle with verbal emotional communication), connecting internal feeling states to external representations, building emotional vocabulary through color-feeling associations, experiencing art as communication",
+      "sensory": "Tactile input from paint texture (especially finger painting), proprioceptive input from brush strokes (pressing hard vs. light), visual stimulation from color mixing, potential for messy sensory exploration in a safe context",
+      "academic": "Color theory basics (mixing primary colors), spatial awareness (filling a large surface), descriptive language (texture words, color names, size comparisons)"
+    },
+    "steps": [
+      {
+        "instruction": "Put on your smock. Lay the big paper on the floor or tape it to a wall. Look at your paint colors. What color feels like how you feel RIGHT NOW?' Pick that color up.",
+        "timer": 60,
+        "sensory_load": 2,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "Start painting with that color. You can make big strokes, tiny dots, circles, zigzags \u2014 ANYTHING. There is no picture you have to make. Just move the brush the way your feeling moves. Fast feelings go fast. Slow feelings go slow. Heavy feelings press hard. Light feelings barely touch.",
+        "timer": 180,
+        "sensory_load": 3,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "MOVEMENT BREAK: Stand up and be your painting! If you painted big swooshes, make big swoosh movements with your arms. If you painted tiny dots, tap your fingers everywhere. Dance like your painting for 30 seconds.",
+        "timer": 60,
+        "sensory_load": 3,
+        "ef_demand": 1
+      },
+      {
+        "instruction": "Now think of a DIFFERENT feeling. Maybe the opposite of the first one. Pick a new color for that feeling. Add it to your mural. Let the two feelings live side by side on the paper. They don't have to mix \u2014 or they can if they want to.",
+        "timer": 180,
+        "sensory_load": 3,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "SECRET STEP: Dip your finger in paint (any color you love). Put your fingerprint somewhere on the mural. That fingerprint means 'Ezra was here.' Nobody else in the whole world has that fingerprint.",
+        "timer": 60,
+        "sensory_load": 3,
+        "ef_demand": 1
+      },
+      {
+        "instruction": "Step back and look at your mural from far away. Wow! Tell Dad about it. You don't have to explain it \u2014 you can just say what you see. 'I see lots of blue' or 'The red part is angry' or 'I don't know, I just like it.' All of those are perfect answers.",
+        "timer": 90,
+        "sensory_load": 1,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "Give your mural a name. Write it (or have Dad write it) at the bottom. Date it. Choose where this one goes.",
+        "timer": 90,
+        "sensory_load": 1,
+        "ef_demand": 2
+      }
+    ],
+    "scaffolding": "If the blank page is overwhelming (this is real \u2014 it's called 'blank canvas anxiety'), make a single mark yourself first and invite Ezra to add to it. If paint texture is aversive, use markers or crayons with the same emotional-color approach. If connecting feelings to colors is too abstract, offer choices: 'Does happy feel more like yellow or more like blue to you?' If Ezra wants to paint a specific picture instead of abstract feelings, let him \u2014 the act of painting and the conversation about it are the real goals. If he paints everything one color, that's data, not a problem.",
+    "extension": "Create a series of emotion murals over several days and compare them. Mix two paint colors together and name the NEW feeling the mixed color represents. Paint while listening to different kinds of music \u2014 does the music change the painting? Create an 'emotion color chart' that Ezra can point to when he can't find words for his feelings.",
+    "celebration": "Artist Ezra! You turned invisible feelings into something everyone can SEE \u2014 your mural has two feelings and your one-of-a-kind fingerprint. There is no painting like this anywhere.",
+    "parent_notes": "Art-based emotional expression is a cornerstone of therapeutic practice for neurodivergent children, and it bypasses the verbal processing demands that often make traditional 'tell me how you feel' approaches frustrating. The instruction to paint 'the way your feeling moves' is based on expressive arts therapy principles \u2014 it links internal states to motor action, which creates a body-based pathway for emotional processing. Pay very close attention to what Ezra creates WITHOUT interpreting it for him. If he says the red part is happy, don't correct him because 'red usually means angry.' His color-emotion mapping is HIS and it's valid. If he refuses to talk about the painting, that's fine \u2014 the expression already happened through the painting itself. Watch: Does he use the whole paper or stay in one corner (spatial confidence)? Does he mix colors deliberately or accidentally? Does he seem regulated or dysregulated during the painting process? If painting is regulating for Ezra, this becomes a go-to coping tool you can offer during emotional moments. The fingerprint step is about identity and presence \u2014 'I exist, I made this, it matters.'",
+    "real_world_connection": "Being able to express emotions through non-verbal channels is a life skill that goes far beyond art class. When Ezra can't find words for how he feels, having color-feeling associations gives him an alternative communication tool ('I feel red right now'). The ability to create something from internal experience builds agency and self-expression, which are protective factors for mental health throughout life."
+  },
+  {
+    "id": "SAGE-2026-02-008",
+    "realm": "creation-studio",
+    "subcategory": "music-sound-rhythm",
+    "title": "The Rhythm Keeper's Drum Circle",
+    "story": "The beat got stolen from the Creation Studio \u2014 birds, clocks, and wind are out of sync! You are the Rhythm Keeper: find rhythms, make rhythms, feel the beat in your own body. Can you bring the beat back?",
+    "category_display": "The Creation Studio",
+    "difficulty": 2,
+    "xp": 55,
+    "duration_minutes": 25,
+    "materials": [
+      "2-3 pots, pans, or plastic containers (drums)",
+      "wooden spoons or unsharpened pencils (drumsticks)",
+      "a shaker (rice in a sealed plastic bottle works perfectly)",
+      "a surface to tap on (table, floor, box)",
+      "optional: a real drum, tambourine, or xylophone",
+      "optional: a favorite song to play along with"
+    ],
+    "deep_objectives": {
+      "executive_function": "Sustained attention to auditory patterns, inhibitory control (stopping and starting on cue, maintaining tempo instead of speeding up), working memory (holding a rhythm pattern while reproducing it), cognitive flexibility (switching between rhythms)",
+      "social_emotional": "Collaborative rhythm-making (co-regulation through shared tempo), self-expression through music, building confidence in a non-verbal creative domain, experiencing synchrony with another person (powerful social bonding mechanism)",
+      "sensory": "Auditory processing and discrimination, proprioceptive input from drumming (deep, rhythmic joint compression), vestibular engagement from body movement to rhythm, tactile feedback from striking surfaces with varied textures",
+      "academic": "Math foundations \u2014 patterns, counting beats, fractions (half beats, whole beats), tempo (fast/slow). Music theory basics \u2014 rhythm, beat, tempo, dynamics (loud/soft)"
+    },
+    "steps": [
+      {
+        "instruction": "Set up your instruments! Put your pots, containers, and shakers on the floor in front of you. Sit comfortably. Tap each one and listen \u2014 which one sounds deep? Which one sounds high? Which one sounds silly? Play them all once.",
+        "timer": 90,
+        "sensory_load": 3,
+        "ef_demand": 1
+      },
+      {
+        "instruction": "HEARTBEAT RHYTHM: Put your hand on your chest. Feel your heartbeat. Now tap that same rhythm on your drum. BOOM-boom, BOOM-boom, BOOM-boom. That's the oldest rhythm in the world \u2014 it's been playing since before you were born!",
+        "timer": 90,
+        "sensory_load": 2,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "COPY CAT: Dad plays a short rhythm (3-4 beats). Listen carefully. Then YOU play it back exactly the same way. Start easy and get trickier! Take turns \u2014 you play one, Dad copies YOU.",
+        "timer": 180,
+        "sensory_load": 3,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "MOVEMENT BREAK: Put down the sticks. Stand up and BE a drum! Stomp your feet for the BIG beats, clap your hands for the small beats. Dad calls out: 'BIG! small! BIG! small! BIG BIG small!' Follow along with your whole body.",
+        "timer": 90,
+        "sensory_load": 3,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "SPEED CONTROL: Play a steady beat on your favorite drum. Dad says 'FASTER' and you speed up. Dad says 'SLOWER' and you slow down. Dad says 'FREEZE' and you stop with your sticks in the air. How slow can you go without stopping? How fast can you go without losing the beat?",
+        "timer": 120,
+        "sensory_load": 3,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "STORM AND CALM: Let's tell a story with rhythm. Start very quiet and slow \u2014 this is the calm morning. Get louder and faster \u2014 a storm is coming! LOUD AND FAST \u2014 the storm is HERE! Now slow down and get quiet again \u2014 the storm is passing. Silence. One last gentle tap \u2014 a raindrop.",
+        "timer": 120,
+        "sensory_load": 4,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "COOL DOWN: Put your instruments away gently. Sit quietly and listen to the silence for 10 seconds. Now tap the quietest rhythm you can on your knee \u2014 so quiet that only you can hear it. That's YOUR secret rhythm. You can tap it anytime, anywhere, and nobody will even know.",
+        "timer": 60,
+        "sensory_load": 1,
+        "ef_demand": 2
+      }
+    ],
+    "scaffolding": "If copying rhythms is too hard, start with just 2 beats (tap-tap) and build from there. If the noise is overwhelming, use softer instruments (tapping on a pillow, shaking a half-full bottle) or offer noise-reducing headphones. If maintaining tempo is impossible, clap along WITH Ezra at his tempo rather than expecting him to match yours \u2014 you regulate to HIM first, then gradually adjust. If the Storm and Calm sequence is too much stimulation, skip it and do a second round of Copy Cat instead. The secret rhythm at the end gives Ezra a self-regulation stim he can use anywhere.",
+    "extension": "Play along with recorded music (start with slow, steady songs). Create a 'rhythm recipe' \u2014 write down or draw symbols for different beats and play from the 'sheet music.' Record Ezra's rhythms and play them back. Explore how different surfaces make different sounds. Try call-and-response patterns across the room.",
+    "celebration": "Rhythm Keeper Ezra! You found the beat in your heart and brought the Studio back in sync. You have a secret rhythm that's yours forever.",
+    "parent_notes": "Rhythmic activities are among the most powerful regulatory tools available for neurodivergent children. Dr. Bruce Perry's neurosequential model emphasizes that rhythmic, repetitive, patterned sensory input (like drumming) regulates the brainstem \u2014 the most foundational level of the brain's stress response system. This means drumming isn't just 'music time'; it's active nervous system regulation. The Copy Cat game builds auditory working memory (holding a sound pattern and reproducing it), which directly supports phonological awareness for reading. Watch: Can Ezra maintain a steady tempo, or does he accelerate? Tempo regulation correlates with self-regulation capacity. Does he prefer loud or quiet drumming? That's a direct window into his arousal level. The Storm and Calm sequence is a musical metaphor for emotional escalation and recovery \u2014 he's practicing going from 0 to 10 and back down in a safe, controlled way. If Ezra adopts the 'secret rhythm' as a self-stim, that's a huge win \u2014 it's a socially invisible, self-directed regulation tool.",
+    "real_world_connection": "Rhythm underpins spoken language (syllable stress, sentence cadence), reading (phonological awareness depends on hearing sound patterns), math (counting, patterns, fractions), and self-regulation (steady breathing is a rhythm, walking is a rhythm, the daily routine is a rhythm). The ability to match tempo and follow rhythmic cues also supports social synchrony \u2014 the unconscious rhythmic matching that happens in successful conversations and cooperative play."
+  },
+  {
+    "id": "SAGE-2026-02-009",
+    "realm": "life-lodge",
+    "subcategory": "home-skills-cooking",
+    "title": "The Alchemy Kitchen: Potion of Power Bites",
+    "story": "Welcome to Food Alchemy \u2014 Power Bites for adventurer energy. YOU measure, mix, and shape with your own hands. No fire, no oven, no waiting. Pure hand magic. Shall we begin?",
+    "category_display": "The Life Lodge",
+    "difficulty": 2,
+    "xp": 60,
+    "duration_minutes": 30,
+    "materials": [
+      "1 cup rolled oats",
+      "1/2 cup peanut butter (or sunflower seed butter for allergies)",
+      "1/3 cup honey",
+      "1/2 cup mini chocolate chips or raisins",
+      "mixing bowl (large)",
+      "measuring cups (1 cup, 1/2 cup, 1/3 cup)",
+      "spoon for mixing",
+      "plate or tray for finished bites",
+      "optional: sprinkles, coconut flakes, or crushed cereal for rolling",
+      "hand washing supplies"
+    ],
+    "deep_objectives": {
+      "executive_function": "Sequential multi-step task (6+ ingredients in order), working memory (remembering which ingredients are done), planning (gathering all materials before starting), inhibitory control (not eating ingredients before the recipe is done), task completion (following through to a finished product)",
+      "social_emotional": "Competence and independence ('I made food!'), contribution to the household ('I made this for the family'), following instructions in a real-world context, pride in a tangible product that others enjoy",
+      "sensory": "Rich tactile input (sticky, crumbly, smooth textures), proprioceptive hand input (mixing, squeezing, rolling), olfactory engagement (smelling ingredients), gustatory reward (eating the result), controlled messy-hands experience",
+      "academic": "Math \u2014 measuring, counting, fractions (1/2, 1/3). Science \u2014 mixtures, texture changes when ingredients combine. Literacy \u2014 following a recipe (sequence of written instructions). Nutrition \u2014 understanding food gives energy"
+    },
+    "steps": [
+      {
+        "instruction": "WASH YOUR HANDS with soap and water. Sing the ABCs while you scrub to make sure they're clean. Dry them. Now put on an apron or old shirt \u2014 alchemists protect their robes!",
+        "timer": 90,
+        "sensory_load": 2,
+        "ef_demand": 1
+      },
+      {
+        "instruction": "GATHER MISSION: Find all the ingredients and put them on the counter. Oats, peanut butter, honey, and chocolate chips (or raisins). Also get the big bowl, measuring cups, and a spoon. Line them up like soldiers. When everything is there, say 'Ingredients: ASSEMBLED!'",
+        "timer": 120,
+        "sensory_load": 2,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "MEASURE AND POUR: Scoop 1 cup of oats. Pour them into the bowl. Listen to the sound they make! Now scoop 1/2 cup of peanut butter. Scrape it all into the bowl. Now pour 1/3 cup of honey \u2014 watch it drizzle slowly. Last, pour in the chocolate chips or raisins.",
+        "timer": 240,
+        "sensory_load": 3,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "MOVEMENT BREAK: Before we mix, let's get our arm muscles ready! Do 10 arm circles forward, then 10 arm circles backward. Shake out your hands. Now flex your muscles like a bodybuilder. You'll need strong arms for mixing!",
+        "timer": 60,
+        "sensory_load": 2,
+        "ef_demand": 1
+      },
+      {
+        "instruction": "MIX THE POTION: Stir everything together with the spoon. It will get thick and hard to stir \u2014 that's the alchemy happening! When it's all mixed and you can't see separate ingredients anymore, the potion is ready. If your arm gets tired, switch hands!",
+        "timer": 180,
+        "sensory_load": 3,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "SHAPE THE BITES: Scoop a spoonful of the mixture. Put it in your hands and roll it into a ball about the size of a bouncy ball. Squeeze and roll, squeeze and roll. Put each finished ball on the plate. How many can you make? Count them as you go!",
+        "timer": 300,
+        "sensory_load": 4,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "OPTIONAL MAGIC COATING: If you have sprinkles, coconut, or crushed cereal, put some in a small bowl. Roll your Power Bites in the coating for extra magic armor!",
+        "timer": 120,
+        "sensory_load": 3,
+        "ef_demand": 1
+      },
+      {
+        "instruction": "CLEAN UP YOUR STATION: Put the lids back on ingredients, put the dirty bowl and spoon in the sink, and wipe the counter with a damp cloth.",
+        "timer": 180,
+        "sensory_load": 2,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "TASTE TEST: Eat one Power Bite. How does it taste? Is it sweet? Chewy? Crunchy? Tell Dad about the taste and texture. Now offer one to Dad (or someone else in the family) \u2014 sharing your alchemy is part of the magic.",
+        "timer": 120,
+        "sensory_load": 2,
+        "ef_demand": 1
+      }
+    ],
+    "scaffolding": "If measuring is too abstract, use hand-over-hand guidance for scooping and leveling. If the sticky texture of peanut butter or honey is aversive, let Ezra pour from pre-measured amounts while wearing food-safe gloves, or use a spoon barrier between hands and sticky ingredients. If rolling balls is too difficult (hand strength or texture sensitivity), press the mixture flat in a pan and cut into squares instead \u2014 same recipe, different motor demand. If the full recipe is too many steps, pre-measure all ingredients and let Ezra focus just on the dumping, mixing, and shaping. If he wants to eat ingredients during prep, designate one small 'tasting bowl' of chocolate chips rather than fighting the impulse.",
+    "extension": "Double the recipe and practice multiplying measurements. Let Ezra choose a new add-in and predict how it will change the taste. Write the recipe in Ezra's words and illustrate it as his own cookbook page. Time how long it takes and try to beat the time next week. Make Power Bites as gifts for friends or family. Introduce a recipe with a simple heating step (microwave oatmeal, toast with toppings).",
+    "celebration": "Alchemist Ezra! You measured, mixed, rolled, and created real food \u2014 and it's delicious. You cleaned up like a professional. That's cooking and independence.",
+    "parent_notes": "Cooking is one of the highest-value life skill activities you can do with a neurodivergent child because it naturally integrates so many developmental domains simultaneously: executive function (sequencing, working memory, planning), fine motor (measuring, pouring, rolling), sensory processing (texture exposure in a motivated context), math (measuring, counting), and social skills (sharing, turn-taking, following instructions). The no-bake format is intentional \u2014 it removes the safety anxiety of heat and the waiting frustration of baking time, giving immediate results that reinforce the effort-reward connection. Watch Ezra's relationship with the textures: does he avoid touching peanut butter? Does he over-handle the dough? These are sensory processing data points. The cleanup step is NOT optional \u2014 it teaches that completing a task includes restoring the environment, which is an executive function skill (task closure) that many neurodivergent individuals struggle with into adulthood. If Ezra balks at cleanup, do it WITH him, not FOR him. Match his effort \u2014 you wipe the left side, he wipes the right. Modeling task completion is more effective than demanding it.",
+    "real_world_connection": "Cooking independently is one of the most important life skills a person can develop. This quest builds toward: following multi-step instructions (any task at school or work), measuring and math in real contexts, feeding yourself (fundamental self-care), contributing to a household (belonging and purpose), and sensory flexibility with food textures (expanding food acceptance over time through positive exposure)."
+  },
+  {
+    "id": "SAGE-2026-02-010",
+    "realm": "life-lodge",
+    "subcategory": "safety-awareness",
+    "title": "The Safety Shield Training Academy",
+    "story": "Safety Shield training: dangers hide in plain sight \u2014 hot, sharp, tricky things. You'll learn Safety Rules and spot tricks (things that look dangerous but aren't, and vice versa). Only a true Safety Scout tells the difference!",
+    "category_display": "The Life Lodge",
+    "difficulty": 2,
+    "xp": 55,
+    "duration_minutes": 25,
+    "materials": [
+      "paper and markers (for drawing danger signs)",
+      "tape (for marking zones)",
+      "a flashlight (for the patrol)",
+      "a stuffed animal (the 'trainee' who doesn't know safety rules yet)",
+      "real household items to identify: a pot on the stove (cold), a knife in a drawer, cleaning supplies, an electrical outlet, medicine bottles",
+      "reward sticker or badge for completion"
+    ],
+    "deep_objectives": {
+      "executive_function": "Categorization (safe vs. dangerous), inhibitory control (stop-think-act instead of just touching), if-then reasoning ('IF the stove is on, THEN don't touch it'), working memory (remembering safety rules across situations), generalization (applying rules to new contexts)",
+      "social_emotional": "Empowerment through knowledge (safety as a skill, not just rules to follow), responsibility ('I can keep myself safe'), perspective-taking (teaching the stuffed animal builds empathy and understanding), confidence to say 'That's not safe' to peers or adults",
+      "sensory": "Visual scanning (looking for danger cues), auditory processing (listening for safety signals like smoke alarms), tactile awareness (hot/cold/sharp distinctions), proprioceptive movement during the patrol walk",
+      "academic": "Vocabulary \u2014 hot, sharp, poisonous, electrical, emergency, careful. Critical thinking \u2014 assessing situations. Categories and sorting. Symbols \u2014 recognizing warning signs"
+    },
+    "steps": [
+      {
+        "instruction": "Meet your trainee \u2014 your stuffed animal! This little one doesn't know ANY safety rules yet. Today, you are the TEACHER and your stuffed animal is the STUDENT. As you learn each rule, you'll teach it to your trainee. Hold your trainee and say: 'Don't worry, I'll teach you everything.'",
+        "timer": 60,
+        "sensory_load": 1,
+        "ef_demand": 1
+      },
+      {
+        "instruction": "DANGER ZONE #1 \u2014 THE KITCHEN: Walk to the kitchen with Dad. Point to 3 things that could be dangerous (hot stove, sharp knives, cleaning bottles under the sink). For each one, tell your trainee: 'This is a [name it]. It's dangerous because [why]. The safety rule is [what to do].' Dad helps you if you get stuck.",
+        "timer": 240,
+        "sensory_load": 2,
+        "ef_demand": 4
+      },
+      {
+        "instruction": "MOVEMENT BREAK: Practice the STOP-DROP-ROLL! If your clothes ever caught fire, you would stop moving, drop to the ground, and roll back and forth. Let's practice 3 times. It's like a game! Stop. Drop. ROLL!",
+        "timer": 90,
+        "sensory_load": 3,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "DANGER ZONE #2 \u2014 THE BATHROOM: Walk to the bathroom. Find 2 things that could be dangerous (medicine bottles, slippery floor when wet, electrical items near water). Teach your trainee the safety rules for each one.",
+        "timer": 180,
+        "sensory_load": 2,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "TRICKY QUIZ: Dad asks you questions. Some are dangerous, some are safe. Point to a red card for DANGEROUS or green card for SAFE. Ready? 'A cold pot on the counter' \u2014 safe or dangerous? 'Cleaning spray with a skull on it' \u2014 safe or dangerous? 'A flashlight' \u2014 safe or dangerous? 'Running near the pool' \u2014 safe or dangerous? Dad does 6-8 of these.",
+        "timer": 180,
+        "sensory_load": 1,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "SAFETY SIGN MAKER: Draw 3 warning signs on paper. One for HOT (maybe a flame drawing), one for SHARP (maybe a pointy triangle), one for POISON (maybe a skull and crossbones or a big X). Use red marker. Tape them in the right spots in the house.",
+        "timer": 240,
+        "sensory_load": 2,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "THE EMERGENCY QUESTION: If something really dangerous happened \u2014 a fire, someone got hurt, you needed help RIGHT NOW \u2014 what would you do? Practice saying this loud and clear: 'Dad, I need help! Come here NOW!' Practice walking (not running) to find an adult. This is the most important safety rule of all: GET AN ADULT.",
+        "timer": 90,
+        "sensory_load": 2,
+        "ef_demand": 3
+      }
+    ],
+    "scaffolding": "If identifying dangers independently is too hard, walk through each room together and point to items, asking 'Do you think this could hurt someone? Why or why not?' If the quiz format is too much pressure, make it collaborative \u2014 answer together. If drawing warning signs is frustrating, print simple symbols and let Ezra color them. If the emergency practice creates anxiety, use silly examples first ('What if a dinosaur broke in? GET AN ADULT!') to lower the emotional intensity before doing realistic scenarios. The stuffed animal 'trainee' is a scaffolding device itself \u2014 teaching someone else is easier than answering questions directly because it removes performance pressure.",
+    "extension": "Extend the patrol to outdoor safety (road rules, water safety, stranger awareness). Create a family fire escape plan and practice it. Learn to recognize poison symbols on household products. Practice dialing emergency numbers on a toy phone. Create a Safety Scout poster for Ezra's room with all the rules he learned.",
+    "celebration": "SAFETY SCOUT EZRA \u2014 you earned your Safety Shield! You found danger zones, taught the rules, made warning signs, and know: GET AN ADULT in an emergency. Your signs protect the whole house.",
+    "parent_notes": "Safety awareness is a critical life skill that neurodivergent children may develop at a different pace. Some children are naturally cautious (and may become anxious about safety \u2014 watch for this and keep the tone empowering, not fear-based). Others may have reduced danger awareness due to sensory processing differences, impulse control challenges, or difficulty generalizing rules ('I know the stove is hot but I don't connect that to the curling iron'). The stuffed animal teaching method is based on the 'protege effect' \u2014 teaching someone else consolidates knowledge more effectively than being taught. It also reduces the social demand of direct questioning. Watch: Does Ezra generalize rules ('the stove is hot, and the oven is also hot') or does he treat each item as a separate rule? Generalization is a common challenge and tells you how concrete his understanding is. The emergency protocol (GET AN ADULT) is the single most important safety skill for a 5-year-old. Practice it in different rooms, at different times, until it's automatic. If Ezra shows anxiety about the fire/danger concepts, validate the feeling and emphasize that knowing what to do is what makes it LESS scary, not more.",
+    "real_world_connection": "Safety awareness protects Ezra everywhere: at home, at other people's houses, in stores, outdoors. The ability to recognize hazards and respond appropriately is not just about avoiding injury \u2014 it builds independence. A child who understands safety rules can be given more freedom to explore, which feeds autonomy and confidence. The emergency communication skill ('I need help NOW') is applicable far beyond physical danger \u2014 it teaches self-advocacy, which is essential for neurodivergent individuals who may need to communicate overwhelm, confusion, or distress in many life contexts."
+  },
+  {
+    "id": "SAGE-2026-02-011",
+    "realm": "sensory-sanctuary",
+    "subcategory": "interoception-body-signals",
+    "title": "The Body Weather Station",
+    "story": "Your body has its own WEATHER \u2014 sunshine, thunderstorm, or cloudy fog. If you NAME your Body Weather, you can start to CHANGE it. Let's build your Body Weather Station.",
+    "category_display": "The Sensory Sanctuary",
+    "difficulty": 2,
+    "xp": 65,
+    "duration_minutes": 25,
+    "materials": [
+      "large paper or posterboard",
+      "markers or crayons (including yellow, blue, gray, red)",
+      "a spinner arrow (a pencil with a paperclip works) or just a moveable arrow cut from paper",
+      "tape or a brad fastener",
+      "body outline template (or draw one)",
+      "optional: mirror for face-checking"
+    ],
+    "deep_objectives": {
+      "executive_function": "Metacognition (thinking about your own internal state), decision-making (choosing the right weather label), sustained self-monitoring, verbal labeling of internal states (a prerequisite for self-advocacy)",
+      "social_emotional": "Interoceptive awareness (the foundational sense for emotional regulation), connecting physical sensations to emotional states, building self-advocacy language ('My body weather is stormy, I need a break'), normalizing ALL body weathers (none are 'bad')",
+      "sensory": "Interoceptive channel training (deliberately attending to heartbeat, breathing, muscle tension, temperature, gut feelings), multi-sensory self-scan practice, understanding that internal sensations carry information",
+      "academic": "Weather vocabulary (sunny, cloudy, rainy, stormy, foggy, windy), body parts and their functions, descriptive language (hot, cold, fast, slow, tight, loose), basic graphing/tracking over time"
+    },
+    "steps": [
+      {
+        "instruction": "Let's build your Weather Station! On the big paper, draw 5 weather pictures in a row across the top: a bright SUN (sunny = feeling great, energized, calm), a CLOUD (cloudy = tired, slow, blah), RAIN (rainy = sad, teary, droopy), a LIGHTNING BOLT (stormy = angry, frustrated, overloaded), and a SNOWFLAKE (frozen = can't move, shut down, stuck). Color each one.",
+        "timer": 300,
+        "sensory_load": 2,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "Now check YOUR Body Weather right now! Close your eyes. Breathe once. Is your heart fast or slow? Are your muscles tight or loose? Is your tummy calm or wiggly? Are your hands warm or cold? Is your brain busy or quiet? Open your eyes and point to the weather that matches how your body feels RIGHT NOW.",
+        "timer": 90,
+        "sensory_load": 2,
+        "ef_demand": 4
+      },
+      {
+        "instruction": "MOVEMENT BREAK: Let's DO each weather with our bodies! SUNNY: stretch up tall, smile big, sway gently. CLOUDY: droop shoulders, move slowly, yawn. RAINY: drip down to the floor slowly. STORMY: stomp, shake, clench fists (for 5 seconds only!). FROZEN: freeze completely still like a statue. Do each one when Dad calls it out.",
+        "timer": 120,
+        "sensory_load": 3,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "Below your weather pictures, draw a body outline. This is your Body Map. Right now, inside YOUR body, color in: RED where you feel warm or buzzy, BLUE where you feel cool or calm, YELLOW where you feel tingly or energy, GRAY where you feel nothing or numb. There's no wrong answer \u2014 just color what you notice.",
+        "timer": 240,
+        "sensory_load": 2,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "WEATHER CHANGING TOOLS: Now here's the secret \u2014 you can change your weather! Draw or write these tools next to your weather station: 'STORMY to SUNNY: deep breaths, hug my stuffed animal, listen to calm music.' 'CLOUDY to SUNNY: jumping jacks, cold water on my face, a crunchy snack.' 'FROZEN to CLOUDY: wiggle fingers and toes, hum, Dad gives a bear hug.' Dad helps you write or draw each tool.",
+        "timer": 240,
+        "sensory_load": 1,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "PRACTICE RUN: Pick one of your weather-changing tools and try it RIGHT NOW. If you're already sunny, try jumping jacks and see if you get even MORE sunny. Notice: did anything change in your body after you used the tool? Even a tiny change counts!",
+        "timer": 120,
+        "sensory_load": 2,
+        "ef_demand": 3
+      },
+      {
+        "instruction": "Hang your Body Weather Station somewhere you can see it every day. Every morning and every evening, point to your weather. This is your Daily Weather Report. Over time, you'll get REALLY good at checking your body's weather and knowing which tools to use.",
+        "timer": 60,
+        "sensory_load": 1,
+        "ef_demand": 1
+      }
+    ],
+    "scaffolding": "If 5 weather types are too many, start with 3: sunny, cloudy, stormy. If the body scan is too abstract ('I don't feel anything'), start with external cues: 'Are your hands cold? Touch your forehead \u2014 is it warm?' and work inward gradually. If coloring the body map creates frustration, skip it and just point to where in the body each weather lives. If the weather-changing tools step is too much, have Ezra pick just ONE tool for ONE weather change and practice that one. Interoception is genuinely hard for many neurodivergent children \u2014 any noticing at all is progress. Do not push for detailed body reports. 'I don't know how I feel' is honest and valid.",
+    "extension": "Track Body Weather on a calendar for a week \u2014 notice patterns (always stormy before dinner? Always sunny after playing outside?). Add weather tools to a portable card Ezra can carry. Introduce 'weather forecasting' \u2014 'We're going to a loud place. What weather do you think that will cause?' This builds anticipatory regulation. Create separate weather stations for different emotions (angry storm vs. excited storm \u2014 both are 'stormy' but feel different).",
+    "celebration": "Weather Scientist Ezra! You built a Body Weather Station, read your weather, and learned tools to change it. You already know how to check in with your body \u2014 that's powerful.",
+    "parent_notes": "This is arguably the most important quest in the entire system. Interoception \u2014 the ability to sense and interpret internal body signals \u2014 is the foundational sense that all emotional regulation is built on. Research by Dr. Kelly Mahler and others shows that many neurodivergent individuals have atypical interoception: they may not notice hunger until they're in a meltdown, may not feel the need to use the bathroom until it's urgent, or may not recognize anxiety building until they're in full fight-or-flight. You CANNOT regulate what you CANNOT detect. That's why this quest exists. The weather metaphor is key: it's non-judgmental (no weather is 'bad'), it's visual, and it's familiar. Watch: Does Ezra have difficulty identifying ANY body sensations? Does he default to 'I don't know'? Does he only notice extremes (very hungry, very tired) but miss moderate signals? These observations are critical data for his developmental profile. The body map coloring step often reveals surprising information \u2014 a child who colors their whole body red may be in chronic hyperarousal without anyone realizing it. A child who colors everything gray may have reduced interoceptive awareness. Do this quest regularly (the daily weather check takes 30 seconds) and track patterns. Over time, the goal is that Ezra initiates his own weather reports: 'Dad, I'm getting stormy' BEFORE the meltdown hits. That's a transformational skill.",
+    "real_world_connection": "Interoceptive awareness shows up in every moment of every day: knowing when to eat, drink, rest, use the bathroom, put on a jacket, ask for a break. It's the basis of emotional regulation ('I notice my body is getting tense, so I'm probably getting frustrated, so I should use a tool before I explode'). In school, work, and relationships, the ability to read and respond to your own internal state is the foundation of self-care, self-advocacy, and self-regulation. This is not a 'nice to have' \u2014 it's the most fundamental life skill there is."
+  },
+  {
+    "id": "SAGE-2026-02-012",
+    "realm": "sensory-sanctuary",
+    "subcategory": "sensory-regulation-toolkit",
+    "title": "The Sensory Treasure Chest: Building Your Regulation Kit",
+    "story": "Every creature needs different things to feel calm and focused \u2014 and YOU have your own sensory treasures. Today: Sensory Treasure Hunt. Find what wakes you up, calms you down, and helps busy hands. Build a kit that's yours forever.",
+    "category_display": "The Sensory Sanctuary",
+    "difficulty": 1,
+    "xp": 70,
+    "duration_minutes": 30,
+    "materials": [
+      "a box, bag, or container (the Sensory Treasure Chest \u2014 shoe box works great)",
+      "items to TEST (see full list below; gather 10-15 options from around the house)",
+      "stickers and markers for decorating the box",
+      "paper for labeling",
+      "SAMPLE ITEMS TO GATHER: stress ball or squishy toy, soft fabric or blanket piece, rubber band or resistance band, crunchy snack (pretzels, crackers, carrots), smooth stone or marble, scented item (lavender sachet, lip balm, spice jar), fidget toy or paper clip chain, noise-cancelling headphones or earplugs, sunglasses, chewy tube or gum, ice cube (in a bag), heavy book or small weight, pinwheel or bubbles"
+    ],
+    "deep_objectives": {
+      "executive_function": "Self-assessment (evaluating 'does this help me or not?'), categorization (organizing by purpose), decision-making (choosing what goes in the kit), metacognition (understanding what your brain and body need), planning (having tools available before you need them)",
+      "social_emotional": "Self-advocacy ('I need my kit'), agency and control ('I CHOSE these items'), self-knowledge ('I know what helps me'), normalizing sensory needs ('Everyone needs different things \u2014 mine are in my chest'), empowerment (owning your regulation rather than depending on adults to notice)",
+      "sensory": "Systematic sensory exploration across all channels (tactile, proprioceptive, vestibular, auditory, visual, olfactory, oral), identifying personal sensory preferences and aversions, building a personalized sensory diet toolkit",
+      "academic": "Classification and sorting, descriptive vocabulary (smooth, rough, heavy, light, loud, quiet, sweet, sour), cause and effect (this item makes my body feel ___), scientific method (hypothesis: will this help? Test: try it. Conclusion: keep it or not)"
+    },
+    "steps": [
+      {
+        "instruction": "First, decorate your Sensory Treasure Chest! Use markers and stickers to make it YOURS. Write your name on it (or have Dad write it). This box is going to hold all the things that help your body feel just right.",
+        "timer": 180,
+        "sensory_load": 2,
+        "ef_demand": 1
+      },
+      {
+        "instruction": "TOUCH TEST: Pick up 3 different textures from the items Dad gathered. A squishy thing, a smooth thing, and a rough thing. Hold each one for 10 seconds. Which one makes your hands feel GOOD? Which one makes your hands feel BAD? Put any 'good' ones in the chest.",
+        "timer": 120,
+        "sensory_load": 3,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "SQUEEZE TEST: Try the stress ball, resistance band, or squeeze a rolled-up towel as HARD as you can for 5 seconds. Then let go. How do your hands and arms feel after? Floppy? Warm? Calm? If it feels good, that's proprioceptive input \u2014 your muscles liked it. Put it in the chest if it helped.",
+        "timer": 90,
+        "sensory_load": 2,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "MOVEMENT BREAK: Try 3 body movements and pick your favorite: (1) Spin in a circle 5 times then stop, (2) Jump on the spot 10 times, (3) Push against the wall as hard as you can for 10 seconds. Which one made your body feel the BEST? That's your body telling you what kind of movement helps you.",
+        "timer": 90,
+        "sensory_load": 4,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "SMELL TEST: Close your eyes. Dad holds 3 different scented items near your nose (not touching). Sniff each one. Do any of them make you feel calm? Alert? Happy? Yucky? If you find a GOOD smell, it goes in the chest.",
+        "timer": 90,
+        "sensory_load": 3,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "SOUND TEST: Try 3 sound experiences: (1) Put on headphones or earplugs \u2014 how does the quiet feel? (2) Listen to a short clip of calm music. (3) Listen to silence for 15 seconds. Which sound experience helped your body the most? If headphones or earplugs helped, they go in the chest.",
+        "timer": 120,
+        "sensory_load": 3,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "MOUTH TEST: Try a crunchy snack (pretzel, carrot) and a chewy snack (gummy, dried fruit). Crunch loudly! Chew slowly! Which one feels more satisfying in your mouth? If chewing or crunching helps your brain feel focused, add a note to keep crunchy/chewy snacks in your kit.",
+        "timer": 120,
+        "sensory_load": 3,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "COLD TEST: Hold an ice cube (in a bag) on your hand for 5 seconds. Sharp and cold! Some people's brains LOVE cold because it wakes them up and helps them focus. Did you like it, or did you not like it? If you liked it, write 'ICE' on a card for your chest.",
+        "timer": 60,
+        "sensory_load": 3,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "TREASURE REVIEW: Look at everything in your chest. You tested touch, squeeze, smell, sound, mouth, and cold. These are YOUR sensory treasures \u2014 the things that help your unique body and brain. Count how many treasures you found! Tell Dad which one is your #1 favorite.",
+        "timer": 90,
+        "sensory_load": 1,
+        "ef_demand": 2
+      },
+      {
+        "instruction": "PLACEMENT: Choose where your Sensory Treasure Chest lives. It should be somewhere you can reach it ANYTIME \u2014 no asking permission needed. Your room? The living room? Near your workspace? Put it there now.",
+        "timer": 60,
+        "sensory_load": 1,
+        "ef_demand": 2
+      }
+    ],
+    "scaffolding": "If testing so many sensory channels is overwhelming, split this quest across 2 days (touch/squeeze/movement on day 1, smell/sound/mouth/cold on day 2). If Ezra can't articulate whether something 'helps,' watch his body instead \u2014 does he relax, smile, or lean in? That's a 'yes.' Does he pull away, grimace, or tense up? That's a 'no.' If any test causes distress, STOP that test immediately and move to the next \u2014 his reaction IS the data. If he wants to put everything in the chest, let him \u2014 you can refine later. If he doesn't want anything, the quest itself still gave you invaluable sensory profile information.",
+    "extension": "Create a mini travel kit (3-4 items in a small bag for outings). Add a visual card to the chest that says 'I feel [stormy/buzzy/frozen] so I need my [item].' Revisit the chest monthly \u2014 sensory needs change! Create a classroom/quiet space kit for when Ezra is at other people's houses. Rate each item on a 1-5 'helps me' scale and see if ratings change over time. Add items from nature (smooth stone, pine cone, leaf) after outdoor quests.",
+    "celebration": "Sensory Scientist Ezra! You tested six kinds of sensory input and built a regulation kit that's 100% YOURS. You studied yourself and found real tools \u2014 perfectly, uniquely Ezra.",
+    "parent_notes": "This quest is essentially a child-friendly occupational therapy sensory assessment and intervention rolled into one. The items in the chest become Ezra's self-directed 'sensory diet' \u2014 the specific inputs his nervous system needs to maintain optimal regulation. Pay extremely close attention during every test. His reactions are telling you exactly how his sensory system processes each input channel: Does he seek or avoid deep pressure? Is his auditory system hyper- or hypo-sensitive? Does oral input (crunching/chewing) regulate him? Does he need more proprioceptive input than average? This data should go directly into the sensory profile section of EZRA_PROFILE.md. The placement step is critical \u2014 if Ezra has to ASK for his regulation tools, you've added a social-communication barrier to self-regulation. He should be able to grab the chest independently, at any time, without permission. This builds self-advocacy and self-regulation simultaneously. Over time, you want Ezra to reach for this chest BEFORE a meltdown, not during one. That requires (1) interoceptive awareness (the Body Weather Station quest) to notice the early signals, and (2) an accessible, personalized toolkit (this quest) to respond to those signals. These two Sensory Sanctuary quests are designed to work as a pair. Revisit this chest monthly \u2014 as Ezra's nervous system matures and his sensory needs shift, the contents should evolve with him.",
+    "real_world_connection": "Every human self-regulates through sensory input \u2014 adults just don't think about it. The person who chews gum during a test, the worker who listens to music to focus, the runner who needs morning exercise to feel right, the person who wraps up in a heavy blanket after a hard day \u2014 they're all using sensory tools. By building this kit at age 5, Ezra is developing self-knowledge and self-regulation strategies that will serve him in school (fidget tool at his desk), social situations (headphones in a loud restaurant), sleep (weighted blanket, calming scents), medical appointments (distraction tools, comfort items), and eventually in every workplace and relationship he'll ever be part of. He's learning the most important lesson: I know what my body needs, and I can give it to myself."
+  }
+]

@@ -3,6 +3,7 @@ package com.phoenixforge.profile.data.export
 import android.content.Context
 import android.content.Intent
 import android.os.Environment
+import com.phoenixforge.profile.domain.copy.AppBoundaryCopy
 import com.phoenixforge.profile.domain.avatar.AvatarConfigV2
 import com.phoenixforge.profile.domain.avatar.AvatarHeroCatalog
 import com.phoenixforge.profile.domain.avatar.ForgeProfilePushBundle
@@ -14,7 +15,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * Steward-triggered export only — no background sync.
+ * Parent-triggered export only — no background sync.
  * Writes JSON to PhoenixForge/export and returns a share intent for manual handoff.
  */
 @Singleton
@@ -90,16 +91,16 @@ class ProfileManualPushExporter @Inject constructor() {
         avatar: AvatarConfigV2?,
         writtenPaths: List<String>,
     ): String = buildString {
-        appendLine(stewardPushInstructions(profile, avatar))
+        appendLine(parentPushInstructions(profile, avatar))
         if (writtenPaths.isNotEmpty()) {
             appendLine("Export files:")
             writtenPaths.forEach { appendLine("• $it") }
         }
     }
 
-    private fun stewardPushInstructions(profile: ForgeProfile, avatar: AvatarConfigV2?): String =
+    private fun parentPushInstructions(profile: ForgeProfile, avatar: AvatarConfigV2?): String =
         buildString {
-            appendLine("Manual steward push — nothing syncs automatically.")
+            appendLine(AppBoundaryCopy.MANUAL_SYNC)
             appendLine("Forge name: ${profile.forgeName}")
             appendLine("Profile ID: ${profile.uid}")
             avatar?.let {
@@ -107,6 +108,6 @@ class ProfileManualPushExporter @Inject constructor() {
                 appendLine("Godot model: ${it.godotMeshHints.modelPath}")
             }
             appendLine()
-            appendLine("On the student tablet: open Student Edition → Import Forge Profile → Pull snapshot.")
+            appendLine(AppBoundaryCopy.pushAvatarHint())
         }
 }

@@ -49,7 +49,7 @@ fun HomeScreen(
             } ?: run {
                 Text("Your Hearth", style = MaterialTheme.typography.headlineLarge)
                 Text(
-                    "Welcome, explorer. Import your Forge Profile when your steward is ready.",
+                    "Welcome, explorer. Import your Forge Profile when your parent is ready.",
                     style = MaterialTheme.typography.bodyMedium,
                 )
             }
