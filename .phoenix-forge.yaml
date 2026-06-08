@@ -1,0 +1,21 @@
+repo: phoenix-forge-classroom
+status: active
+layer: classroom
+
+owns:
+  - "Forge profile, student, and teacher Android APKs"
+  - "Classroom roadmap, cline essence drift checks, avatar schema"
+
+never_owns:
+  - "Sovereign Deck on-device inference and routing"
+  - "Godot world game"
+  - "Crucible mesh / Jarvis runtime services"
+
+cross_ref_ok:
+  - phoenix-forge-ops
+  - phoenix-forge-home
+
+current_focus: "Profile/student/teacher compile-verify on laptop"
+
+embral: archived
+embral_note: "Embral → phoenix-forge-world."
