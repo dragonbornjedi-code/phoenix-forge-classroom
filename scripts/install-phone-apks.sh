@@ -13,6 +13,13 @@ SERIAL="${1:-}"
 ADB=(adb)
 if [[ -n "$SERIAL" ]]; then
   ADB=(adb -s "$SERIAL")
+elif [[ -n "${ANDROID_SERIAL:-}" ]]; then
+  ADB=(adb -s "$ANDROID_SERIAL")
+else
+  SERIAL="$(adb devices | awk '/\tdevice$/{print $1; exit}')"
+  if [[ -n "$SERIAL" ]]; then
+    ADB=(adb -s "$SERIAL")
+  fi
 fi
 
 echo "Building APKs..."

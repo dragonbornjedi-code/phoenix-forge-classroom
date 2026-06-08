@@ -191,6 +191,26 @@ private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawHeroStyleOverla
                 size = Size(headRadius * 2.4f, headRadius * 1.55f),
             )
         }
+        HeroStyle.SCOUT -> {
+            drawArc(
+                color = look.heroAccent.copy(alpha = 0.85f),
+                startAngle = 210f,
+                sweepAngle = 120f,
+                useCenter = false,
+                topLeft = Offset(cx - headRadius * 1.05f, cy - headRadius * 1.2f),
+                size = Size(headRadius * 2.1f, headRadius * 0.9f),
+                style = Stroke(width = w * 0.03f),
+            )
+            val lensRadius = headRadius * 0.14f
+            listOf(cx - headRadius * 0.35f, cx + headRadius * 0.35f).forEach { lx ->
+                drawCircle(
+                    color = look.heroAccent.copy(alpha = 0.75f),
+                    radius = lensRadius,
+                    center = Offset(lx, cy - headRadius * 0.75f),
+                    style = Stroke(width = w * 0.02f),
+                )
+            }
+        }
     }
 }
 
