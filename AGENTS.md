@@ -1,5 +1,14 @@
 # AI Agents — Phoenix Forge Classroom
 
+## Phoenix Forge Agency (read first)
+**Contract:** `phoenix-forge-home/registry/phoenix_forge_agency.yaml`
+**Soul:** `phoenix-forge-home/registry/phoenix_forge_agency_soul.yaml`
+**CLI:** `phoenix-forge-home/scripts/phoenix-forge-agency verify-all`
+**Audit:** `phoenix-forge-home/scripts/phoenix-forge-agency audit-drift`
+**Parity:** `phoenix-forge-home/scripts/phoenix-forge-agency parity-check`
+
+---
+
 All autonomous coding agents must use the same rules.
 
 ## Canonical source

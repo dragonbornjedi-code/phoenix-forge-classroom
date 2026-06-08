@@ -1,0 +1,21 @@
+---
+description: Classroom builds + drift check on laptop
+globs: **/*
+alwaysApply: false
+---
+
+# Classroom — laptop
+
+APKs only from `phoenix-forge-classroom-forge-profile/{forge-profile-app,student-app,teacher-app}`.
+
+Never build `teacher-edition/android/` or `student-edition/android/`.
+
+```bash
+source ~/.phoenix-forge/env.sh
+build compile-classroom
+build profile | student | teacher | classroom
+```
+
+After doc/path edits: `./scripts/cline-essence-drift-check.sh`
+
+Schedule: **only** `docs/roadmaps/00_MASTER_ROADMAP.md`. See `phoenix-forge-universal.mdc`.
