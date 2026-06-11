@@ -52,8 +52,9 @@ class CurriculumKnowledgeBase @Inject constructor(
         if (tiles.isNotEmpty()) {
             sb.appendLine("CURRENT EXPEDITION TILES:")
             tiles.take(20).forEach { tile ->
-                sb.appendLine("- ${tile.title} [${tile.status}]: ${tile.description}")
+                sb.appendLine("- id=${tile.id} | ${tile.title} [${tile.status}/${tile.domain}]: ${tile.description}")
                 if (tile.studentMission.isNotBlank()) sb.appendLine("  Student mission: ${tile.studentMission}")
+                if (tile.routineKind.isNotBlank()) sb.appendLine("  routine_kind: ${tile.routineKind}")
             }
             sb.appendLine()
         }

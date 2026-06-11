@@ -36,6 +36,7 @@ import com.phoenixforge.classroom.teacher.domain.curriculum.CurriculumDomainId
 @Composable
 fun LessonPlannerScreen(
     onBack: () -> Unit,
+    onTileCreated: (String) -> Unit = {},
     viewModel: LessonPlannerViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsState()
@@ -130,11 +131,24 @@ fun LessonPlannerScreen(
     }
 
     state.tileCreatedMessage?.let { message ->
+        val tileId = state.createdTileId
         AlertDialog(
             onDismissRequest = viewModel::dismissMessage,
             title = { Text("Expedition Board") },
             text = { Text(message) },
             confirmButton = {
+                if (tileId != null) {
+                    TextButton(
+                        onClick = {
+                            viewModel.dismissMessage()
+                            onTileCreated(tileId)
+                        }
+                    ) {
+                        Text("Open tile")
+                    }
+                }
+            },
+            dismissButton = {
                 TextButton(onClick = viewModel::dismissMessage) { Text("OK") }
             }
         )

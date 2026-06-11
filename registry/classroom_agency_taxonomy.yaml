@@ -1,0 +1,152 @@
+# Phoenix Forge Classroom — agency taxonomy (ONE agency, everywhere).
+# Catalog is HUGE; Cursor loads INDEX + routed slice only (classroom_context_budget.yaml).
+schema_version: classroom_agency_taxonomy_v1
+updated: "2026-06-10"
+agency: Phoenix Forge Agency
+lane: classroom
+parent_agent: ao_classroom_bridge
+pedagogy_parent: co_sage_coordinator
+division: childhood_os
+
+vision_scale:
+  tier1_domain_agents: 40
+  tier2_classification_agents: 300
+  tier3_specialist_agents: 2000
+  tier4_skill_modules: 10000
+  classroom_classifications: 800
+  stable_end_state_major_agents: "300-600"
+  sovereign_sage_leaves: [co_sage_quest_designer, co_sage_lesson_planner, co_sage_storyteller, co_sage_parent_coach]
+
+layer1_meta_divisions:
+  active_for_classroom:
+    - childhood_os
+    - curriculum_systems
+    - pedagogy_systems
+    - student_experience
+    - teacher_experience
+    - profile_authority
+    - sync_transport
+    - event_systems
+    - quest_systems
+    - ui_ux_systems
+    - android_engineering
+    - testing
+    - build_pipeline
+    - knowledge_management
+    - cross_app_integration
+  catalog:
+    - vision_design
+    - narrative
+    - curriculum_systems
+    - pedagogy_systems
+    - student_experience
+    - teacher_experience
+    - profile_authority
+    - sync_transport
+    - event_systems
+    - quest_systems
+    - progression_systems
+    - companion_systems
+    - chariot_systems
+    - ui_ux_systems
+    - accessibility
+    - input_systems
+    - networking
+    - save_systems
+    - security
+    - privacy_scopes
+    - testing
+    - build_pipeline
+    - analytics
+    - localization
+    - documentation
+    - android_engineering
+    - cross_app_integration
+    - deployment
+    - knowledge_management
+
+layer2_products:
+  forge_profile:
+    package: com.phoenixforge.profile
+    modules: [forge-profile-core, forge-profile-app]
+    role: authority_room_ingest_contentprovider
+  student_edition:
+    package: com.phoenixforge.student
+    modules: [student-app]
+    role: public_reader_event_writer_digital_home
+  teacher_edition:
+    package: com.phoenixforge.classroom.teacher
+    modules: [teacher-app]
+    role: manifest_protected_reader_sage_expedition
+  forge_world:
+    path: phoenix-forge-world
+    integration: file_contract_only
+
+layer2_digital_home:
+  wire_source: shared/schemas/public_state.schema.json
+  zones: [HEARTH, STUDY, GARDEN, PET_SPACE, MEMORY_VAULT, GALLERY]
+  student_files:
+    - student-app/.../DigitalHomeScreen.kt
+    - student-app/.../DigitalHomeViewModel.kt
+    - student-app/.../GardenMerchantScreen.kt
+    - student-app/.../ProgressionEngine.kt
+  world_parity: phoenix-forge-world/docs/DIGITAL_HOME_SYNC_HANDOFF.md
+  current_step: "0.68 [TESTED]"
+
+layer3_event_contract:
+  public_events: [QUEST_STARTED, QUEST_COMPLETED, ROOM_UNLOCKED, CURRENCY_SPENT, ITEM_UNLOCKED]
+  scopes: [PUBLIC, LESSON, PROTECTED]
+  paths:
+    events: "/sdcard/PhoenixForge/sync/profiles/{studentUid}/events/EVT_*.json"
+    manifests: "manifests/lesson_manifest_{yyyy-MM-dd}.json"
+    public_state: snapshots/public_state.json
+  laws:
+    - Student and World write PUBLIC only
+    - Teacher writes PROTECTED + LESSON manifests
+    - Adult profile never imports into Student Edition
+
+layer4_systems:
+  sync_spine:
+    agent: sub_sync_events
+    files: [EventWriter.kt, ForgeEventModels.kt, PublicStateWriter.kt, EventIngester.kt]
+  digital_home:
+    agent: sub_compose_builder
+    files: [DigitalHomeScreen.kt, DigitalHomeViewModel.kt, GardenMerchantScreen.kt]
+  sage_advisor:
+    agent: sub_sage_advisor
+    sovereign_parent: co_sage_coordinator
+    files: [SageAdvisorScreen.kt, SageChatService.kt, SageTileActions.kt]
+  expedition:
+    agent: sub_expedition_board
+    files: [ExpeditionBoardScreen.kt, ManifestWriter.kt, StartDayBottomSheet.kt]
+  curriculum:
+    agent: sub_curriculum_manifest
+    files: [CurriculumRepository.kt, CurriculumDomainScreen.kt]
+  forge_profile:
+    agent: sub_forge_profile_core
+    files: [EventIngestCoordinator.kt, PublicStateEventProjector.kt]
+
+layer5_android_leaves:
+  registry: classroom_agent_manifest.yaml
+  parent: ao_classroom_bridge
+  leaves:
+    - sub_compose_architect
+    - sub_compose_builder
+    - sub_kotlin_domain
+    - sub_sync_events
+    - sub_sage_advisor
+    - sub_curriculum_manifest
+    - sub_expedition_board
+    - sub_forge_profile_core
+    - sub_student_quests
+    - sub_chariot_sessions
+    - sub_gradle_build
+    - sub_verify_runner
+
+layer6_dev_pipeline:
+  verify_all: scripts/phoenix-forge-classroom-verify-all.sh
+  delegation_verify: scripts/classroom-delegation-verify.py
+  context_pack: scripts/classroom-context-pack.sh
+  drift_check: scripts/cline-essence-drift-check.sh
+  score_log: registry/handoffs/classroom_turn_scores.jsonl
+  autonomous_finish: scripts/phoenix-forge-classroom-finish.sh

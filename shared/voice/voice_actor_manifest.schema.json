@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phoenixforge.local/schemas/voice_actor_manifest.schema.json",
+  "title": "VoiceActorManifest",
+  "type": "object",
+  "required": ["schema_version", "actors", "default_fallback_chain"],
+  "properties": {
+    "schema_version": { "type": "integer" },
+    "playback_policy_ref": { "type": "string" },
+    "default_fallback_chain": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["human_recording", "prerecorded_npc", "piper_tts", "text_only"]
+      }
+    },
+    "actors": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["display_name", "voice_id"],
+        "properties": {
+          "voice_id": { "type": "string" },
+          "display_name": { "type": "string" },
+          "fallback_chain": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "clips_manifest": { "type": "string" },
+          "piper_profile": { "type": ["string", "null"] },
+          "human_recording_prefix": { "type": "string" }
+        }
+      }
+    },
+    "dialogue_lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["line_id", "voice_id", "text"],
+        "properties": {
+          "line_id": { "type": "string" },
+          "voice_id": { "type": "string" },
+          "text": { "type": "string" },
+          "clip_id": { "type": "string" },
+          "clip_file": { "type": "string" },
+          "teacher_domain_id": { "type": "string" },
+          "fallback": { "type": "string" }
+        }
+      }
+    }
+  }
+}

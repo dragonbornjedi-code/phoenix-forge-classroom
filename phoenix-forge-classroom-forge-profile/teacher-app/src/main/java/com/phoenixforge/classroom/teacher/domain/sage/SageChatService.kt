@@ -17,7 +17,12 @@ import javax.inject.Singleton
 data class SageChatMessage(val role: String, val content: String)
 
 sealed class SageChatResult {
-    data class Success(val reply: String) : SageChatResult()
+    data class Success(
+        val reply: String,
+        val displayText: String,
+        val actions: List<SageTileAction>,
+    ) : SageChatResult()
+
     data class Error(val message: String) : SageChatResult()
 }
 
@@ -76,7 +81,12 @@ class SageChatService @Inject constructor(
                     .getJSONObject(0)
                     .getJSONObject("message")
                     .getString("content")
-                SageChatResult.Success(content.trim())
+                val parsed = SageResponseParser.parse(content.trim())
+                SageChatResult.Success(
+                    reply = content.trim(),
+                    displayText = parsed.displayText,
+                    actions = parsed.actions,
+                )
             }
         }.getOrElse { e ->
             SageChatResult.Error(e.message ?: "Sage request failed")

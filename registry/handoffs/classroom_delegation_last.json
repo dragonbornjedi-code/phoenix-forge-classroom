@@ -1,0 +1,419 @@
+{
+  "schema_version": "classroom_delegation_report_v1",
+  "total": 51,
+  "leaf_hits": 51,
+  "leaf_hit_ratio": 1.0,
+  "parent_only": 0,
+  "gate_min_ratio": 0.92,
+  "overall": "PASS",
+  "cases": [
+    {
+      "id": "compose_nav_plan",
+      "expected": "sub_compose_architect",
+      "got": "sub_compose_architect",
+      "work_type": "compose_ui",
+      "srs": 0.66,
+      "pass": true
+    },
+    {
+      "id": "compose_digital_home",
+      "expected": "sub_compose_builder",
+      "got": "sub_compose_builder",
+      "work_type": "compose_ui",
+      "srs": 0.968,
+      "pass": true
+    },
+    {
+      "id": "kotlin_viewmodel",
+      "expected": "sub_kotlin_domain",
+      "got": "sub_kotlin_domain",
+      "work_type": "kotlin_domain",
+      "srs": 0.968,
+      "pass": true
+    },
+    {
+      "id": "event_writer",
+      "expected": "sub_sync_events",
+      "got": "sub_sync_events",
+      "work_type": "sync_events",
+      "srs": 0.96,
+      "pass": true
+    },
+    {
+      "id": "public_state",
+      "expected": "sub_sync_events",
+      "got": "sub_sync_events",
+      "work_type": "cross_app_contract",
+      "srs": 0.923,
+      "pass": true
+    },
+    {
+      "id": "sage_long_press",
+      "expected": "sub_sage_advisor",
+      "got": "sub_sage_advisor",
+      "work_type": "sage_advisor",
+      "srs": 0.652,
+      "pass": true
+    },
+    {
+      "id": "sage_apply_json",
+      "expected": "sub_sage_advisor",
+      "got": "sub_sage_advisor",
+      "work_type": "sage_advisor",
+      "srs": 0.784,
+      "pass": true
+    },
+    {
+      "id": "curriculum_domain",
+      "expected": "sub_curriculum_manifest",
+      "got": "sub_curriculum_manifest",
+      "work_type": "curriculum",
+      "srs": 0.952,
+      "pass": true
+    },
+    {
+      "id": "lesson_manifest",
+      "expected": "sub_curriculum_manifest",
+      "got": "sub_curriculum_manifest",
+      "work_type": "lesson_manifest",
+      "srs": 0.976,
+      "pass": true
+    },
+    {
+      "id": "expedition_board",
+      "expected": "sub_expedition_board",
+      "got": "sub_expedition_board",
+      "work_type": "expedition",
+      "srs": 0.984,
+      "pass": true
+    },
+    {
+      "id": "forge_ingest",
+      "expected": "sub_forge_profile_core",
+      "got": "sub_forge_profile_core",
+      "work_type": "forge_profile",
+      "srs": 0.976,
+      "pass": true
+    },
+    {
+      "id": "profile_projector",
+      "expected": "sub_forge_profile_core",
+      "got": "sub_forge_profile_core",
+      "work_type": "profile_ingest",
+      "srs": 0.652,
+      "pass": true
+    },
+    {
+      "id": "student_quests",
+      "expected": "sub_student_quests",
+      "got": "sub_student_quests",
+      "work_type": "student_quests",
+      "srs": 0.976,
+      "pass": true
+    },
+    {
+      "id": "chariot_session",
+      "expected": "sub_chariot_sessions",
+      "got": "sub_chariot_sessions",
+      "work_type": "chariot",
+      "srs": 0.952,
+      "pass": true
+    },
+    {
+      "id": "gradle_assemble",
+      "expected": "sub_gradle_build",
+      "got": "sub_gradle_build",
+      "work_type": "gradle_build",
+      "srs": 0.96,
+      "pass": true
+    },
+    {
+      "id": "drift_verify",
+      "expected": "sub_verify_runner",
+      "got": "sub_verify_runner",
+      "work_type": "verify_test",
+      "srs": 0.976,
+      "pass": true
+    },
+    {
+      "id": "nav_student",
+      "expected": "sub_compose_architect",
+      "got": "sub_compose_architect",
+      "work_type": "compose_ui",
+      "srs": 0.66,
+      "pass": true
+    },
+    {
+      "id": "home_screen",
+      "expected": "sub_compose_builder",
+      "got": "sub_compose_builder",
+      "work_type": "compose_ui",
+      "srs": 0.711,
+      "pass": true
+    },
+    {
+      "id": "repo_quest",
+      "expected": "sub_kotlin_domain",
+      "got": "sub_kotlin_domain",
+      "work_type": "kotlin_domain",
+      "srs": 0.858,
+      "pass": true
+    },
+    {
+      "id": "evt_quest",
+      "expected": "sub_sync_events",
+      "got": "sub_sync_events",
+      "work_type": "sync_events",
+      "srs": 0.96,
+      "pass": true
+    },
+    {
+      "id": "snapshot_public",
+      "expected": "sub_sync_events",
+      "got": "sub_sync_events",
+      "work_type": "cross_app_contract",
+      "srs": 0.638,
+      "pass": true
+    },
+    {
+      "id": "sage_tile",
+      "expected": "sub_sage_advisor",
+      "got": "sub_sage_advisor",
+      "work_type": "sage_advisor",
+      "srs": 0.652,
+      "pass": true
+    },
+    {
+      "id": "sage_persona",
+      "expected": "sub_sage_advisor",
+      "got": "sub_sage_advisor",
+      "work_type": "sage_advisor",
+      "srs": 0.784,
+      "pass": true
+    },
+    {
+      "id": "curriculum_repo",
+      "expected": "sub_curriculum_manifest",
+      "got": "sub_curriculum_manifest",
+      "work_type": "curriculum",
+      "srs": 0.952,
+      "pass": true
+    },
+    {
+      "id": "manifest_push",
+      "expected": "sub_curriculum_manifest",
+      "got": "sub_curriculum_manifest",
+      "work_type": "lesson_manifest",
+      "srs": 0.947,
+      "pass": true
+    },
+    {
+      "id": "start_day",
+      "expected": "sub_expedition_board",
+      "got": "sub_expedition_board",
+      "work_type": "expedition",
+      "srs": 0.696,
+      "pass": true
+    },
+    {
+      "id": "ingest_room",
+      "expected": "sub_forge_profile_core",
+      "got": "sub_forge_profile_core",
+      "work_type": "forge_profile",
+      "srs": 0.866,
+      "pass": true
+    },
+    {
+      "id": "content_provider",
+      "expected": "sub_forge_profile_core",
+      "got": "sub_forge_profile_core",
+      "work_type": "forge_profile",
+      "srs": 0.621,
+      "pass": true
+    },
+    {
+      "id": "quest_vm",
+      "expected": "sub_student_quests",
+      "got": "sub_student_quests",
+      "work_type": "student_quests",
+      "srs": 0.866,
+      "pass": true
+    },
+    {
+      "id": "progression_xp",
+      "expected": "sub_student_quests",
+      "got": "sub_student_quests",
+      "work_type": "progression",
+      "srs": 0.928,
+      "pass": true
+    },
+    {
+      "id": "chariot_audio",
+      "expected": "sub_chariot_sessions",
+      "got": "sub_chariot_sessions",
+      "work_type": "chariot",
+      "srs": 0.652,
+      "pass": true
+    },
+    {
+      "id": "gradle_jdk",
+      "expected": "sub_gradle_build",
+      "got": "sub_gradle_build",
+      "work_type": "gradle_build",
+      "srs": 0.96,
+      "pass": true
+    },
+    {
+      "id": "drift_essence",
+      "expected": "sub_verify_runner",
+      "got": "sub_verify_runner",
+      "work_type": "verify_test",
+      "srs": 0.866,
+      "pass": true
+    },
+    {
+      "id": "digital_home_vm",
+      "expected": "sub_kotlin_domain",
+      "got": "sub_kotlin_domain",
+      "work_type": "kotlin_domain",
+      "srs": 0.858,
+      "pass": true
+    },
+    {
+      "id": "garden_merchant",
+      "expected": "sub_compose_builder",
+      "got": "sub_compose_builder",
+      "work_type": "compose_ui",
+      "srs": 0.711,
+      "pass": true
+    },
+    {
+      "id": "teacher_nav",
+      "expected": "sub_compose_architect",
+      "got": "sub_compose_architect",
+      "work_type": "compose_ui",
+      "srs": 0.66,
+      "pass": true
+    },
+    {
+      "id": "forge_event_models",
+      "expected": "sub_sync_events",
+      "got": "sub_sync_events",
+      "work_type": "sync_events",
+      "srs": 0.789,
+      "pass": true
+    },
+    {
+      "id": "public_sync_writer",
+      "expected": "sub_sync_events",
+      "got": "sub_sync_events",
+      "work_type": "cross_app_contract",
+      "srs": 0.638,
+      "pass": true
+    },
+    {
+      "id": "sage_apply_block",
+      "expected": "sub_sage_advisor",
+      "got": "sub_sage_advisor",
+      "work_type": "sage_advisor",
+      "srs": 0.652,
+      "pass": true
+    },
+    {
+      "id": "curriculum_quests",
+      "expected": "sub_curriculum_manifest",
+      "got": "sub_curriculum_manifest",
+      "work_type": "curriculum",
+      "srs": 0.952,
+      "pass": true
+    },
+    {
+      "id": "expedition_fab",
+      "expected": "sub_expedition_board",
+      "got": "sub_expedition_board",
+      "work_type": "expedition",
+      "srs": 0.852,
+      "pass": true
+    },
+    {
+      "id": "event_coordinator",
+      "expected": "sub_forge_profile_core",
+      "got": "sub_forge_profile_core",
+      "work_type": "forge_profile",
+      "srs": 0.866,
+      "pass": true
+    },
+    {
+      "id": "student_import",
+      "expected": "sub_forge_profile_core",
+      "got": "sub_forge_profile_core",
+      "work_type": "forge_profile",
+      "srs": 0.621,
+      "pass": true
+    },
+    {
+      "id": "quest_screen",
+      "expected": "sub_student_quests",
+      "got": "sub_student_quests",
+      "work_type": "student_quests",
+      "srs": 0.866,
+      "pass": true
+    },
+    {
+      "id": "chariot_schema",
+      "expected": "sub_chariot_sessions",
+      "got": "sub_chariot_sessions",
+      "work_type": "chariot",
+      "srs": 0.952,
+      "pass": true
+    },
+    {
+      "id": "unit_test_student",
+      "expected": "sub_verify_runner",
+      "got": "sub_verify_runner",
+      "work_type": "verify_test",
+      "srs": 0.866,
+      "pass": true
+    },
+    {
+      "id": "gradle_teacher",
+      "expected": "sub_gradle_build",
+      "got": "sub_gradle_build",
+      "work_type": "gradle_build",
+      "srs": 0.646,
+      "pass": true
+    },
+    {
+      "id": "compose_theme",
+      "expected": "sub_compose_builder",
+      "got": "sub_compose_builder",
+      "work_type": "compose_ui",
+      "srs": 0.539,
+      "pass": true
+    },
+    {
+      "id": "logical_clock",
+      "expected": "sub_sync_events",
+      "got": "sub_sync_events",
+      "work_type": "sync_events",
+      "srs": 0.574,
+      "pass": true
+    },
+    {
+      "id": "manifest_writer_test",
+      "expected": "sub_curriculum_manifest",
+      "got": "sub_curriculum_manifest",
+      "work_type": "lesson_manifest",
+      "srs": 0.662,
+      "pass": true
+    },
+    {
+      "id": "field_guide",
+      "expected": "sub_expedition_board",
+      "got": "sub_expedition_board",
+      "work_type": "expedition",
+      "srs": 0.852,
+      "pass": true
+    }
+  ]
+}

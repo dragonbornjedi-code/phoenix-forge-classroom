@@ -3,6 +3,8 @@ package com.phoenixforge.classroom.teacher.ui.tile
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -92,15 +94,24 @@ fun TileDetailScreen(
                 Text("Lesson pattern: ${tile.lessonPatternId}", style = MaterialTheme.typography.bodySmall)
             }
 
+            if (tile.routineKind.isNotBlank()) {
+                Text(
+                    "Routine: ${tile.routineKind.replace('_', ' ')} — not a daily quest swap slot.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+            }
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("Car-friendly (Chariot)", style = MaterialTheme.typography.titleSmall)
+                    Text("Car quest export", style = MaterialTheme.typography.titleSmall)
                     Text(
-                        "Include on Kia Soul dashboard quest stack.",
+                        "Optional: include this tile in quest-stack.json for your Termux car setup (~port 8000). " +
+                            "Not the old Pi Zero dashboard — export only until you wire the car listener.",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -112,27 +123,69 @@ fun TileDetailScreen(
             }
 
             Text("Field guide", style = MaterialTheme.typography.titleSmall)
-            OutlinedTextField(
-                value = state.materials,
-                onValueChange = viewModel::updateMaterials,
-                label = { Text("Materials") },
-                modifier = Modifier.fillMaxWidth(),
-                minLines = 2
+            Text(
+                "Six boxes — edit any time; pre-filled from starter lessons.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            OutlinedTextField(
-                value = state.coachingCues,
-                onValueChange = viewModel::updateCoaching,
-                label = { Text("Coaching cues") },
+            Spacer(modifier = Modifier.height(4.dp))
+            Row(
                 modifier = Modifier.fillMaxWidth(),
-                minLines = 3
-            )
-            OutlinedTextField(
-                value = state.evidenceNotes,
-                onValueChange = viewModel::updateEvidence,
-                label = { Text("Evidence / mentorship note") },
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                OutlinedTextField(
+                    value = state.materials,
+                    onValueChange = viewModel::updateMaterials,
+                    label = { Text("Materials") },
+                    modifier = Modifier.weight(1f),
+                    minLines = 4,
+                )
+                OutlinedTextField(
+                    value = state.coachingCues,
+                    onValueChange = viewModel::updateCoaching,
+                    label = { Text("Coaching cues") },
+                    modifier = Modifier.weight(1f),
+                    minLines = 4,
+                )
+            }
+            Row(
                 modifier = Modifier.fillMaxWidth(),
-                minLines = 3
-            )
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                OutlinedTextField(
+                    value = state.fieldGuideExamples,
+                    onValueChange = viewModel::updateExamples,
+                    label = { Text("Examples") },
+                    modifier = Modifier.weight(1f),
+                    minLines = 4,
+                )
+                OutlinedTextField(
+                    value = state.evidenceNotes,
+                    onValueChange = viewModel::updateEvidence,
+                    label = { Text("Notes") },
+                    modifier = Modifier.weight(1f),
+                    minLines = 4,
+                )
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                OutlinedTextField(
+                    value = state.fieldGuideSupports,
+                    onValueChange = viewModel::updateSupports,
+                    label = { Text("Supports") },
+                    modifier = Modifier.weight(1f),
+                    minLines = 4,
+                )
+                OutlinedTextField(
+                    value = state.fieldGuideRecovery,
+                    onValueChange = viewModel::updateRecovery,
+                    label = { Text("Recovery") },
+                    modifier = Modifier.weight(1f),
+                    minLines = 4,
+                )
+            }
 
             if (status != TileStatus.COMPLETED) {
                 StewardReflectionSection(

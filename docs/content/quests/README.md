@@ -34,3 +34,12 @@ scaffolding, extension, celebration, parent_notes, real_world_connection
 ## Architecture
 
 Classification buckets: `sovereign-deck/docs/GOLDEN_HIERARCHY.md` § Phoenix Forge Classroom.
+
+## Quest pipeline (Session 3+)
+
+| Layer | Path |
+|-------|------|
+| Schemas + story templates | `shared/quests/` |
+| Merge core + skin | `shared/quests/templates/merge_story_template.py` |
+| Local ledger + NDJSON | `scripts/quest-ledger-tool.py` → `quest_log.ndjson` |
+| Godot runtime | `phoenix-forge-world/data/quests/2026-02-gold-standard.json` |

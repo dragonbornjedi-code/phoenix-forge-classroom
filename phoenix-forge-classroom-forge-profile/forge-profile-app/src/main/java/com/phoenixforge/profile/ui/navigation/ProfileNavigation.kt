@@ -10,7 +10,6 @@ import com.phoenixforge.profile.ui.dreams.DreamBoardScreen
 import com.phoenixforge.profile.ui.identity.IdentityCardScreen
 import com.phoenixforge.profile.ui.memory.MemoryCapsuleScreen
 import com.phoenixforge.profile.ui.studio.AvatarStudioScreen
-import com.phoenixforge.profile.ui.teacher.TeacherGateScreen
 import com.phoenixforge.profile.ui.timeline.ChildhoodTimelineScreen
 
 sealed class Screen(val route: String) {
@@ -20,14 +19,14 @@ sealed class Screen(val route: String) {
     object Timeline : Screen("timeline")
     object Memory : Screen("memory")
     object Dreams : Screen("dreams")
-    object TeacherGate : Screen("teacher_gate")
 }
 
 @Composable
 fun ProfileNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    onSignOut: () -> Unit = {}
+    onSignOut: () -> Unit = {},
+    onSwitchProfile: () -> Unit = {},
 ) {
     NavHost(
         navController = navController,
@@ -37,7 +36,8 @@ fun ProfileNavHost(
         composable(Screen.Dashboard.route) {
             DashboardScreen(
                 onNavigate = { route -> navController.navigate(route) },
-                onSignOut = onSignOut
+                onSignOut = onSignOut,
+                onSwitchProfile = onSwitchProfile,
             )
         }
         composable(Screen.Studio.route) {
@@ -54,9 +54,6 @@ fun ProfileNavHost(
         }
         composable(Screen.Dreams.route) {
             DreamBoardScreen()
-        }
-        composable(Screen.TeacherGate.route) {
-            TeacherGateScreen(onSignOut = onSignOut)
         }
     }
 }

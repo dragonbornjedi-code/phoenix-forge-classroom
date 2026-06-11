@@ -28,7 +28,9 @@ import com.phoenixforge.profile.domain.model.MemoryArtifact
 import com.phoenixforge.profile.domain.model.TeacherMetadata
 import com.phoenixforge.profile.domain.model.TimelineEvent
 import com.phoenixforge.profile.domain.model.TimelineMetadata
+import com.phoenixforge.profile.domain.access.ProfileImportPolicy
 import com.phoenixforge.profile.domain.repository.ProfileRepository
+import com.phoenixforge.profile.domain.session.ProfileSessionStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
@@ -38,14 +40,44 @@ import javax.inject.Inject
 
 class ProfileRepositoryImpl @Inject constructor(
     private val dao: ProfileDao,
-    private val forgeProfileJson: ForgeProfileJson
+    private val forgeProfileJson: ForgeProfileJson,
+    private val sessionStore: ProfileSessionStore
 ) : ProfileRepository {
 
-    override fun getProfile(): Flow<ForgeProfile?> =
-        dao.getProfile().map { it?.toDomain() }
+    override fun getProfile(): Flow<ForgeProfile?> {
+        val activeUid = sessionStore.getActiveProfileUid()
+        val source = if (activeUid != null) dao.getProfileByUid(activeUid) else dao.getProfile()
+        return source.map { entity ->
+            if (entity != null && sessionStore.getActiveProfileUid() == null) {
+                sessionStore.setActiveProfileUid(entity.uid)
+            }
+            entity?.toDomain()
+        }
+    }
+
+    override fun listProfiles(): Flow<List<ForgeProfile>> =
+        dao.listProfiles().map { profiles -> profiles.map { it.toDomain() } }
+
+    override suspend fun switchActiveProfile(uid: String) {
+        val exists = dao.getProfileByUid(uid).firstOrNull() != null
+        if (exists) sessionStore.setActiveProfileUid(uid)
+    }
+
+    override suspend fun ensureActiveProfile() {
+        if (sessionStore.getActiveProfileUid() != null) return
+        val first = dao.listProfiles().firstOrNull()?.firstOrNull() ?: return
+        sessionStore.setActiveProfileUid(first.uid)
+    }
+
+    override suspend fun getImportableProfile(): ForgeProfile? {
+        val profiles = listProfiles().firstOrNull().orEmpty()
+        return ProfileImportPolicy.selectImportableProfile(profiles)
+    }
 
     override suspend fun updateProfile(profile: ForgeProfile) {
-        val oldProfile = dao.getProfile().firstOrNull()
+        val oldProfile = sessionStore.getActiveProfileUid()?.let { uid ->
+            dao.getProfileByUid(uid).firstOrNull()
+        } ?: dao.getProfile().firstOrNull()
         val previousPayload = if (oldProfile != null) captureCurrentPayload() else null
 
         if (oldProfile != null) {
@@ -57,6 +89,7 @@ class ProfileRepositoryImpl @Inject constructor(
         }
 
         dao.insertProfile(profile.toEntity())
+        sessionStore.setActiveProfileUid(profile.uid)
         persistFullChildhoodSnapshot(
             profileUid = profile.uid,
             previous = previousPayload,
@@ -66,16 +99,17 @@ class ProfileRepositoryImpl @Inject constructor(
     }
 
     override suspend fun saveAboutMeEntry(entry: AboutMeEntry) {
-        requireInitializedProfile(dao.getProfile().firstOrNull()?.toDomain())
+        val profileUid = requireActiveProfileUid()
+        requireInitializedProfile(dao.getProfileByUid(profileUid).firstOrNull()?.toDomain())
 
-        val previous = dao.getAboutMeEntries().firstOrNull()
+        val previous = dao.getAboutMeEntries(profileUid).firstOrNull()
             ?.find { it.id == entry.id }
             ?.answer
 
-        dao.insertAboutMeEntry(entry.toEntity())
+        dao.insertAboutMeEntry(entry.toEntity(profileUid))
 
         commitDomainMutation(
-            profileUid = requireProfileUid(),
+            profileUid = requireActiveProfileUid(),
             fieldName = "aboutMe.${entry.prompt}",
             oldValue = previous,
             newValue = entry.answer,
@@ -85,16 +119,17 @@ class ProfileRepositoryImpl @Inject constructor(
     }
 
     override suspend fun saveFavoriteEntry(entry: FavoriteEntry) {
-        requireInitializedProfile(dao.getProfile().firstOrNull()?.toDomain())
+        val profileUid = requireActiveProfileUid()
+        requireInitializedProfile(dao.getProfileByUid(profileUid).firstOrNull()?.toDomain())
 
-        val previous = dao.getFavoriteEntries().firstOrNull()
+        val previous = dao.getFavoriteEntries(profileUid).firstOrNull()
             ?.find { it.id == entry.id }
             ?.item
 
-        dao.insertFavoriteEntry(entry.toEntity())
+        dao.insertFavoriteEntry(entry.toEntity(profileUid))
 
         commitDomainMutation(
-            profileUid = requireProfileUid(),
+            profileUid = requireActiveProfileUid(),
             fieldName = "favorite.${entry.category}",
             oldValue = previous,
             newValue = entry.item,
@@ -104,16 +139,17 @@ class ProfileRepositoryImpl @Inject constructor(
     }
 
     override suspend fun saveDreamEntry(entry: DreamEntry) {
-        requireInitializedProfile(dao.getProfile().firstOrNull()?.toDomain())
+        val profileUid = requireActiveProfileUid()
+        requireInitializedProfile(dao.getProfileByUid(profileUid).firstOrNull()?.toDomain())
 
-        val previous = dao.getDreamEntries().firstOrNull()
+        val previous = dao.getDreamEntries(profileUid).firstOrNull()
             ?.find { it.id == entry.id }
             ?.content
 
-        dao.insertDreamEntry(entry.toEntity())
+        dao.insertDreamEntry(entry.toEntity(profileUid))
 
         commitDomainMutation(
-            profileUid = requireProfileUid(),
+            profileUid = requireActiveProfileUid(),
             fieldName = "dream.${entry.type}",
             oldValue = previous,
             newValue = entry.content,
@@ -122,16 +158,21 @@ class ProfileRepositoryImpl @Inject constructor(
         )
     }
 
-    override fun getAvatarHistory(): Flow<List<Avatar>> =
-        dao.getAvatarHistory().map { list -> list.map { it.toDomain() } }
+    override fun getAvatarHistory(): Flow<List<Avatar>> {
+        val profileUid = sessionStore.getActiveProfileUid() ?: return dao.getProfile().map { emptyList() }
+        return getAvatarHistoryFor(profileUid)
+    }
+
+    override fun getAvatarHistoryFor(profileUid: String): Flow<List<Avatar>> =
+        dao.getAvatarHistory(profileUid).map { list -> list.map { it.toDomain() } }
 
     override suspend fun saveAvatar(avatar: Avatar) {
-        requireInitializedProfile(dao.getProfile().firstOrNull()?.toDomain())
+        val profileUid = requireActiveProfileUid()
+        requireInitializedProfile(dao.getProfileByUid(profileUid).firstOrNull()?.toDomain())
 
-        val previous = dao.getLatestAvatar().firstOrNull()
-        dao.insertAvatar(avatar.toEntity())
+        val previous = dao.getLatestAvatar(profileUid).firstOrNull()
+        dao.insertAvatar(avatar.toEntity(profileUid))
 
-        val profileUid = requireProfileUid()
         val oldAvatarSummary = previous?.toSummary()
         val newAvatarSummary =
             "${avatar.hairType}|${avatar.eyeColor}|${avatar.skinTone}|${avatar.clothingId}|v${avatar.version}"
@@ -149,14 +190,24 @@ class ProfileRepositoryImpl @Inject constructor(
         )
     }
 
-    override fun getTimelineEvents(): Flow<List<TimelineEvent>> =
-        dao.getTimelineEvents().map { list -> list.map { it.toDomain(forgeProfileJson) } }
+    override fun getTimelineEvents(): Flow<List<TimelineEvent>> {
+        val profileUid = sessionStore.getActiveProfileUid() ?: return dao.getProfile().map { emptyList() }
+        return getTimelineEventsFor(profileUid)
+    }
+
+    override fun getTimelineEventsFor(profileUid: String): Flow<List<TimelineEvent>> =
+        dao.getTimelineEvents(profileUid).map { list -> list.map { it.toDomain(forgeProfileJson) } }
 
     override fun getTeacherMetadata(profileUid: String): Flow<List<TeacherMetadata>> =
         dao.getTeacherMetadata(profileUid).map { list -> list.map { it.toDomain() } }
 
-    override fun getMemoryArtifacts(): Flow<List<MemoryArtifact>> =
-        dao.getMemoryArtifacts().map { list ->
+    override fun getMemoryArtifacts(): Flow<List<MemoryArtifact>> {
+        val profileUid = sessionStore.getActiveProfileUid() ?: return dao.getProfile().map { emptyList() }
+        return getMemoryArtifactsFor(profileUid)
+    }
+
+    override fun getMemoryArtifactsFor(profileUid: String): Flow<List<MemoryArtifact>> =
+        dao.getMemoryArtifacts(profileUid).map { list ->
             list.map {
                 MemoryArtifact(
                     id = it.id,
@@ -173,11 +224,13 @@ class ProfileRepositoryImpl @Inject constructor(
         }
 
     override suspend fun saveMemoryArtifact(artifact: MemoryArtifact) {
-        requireInitializedProfile(dao.getProfile().firstOrNull()?.toDomain())
+        val profileUid = requireActiveProfileUid()
+        requireInitializedProfile(dao.getProfileByUid(profileUid).firstOrNull()?.toDomain())
 
         dao.insertMemoryArtifact(
             MemoryArtifactEntity(
                 id = artifact.id,
+                profileUid = profileUid,
                 type = artifact.type,
                 localPath = artifact.localPath,
                 checksum = artifact.checksum,
@@ -201,15 +254,16 @@ class ProfileRepositoryImpl @Inject constructor(
                 )
             )
         )
-        appendChildhoodStateSnapshot(requireProfileUid(), captureCurrentPayload())
+        appendChildhoodStateSnapshot(requireActiveProfileUid(), captureCurrentPayload())
     }
 
     override suspend fun markMemorySyncedToStudent(artifactId: String) {
         dao.markMemorySyncedToStudent(artifactId)
     }
 
-    override fun getDreamEntries(): Flow<List<DreamEntry>> =
-        dao.getDreamEntries().map { list ->
+    override fun getDreamEntries(): Flow<List<DreamEntry>> {
+        val profileUid = sessionStore.getActiveProfileUid() ?: return dao.getProfile().map { emptyList() }
+        return dao.getDreamEntries(profileUid).map { list ->
             list.map {
                 DreamEntry(
                     id = it.id,
@@ -219,9 +273,11 @@ class ProfileRepositoryImpl @Inject constructor(
                 )
             }
         }
+    }
 
-    override fun getAboutMeEntries(): Flow<List<AboutMeEntry>> =
-        dao.getAboutMeEntries().map { list ->
+    override fun getAboutMeEntries(): Flow<List<AboutMeEntry>> {
+        val profileUid = sessionStore.getActiveProfileUid() ?: return dao.getProfile().map { emptyList() }
+        return dao.getAboutMeEntries(profileUid).map { list ->
             list.map {
                 AboutMeEntry(
                     id = it.id,
@@ -231,8 +287,10 @@ class ProfileRepositoryImpl @Inject constructor(
                 )
             }
         }
+    }
 
     override suspend fun clearAllData() {
+        sessionStore.clearActiveProfileUid()
         dao.deleteAllDreams()
         dao.deleteAllAboutMe()
         dao.deleteAllFavorites()
@@ -342,9 +400,11 @@ class ProfileRepositoryImpl @Inject constructor(
     }
 
     private suspend fun insertTimelineEvent(event: TimelineEvent) {
+        val profileUid = requireActiveProfileUid()
         dao.insertTimelineEvent(
             TimelineEventEntity(
                 id = event.id,
+                profileUid = profileUid,
                 title = event.title,
                 type = event.type,
                 timestamp = event.timestamp.toEpochMilli(),
@@ -370,11 +430,12 @@ class ProfileRepositoryImpl @Inject constructor(
     ): TimelineMetadata = TimelineMetadata(source = source, category = category, value = value)
 
     private suspend fun captureCurrentPayload(): ChildhoodSnapshotPayload {
-        val profile = dao.getProfile().firstOrNull()
-        val avatar = dao.getLatestAvatar().firstOrNull()
-        val aboutMe = dao.getAboutMeEntries().firstOrNull().orEmpty()
-        val favorites = dao.getFavoriteEntries().firstOrNull().orEmpty()
-        val dreams = dao.getDreamEntries().firstOrNull().orEmpty()
+        val profileUid = requireActiveProfileUid()
+        val profile = dao.getProfileByUid(profileUid).firstOrNull()
+        val avatar = dao.getLatestAvatar(profileUid).firstOrNull()
+        val aboutMe = dao.getAboutMeEntries(profileUid).firstOrNull().orEmpty()
+        val favorites = dao.getFavoriteEntries(profileUid).firstOrNull().orEmpty()
+        val dreams = dao.getDreamEntries(profileUid).firstOrNull().orEmpty()
 
         return ChildhoodSnapshotPayload(
             forgeName = profile?.forgeName ?: "",
@@ -425,8 +486,9 @@ class ProfileRepositoryImpl @Inject constructor(
         )
     }
 
-    private suspend fun requireProfileUid(): String =
-        dao.getProfile().firstOrNull()?.uid
+    private suspend fun requireActiveProfileUid(): String =
+        sessionStore.getActiveProfileUid()
+            ?: dao.getProfile().firstOrNull()?.uid?.also { sessionStore.setActiveProfileUid(it) }
             ?: throw IllegalStateException("Profile must exist before recording childhood history")
 
     private fun requireInitializedProfile(profile: ForgeProfile?) {
@@ -477,8 +539,9 @@ class ProfileRepositoryImpl @Inject constructor(
     private fun AvatarEntity.toSummary(): String =
         "$hairType|$eyeColor|$skinTone|$clothingId|v$version"
 
-    private fun Avatar.toEntity(): AvatarEntity = AvatarEntity(
+    private fun Avatar.toEntity(profileUid: String): AvatarEntity = AvatarEntity(
         id = id,
+        profileUid = profileUid,
         hairType = hairType,
         eyeColor = eyeColor,
         skinTone = skinTone,
@@ -488,22 +551,25 @@ class ProfileRepositoryImpl @Inject constructor(
         timestamp = timestamp.toEpochMilli(),
     )
 
-    private fun AboutMeEntry.toEntity(): AboutMeEntryEntity = AboutMeEntryEntity(
+    private fun AboutMeEntry.toEntity(profileUid: String): AboutMeEntryEntity = AboutMeEntryEntity(
         id = id,
+        profileUid = profileUid,
         prompt = prompt,
         answer = answer,
         timestamp = timestamp.toEpochMilli()
     )
 
-    private fun FavoriteEntry.toEntity(): FavoriteEntryEntity = FavoriteEntryEntity(
+    private fun FavoriteEntry.toEntity(profileUid: String): FavoriteEntryEntity = FavoriteEntryEntity(
         id = id,
+        profileUid = profileUid,
         category = category,
         item = item,
         timestamp = timestamp.toEpochMilli()
     )
 
-    private fun DreamEntry.toEntity(): DreamEntryEntity = DreamEntryEntity(
+    private fun DreamEntry.toEntity(profileUid: String): DreamEntryEntity = DreamEntryEntity(
         id = id,
+        profileUid = profileUid,
         type = type,
         content = content,
         timestamp = timestamp.toEpochMilli()

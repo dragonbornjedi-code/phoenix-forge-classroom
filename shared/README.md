@@ -13,6 +13,15 @@ Ezra’s childhood data lives in **Forge Profile** (`forge-profile-core` Room + 
 | [sync-contract.md](sync-contract.md) | Teacher ↔ Student local exchange (missions, completion, link model) | Roadmap P2 — not fully implemented |
 | [schemas/PCAS_DB_SCHEMA.sql](schemas/PCAS_DB_SCHEMA.sql) | Long-horizon PCAS tables (spec) | Future CMOS runtime — not wired in APKs yet |
 | [schemas/forge_profile_push.schema.json](schemas/forge_profile_push.schema.json) | Manual steward push + avatar v2 | Forge Profile writer, Forge World reader |
+| [schemas/emotion_checkin.schema.json](schemas/emotion_checkin.schema.json) | Append-only emotional check-in event | Student author, Teacher/Profile/Godot consume |
+| [schemas/daily_emotional_flag.schema.json](schemas/daily_emotional_flag.schema.json) | Daily flag rollup from check-ins | Teacher Childhood Compass, Forge World HUD |
+| [visual_language/emotion_palette.yaml](visual_language/emotion_palette.yaml) | Visual Language Bible colors | DailyFlagEngine (GS + GDScript) |
+| [ledger/README.md](ledger/README.md) | Local Childhood Ledger (Sheets replacement) | Student/Teacher Room + NDJSON |
+| [ledger/schemas/quest_log_event.schema.json](ledger/schemas/quest_log_event.schema.json) | Quest completion append log | Student writer, Teacher read |
+| [ledger/schemas/daily_brief.schema.json](ledger/schemas/daily_brief.schema.json) | Offline morning brief | Teacher Edition stub |
+| [voice/voice_actor_manifest.json](voice/voice_actor_manifest.json) | Unified voice registry | Student + Godot offline playback |
+| [voice/playback_policy.yaml](voice/playback_policy.yaml) | Human > prerecorded > Piper > text | Both surfaces |
+| [schemas/emotion_vector.schema.json](schemas/emotion_vector.schema.json) | 4D emotion state (Phase 2) | Deferred |
 
 **Authoritative contracts (markdown):** [docs/contracts/](../docs/contracts/) — IntentTile, MemoryEvent, Curriculum OS, reference tiles.
 

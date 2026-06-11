@@ -78,7 +78,7 @@ fun ExpeditionBoardScreen(
     val boardFilter by viewModel.filter.collectAsState()
     val showSheet by viewModel.showSheet.collectAsState()
     val showStartDayExport by viewModel.showStartDayExport.collectAsState()
-    val startDayExportText by viewModel.startDayExportText.collectAsState()
+    val manifestPushState by viewModel.manifestPushState.collectAsState()
     val showChariotExport by viewModel.showChariotExport.collectAsState()
     val chariotExportText by viewModel.chariotExportText.collectAsState()
     val canReorder = boardFilter == ExpeditionBoardFilter.ALL
@@ -119,7 +119,7 @@ fun ExpeditionBoardScreen(
                         Icon(Icons.Outlined.Person, contentDescription = "Forge Profile")
                     }
                     IconButton(onClick = onViewStudentSnapshot) {
-                        Icon(Icons.Default.Star, contentDescription = "Student Snapshot")
+                        Icon(Icons.Default.Star, contentDescription = "Student tab")
                     }
                 }
             )
@@ -241,20 +241,13 @@ fun ExpeditionBoardScreen(
     }
 
     if (showStartDayExport) {
-        AlertDialog(
-            onDismissRequest = viewModel::closeStartDayExport,
-            title = { Text("Start day") },
-            text = {
-                Text(
-                    startDayExportText,
-                    style = MaterialTheme.typography.bodySmall
-                )
-            },
-            confirmButton = {
-                TextButton(onClick = viewModel::closeStartDayExport) {
-                    Text("Done")
-                }
-            }
+        StartDayBottomSheet(
+            tiles = tiles,
+            isPushing = manifestPushState.isPushing,
+            pushMessage = manifestPushState.message,
+            writtenPaths = manifestPushState.writtenPaths,
+            onDismiss = viewModel::closeStartDayExport,
+            onPush = viewModel::pushTodayStack,
         )
     }
 

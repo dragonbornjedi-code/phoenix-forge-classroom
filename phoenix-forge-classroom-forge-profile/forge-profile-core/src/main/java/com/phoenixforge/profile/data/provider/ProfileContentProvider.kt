@@ -19,10 +19,18 @@ class ProfileContentProvider : ContentProvider() {
 
     private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
         addURI(ProfileContract.AUTHORITY, ProfileContract.PATH_PROFILE, MATCH_PROFILE)
+        addURI(ProfileContract.AUTHORITY, ProfileContract.PATH_ACTIVE_PROFILE, MATCH_ACTIVE_PROFILE)
         addURI(ProfileContract.AUTHORITY, ProfileContract.PATH_AVATAR, MATCH_AVATAR)
         addURI(ProfileContract.AUTHORITY, ProfileContract.PATH_TIMELINE, MATCH_TIMELINE)
         addURI(ProfileContract.AUTHORITY, ProfileContract.PATH_MEMORIES, MATCH_MEMORIES)
         addURI(ProfileContract.AUTHORITY, "${ProfileContract.PATH_MEMORY_FILE}/*", MATCH_MEMORY_FILE)
+        addURI(ProfileContract.AUTHORITY, ProfileContract.PATH_CHILD_PROFILES, MATCH_CHILD_PROFILES)
+        addURI(ProfileContract.AUTHORITY, ProfileContract.PATH_LINKED_STUDENTS, MATCH_LINKED_STUDENTS)
+        addURI(ProfileContract.AUTHORITY, "${ProfileContract.PATH_CHILD_PROFILE}/*/profile", MATCH_CHILD_PROFILE)
+        addURI(ProfileContract.AUTHORITY, "${ProfileContract.PATH_CHILD_PROFILE}/*/timeline", MATCH_CHILD_TIMELINE)
+        addURI(ProfileContract.AUTHORITY, "${ProfileContract.PATH_CHILD_PROFILE}/*/events", MATCH_CHILD_EVENTS)
+        addURI(ProfileContract.AUTHORITY, ProfileContract.PATH_MESSAGES, MATCH_MESSAGES)
+        addURI(ProfileContract.AUTHORITY, "${ProfileContract.PATH_CHILD_PROFILE}/*/messages", MATCH_CHILD_MESSAGES)
     }
 
     override fun onCreate(): Boolean = true
@@ -45,6 +53,16 @@ class ProfileContentProvider : ContentProvider() {
         return when (uriMatcher.match(uri)) {
             MATCH_PROFILE -> runBlocking {
                 val dto = reader.readProfile() ?: return@runBlocking null
+                val columns = resolveProjection(
+                    projection,
+                    ProfileContract.ProfileProjection.COLUMNS
+                )
+                matrixFromColumns(columns) {
+                    addMappedRow(columns, profileRow(dto))
+                }
+            }
+            MATCH_ACTIVE_PROFILE -> runBlocking {
+                val dto = reader.readActiveProfile() ?: return@runBlocking null
                 val columns = resolveProjection(
                     projection,
                     ProfileContract.ProfileProjection.COLUMNS
@@ -83,6 +101,61 @@ class ProfileContentProvider : ContentProvider() {
                     memories.forEach { dto -> addMappedRow(columns, memoryRow(dto)) }
                 }
             }
+            MATCH_CHILD_PROFILES -> runBlocking {
+                val children = reader.listChildProfiles()
+                val columns = resolveProjection(projection, ProfileContract.ProfileProjection.COLUMNS)
+                matrixFromColumns(columns) {
+                    children.forEach { dto -> addMappedRow(columns, profileRow(dto)) }
+                }
+            }
+            MATCH_LINKED_STUDENTS -> runBlocking {
+                val linked = reader.listLinkedStudents()
+                val columns = resolveProjection(projection, ProfileContract.LinkedStudentProjection.COLUMNS)
+                matrixFromColumns(columns) {
+                    linked.forEach { dto -> addMappedRow(columns, linkedStudentRow(dto)) }
+                }
+            }
+            MATCH_CHILD_PROFILE -> runBlocking {
+                val uid = uri.pathSegments.getOrNull(1) ?: return@runBlocking null
+                val dto = reader.readProfileForUid(uid) ?: return@runBlocking null
+                val columns = resolveProjection(projection, ProfileContract.ProfileProjection.COLUMNS)
+                matrixFromColumns(columns) {
+                    addMappedRow(columns, profileRow(dto))
+                }
+            }
+            MATCH_CHILD_TIMELINE -> runBlocking {
+                val uid = uri.pathSegments.getOrNull(1) ?: return@runBlocking null
+                val events = reader.readTimelineForUid(uid)
+                val columns = resolveProjection(projection, ProfileContract.TimelineProjection.COLUMNS)
+                matrixFromColumns(columns) {
+                    events.forEach { dto -> addMappedRow(columns, timelineRow(dto)) }
+                }
+            }
+            MATCH_CHILD_EVENTS -> runBlocking {
+                val uid = uri.pathSegments.getOrNull(1) ?: return@runBlocking null
+                val events = reader.readForgeEventsForUid(uid)
+                val columns = resolveProjection(projection, ProfileContract.ForgeEventProjection.COLUMNS)
+                matrixFromColumns(columns) {
+                    events.forEach { dto -> addMappedRow(columns, forgeEventRow(dto)) }
+                }
+            }
+            MATCH_MESSAGES -> runBlocking {
+                val targetApp = uri.getQueryParameter("targetApp")
+                val messages = reader.readImportableMessages(targetApp)
+                val columns = resolveProjection(projection, ProfileContract.MessageProjection.COLUMNS)
+                matrixFromColumns(columns) {
+                    messages.forEach { dto -> addMappedRow(columns, messageRow(dto)) }
+                }
+            }
+            MATCH_CHILD_MESSAGES -> runBlocking {
+                val uid = uri.pathSegments.getOrNull(1) ?: return@runBlocking null
+                val targetApp = uri.getQueryParameter("targetApp")
+                val messages = reader.readMessagesForUid(uid, targetApp)
+                val columns = resolveProjection(projection, ProfileContract.MessageProjection.COLUMNS)
+                matrixFromColumns(columns) {
+                    messages.forEach { dto -> addMappedRow(columns, messageRow(dto)) }
+                }
+            }
             else -> null
         }
     }
@@ -105,10 +178,18 @@ class ProfileContentProvider : ContentProvider() {
 
     override fun getType(uri: Uri): String? = when (uriMatcher.match(uri)) {
         MATCH_PROFILE -> ProfileContract.MIME_PROFILE
+        MATCH_ACTIVE_PROFILE -> ProfileContract.MIME_PROFILE
         MATCH_AVATAR -> ProfileContract.MIME_AVATAR
         MATCH_TIMELINE -> ProfileContract.MIME_TIMELINE
         MATCH_MEMORIES -> ProfileContract.MIME_MEMORIES
         MATCH_MEMORY_FILE -> ProfileContract.MIME_MEMORY_FILE
+        MATCH_CHILD_PROFILES -> ProfileContract.MIME_CHILD_PROFILES
+        MATCH_LINKED_STUDENTS -> ProfileContract.MIME_LINKED_STUDENTS
+        MATCH_CHILD_EVENTS -> ProfileContract.MIME_CHILD_EVENTS
+        MATCH_MESSAGES -> ProfileContract.MIME_MESSAGES
+        MATCH_CHILD_MESSAGES -> ProfileContract.MIME_MESSAGES
+        MATCH_CHILD_PROFILE -> ProfileContract.MIME_PROFILE
+        MATCH_CHILD_TIMELINE -> ProfileContract.MIME_TIMELINE
         else -> null
     }
 
@@ -175,11 +256,50 @@ class ProfileContentProvider : ContentProvider() {
         ProfileContract.Columns.MEMORY_CONTENT_URI to dto.contentUri,
     )
 
+    private fun linkedStudentRow(dto: LinkedStudentExportDto): Map<String, Any?> = mapOf(
+        ProfileContract.Columns.UID to dto.profileUid,
+        ProfileContract.Columns.LINKED_DISPLAY_NAME to dto.displayName,
+        ProfileContract.Columns.LINKED_AT_EPOCH_MILLIS to dto.linkedAtEpochMillis,
+        ProfileContract.Columns.LINKED_NOTES to dto.notes,
+    )
+
+    private fun forgeEventRow(dto: ForgeEventExportDto): Map<String, Any?> = mapOf(
+        ProfileContract.Columns.FORGE_EVENT_ID to dto.eventId,
+        ProfileContract.Columns.FORGE_EVENT_TYPE to dto.eventType,
+        ProfileContract.Columns.FORGE_EVENT_SCOPE to dto.scope,
+        ProfileContract.Columns.FORGE_ACTOR_APP to dto.actorApp,
+        ProfileContract.Columns.FORGE_LOGICAL_CLOCK to dto.logicalClock,
+        ProfileContract.Columns.FORGE_EPOCH_MS to dto.epochMs,
+    )
+
+    private fun messageRow(dto: MessageExportDto): Map<String, Any?> = mapOf(
+        ProfileContract.Columns.MESSAGE_ID to dto.messageId,
+        ProfileContract.Columns.MESSAGE_THREAD_ID to dto.threadId,
+        ProfileContract.Columns.MESSAGE_DIRECTION to dto.direction,
+        ProfileContract.Columns.MESSAGE_FROM_DEVICE to dto.fromDeviceId,
+        ProfileContract.Columns.MESSAGE_FROM_NAME to dto.fromDisplayName,
+        ProfileContract.Columns.MESSAGE_TO_UID to dto.toStudentUid,
+        ProfileContract.Columns.MESSAGE_TARGET_APP to dto.targetApp,
+        ProfileContract.Columns.MESSAGE_EPOCH_MS to dto.epochMs,
+        ProfileContract.Columns.MESSAGE_SUBJECT to dto.subject,
+        ProfileContract.Columns.MESSAGE_BODY to dto.bodyMarkdown,
+        ProfileContract.Columns.MESSAGE_READ_MS to dto.readEpochMs,
+        ProfileContract.Columns.MESSAGE_REPLY_TO to dto.replyToMessageId,
+    )
+
     private companion object {
         const val MATCH_PROFILE = 1
+        const val MATCH_ACTIVE_PROFILE = 11
         const val MATCH_AVATAR = 2
         const val MATCH_TIMELINE = 3
         const val MATCH_MEMORIES = 4
         const val MATCH_MEMORY_FILE = 5
+        const val MATCH_CHILD_PROFILES = 6
+        const val MATCH_LINKED_STUDENTS = 7
+        const val MATCH_CHILD_PROFILE = 8
+        const val MATCH_CHILD_TIMELINE = 9
+        const val MATCH_CHILD_EVENTS = 10
+        const val MATCH_MESSAGES = 12
+        const val MATCH_CHILD_MESSAGES = 13
     }
 }

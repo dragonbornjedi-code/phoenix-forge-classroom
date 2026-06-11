@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.phoenixforge.classroom.teacher.ui.curriculum.CurriculumDomainScreen
 import com.phoenixforge.classroom.teacher.ui.curriculum.CurriculumHomeScreen
+import com.phoenixforge.classroom.teacher.ui.curriculum.CurriculumSubdomainQuestsScreen
 import com.phoenixforge.classroom.teacher.ui.curriculum.StarterLessonDetailScreen
 import com.phoenixforge.classroom.teacher.ui.curriculum.WeeklyAuditScreen
 import com.phoenixforge.classroom.teacher.ui.expedition.ExpeditionBoardScreen
@@ -51,7 +52,21 @@ fun TeacherNavGraph(navController: NavHostController, modifier: Modifier = Modif
             StudentSnapshotScreen(onBack = null)
         }
         composable(TeacherRoutes.SAGE) {
-            SageAdvisorScreen(onBack = null)
+            SageAdvisorScreen(
+                onBack = null,
+                onOpenExpedition = {
+                    navController.navigate(TeacherRoutes.EXPEDITION) {
+                        popUpTo(TeacherRoutes.EXPEDITION) { saveState = true }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
+                },
+                onOpenTile = { tileId ->
+                    navController.navigate(TeacherRoutes.tile(tileId)) {
+                        popUpTo(TeacherRoutes.EXPEDITION) { inclusive = false }
+                    }
+                },
+            )
         }
         composable(TeacherRoutes.PROFILE) {
             ForgeProfileViewerScreen(onBack = { navController.popBackStack() })
@@ -61,6 +76,26 @@ fun TeacherNavGraph(navController: NavHostController, modifier: Modifier = Modif
             arguments = listOf(navArgument("domainId") { type = NavType.StringType }),
         ) {
             CurriculumDomainScreen(
+                onBack = { navController.popBackStack() },
+                onOpenLesson = { lessonId -> navController.navigate(TeacherRoutes.starterLesson(lessonId)) },
+                onOpenSubdomain = { subdomainId ->
+                    navController.navigate(
+                        TeacherRoutes.curriculumSubdomain(
+                            domainId = it.arguments?.getString("domainId").orEmpty(),
+                            subdomainId = subdomainId,
+                        ),
+                    )
+                },
+            )
+        }
+        composable(
+            route = TeacherRoutes.CURRICULUM_SUBDOMAIN,
+            arguments = listOf(
+                navArgument("domainId") { type = NavType.StringType },
+                navArgument("subdomainId") { type = NavType.StringType },
+            ),
+        ) {
+            CurriculumSubdomainQuestsScreen(
                 onBack = { navController.popBackStack() },
                 onOpenLesson = { lessonId -> navController.navigate(TeacherRoutes.starterLesson(lessonId)) },
             )
@@ -75,7 +110,14 @@ fun TeacherNavGraph(navController: NavHostController, modifier: Modifier = Modif
             WeeklyAuditScreen(onBack = { navController.popBackStack() })
         }
         composable(TeacherRoutes.LESSON_PLANNER) {
-            LessonPlannerScreen(onBack = { navController.popBackStack() })
+            LessonPlannerScreen(
+                onBack = { navController.popBackStack() },
+                onTileCreated = { tileId ->
+                    navController.navigate(TeacherRoutes.tile(tileId)) {
+                        popUpTo(TeacherRoutes.CURRICULUM) { saveState = true }
+                    }
+                },
+            )
         }
         composable(
             route = TeacherRoutes.TILE,

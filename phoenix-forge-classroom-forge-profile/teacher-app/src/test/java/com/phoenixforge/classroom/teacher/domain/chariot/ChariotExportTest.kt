@@ -48,6 +48,68 @@ class ChariotExportTest {
         assertFalse(text.contains("null"))
     }
 
+    @Test
+    fun sageSessionExportIncludesClipIdsAndMissions() {
+        val session = ChariotSession(
+            id = "session-sunny-001",
+            title = "Sunrise Adventure",
+            bodyWeatherFlags = listOf("sunny"),
+            welcomeClipId = "welcome.mp3",
+            celebrationClipId = "celebration-1.mp3",
+            story = "Ignavarr welcomes the ride.",
+            activities = listOf(
+                ChariotActivity(
+                    realm = "adventure-grounds",
+                    voiceId = "steward_physical",
+                    narrationClipId = "movement-stretches.mp3",
+                    narrationCategory = "movement",
+                    narrationText = "Squeeze your hands tight.",
+                    inputType = "done",
+                    xp = 5,
+                ),
+            ),
+        )
+        val stack = ChariotExport.buildFromSageSession(session, "sunny")
+        assertEquals(ChariotExport.MODE_SAGE_SESSION, stack.exportMode)
+        assertEquals("session-sunny-001", stack.sessionId)
+        assertEquals("welcome.mp3", stack.welcomeClipId)
+        assertEquals(1, stack.missions.size)
+        assertEquals("movement-stretches.mp3", stack.missions.first().narrationClipId)
+        assertEquals("steward_physical", stack.missions.first().voiceId)
+    }
+
+    @Test
+    fun bundledSageSessionsLoadForSunnyWeather() {
+        val json = ChariotExport.loadBundledSessionsJson()
+        assertTrue(json.contains("session-sunny-001"))
+        val stack = ChariotExport.buildSageSessionForWeather(json, "sunny")
+        assertEquals(ChariotExport.MODE_SAGE_SESSION, stack.exportMode)
+        assertTrue(stack.missions.isNotEmpty())
+    }
+
+    @Test
+    fun sageSessionJsonRoundTrip() {
+        val session = ChariotSession(
+            id = "session-cloudy-001",
+            title = "Cloudy",
+            bodyWeatherFlags = listOf("cloudy"),
+            activities = listOf(
+                ChariotActivity(
+                    realm = "thinking-tower",
+                    voiceId = "steward_cognitive",
+                    narrationClipId = "math-addition-3plus2.mp3",
+                    narrationCategory = "math",
+                    narrationText = "How many apples?",
+                    inputType = "number",
+                ),
+            ),
+        )
+        val stack = ChariotExport.buildFromSageSession(session)
+        val parsed = ChariotQuestStack.fromJson(stack.toJson())
+        assertEquals(stack.sessionId, parsed.sessionId)
+        assertEquals(stack.missions.first().narrationClipId, parsed.missions.first().narrationClipId)
+    }
+
     private fun tile(
         title: String,
         carFriendly: Boolean = false,

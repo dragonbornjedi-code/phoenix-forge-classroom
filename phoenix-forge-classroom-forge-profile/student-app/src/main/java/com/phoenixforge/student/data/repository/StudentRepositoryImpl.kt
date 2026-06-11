@@ -2,10 +2,12 @@ package com.phoenixforge.student.data.repository
 
 import com.phoenixforge.student.data.local.dao.StudentDao
 import com.phoenixforge.student.data.local.entity.BehaviorSignalsEntity
+import com.phoenixforge.student.data.local.entity.DreamEntryEntity
 import com.phoenixforge.student.data.local.entity.HouseStateEntity
 import com.phoenixforge.student.data.local.entity.ImportedProfileSnapshotEntity
 import com.phoenixforge.student.data.local.entity.LifeEventEntity
 import com.phoenixforge.student.data.local.entity.MemoryArtifactEntity
+import com.phoenixforge.student.data.local.entity.MemoryEventDraftEntity
 import com.phoenixforge.student.data.local.entity.NpcEntity
 import com.phoenixforge.student.data.local.entity.QuestEntity
 import com.phoenixforge.student.data.local.entity.StoryFragmentEntity
@@ -18,6 +20,7 @@ import com.phoenixforge.student.domain.model.ImportedProfileSnapshot
 import com.phoenixforge.student.domain.model.LifeChapter
 import com.phoenixforge.student.domain.model.LifeEvent
 import com.phoenixforge.student.domain.model.MemoryArtifact
+import com.phoenixforge.student.domain.model.MemoryEventDraft
 import com.phoenixforge.student.domain.model.MemorySource
 import com.phoenixforge.student.domain.model.NpcState
 import com.phoenixforge.student.domain.model.NpcType
@@ -27,6 +30,7 @@ import com.phoenixforge.student.domain.model.QuestStatus
 import com.phoenixforge.student.domain.model.QuestType
 import com.phoenixforge.student.domain.model.RoomNode
 import com.phoenixforge.student.domain.model.BehaviorSignals
+import com.phoenixforge.student.domain.model.DreamEntry
 import com.phoenixforge.student.domain.model.StoryFragment
 import com.phoenixforge.student.domain.model.StudentProgress
 import com.phoenixforge.student.domain.model.WorldDriftState
@@ -66,6 +70,18 @@ class StudentRepositoryImpl @Inject constructor(
     override suspend fun saveMemory(memory: MemoryArtifact) {
         dao.insertMemory(memory.toEntity())
     }
+
+    override fun observeMemoryEventDrafts(): Flow<List<MemoryEventDraft>> =
+        dao.observeMemoryEventDrafts().map { list -> list.map { it.toDomain() } }
+
+    override fun observeMemoryEventDraftCount(): Flow<Int> =
+        dao.observeMemoryEventDraftCount()
+
+    override suspend fun listMemoryEventDraftIds(): List<String> =
+        dao.listMemoryEventDraftIds()
+
+    override suspend fun insertMemoryEventDraftIfNew(draft: MemoryEventDraft): Boolean =
+        dao.insertMemoryEventDraft(draft.toEntity()) != -1L
 
     override fun observeNpcs(): Flow<List<NpcState>> =
         dao.observeNpcs().map { list -> list.map { it.toDomain() } }
@@ -150,6 +166,13 @@ class StudentRepositoryImpl @Inject constructor(
         dao.upsertBehaviorSignals(signals.toEntity())
     }
 
+    override fun observeDreamEntries(): Flow<List<DreamEntry>> =
+        dao.observeDreamEntries().map { entries -> entries.map { it.toDomain() } }
+
+    override suspend fun saveDreamEntry(entry: DreamEntry) {
+        dao.upsertDreamEntry(entry.toEntity())
+    }
+
     private fun defaultProgress() = StudentProgress(
         xp = 0,
         level = 1,
@@ -166,7 +189,8 @@ class StudentRepositoryImpl @Inject constructor(
                 RoomNode(type = type, isUnlocked = type in unlocked)
             },
             unlockedRoomTypes = unlocked,
-            decorations = emptyList()
+            decorations = emptyList(),
+            inventory = emptyList(),
         )
     }
 
@@ -176,7 +200,8 @@ class StudentRepositoryImpl @Inject constructor(
         streakDays = streakDays,
         lastVisitEpochMillis = lastVisitEpochMillis,
         unlockFlags = studentJson.decodeStringSet(unlockFlagsJson),
-        achievementIds = studentJson.decodeStringSet(achievementIdsJson)
+        achievementIds = studentJson.decodeStringSet(achievementIdsJson),
+        currency = studentJson.decodeCurrency(currencyJson),
     )
 
     private fun StudentProgress.toEntity(json: StudentJson) = StudentProgressEntity(
@@ -185,7 +210,8 @@ class StudentRepositoryImpl @Inject constructor(
         streakDays = streakDays,
         lastVisitEpochMillis = lastVisitEpochMillis,
         unlockFlagsJson = json.encodeStringSet(unlockFlags),
-        achievementIdsJson = json.encodeStringSet(achievementIds)
+        achievementIdsJson = json.encodeStringSet(achievementIds),
+        currencyJson = json.encodeCurrency(currency),
     )
 
     private fun HouseStateEntity.toDomain(json: StudentJson): HouseState {
@@ -197,13 +223,15 @@ class StudentRepositoryImpl @Inject constructor(
                 RoomNode(type = type, isUnlocked = type in unlocked, decorationIds = decorations.filter { it.startsWith(type.name) })
             },
             unlockedRoomTypes = unlocked,
-            decorations = decorations
+            decorations = decorations,
+            inventory = json.decodeInventory(inventoryJson),
         )
     }
 
     private fun HouseState.toEntity(json: StudentJson) = HouseStateEntity(
         unlockedRoomsJson = json.encodeStringList(unlockedRoomTypes.map { it.name }),
-        decorationsJson = json.encodeStringList(decorations)
+        decorationsJson = json.encodeStringList(decorations),
+        inventoryJson = json.encodeInventory(inventory),
     )
 
     private fun MemoryArtifactEntity.toDomain() = MemoryArtifact(
@@ -358,5 +386,49 @@ class StudentRepositoryImpl @Inject constructor(
         lastQuestEpochMillis = lastQuestEpochMillis,
         lastVisitEpochMillis = lastVisitEpochMillis,
         weekAnchorEpochMillis = weekAnchorEpochMillis
+    )
+
+    private fun MemoryEventDraftEntity.toDomain() = MemoryEventDraft(
+        eventId = eventId,
+        version = version,
+        capturedAt = capturedAt,
+        sourceShell = sourceShell,
+        eventType = eventType,
+        title = title,
+        summary = summary,
+        childMood = childMood,
+        locationId = locationId,
+        contractJson = contractJson,
+        importedAtEpochMillis = importedAtEpochMillis,
+        importSource = importSource,
+    )
+
+    private fun DreamEntryEntity.toDomain() = DreamEntry(
+        id = id,
+        type = type,
+        content = content,
+        timestampEpochMillis = timestampEpochMillis
+    )
+
+    private fun DreamEntry.toEntity() = DreamEntryEntity(
+        id = id,
+        type = type,
+        content = content,
+        timestampEpochMillis = timestampEpochMillis
+    )
+
+    private fun MemoryEventDraft.toEntity() = MemoryEventDraftEntity(
+        eventId = eventId,
+        version = version,
+        capturedAt = capturedAt,
+        sourceShell = sourceShell,
+        eventType = eventType,
+        title = title,
+        summary = summary,
+        childMood = childMood,
+        locationId = locationId,
+        contractJson = contractJson,
+        importedAtEpochMillis = importedAtEpochMillis,
+        importSource = importSource,
     )
 }

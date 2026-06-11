@@ -13,6 +13,10 @@ import kotlinx.coroutines.flow.Flow
 
 interface ProfileRepository {
     fun getProfile(): Flow<ForgeProfile?>
+    fun listProfiles(): Flow<List<ForgeProfile>>
+    suspend fun switchActiveProfile(uid: String)
+    suspend fun ensureActiveProfile()
+    suspend fun getImportableProfile(): ForgeProfile?
     suspend fun updateProfile(profile: ForgeProfile)
 
     suspend fun saveAboutMeEntry(entry: AboutMeEntry)
@@ -20,13 +24,16 @@ interface ProfileRepository {
     suspend fun saveDreamEntry(entry: DreamEntry)
 
     fun getAvatarHistory(): Flow<List<Avatar>>
+    fun getAvatarHistoryFor(profileUid: String): Flow<List<Avatar>>
     suspend fun saveAvatar(avatar: Avatar)
 
     fun getTimelineEvents(): Flow<List<TimelineEvent>>
+    fun getTimelineEventsFor(profileUid: String): Flow<List<TimelineEvent>>
 
     fun getTeacherMetadata(profileUid: String): Flow<List<TeacherMetadata>>
 
     fun getMemoryArtifacts(): Flow<List<MemoryArtifact>>
+    fun getMemoryArtifactsFor(profileUid: String): Flow<List<MemoryArtifact>>
     suspend fun saveMemoryArtifact(artifact: MemoryArtifact)
     suspend fun markMemorySyncedToStudent(artifactId: String)
 

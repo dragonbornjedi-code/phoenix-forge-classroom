@@ -10,6 +10,7 @@ import com.phoenixforge.student.domain.model.StudentProgress
 import com.phoenixforge.student.domain.model.StudentWorldState
 import com.phoenixforge.student.domain.model.WorldState
 import com.phoenixforge.student.domain.repository.StudentRepository
+import com.phoenixforge.student.domain.session.StudentSessionStore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -22,7 +23,8 @@ class HomeViewModel @Inject constructor(
     studentHouse: StudentHouse,
     questEngine: QuestEngine,
     npcEngine: NPCEngine,
-    repository: StudentRepository
+    repository: StudentRepository,
+    sessionStore: StudentSessionStore,
 ) : ViewModel() {
 
     val worldState: StateFlow<StudentWorldState> = combine(
@@ -32,8 +34,13 @@ class HomeViewModel @Inject constructor(
             repository.observeLatestStory(),
             repository.observeImportedProfiles(),
         ) { house, progress, story, imports ->
-            val latestImport = imports.firstOrNull()
-            Triple(house, progress, story) to latestImport
+            val activeImport = if (sessionStore.isSignedIn()) {
+                val activeUid = sessionStore.getActiveImportUid()
+                imports.firstOrNull { it.uid == activeUid } ?: imports.firstOrNull()
+            } else {
+                null
+            }
+            Triple(house, progress, story) to activeImport
         },
         combine(
             npcEngine.observeCompanion(),

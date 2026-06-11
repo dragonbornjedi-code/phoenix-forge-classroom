@@ -1,0 +1,33 @@
+{
+  "overall": "PASS",
+  "measurement_source": "corpus_classifier_probe_jsonl",
+  "delegation_rate": 100.0,
+  "leaf_accuracy": 100.0,
+  "surface_accuracy": 100.0,
+  "fallback_rate": 0.0,
+  "runtime": {
+    "overall": "PASS",
+    "total_turns": 51,
+    "delegated_turns": 51,
+    "parent_fallbacks": 0,
+    "correct_leaf_matches": 51,
+    "incorrect_leaf_matches": 0,
+    "tool_surface_violations": 0,
+    "verification_failures": 0,
+    "delegation_rate": 100.0,
+    "leaf_accuracy": 100.0,
+    "surface_accuracy": 100.0,
+    "fallback_rate": 0.0,
+    "hook_turns": 0,
+    "probe_turns": 51,
+    "probe_only": true
+  },
+  "corpus": {
+    "total_cases": 51,
+    "leaf_hits": 51,
+    "corpus_overall": "PASS",
+    "top_misroutes": []
+  },
+  "lane": "classroom",
+  "parent_agent_id": "ao_classroom_bridge"
+}

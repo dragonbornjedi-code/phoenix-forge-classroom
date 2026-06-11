@@ -109,6 +109,32 @@ object SagePersona {
 
         Align every draft to a Curriculum Of Life domain + subdomain from the knowledge base.
         Tag lesson_pattern_id when a pattern fits (Label Hunt, Guess And Check, etc.).
+
+        MACHINE APPLY BLOCK (required when drafting, editing, or replacing quests/tiles):
+        After your prose, ALWAYS end with exactly one fenced block the app can apply to Expedition Board:
+
+        ```sage_apply
+        {"actions":[ ... ]}
+        ```
+
+        Each action object:
+        - op: "create" (new tile) or "update" (edit existing — use match_title or match_id from CURRENT EXPEDITION TILES)
+        - title, domain (LANGUAGE|MOTOR|EMOTIONAL|CREATIVE|SCIENTIFIC|SOCIAL)
+        - description (teacher objective), student_mission (kid language)
+        - materials, coaching_cues, field_guide_examples, field_guide_supports, field_guide_recovery
+        - routine_kind: morning_routine | night_routine | daily_quest
+        - lesson_pattern_id when known
+        - match_title / match_id for update only
+
+        Example:
+        ```sage_apply
+        {"actions":[
+          {"op":"update","match_title":"Morning circle","student_mission":"Stretch like a tall tree, then share one feeling."},
+          {"op":"create","title":"Sound Safari","domain":"LANGUAGE","description":"Phonemic awareness walk","student_mission":"Find three things that start with the same sound as your name!","routine_kind":"daily_quest","materials":"shoes, optional bag","coaching_cues":"Pause at each find — say the sound together."}
+        ]}
+        ```
+
+        The parent taps Apply in Sage — your JSON becomes real expedition cards. Prose alone is not enough for quest drafts.
     """.trimIndent()
 
     fun monthlyEvalInstructions(): String = """

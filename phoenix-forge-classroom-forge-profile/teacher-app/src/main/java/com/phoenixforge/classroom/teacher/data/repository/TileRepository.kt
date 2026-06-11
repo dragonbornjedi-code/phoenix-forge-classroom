@@ -2,6 +2,7 @@ package com.phoenixforge.classroom.teacher.data.repository
 
 import com.phoenixforge.classroom.teacher.data.local.IntentTileDao
 import com.phoenixforge.classroom.teacher.domain.curriculum.CurriculumDomainCatalog
+import com.phoenixforge.classroom.teacher.domain.curriculum.FieldGuideDefaults
 import com.phoenixforge.classroom.teacher.domain.curriculum.StarterLessonsPack01
 import com.phoenixforge.classroom.teacher.domain.curriculum.StarterLesson
 import com.phoenixforge.classroom.teacher.domain.lesson.LessonPlanDraft
@@ -70,9 +71,11 @@ class TileRepository @Inject constructor(
             coachingCues = buildString {
                 append("Narrative hook: ${plan.narrativeHook}\n")
                 append("Quest: ${plan.questTitle}\n")
-                append("Recovery: ${plan.recovery}\n")
-                append("Supports: ${plan.supports}")
-            }
+                append("Steps: ${plan.steps.joinToString(" → ")}")
+            },
+            fieldGuideExamples = plan.steps.joinToString("\n") { "• $it" },
+            fieldGuideSupports = plan.supports,
+            fieldGuideRecovery = plan.recovery,
         )
         save(tile)
         return tile
@@ -80,6 +83,7 @@ class TileRepository @Inject constructor(
 
     suspend fun createFromStarterLesson(lesson: StarterLesson): IntentTile {
         val forgeDomain = CurriculumDomainCatalog.forgeDomainFor(lesson.domainId)
+        val guide = FieldGuideDefaults.fromStarterLesson(lesson)
         val tile = IntentTile(
             title = lesson.title,
             description = lesson.objective,
@@ -88,12 +92,13 @@ class TileRepository @Inject constructor(
             starterLessonId = lesson.id,
             studentMission = lesson.studentMission,
             lessonPatternId = lesson.lessonPatternId,
-            materials = lesson.materials,
-            coachingCues = buildString {
-                append("Recovery: ${lesson.recovery}\n")
-                append("Make easier: ${lesson.makeEasier}\n")
-                append("Supports: ${lesson.supports}")
-            }
+            materials = guide.materials,
+            coachingCues = guide.coachingCues,
+            fieldGuideExamples = guide.examples,
+            evidenceNotes = guide.evidenceNotes,
+            fieldGuideSupports = guide.supports,
+            fieldGuideRecovery = guide.recovery,
+            routineKind = guide.routineKind,
         )
         save(tile)
         return tile
@@ -114,21 +119,54 @@ class TileRepository @Inject constructor(
 
     suspend fun ensureSeedData() {
         if (dao.observeAll().first().isNotEmpty()) return
-        val samples = listOf(
-            Triple("Morning circle", "Connection and calm start", ForgeDomain.SOCIAL),
-            Triple("Nature walk", "Outdoor motor and observation", ForgeDomain.MOTOR),
-            Triple("Reading nest", "Literacy in a quiet space", ForgeDomain.LANGUAGE),
-            Triple("Build project", "Creation and problem-solving", ForgeDomain.CREATIVE)
-        )
-        samples.forEachIndexed { index, (title, desc, domain) ->
+        FieldGuideDefaults.seedTiles.forEachIndexed { index, seed ->
             dao.upsert(
                 IntentTile(
-                    title = title,
-                    description = desc,
-                    domain = domain.name,
-                    sortOrder = index
+                    title = seed.title,
+                    description = seed.description,
+                    domain = seed.domain.name,
+                    studentMission = seed.studentMission,
+                    materials = seed.materials,
+                    coachingCues = seed.coachingCues,
+                    fieldGuideExamples = seed.examples,
+                    evidenceNotes = seed.evidenceNotes,
+                    fieldGuideSupports = seed.supports,
+                    fieldGuideRecovery = seed.recovery,
+                    lessonPatternId = seed.lessonPatternId,
+                    routineKind = seed.routineKind,
+                    sortOrder = index,
                 )
             )
         }
+    }
+
+    /** Backfill empty field guides on tiles created before pre-fill shipped. */
+    suspend fun backfillEmptyFieldGuides(): Int {
+        var updated = 0
+        val tiles = dao.observeAll().first()
+        for (tile in tiles) {
+            if (tile.materials.isNotBlank() && tile.coachingCues.isNotBlank()) continue
+            val seed = FieldGuideDefaults.seedTiles.firstOrNull { it.title.equals(tile.title, ignoreCase = true) }
+                ?: tile.starterLessonId?.let { id ->
+                    StarterLessonsPack01.lessons.firstOrNull { it.id == id }
+                        ?.let(FieldGuideDefaults::fromStarterLesson)
+                }
+                ?: continue
+            dao.update(
+                tile.copy(
+                    materials = tile.materials.ifBlank { seed.materials },
+                    coachingCues = tile.coachingCues.ifBlank { seed.coachingCues },
+                    fieldGuideExamples = tile.fieldGuideExamples.ifBlank { seed.examples },
+                    evidenceNotes = tile.evidenceNotes.ifBlank { seed.evidenceNotes },
+                    fieldGuideSupports = tile.fieldGuideSupports.ifBlank { seed.supports },
+                    fieldGuideRecovery = tile.fieldGuideRecovery.ifBlank { seed.recovery },
+                    studentMission = tile.studentMission.ifBlank { seed.studentMission },
+                    routineKind = tile.routineKind.ifBlank { seed.routineKind },
+                    lessonPatternId = tile.lessonPatternId.ifBlank { seed.lessonPatternId },
+                )
+            )
+            updated++
+        }
+        return updated
     }
 }

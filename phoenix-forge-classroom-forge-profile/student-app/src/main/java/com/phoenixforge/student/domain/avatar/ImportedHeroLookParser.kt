@@ -50,10 +50,10 @@ object ImportedHeroLookParser {
 
     fun sparkWelcome(forgeName: String, style: String): String =
         when (normalizeStyle(style)) {
-            "builder" -> "Spark says: $forgeName, your forge is ready to build!"
-            "artist" -> "Spark says: $forgeName, color and story await you here."
-            "guardian" -> "Spark says: $forgeName, your hearth is safe — explore when you're ready."
-            else -> "Spark says: Welcome home, $forgeName. Your adventure starts here."
+            "builder" -> "Spark says: $forgeName, let's build something awesome today!"
+            "artist" -> "Spark says: $forgeName, your colors are glowing — time to make magic!"
+            "guardian" -> "Spark says: $forgeName, your hearth is cozy and safe. Ready to explore?"
+            else -> "Spark says: Welcome home, $forgeName! Your big adventure starts right here!"
         }
 }
 

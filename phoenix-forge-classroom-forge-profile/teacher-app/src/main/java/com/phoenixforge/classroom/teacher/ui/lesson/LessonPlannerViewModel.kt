@@ -24,6 +24,7 @@ data class LessonPlannerUiState(
     val selectedSubdomainId: String? = null,
     val draft: LessonPlanDraft? = null,
     val tileCreatedMessage: String? = null,
+    val createdTileId: String? = null,
     val isSaving: Boolean = false
 )
 
@@ -66,17 +67,18 @@ class LessonPlannerViewModel @Inject constructor(
         val plan = _state.value.draft ?: return
         viewModelScope.launch {
             _state.update { it.copy(isSaving = true) }
-            tileRepository.createFromLessonPlan(plan)
+            val tile = tileRepository.createFromLessonPlan(plan)
             _state.update {
                 it.copy(
                     isSaving = false,
-                    tileCreatedMessage = "\"${plan.title}\" added to Expedition Board."
+                    tileCreatedMessage = "\"${plan.title}\" added to Expedition Board.",
+                    createdTileId = tile.id,
                 )
             }
         }
     }
 
     fun dismissMessage() {
-        _state.update { it.copy(tileCreatedMessage = null) }
+        _state.update { it.copy(tileCreatedMessage = null, createdTileId = null) }
     }
 }

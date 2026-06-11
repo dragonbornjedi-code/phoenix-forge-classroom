@@ -1,12 +1,13 @@
 package com.phoenixforge.profile.domain.bootstrap
 
+import com.phoenixforge.profile.domain.avatar.AvatarHeroCatalog
 import com.phoenixforge.profile.domain.model.ForgeProfile
 import com.phoenixforge.profile.domain.model.ProfileRole
-import com.phoenixforge.profile.domain.avatar.AvatarHeroCatalog
 import com.phoenixforge.profile.domain.repository.ProfileRepository
 import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.flow.firstOrNull
 
 @Singleton
 class ProfileBootstrap @Inject constructor(
@@ -34,10 +35,26 @@ class ProfileBootstrap @Inject constructor(
             profileRole = profileRole.storageKey
         )
         repository.updateProfile(profile)
+        repository.switchActiveProfile(profile.uid)
         if (profileRole.isStudentProfile) {
             repository.saveAvatar(AvatarHeroCatalog.defaultAvatar())
+            autoLinkChildToAdultOnDevice(profile)
         }
         return profile
+    }
+
+    private suspend fun autoLinkChildToAdultOnDevice(child: ForgeProfile) {
+        val hasAdult = repository.listProfiles().firstOrNull().orEmpty()
+            .any { ProfileRole.fromStorageKey(it.profileRole)?.isAdultProfile == true }
+        if (!hasAdult) return
+        val alreadyLinked = repository.getLinkedStudents().firstOrNull().orEmpty()
+            .any { it.profileUid == child.uid }
+        if (alreadyLinked) return
+        repository.linkStudentProfile(
+            displayName = child.forgeName,
+            profileUid = child.uid,
+            notes = "Auto-linked — child profile on this device",
+        )
     }
 
     suspend fun resetAllProfileData() {

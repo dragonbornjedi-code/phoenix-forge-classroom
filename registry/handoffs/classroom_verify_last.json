@@ -1,0 +1,38 @@
+{
+  "ts": "2026-06-10T15:58:19-07:00",
+  "overall": "FAIL",
+  "gates": [
+    {
+      "name": "cline-essence-drift",
+      "status": "PASS"
+    },
+    {
+      "name": "classroom-delegation-corpus",
+      "status": "PASS"
+    },
+    {
+      "name": "gradle-forge-profile-core-test",
+      "status": "PASS"
+    },
+    {
+      "name": "gradle-student-unit-test",
+      "status": "PASS"
+    },
+    {
+      "name": "gradle-teacher-unit-test",
+      "status": "FAIL"
+    },
+    {
+      "name": "gradle-assemble-forge-profile",
+      "status": "PASS"
+    },
+    {
+      "name": "gradle-assemble-student",
+      "status": "PASS"
+    },
+    {
+      "name": "gradle-assemble-teacher",
+      "status": "PASS"
+    }
+  ]
+}

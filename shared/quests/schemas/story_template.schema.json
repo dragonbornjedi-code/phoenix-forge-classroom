@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phoenixforge.local/schemas/story_template.schema.json",
+  "title": "StoryTemplate",
+  "description": "Layer 2 — interchangeable narrative skin over quest core.",
+  "type": "object",
+  "required": ["template_id", "story_intro", "celebration_skin", "voice_id"],
+  "properties": {
+    "template_id": { "type": "string" },
+    "display_name": { "type": "string" },
+    "story_intro": { "type": "string", "description": "Prepended or wraps core title hook." },
+    "story_outro": { "type": "string" },
+    "celebration_skin": { "type": "string", "description": "Supports {player}, {title}, {realm} tokens." },
+    "voice_id": { "type": "string" },
+    "npc_guardian": { "type": "string", "description": "steward_* voice_id, not franchise names." },
+    "tone": { "type": "string", "enum": ["mystery", "heroic", "gentle", "movement", "neutral"] }
+  },
+  "additionalProperties": false
+}

@@ -21,6 +21,9 @@ data class TileDetailUiState(
     val evidenceNotes: String = "",
     val coachingCues: String = "",
     val materials: String = "",
+    val fieldGuideExamples: String = "",
+    val fieldGuideSupports: String = "",
+    val fieldGuideRecovery: String = "",
     val reflection: StewardReflection = StewardReflection(),
 )
 
@@ -43,6 +46,9 @@ class TileDetailViewModel @Inject constructor(
                 evidenceNotes = tile.evidenceNotes,
                 coachingCues = tile.coachingCues,
                 materials = tile.materials,
+                fieldGuideExamples = tile.fieldGuideExamples,
+                fieldGuideSupports = tile.fieldGuideSupports,
+                fieldGuideRecovery = tile.fieldGuideRecovery,
                 reflection = StewardReflection.fromTile(tile),
             )
         }
@@ -51,6 +57,9 @@ class TileDetailViewModel @Inject constructor(
     fun updateEvidence(notes: String) = _state.update { it.copy(evidenceNotes = notes) }
     fun updateCoaching(cues: String) = _state.update { it.copy(coachingCues = cues) }
     fun updateMaterials(materials: String) = _state.update { it.copy(materials = materials) }
+    fun updateExamples(examples: String) = _state.update { it.copy(fieldGuideExamples = examples) }
+    fun updateSupports(supports: String) = _state.update { it.copy(fieldGuideSupports = supports) }
+    fun updateRecovery(recovery: String) = _state.update { it.copy(fieldGuideRecovery = recovery) }
 
     fun updateReflectionAxis(axis: StewardReflectionAxis, value: Int) {
         _state.update {
@@ -69,6 +78,9 @@ class TileDetailViewModel @Inject constructor(
                     evidenceNotes = _state.value.evidenceNotes,
                     coachingCues = _state.value.coachingCues,
                     materials = _state.value.materials,
+                    fieldGuideExamples = _state.value.fieldGuideExamples,
+                    fieldGuideSupports = _state.value.fieldGuideSupports,
+                    fieldGuideRecovery = _state.value.fieldGuideRecovery,
                     reflectionMental = fields.reflectionMental,
                     reflectionEmotional = fields.reflectionEmotional,
                     reflectionPhysical = fields.reflectionPhysical,

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phoenixforge.local/schemas/public_state.schema.json",
+  "title": "ProfilePublicStateSnapshot",
+  "description": "Projected PUBLIC progression for Student Edition and Forge World. Written by Forge Profile after event ingest; Student Edition mirrors on local changes.",
+  "type": "object",
+  "required": ["schemaVersion", "studentUid", "level", "xp", "unlockedRooms", "lastUpdatedEpochMs"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "studentUid": { "type": "string" },
+    "forgeName": { "type": "string" },
+    "level": { "type": "integer", "minimum": 1 },
+    "xp": { "type": "integer", "minimum": 0 },
+    "currency": {
+      "type": "object",
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "unlockedRooms": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "unlockFlags": {
+      "type": "object",
+      "additionalProperties": { "type": "boolean" }
+    },
+    "companions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/CompanionSnapshot" }
+    },
+    "whisps": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/CompanionSnapshot" }
+    },
+    "pets": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/CompanionSnapshot" }
+    },
+    "inventory": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/InventoryItem" }
+    },
+    "lastUpdatedEpochMs": { "type": "integer" },
+    "aggregatedFromEventCount": { "type": "integer", "minimum": 0 }
+  },
+  "$defs": {
+    "CompanionSnapshot": {
+      "type": "object",
+      "required": ["id", "name", "stage", "isUnlocked"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "stage": { "type": "integer" },
+        "mood": { "type": "string" },
+        "isUnlocked": { "type": "boolean" }
+      }
+    },
+    "InventoryItem": {
+      "type": "object",
+      "required": ["itemId", "zone"],
+      "properties": {
+        "itemId": { "type": "string" },
+        "zone": { "type": "string" },
+        "meshHint": { "type": "string" }
+      }
+    }
+  }
+}

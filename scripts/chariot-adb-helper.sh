@@ -2,6 +2,10 @@
 # Chariot ADB helper — Kia Soul head unit (car dashboard)
 # Ported from archive/phoenix-forge-old/automations/car-quest/
 # Usage: ./scripts/chariot-adb-helper.sh [connect|status|listening|celebrate|deck|push-stack FILE]
+#
+# push-stack: copies quest-stack.json to /sdcard/PhoenixForge/Chariot/quest-stack.json
+# Supports expedition_tiles and sage_session export modes (ChariotExport.kt).
+# Sage session stacks include welcome_clip_id + narration_clip_id per mission.
 
 set -euo pipefail
 

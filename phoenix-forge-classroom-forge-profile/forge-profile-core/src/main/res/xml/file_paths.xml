@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
     <files-path name="memories" path="memories/" />
+    <external-files-path name="export" path="PhoenixForge/export/" />
 </paths>

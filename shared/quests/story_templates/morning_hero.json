@@ -1,0 +1,10 @@
+{
+  "template_id": "morning_hero",
+  "display_name": "Morning Hero",
+  "story_intro": "The realm needs you this morning — a brave hero is the only one who can complete this mission before the day moves on.",
+  "story_outro": "The hearth remembers heroes who show up early.",
+  "celebration_skin": "Morning hero {player}! You answered the call and finished {title}. The realm is stronger because you tried.",
+  "voice_id": "steward_practical",
+  "npc_guardian": "steward_practical",
+  "tone": "heroic"
+}

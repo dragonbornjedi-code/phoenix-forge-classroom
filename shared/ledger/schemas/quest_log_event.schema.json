@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phoenixforge.local/schemas/quest_log_event.schema.json",
+  "title": "QuestLogEvent",
+  "description": "Append-only quest completion row — port of MASTER_EZRA_ECOSYSTEM logQuestCompletion shape.",
+  "type": "object",
+  "required": [
+    "event_id",
+    "timestamp_epoch_millis",
+    "quest_id",
+    "status"
+  ],
+  "properties": {
+    "event_id": { "type": "string" },
+    "timestamp_epoch_millis": { "type": "integer" },
+    "quest_id": { "type": "string" },
+    "quest_title": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["started", "step_advanced", "completed", "abandoned"]
+    },
+    "step_index": { "type": ["integer", "null"] },
+    "realm_id": { "type": "string" },
+    "teacher_domain_id": {
+      "type": "string",
+      "enum": [
+        "COGNITIVE_ACADEMIC",
+        "EMOTIONAL_REGULATION",
+        "PRACTICAL_LIFE",
+        "SOCIAL_DYNAMICS",
+        "PHYSICAL_MASTERY",
+        "CREATIVE_CURIOSITY",
+        "ETHICS_CIVIC"
+      ]
+    },
+    "xp_awarded": { "type": ["integer", "null"] },
+    "gold_awarded": { "type": ["integer", "null"] },
+    "source_surface": {
+      "type": "string",
+      "enum": ["student_edition", "teacher_edition", "forge_world", "operator_manual"]
+    },
+    "child_id": { "type": "string" },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,40 @@
+---
+description: Phoenix Forge Classroom autonomous lane — /phoenix-forge-classroom slash, leaf routing, context budget
+globs:
+alwaysApply: true
+---
+
+# Phoenix Forge Classroom — agency lane
+
+## Slash command
+
+- `/phoenix-forge-classroom` → RECAP only
+- `/phoenix-forge-classroom <goal>` → full autonomous loop (one turn)
+
+Read `.cursor/skills/phoenix-forge-classroom/SKILL.md` when slash is used or when editing Classroom Kotlin.
+
+## Routing (mandatory)
+
+1. `./scripts/classroom-context-pack.sh "<goal>"` before implementation
+2. Activate **leaf** from pack — `ao_classroom_bridge` coordinates only
+3. Max 2 skills per `registry/classroom_context_budget.yaml`
+4. Prove routing: `./scripts/classroom-delegation-verify.py` (≥92% corpus)
+
+## Gradle law
+
+- **Only:** `phoenix-forge-classroom-forge-profile/`
+- **Never:** `teacher-edition/android/`, `student-edition/android/`
+
+## Compose / Sage
+
+- UI: read `~/.phoenix-forge-agent-skills/frontend-design/SKILL.md` + `classroom-compose-ui.mdc`
+- Sage: read `SAGE_PERSONA.md` — Sage drafts expedition tiles, not Godot quests
+
+## Cross-lane
+
+- World Godot: read-only unless Josh bridges
+- File contracts: `shared/schemas/public_state.schema.json`, EVT PUBLIC only on Student
+
+## Current spine
+
+Step **0.68** Digital Home [TESTED] → next **0.69** QuestEngine

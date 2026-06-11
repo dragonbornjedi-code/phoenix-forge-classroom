@@ -5,9 +5,9 @@
 | Field | Value |
 |-------|--------|
 | **Finish line** | `5.00` |
-| **Current step** | `0.67` — next: `0.68` |
+| **Current step** | `0.68` — next: `0.69` |
 
-Current step: 0.67 — next: 0.68
+Current step: 0.68 — next: 0.69
 
 | **Protocol** | [cline_essence/SKILL.md](../cline_essence/SKILL.md) · [MASTER_PROTOCOL.md](../cline_essence/MASTER_PROTOCOL.md) |
 | **Tier 0** | [CONSTITUTION.md](../CONSTITUTION.md) · [registry/phoenix-forge-classroom.yaml](../../registry/phoenix-forge-classroom.yaml) |
@@ -136,7 +136,7 @@ Current step: 0.67 — next: 0.68
 | 0.65 | Profile | Memory capsule records artifact | MemoryCapsule | [TESTED] |
 | 0.66 | Profile | Timeline from real capture events | Timeline | [TESTED] |
 | 0.67 | Profile | Parent gate + three-app boundary copy | STUDENT_TEACHER_BOUNDARY | [TESTED] |
-| 0.68 | Student | Home usable 15 min parent-free | Field test | pending |
+| 0.68 | Student | Digital Home hub + public_state.json Godot parity slice | gradle + manifest on disk | [TESTED] |
 | 0.69 | Student | QuestEngine + Quests UI stable | Phone | pending |
 | 0.70 | Student | WorldOrchestrator regression (no rip-out) | Unit/smoke | pending |
 | 0.71 | Student | Gallery + vault reflect play | Phone | pending |
@@ -155,12 +155,25 @@ Current step: 0.67 — next: 0.68
 | 0.83 | Cross | CURRICULUM_OS_SCHEMA trimmed to P2 needs | Doc | pending |
 | 0.84 | Cross | Atlas contract rows = PARTIAL until proof | Authority | pending |
 | 0.85 | Cross | Contracts complete: 0.76–0.84 | Checklist | pending |
+| 0.86 | Cross | DETACHABLE_BRANCHES.md + branch registry docs | Doc + drift | pending |
+| 0.87 | Cross | Local Childhood Ledger schemas (`shared/ledger/`) | schema files exist | pending |
+| 0.88 | Cross | Unified voice manifest + Godot VoicePlayer + quest audio wire | `verify_voice_system.gd` PASS | pending |
+| 0.89 | Cross | `shared/quests/` schemas + story_templates/ (3 templates) | JSON schema valid | [TESTED] |
+| 0.90 | Cross | `quest-ledger-tool.py` port from Downloads | import gold-standard + export ndjson | [TESTED] |
+| 0.91 | Teacher | Sage quest expansion uses gold-standard validator | `quest-ledger-tool.py validate` PASS | [TESTED] |
+| 0.92 | Cross | Godot reads gold-standard steps + voice per step | `verify_quest_gold_standard.gd` PASS | [TESTED] |
+| 0.93 | Cross | `forge_world_boot.py` non-interactive loader | exit 0 on verify pass | [TESTED] |
+| 0.94 | Cross | Salvage cleanup pass + post-salvage-archive if staging grew | ARCHIVE_MANIFEST updated | [TESTED] |
+| 0.95 | Cross | `shared/chariot/` + audio_path_map + sage-sessions salvage | `validate-chariot-sessions.py` PASS | [TESTED] |
+| 0.96 | Teacher | ChariotExport `sage_session` mode | `ChariotExportTest.kt` + smoke-chariot-export.py PASS | [TESTED] |
+| 0.97 | Cross | CHARIOT_PRODUCT.md + UX patterns doc | drift check PASS | [TESTED] |
+| 0.98 | Cross | mvp_dashboard archived | `docs/archives/README.md` | [TESTED] |
 | | | | | |
 | **1.00** | — | **MILESTONE: Integration scaffold** | — | pending |
-| 1.01 | Cross | Handoff API chosen and documented | Doc | pending |
-| 1.02 | Teacher | Send tile → Student stub payload | E2E stub | pending |
-| 1.03 | Student | Receive quest payload route | Nav + VM | pending |
-| 1.04 | Profile | MemoryEvent write API (steward-guarded) | Room | pending |
+| 1.01 | Cross | Handoff API chosen and documented | Doc | [VERIFIED] |
+| 1.02 | Teacher | Send tile → Student stub payload | E2E stub | [VERIFIED] |
+| 1.03 | Student | Receive quest payload route | Nav + VM | [VERIFIED] |
+| 1.04 | Profile | MemoryEvent write API (steward-guarded) | Room | [VERIFIED] |
 | 1.05 | Teacher | Read Student completion stub | UI | pending |
 | 1.06 | Cross | Integration scaffold complete | Checklist | pending |
 | | | | | |

@@ -1,0 +1,25 @@
+---
+description: Classroom Compose UI — mandatory frontend-design skill for Teacher/Student/Profile screens
+globs: **/*.{kt,xml}
+alwaysApply: false
+---
+
+# Classroom UI (Jetpack Compose) — enforced agent rules
+
+## Before editing any UI screen, composable, or theme file
+
+1. Read `docs/cline_essence/SKILL.md` (Cline Essence v1.1.0).
+2. **Read and follow** `~/.phoenix-forge-agent-skills/frontend-design/SKILL.md`.
+3. For Sage Advisor / Teacher copy: also read `phoenix-forge-classroom-teacher-edition/docs/SAGE_PERSONA.md` and `.cursor/rules/sage-persona-content.mdc`.
+
+## Sage Advisor (Teacher app only)
+
+- **Sage** = in-app `SageAdvisorScreen` + `AiProviderCatalog` (Groq/Gemini/OpenRouter free tier).
+- Sage drafts **expedition tiles** for the grown-up to Apply — not Godot quests, not Chariot live LLM.
+- Require structured `sage_apply` JSON blocks when applying tiles; re-prompt if the model omits them.
+
+## Forbidden UI patterns
+
+- User-facing copy using "steward" — use grown-up / adult / parent.
+- Student-facing shame or compliance framing.
+- Promising unverified features without checking `docs/roadmaps/00_MASTER_ROADMAP.md`.

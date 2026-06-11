@@ -1,0 +1,7 @@
+{
+  "ts": "2026-06-10T23:01:00-07:00",
+  "lane": "classroom",
+  "current_step": "0.68",
+  "handoff": "/var/lib/phoenix-ai/workspace/phoenix-forge-classroom/docs/SESSION_HANDOFF_20260609.md",
+  "verify": "FAIL shell-verify 2026-06-10T20:21:49-07:00 \u2014 export JAVA_HOME=/home/joshuar/.local/jdk; export PATH=\"$JAVA_HOME/bin:$PATH\"; cd /var/lib/phoenix-ai/workspace/phoenix-forge-classroom/phoenix-forge-classroom-forge-profile && ./gradlew :forge-profile-app:assembleDebug :student-app:assembleDebug --no-daemon --continue 2>&1 | tee /tmp/build-$(date +%H%M).log"
+}

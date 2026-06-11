@@ -11,14 +11,16 @@ data class StudentProgressEntity(
     val streakDays: Int,
     val lastVisitEpochMillis: Long,
     val unlockFlagsJson: String,
-    val achievementIdsJson: String
+    val achievementIdsJson: String,
+    val currencyJson: String = "{}",
 )
 
 @Entity(tableName = "house_state")
 data class HouseStateEntity(
     @PrimaryKey val id: Int = 1,
     val unlockedRoomsJson: String,
-    val decorationsJson: String
+    val decorationsJson: String,
+    val inventoryJson: String = "[]",
 )
 
 @Entity(tableName = "memory_artifacts")
@@ -93,6 +95,30 @@ data class StoryFragmentEntity(
     val callbackLine: String?,
     val emotionalImpact: Float,
     val continuityThread: String?,
+    val timestampEpochMillis: Long
+)
+
+@Entity(tableName = "memory_event_drafts")
+data class MemoryEventDraftEntity(
+    @PrimaryKey val eventId: String,
+    val version: String,
+    val capturedAt: String,
+    val sourceShell: String,
+    val eventType: String,
+    val title: String,
+    val summary: String,
+    val childMood: String,
+    val locationId: String,
+    val contractJson: String,
+    val importedAtEpochMillis: Long,
+    val importSource: String,
+)
+
+@Entity(tableName = "dream_entries")
+data class DreamEntryEntity(
+    @PrimaryKey val id: String,
+    val type: String,
+    val content: String,
     val timestampEpochMillis: Long
 )
 

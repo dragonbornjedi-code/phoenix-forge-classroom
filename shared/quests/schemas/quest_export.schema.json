@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phoenixforge.local/schemas/quest_export.schema.json",
+  "title": "QuestExportBundle",
+  "description": "Layer 3+4 — Teacher handoff bundle for Student + Godot.",
+  "type": "object",
+  "required": ["schema_version", "exported_at_epoch_millis", "quest"],
+  "properties": {
+    "schema_version": { "type": "integer", "const": 1 },
+    "exported_at_epoch_millis": { "type": "integer" },
+    "export_kind": { "type": "string", "enum": ["sage_draft", "expedition_tile", "manual_steward"] },
+    "story_template_id": { "type": "string" },
+    "intent_tile_stub": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "teacher_domain_id": { "type": "string" },
+        "subcategory": { "type": "string" },
+        "estimated_duration": { "type": "string" },
+        "parent_notes": { "type": "string" }
+      }
+    },
+    "quest": { "$ref": "https://phoenixforge.local/schemas/quest_core.schema.json" },
+    "target_surfaces": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["student_edition", "forge_world", "forge_profile"] }
+    },
+    "voice_line_ids": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

@@ -25,9 +25,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.phoenixforge.student.domain.model.PhotoTag
+import com.phoenixforge.student.ui.components.StudentBackHeader
 
 @Composable
-fun GalleryScreen(viewModel: GalleryViewModel = hiltViewModel()) {
+fun GalleryScreen(
+    onBack: (() -> Unit)? = null,
+    viewModel: GalleryViewModel = hiltViewModel(),
+) {
     val state by viewModel.state.collectAsState()
 
     val cloudLauncher = rememberLauncherForActivityResult(
@@ -39,6 +43,9 @@ fun GalleryScreen(viewModel: GalleryViewModel = hiltViewModel()) {
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
+        onBack?.let { back ->
+            item { StudentBackHeader(onBack = back) }
+        }
         item {
             Text("Photo Gallery", style = MaterialTheme.typography.headlineLarge)
             Text(

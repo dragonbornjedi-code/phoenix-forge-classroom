@@ -3,6 +3,8 @@ package com.phoenixforge.profile.di
 import android.content.Context
 import androidx.room.Room
 import com.phoenixforge.profile.data.local.ProfileDatabase
+import com.phoenixforge.profile.data.local.dao.EventRecordDao
+import com.phoenixforge.profile.data.local.dao.MessageDao
 import com.phoenixforge.profile.data.local.dao.ProfileDao
 import com.phoenixforge.profile.data.repository.ProfileRepositoryImpl
 import com.phoenixforge.profile.data.serialization.ForgeProfileJson
@@ -46,10 +48,19 @@ object ProfileModule {
 
     @Provides
     @Singleton
+    fun provideEventRecordDao(database: ProfileDatabase): EventRecordDao = database.eventRecordDao
+
+    @Provides
+    @Singleton
+    fun provideMessageDao(database: ProfileDatabase): MessageDao = database.messageDao
+
+    @Provides
+    @Singleton
     fun provideRepository(
         dao: ProfileDao,
-        forgeProfileJson: ForgeProfileJson
-    ): ProfileRepository = ProfileRepositoryImpl(dao, forgeProfileJson)
+        forgeProfileJson: ForgeProfileJson,
+        sessionStore: ProfileSessionStore
+    ): ProfileRepository = ProfileRepositoryImpl(dao, forgeProfileJson, sessionStore)
 
     @Provides
     @Singleton

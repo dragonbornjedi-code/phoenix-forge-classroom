@@ -19,4 +19,20 @@ class CurriculumRepository @Inject constructor() {
 
     fun lessonsForDomain(domainId: CurriculumDomainId): List<StarterLesson> =
         StarterLessonsPack01.lessonsForDomain(domainId)
+
+    fun lessonsForSubdomain(domainId: CurriculumDomainId, subdomain: CurriculumSubdomain): List<StarterLesson> {
+        val tokens = (listOf(subdomain.name, subdomain.id.replace('_', ' ')) + subdomain.topics)
+            .map { it.lowercase().trim() }
+            .filter { it.isNotEmpty() }
+        return StarterLessonsPack01.lessons.filter { lesson ->
+            if (lesson.domainId != domainId) return@filter false
+            lesson.subcategories.any { sub ->
+                val lower = sub.lowercase()
+                tokens.any { token -> lower.contains(token) || token.contains(lower) }
+            }
+        }
+    }
+
+    fun subdomain(id: CurriculumDomainId, subdomainId: String): CurriculumSubdomain? =
+        domain(id)?.subdomains?.firstOrNull { it.id == subdomainId }
 }

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phoenixforge.local/schemas/xp_ledger_event.schema.json",
+  "title": "XpLedgerEvent",
+  "description": "Append-only XP delta — steward policy, not grind-first.",
+  "type": "object",
+  "required": ["event_id", "timestamp_epoch_millis", "delta_xp", "reason"],
+  "properties": {
+    "event_id": { "type": "string" },
+    "timestamp_epoch_millis": { "type": "integer" },
+    "delta_xp": { "type": "integer" },
+    "reason": { "type": "string" },
+    "quest_id": { "type": "string" },
+    "emotion_bonus_applied": { "type": "boolean", "default": false },
+    "source_surface": { "type": "string" }
+  },
+  "additionalProperties": false
+}

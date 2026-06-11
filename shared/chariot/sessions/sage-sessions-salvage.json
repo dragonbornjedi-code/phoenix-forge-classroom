@@ -1,0 +1,1056 @@
+[
+  {
+    "id": "session-sunny-001",
+    "title": "The Sunrise Adventure",
+    "body_weather_flags": [
+      "sunny",
+      "rainbow"
+    ],
+    "duration_minutes": 15,
+    "total_xp": 45,
+    "welcome_voice_id": "ignavarr",
+    "welcome_clip_id": "welcome.mp3",
+    "welcome_category": "welcome",
+    "celebration_clip_id": "celebration-1.mp3",
+    "celebration_category": "celebration",
+    "story": "The morning sun paints the sky gold, and Ignavarr stretches his wings with a yawn. 'Ah, what a magnificent day for adventure! Your Body Weather is shining bright, which means your brain and body are ready for challenges. Today, the movement steward has a strength test, the thinking steward has puzzles, and the creative steward wants to hear your imagination. Let's make this ride legendary!'",
+    "deep_objectives": {
+      "executive_function": "Sequencing (fist squeeze reps), pattern recognition (2-4-6), working memory (spelling 5 letters), sustained attention across varied activities",
+      "social_emotional": "Emotion identification accuracy, empathy perspective-taking, pride in creative expression",
+      "sensory": "Proprioceptive input (hand squeezing), interoception (breathing awareness), visual observation (window story)",
+      "academic": "Skip counting by 2s, spelling CVC+ words, emotion vocabulary"
+    },
+    "scaffolding": {
+      "if_stuck": "Repeat the question slowly. Give the first hint after 10 seconds.",
+      "if_frustrated": "Skip to the next activity. Come back to this one later.",
+      "if_dysregulated": "Jump to breathing activity immediately. Weather has shifted."
+    },
+    "parent_tips": [
+      "Ezra is regulated - great time for challenge!",
+      "Watch for weather shifts after math activities",
+      "Celebrate effort: 'I noticed you thought hard about that one'"
+    ],
+    "activities": [
+      {
+        "realm": "adventure-grounds",
+        "voice_id": "steward_physical",
+        "activity_type": "car_body",
+        "narration_clip_id": "movement-stretches.mp3",
+        "narration_category": "movement",
+        "narration_text": "the movement steward says: Squeeze your hands into fists as tight as you can! Hold it... hold it... now let go! Feel that tingly feeling? Do it three more times!",
+        "input_type": "done",
+        "xp": 5,
+        "sensory_load": 3,
+        "ef_demand": 1,
+        "deep_target": "Proprioceptive regulation - muscle tension/release cycle activates calming nervous system",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "thinking-tower",
+        "voice_id": "steward_cognitive",
+        "activity_type": "math",
+        "narration_clip_id": "math-pattern-246.mp3",
+        "narration_category": "math",
+        "narration_text": "the thinking steward has a puzzle! What comes next: 2, 4, 6, ___?",
+        "input_type": "number",
+        "xp": 10,
+        "sensory_load": 1,
+        "ef_demand": 3,
+        "deep_target": "Pattern recognition and skip counting - pre-algebraic thinking",
+        "correct_answer": "8",
+        "hints": [
+          "Try counting by twos",
+          "What is 6 plus 2?"
+        ],
+        "choices": []
+      },
+      {
+        "realm": "thinking-tower",
+        "voice_id": "steward_cognitive",
+        "activity_type": "spelling",
+        "narration_clip_id": "spelling-brave.mp3",
+        "narration_category": "spelling",
+        "narration_text": "Can you spell the word BRAVE? the thinking steward will use it in a sentence: Ezra was very BRAVE today.",
+        "input_type": "spelling",
+        "xp": 10,
+        "sensory_load": 1,
+        "ef_demand": 4,
+        "deep_target": "Phonemic awareness and letter sequencing - working memory for 5-letter word",
+        "correct_answer": "BRAVE",
+        "hints": [
+          "It starts with B",
+          "B-R-A..."
+        ],
+        "choices": []
+      },
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "weather_check",
+        "narration_clip_id": "mid-check.mp3",
+        "narration_category": "progress",
+        "narration_text": "How is your weather now? Has it changed since we started?",
+        "input_type": "weather_check",
+        "xp": 0,
+        "sensory_load": 1,
+        "ef_demand": 2,
+        "deep_target": "Interoception - recognizing internal state changes after cognitive effort",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "heart-garden",
+        "voice_id": "steward_emotional",
+        "activity_type": "emotion",
+        "narration_clip_id": "emotion-identify.mp3",
+        "narration_category": "emotion",
+        "narration_text": "the heart steward shows you a face. What emotion do you see?",
+        "input_type": "emotion",
+        "xp": 8,
+        "sensory_load": 1,
+        "ef_demand": 2,
+        "deep_target": "Emotion recognition from facial cues - theory of mind foundation",
+        "correct_answer": "sad",
+        "hints": [],
+        "choices": [
+          "HAPPY",
+          "SAD",
+          "ANGRY",
+          "SCARED"
+        ]
+      },
+      {
+        "realm": "creation-studio",
+        "voice_id": "steward_creative",
+        "activity_type": "creative",
+        "narration_clip_id": "creative-window-story.mp3",
+        "narration_category": "creative",
+        "narration_text": "the creative steward says: Look out the window! Pick something you see and make up a silly story about it. Tell Dad!",
+        "input_type": "done",
+        "xp": 7,
+        "sensory_load": 2,
+        "ef_demand": 3,
+        "deep_target": "Narrative generation from visual prompts - language, imagination, shared attention with parent",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "breathing",
+        "narration_clip_id": "sensory-breathing.mp3",
+        "narration_category": "sensory",
+        "narration_text": "Take three deep breaths with the calm steward. Smell the flowers on the way in. Blow out the candles on the way out.",
+        "input_type": "breathing",
+        "xp": 5,
+        "sensory_load": 2,
+        "ef_demand": 1,
+        "deep_target": "Vagal tone activation - downregulation after cognitive session",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      }
+    ]
+  },
+  {
+    "id": "session-cloudy-001",
+    "title": "Waking Up the Clouds",
+    "body_weather_flags": [
+      "cloudy"
+    ],
+    "duration_minutes": 14,
+    "total_xp": 40,
+    "welcome_voice_id": "ignavarr",
+    "welcome_clip_id": "welcome-alt1.mp3",
+    "welcome_category": "welcome",
+    "celebration_clip_id": "celebration-2.mp3",
+    "celebration_category": "celebration",
+    "story": "Ignavarr peers through misty clouds. 'Ah, a cloudy day. Your body weather is a bit sleepy, and that is perfectly okay. Today we will gently wake up your brain and body together. the movement steward will get your muscles moving, and then we will see how you feel. No rush. Every cloud holds a hidden rainbow.'",
+    "deep_objectives": {
+      "executive_function": "Gentle activation - isometric exercises to increase arousal, basic addition to engage without overwhelming",
+      "social_emotional": "Emotional expression through faces, creative self-expression, acceptance of low-energy states",
+      "sensory": "Heavy work (hand push), proprioceptive activation (wiggle/scrunch), breathing for regulation",
+      "academic": "Single-digit addition with concrete context, verbal expression"
+    },
+    "scaffolding": {
+      "if_stuck": "Simplify - offer two choices instead of open-ended. 'Is it 4 or 5?'",
+      "if_frustrated": "Switch to creative or sensory activity. Cloudy days need gentleness.",
+      "if_dysregulated": "Stop all cognitive tasks. Go to breathing. Stay there as long as needed."
+    },
+    "parent_tips": [
+      "Cloudy weather needs gentle activation",
+      "Keep cognitive demands lighter today",
+      "A crunchy snack or cold drink can help activate"
+    ],
+    "activities": [
+      {
+        "realm": "adventure-grounds",
+        "voice_id": "steward_physical",
+        "activity_type": "car_body",
+        "narration_clip_id": "movement-stretches.mp3",
+        "narration_category": "movement",
+        "narration_text": "the movement steward says: Push your hands together as hard as you can! Feel your muscles working? Hold for five seconds... and release! Two more times!",
+        "input_type": "done",
+        "xp": 5,
+        "sensory_load": 4,
+        "ef_demand": 1,
+        "deep_target": "Isometric heavy work - proprioceptive input to increase alertness from low-arousal state",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "adventure-grounds",
+        "voice_id": "steward_physical",
+        "activity_type": "car_body",
+        "narration_clip_id": "movement-balance.mp3",
+        "narration_category": "movement",
+        "narration_text": "Wiggle your fingers fast as you can! Now wiggle your toes inside your shoes! Now scrunch up your whole face tight... and let go! Big silly face!",
+        "input_type": "done",
+        "xp": 5,
+        "sensory_load": 3,
+        "ef_demand": 1,
+        "deep_target": "Bilateral motor activation - sequential body part awareness for arousal",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "thinking-tower",
+        "voice_id": "steward_cognitive",
+        "activity_type": "math",
+        "narration_clip_id": "math-addition-3plus2.mp3",
+        "narration_category": "math",
+        "narration_text": "If you have three apples and Dad gives you two more, how many apples do you have?",
+        "input_type": "number",
+        "xp": 8,
+        "sensory_load": 1,
+        "ef_demand": 2,
+        "deep_target": "Concrete addition with story context - lower demand for cloudy state",
+        "correct_answer": "5",
+        "hints": [
+          "Count on your fingers: 3... then 2 more"
+        ],
+        "choices": []
+      },
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "weather_check",
+        "narration_clip_id": "mid-check.mp3",
+        "narration_category": "progress",
+        "narration_text": "How is your weather now? Has it changed?",
+        "input_type": "weather_check",
+        "xp": 0,
+        "sensory_load": 1,
+        "ef_demand": 2,
+        "deep_target": "Interoception check - did body activation shift the cloudy state?",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "heart-garden",
+        "voice_id": "steward_emotional",
+        "activity_type": "emotion",
+        "narration_clip_id": "emotion-faces.mp3",
+        "narration_category": "emotion",
+        "narration_text": "Show me your angriest face! Now your silliest face! Now your calmest face! Which one was the most fun?",
+        "input_type": "done",
+        "xp": 7,
+        "sensory_load": 2,
+        "ef_demand": 2,
+        "deep_target": "Facial expression practice - connecting internal states to external expression",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "creation-studio",
+        "voice_id": "steward_creative",
+        "activity_type": "creative",
+        "narration_clip_id": "creative-animal.mp3",
+        "narration_category": "creative",
+        "narration_text": "If you could be any animal for one day, what would you be? Tell Dad why!",
+        "input_type": "done",
+        "xp": 7,
+        "sensory_load": 1,
+        "ef_demand": 2,
+        "deep_target": "Imaginative projection and verbal reasoning - low-pressure creative engagement",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "breathing",
+        "narration_clip_id": "sensory-breathing.mp3",
+        "narration_category": "sensory",
+        "narration_text": "Take three deep breaths with the calm steward.",
+        "input_type": "breathing",
+        "xp": 5,
+        "sensory_load": 2,
+        "ef_demand": 1,
+        "deep_target": "Closing regulation - establish calm transition out of session",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      }
+    ]
+  },
+  {
+    "id": "session-rainy-001",
+    "title": "The Gentle Rain Quest",
+    "body_weather_flags": [
+      "rainy"
+    ],
+    "duration_minutes": 12,
+    "total_xp": 30,
+    "welcome_voice_id": "ignavarr",
+    "welcome_clip_id": "welcome-alt2.mp3",
+    "welcome_category": "welcome",
+    "celebration_clip_id": "celebration-5.mp3",
+    "celebration_category": "celebration",
+    "story": "Ignavarr speaks softly. 'I see rainy skies in your weather today. That is brave of you to share. On rainy days, we do not push hard. We listen, we breathe, we remember good things. Your feelings are welcome here, every single one. Shall we begin gently?'",
+    "deep_objectives": {
+      "executive_function": "Minimal demands - focus on emotional recall and sensory awareness only",
+      "social_emotional": "Emotional validation, positive memory recall, empathy practice, co-regulation with parent",
+      "sensory": "Breathing for calming, auditory awareness, gentle creative expression",
+      "academic": "None - rainy sessions prioritize regulation over academics"
+    },
+    "scaffolding": {
+      "if_stuck": "Dad can share first: 'I remember feeling happy when...' Model the response.",
+      "if_frustrated": "Skip activity entirely. Say: 'We can just sit together. That is enough.'",
+      "if_dysregulated": "End session early with celebration. ANY participation is a win."
+    },
+    "parent_tips": [
+      "Rainy weather means Ezra needs connection, not challenge",
+      "Keep demands minimal - creative and emotional activities only",
+      "Your calm presence IS the intervention right now"
+    ],
+    "activities": [
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "breathing",
+        "narration_clip_id": "sensory-breathing.mp3",
+        "narration_category": "sensory",
+        "narration_text": "Let us start gently. Take three slow breaths with the calm steward.",
+        "input_type": "breathing",
+        "xp": 5,
+        "sensory_load": 2,
+        "ef_demand": 1,
+        "deep_target": "Vagal brake engagement - establish safety before any demands",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "heart-garden",
+        "voice_id": "steward_emotional",
+        "activity_type": "emotion",
+        "narration_clip_id": "emotion-recall-happy.mp3",
+        "narration_category": "emotion",
+        "narration_text": "Think of the last time you felt really happy. What were you doing? Tell Dad about that moment.",
+        "input_type": "done",
+        "xp": 8,
+        "sensory_load": 1,
+        "ef_demand": 2,
+        "deep_target": "Positive memory retrieval - shifting neural activation toward positive affect",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "weather_check",
+        "narration_clip_id": "mid-check.mp3",
+        "narration_category": "progress",
+        "narration_text": "How is your weather now?",
+        "input_type": "weather_check",
+        "xp": 0,
+        "sensory_load": 1,
+        "ef_demand": 1,
+        "deep_target": "Interoception without judgment - noticing, not fixing",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "creation-studio",
+        "voice_id": "steward_creative",
+        "activity_type": "creative",
+        "narration_clip_id": "creative-humming.mp3",
+        "narration_category": "creative",
+        "narration_text": "Hum your favorite song! Can Dad guess what it is?",
+        "input_type": "done",
+        "xp": 7,
+        "sensory_load": 2,
+        "ef_demand": 1,
+        "deep_target": "Vocal vibration is self-soothing - humming activates vagus nerve",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "sensory",
+        "narration_clip_id": "sensory-listening.mp3",
+        "narration_category": "sensory",
+        "narration_text": "Close your eyes for a moment. What can you hear right now? The car? The road? Music? Tell me three sounds.",
+        "input_type": "done",
+        "xp": 5,
+        "sensory_load": 3,
+        "ef_demand": 2,
+        "deep_target": "Auditory mindfulness - grounding in present moment through sensory focus",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "heart-garden",
+        "voice_id": "steward_emotional",
+        "activity_type": "emotion",
+        "narration_clip_id": "emotion-empathy.mp3",
+        "narration_category": "emotion",
+        "narration_text": "If your friend was feeling sad, what would you say to help them feel better?",
+        "input_type": "done",
+        "xp": 5,
+        "sensory_load": 1,
+        "ef_demand": 2,
+        "deep_target": "Perspective-taking and empathy verbalization - theory of mind development",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      }
+    ]
+  },
+  {
+    "id": "session-stormy-001",
+    "title": "The Calm Storm Protocol",
+    "body_weather_flags": [
+      "stormy"
+    ],
+    "duration_minutes": 8,
+    "total_xp": 15,
+    "welcome_voice_id": "ignavarr",
+    "welcome_clip_id": "welcome-alt3.mp3",
+    "welcome_category": "welcome",
+    "celebration_clip_id": "celebration-6.mp3",
+    "celebration_category": "celebration",
+    "story": "Ignavarr's voice is low and steady like thunder far away. 'The storm is big today. But storms always pass. Right now, we just breathe and feel our bodies. No puzzles. No challenges. Just you, me, and slow breaths. You are safe.'",
+    "deep_objectives": {
+      "executive_function": "NONE - co-regulation mode, not skill-building",
+      "social_emotional": "Co-regulation with parent, feeling safe, acceptance of intense emotions",
+      "sensory": "Heavy proprioceptive input (squeezing, pressing), interoception (heartbeat), breathing regulation",
+      "academic": "NONE - this IS the quest. Regulation is the achievement."
+    },
+    "scaffolding": {
+      "if_stuck": "Do not push. Sit in silence. Presence is enough.",
+      "if_frustrated": "End session. Say: 'That was really hard. I am proud of you.'",
+      "if_dysregulated": "Match energy slightly below Ezra's. Deep slow voice. Offer hand squeeze."
+    },
+    "parent_tips": [
+      "STORMY = co-regulation mode. Do NOT push through activities.",
+      "Match energy slightly below Ezra. Deep, slow voice.",
+      "Offer squeeze: press hands together, squeeze seatbelt straps, press feet into floor.",
+      "This IS the quest. Regulation IS the achievement."
+    ],
+    "activities": [
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "breathing",
+        "narration_clip_id": "sensory-breathing.mp3",
+        "narration_category": "sensory",
+        "narration_text": "Let us breathe together. Nice and slow. Smell the flowers in. Blow out the candles out.",
+        "input_type": "breathing",
+        "xp": 5,
+        "sensory_load": 2,
+        "ef_demand": 1,
+        "deep_target": "Co-regulation breathing - parent breathes WITH child, modeling calm",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "sensory",
+        "narration_clip_id": "sensory-squeeze.mp3",
+        "narration_category": "sensory",
+        "narration_text": "Squeeze your hands into tight fists for five seconds. Now let go. Feel how warm and floppy they are? Try pressing your feet hard into the floor. Hold... and release.",
+        "input_type": "done",
+        "xp": 5,
+        "sensory_load": 4,
+        "ef_demand": 1,
+        "deep_target": "Deep pressure proprioception - activating parasympathetic nervous system through muscle tension-release",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "weather_check",
+        "narration_clip_id": "mid-check.mp3",
+        "narration_category": "progress",
+        "narration_text": "How is your weather now?",
+        "input_type": "weather_check",
+        "xp": 0,
+        "sensory_load": 1,
+        "ef_demand": 1,
+        "deep_target": "Gentle interoception - can you notice the shift? No pressure to change.",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "sensory",
+        "narration_clip_id": "sensory-heartbeat.mp3",
+        "narration_category": "sensory",
+        "narration_text": "Put your hand on your chest. Can you feel your heartbeat? Is it fast or slow? Just notice it.",
+        "input_type": "done",
+        "xp": 5,
+        "sensory_load": 2,
+        "ef_demand": 1,
+        "deep_target": "Interoceptive awareness - connecting to body signals without judgment",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      }
+    ]
+  },
+  {
+    "id": "session-sunny-002",
+    "title": "The Dragon Challenge",
+    "body_weather_flags": [
+      "sunny",
+      "rainbow"
+    ],
+    "duration_minutes": 16,
+    "total_xp": 50,
+    "welcome_voice_id": "ignavarr",
+    "welcome_clip_id": "welcome.mp3",
+    "welcome_category": "welcome",
+    "celebration_clip_id": "celebration-3.mp3",
+    "celebration_category": "celebration",
+    "story": "Ignavarr roars with delight! 'Today, the adventure challenge awaits! Your Body Weather is PERFECT for this. We will test your strength with the movement steward, your mind with the thinking steward, and your heart with the heart steward. Only the bravest adventurers attempt the adventure challenge. Are you ready?'",
+    "deep_objectives": {
+      "executive_function": "Subtraction (reverse operation), spelling with fewer hints, sequencing (bedtime routine), decision-making (empathy scenario)",
+      "social_emotional": "Prosocial decision-making, empathy action planning, narrative creativity",
+      "sensory": "Isometric back press (heavy work), visual observation for storytelling",
+      "academic": "Subtraction within 10, spelling 4-letter word, sequencing 3-step routine"
+    },
+    "scaffolding": {
+      "if_stuck": "Give first hint after 8 seconds. For spelling: say each letter sound slowly.",
+      "if_frustrated": "Reduce to 2 choices: 'Is it 2 or 3?' For spelling: give 3 of 4 letters.",
+      "if_dysregulated": "Skip to creative window activity. Observation is regulating."
+    },
+    "parent_tips": [
+      "Full difficulty today!",
+      "Watch for weather changes after hard activities",
+      "Let Ezra lead pace on creative activities"
+    ],
+    "activities": [
+      {
+        "realm": "adventure-grounds",
+        "voice_id": "steward_physical",
+        "activity_type": "car_body",
+        "narration_clip_id": "movement-marching.mp3",
+        "narration_category": "movement",
+        "narration_text": "the movement steward challenge! Push your back against the seat as hard as you can for five seconds. Ready? PUSH! Now relax. Again! PUSH! And relax. One more time!",
+        "input_type": "done",
+        "xp": 5,
+        "sensory_load": 4,
+        "ef_demand": 1,
+        "deep_target": "Isometric back extension - large muscle proprioceptive input for sustained alertness",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "thinking-tower",
+        "voice_id": "steward_cognitive",
+        "activity_type": "math",
+        "narration_clip_id": "math-subtract-5minus2.mp3",
+        "narration_category": "math",
+        "narration_text": "What is five take away two? Use your fingers if you need to.",
+        "input_type": "number",
+        "xp": 10,
+        "sensory_load": 1,
+        "ef_demand": 3,
+        "deep_target": "Subtraction with concrete strategy - using fingers as manipulatives",
+        "correct_answer": "3",
+        "hints": [
+          "Hold up 5 fingers, put 2 down",
+          "Count what is left"
+        ],
+        "choices": []
+      },
+      {
+        "realm": "thinking-tower",
+        "voice_id": "steward_cognitive",
+        "activity_type": "spelling",
+        "narration_clip_id": "spelling-star.mp3",
+        "narration_category": "spelling",
+        "narration_text": "Can you spell the word STAR? The star shines bright at night.",
+        "input_type": "spelling",
+        "xp": 10,
+        "sensory_load": 1,
+        "ef_demand": 3,
+        "deep_target": "4-letter CVC+R spelling - phonemic segmentation",
+        "correct_answer": "STAR",
+        "hints": [
+          "It starts with S",
+          "S-T-A..."
+        ],
+        "choices": []
+      },
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "weather_check",
+        "narration_clip_id": "mid-check.mp3",
+        "narration_category": "progress",
+        "narration_text": "Quick weather check! How are you feeling?",
+        "input_type": "weather_check",
+        "xp": 0,
+        "sensory_load": 1,
+        "ef_demand": 1,
+        "deep_target": "Mid-session regulation check after cognitive load",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "life-lodge",
+        "voice_id": "steward_practical",
+        "activity_type": "life_skill",
+        "narration_clip_id": "life-bedtime-routine.mp3",
+        "narration_category": "life",
+        "narration_text": "Can you name three things you need to do before bedtime? Tell them in order!",
+        "input_type": "done",
+        "xp": 8,
+        "sensory_load": 1,
+        "ef_demand": 3,
+        "deep_target": "Sequential memory and routine knowledge - executive function for daily living",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "heart-garden",
+        "voice_id": "steward_emotional",
+        "activity_type": "emotion",
+        "narration_clip_id": "emotion-empathy.mp3",
+        "narration_category": "emotion",
+        "narration_text": "If your friend was crying at school, what would you do to help?",
+        "input_type": "choice",
+        "xp": 8,
+        "sensory_load": 1,
+        "ef_demand": 3,
+        "deep_target": "Prosocial action planning - all answers are valid, discussing WHY builds theory of mind",
+        "correct_answer": "Give them a hug",
+        "hints": [],
+        "choices": [
+          "Give them a hug",
+          "Tell a teacher",
+          "Say 'it's okay'",
+          "Sit with them"
+        ]
+      },
+      {
+        "realm": "creation-studio",
+        "voice_id": "steward_creative",
+        "activity_type": "creative",
+        "narration_clip_id": "creative-window-story.mp3",
+        "narration_category": "creative",
+        "narration_text": "Look out the car window! Pick one thing you see and make up a silly story about it. Tell Dad!",
+        "input_type": "done",
+        "xp": 7,
+        "sensory_load": 2,
+        "ef_demand": 3,
+        "deep_target": "Narrative generation - observation, imagination, verbal fluency, shared attention",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      }
+    ]
+  },
+  {
+    "id": "session-cloudy-002",
+    "title": "Cloud Breaker Quest",
+    "body_weather_flags": [
+      "cloudy"
+    ],
+    "duration_minutes": 14,
+    "total_xp": 38,
+    "welcome_voice_id": "ignavarr",
+    "welcome_clip_id": "welcome-alt1.mp3",
+    "welcome_category": "welcome",
+    "celebration_clip_id": "celebration-4.mp3",
+    "celebration_category": "celebration",
+    "story": "Ignavarr peers through gray skies. 'The clouds are thick today, but I know a secret: every cloud is just a rainbow waiting to happen. Let us drum up some energy, break through those clouds, and find the sunshine hiding inside you!'",
+    "deep_objectives": {
+      "executive_function": "Arousal activation through rhythmic input, backward counting, spelling with double letters",
+      "social_emotional": "Safety awareness (fire drill), creative expression, state awareness through weather checks",
+      "sensory": "Rhythmic proprioceptive input (drumming), vocal expression (humming), breathing",
+      "academic": "Backward counting 10-1, spelling 5-letter word with repeat letters, safety sequences"
+    },
+    "scaffolding": {
+      "if_stuck": "For counting back: count together. For spelling: clap each letter.",
+      "if_frustrated": "Drop to creative activities only. Humming and animals are zero-pressure.",
+      "if_dysregulated": "Breathing immediately. Cloudy-to-stormy shift means stop academics."
+    },
+    "parent_tips": [
+      "Start with gentle body activation",
+      "If Ezra stays cloudy, switch to creative activities",
+      "A cold drink or crunchy snack can help activate"
+    ],
+    "activities": [
+      {
+        "realm": "adventure-grounds",
+        "voice_id": "steward_physical",
+        "activity_type": "car_body",
+        "narration_clip_id": "movement-jumping-jacks.mp3",
+        "narration_category": "movement",
+        "narration_text": "the movement steward says: Drum on your legs as fast as you can! Like a drumroll! Faster! FASTER! Now stop. How do your hands feel? Tingly?",
+        "input_type": "done",
+        "xp": 5,
+        "sensory_load": 4,
+        "ef_demand": 1,
+        "deep_target": "Rhythmic bilateral input - drumming activates both hemispheres and increases arousal",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "thinking-tower",
+        "voice_id": "steward_cognitive",
+        "activity_type": "math",
+        "narration_clip_id": "math-countdown.mp3",
+        "narration_category": "math",
+        "narration_text": "Count backwards from ten to one. Ready? Go!",
+        "input_type": "done",
+        "xp": 7,
+        "sensory_load": 1,
+        "ef_demand": 3,
+        "deep_target": "Backward sequencing - inhibitory control and working memory",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "thinking-tower",
+        "voice_id": "steward_cognitive",
+        "activity_type": "spelling",
+        "narration_clip_id": "spelling-happy.mp3",
+        "narration_category": "spelling",
+        "narration_text": "Can you spell HAPPY?",
+        "input_type": "spelling",
+        "xp": 8,
+        "sensory_load": 1,
+        "ef_demand": 3,
+        "deep_target": "Double-letter spelling - noticing pattern of repeated consonant",
+        "correct_answer": "HAPPY",
+        "hints": [
+          "H-A-P...",
+          "It has two Ps"
+        ],
+        "choices": []
+      },
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "weather_check",
+        "narration_clip_id": "mid-check.mp3",
+        "narration_category": "progress",
+        "narration_text": "Weather check! Has your weather changed?",
+        "input_type": "weather_check",
+        "xp": 0,
+        "sensory_load": 1,
+        "ef_demand": 1,
+        "deep_target": "State monitoring after activation activities",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "life-lodge",
+        "voice_id": "steward_practical",
+        "activity_type": "life_skill",
+        "narration_clip_id": "life-fire-safety.mp3",
+        "narration_category": "life",
+        "narration_text": "What do you do if you hear a fire alarm? Tell me the safety steps!",
+        "input_type": "done",
+        "xp": 8,
+        "sensory_load": 1,
+        "ef_demand": 3,
+        "deep_target": "Safety sequence recall - procedural memory for emergency response",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "creation-studio",
+        "voice_id": "steward_creative",
+        "activity_type": "creative",
+        "narration_clip_id": "creative-humming.mp3",
+        "narration_category": "creative",
+        "narration_text": "Hum your favorite song! Can Dad guess what it is?",
+        "input_type": "done",
+        "xp": 5,
+        "sensory_load": 2,
+        "ef_demand": 1,
+        "deep_target": "Vocal vibration self-soothing - vagus nerve stimulation through humming",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "breathing",
+        "narration_clip_id": "sensory-breathing.mp3",
+        "narration_category": "sensory",
+        "narration_text": "Three deep breaths to finish. Smell the flowers, blow out the candles.",
+        "input_type": "breathing",
+        "xp": 5,
+        "sensory_load": 2,
+        "ef_demand": 1,
+        "deep_target": "Session close-out regulation - signal to nervous system that demands are over",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      }
+    ]
+  },
+  {
+    "id": "session-sunny-003",
+    "title": "The Wisdom Seeker",
+    "body_weather_flags": [
+      "sunny",
+      "rainbow"
+    ],
+    "duration_minutes": 16,
+    "total_xp": 48,
+    "welcome_voice_id": "ignavarr",
+    "welcome_clip_id": "welcome-alt2.mp3",
+    "welcome_category": "welcome",
+    "celebration_clip_id": "celebration-1.mp3",
+    "celebration_category": "celebration",
+    "story": "Ignavarr unrolls an ancient scroll. 'Today you seek wisdom! The the thinking steward has number riddles, the the practical steward wants to test your life skills, and the creative steward challenges your storytelling. But first, the movement steward needs to make sure your body is awake and ready. Let the Wisdom Quest begin!'",
+    "deep_objectives": {
+      "executive_function": "Number comparison (magnitude), spelling with silent E, multi-step sequencing (sandwich)",
+      "social_emotional": "Emotional expression flexibility, life-skill confidence, creative narrative",
+      "sensory": "Shoulder tension-release, breathing for cooldown",
+      "academic": "Number magnitude comparison, CVC+E spelling, procedural sequencing"
+    },
+    "scaffolding": {
+      "if_stuck": "For comparison: 'Show me 7 fingers. Now show me 4. Which is more?' For sandwich: 'What do you get first?'",
+      "if_frustrated": "Switch to face activity (low demand, high fun). Come back to hard ones later.",
+      "if_dysregulated": "Skip to breathing. Sunny sessions can still shift if cognitive load is too high."
+    },
+    "parent_tips": [
+      "Great energy day - push a little harder on cognitive tasks",
+      "The compare activity tests number sense",
+      "Window story builds narrative and observation skills"
+    ],
+    "activities": [
+      {
+        "realm": "adventure-grounds",
+        "voice_id": "steward_physical",
+        "activity_type": "car_body",
+        "narration_clip_id": "movement-balance.mp3",
+        "narration_category": "movement",
+        "narration_text": "the movement steward says: Shrug your shoulders up to your ears! Hold them there... higher! Now drop them. Ahhh. Three more times!",
+        "input_type": "done",
+        "xp": 5,
+        "sensory_load": 3,
+        "ef_demand": 1,
+        "deep_target": "Shoulder tension-release - releasing held tension common in car seats",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "thinking-tower",
+        "voice_id": "steward_cognitive",
+        "activity_type": "math",
+        "narration_clip_id": "math-compare.mp3",
+        "narration_category": "math",
+        "narration_text": "Which number is bigger, seven or four?",
+        "input_type": "number",
+        "xp": 8,
+        "sensory_load": 1,
+        "ef_demand": 2,
+        "deep_target": "Number magnitude comparison - foundational number sense",
+        "correct_answer": "7",
+        "hints": [
+          "Hold up 7 fingers, then 4. Which hand has more?"
+        ],
+        "choices": []
+      },
+      {
+        "realm": "thinking-tower",
+        "voice_id": "steward_cognitive",
+        "activity_type": "spelling",
+        "narration_clip_id": "spelling-fire.mp3",
+        "narration_category": "spelling",
+        "narration_text": "Can you spell FIRE? The dragon breathes fire!",
+        "input_type": "spelling",
+        "xp": 10,
+        "sensory_load": 1,
+        "ef_demand": 3,
+        "deep_target": "CVC+E spelling - silent E rule introduction",
+        "correct_answer": "FIRE",
+        "hints": [
+          "F-I...",
+          "It ends with E"
+        ],
+        "choices": []
+      },
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "weather_check",
+        "narration_clip_id": "mid-check.mp3",
+        "narration_category": "progress",
+        "narration_text": "Mid-quest weather report!",
+        "input_type": "weather_check",
+        "xp": 0,
+        "sensory_load": 1,
+        "ef_demand": 1,
+        "deep_target": "Regulation checkpoint after cognitive activities",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "heart-garden",
+        "voice_id": "steward_emotional",
+        "activity_type": "emotion",
+        "narration_clip_id": "emotion-faces.mp3",
+        "narration_category": "emotion",
+        "narration_text": "Show your angriest face! Now your silliest face! Now your calmest face! Which one felt the best?",
+        "input_type": "done",
+        "xp": 7,
+        "sensory_load": 2,
+        "ef_demand": 2,
+        "deep_target": "Emotional range expression - connecting facial muscles to internal feeling states",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "life-lodge",
+        "voice_id": "steward_practical",
+        "activity_type": "life_skill",
+        "narration_clip_id": "life-sandwich.mp3",
+        "narration_category": "life",
+        "narration_text": "If you were making a sandwich, what would you put on it? Tell me the steps from start to finish!",
+        "input_type": "done",
+        "xp": 8,
+        "sensory_load": 1,
+        "ef_demand": 3,
+        "deep_target": "Multi-step procedural planning - executive function for daily living tasks",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "breathing",
+        "narration_clip_id": "sensory-breathing.mp3",
+        "narration_category": "sensory",
+        "narration_text": "Cool down breaths. Three slow ones with the calm steward.",
+        "input_type": "breathing",
+        "xp": 5,
+        "sensory_load": 2,
+        "ef_demand": 1,
+        "deep_target": "Post-session downregulation",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      }
+    ]
+  },
+  {
+    "id": "session-frozen-001",
+    "title": "The Gentle Thaw",
+    "body_weather_flags": [
+      "frozen"
+    ],
+    "duration_minutes": 6,
+    "total_xp": 10,
+    "welcome_voice_id": "ignavarr",
+    "welcome_clip_id": "welcome-alt3.mp3",
+    "welcome_category": "welcome",
+    "celebration_clip_id": "celebration-6.mp3",
+    "celebration_category": "celebration",
+    "story": "Ignavarr is very quiet. His voice barely above a whisper. 'I see you, brave one. The world feels frozen right now. That is okay. We do not need to do anything big. We just breathe together. Dad is here. I am here. You are safe.'",
+    "deep_objectives": {
+      "executive_function": "NONE - safety and co-regulation only",
+      "social_emotional": "Feeling safe, feeling seen, acceptance of shutdown state, gentle re-engagement with body",
+      "sensory": "Minimal input - breathing and listening only. No demands.",
+      "academic": "NONE - regulation is the only goal"
+    },
+    "scaffolding": {
+      "if_stuck": "Do nothing. Silence is okay. Dad's presence is enough.",
+      "if_frustrated": "End immediately with celebration: 'You showed up. That was the bravest thing.'",
+      "if_dysregulated": "This IS dysregulation. Do not add any input. Reduce everything."
+    },
+    "parent_tips": [
+      "FROZEN = do not push. Safety-first session.",
+      "Speak softly. Hum if words feel like too much.",
+      "Offer comfort: squeeze hands together, press feet to floor.",
+      "Do NOT say 'it's okay.' Say: 'That was really hard.'",
+      "If Ezra does ANYTHING on this list, it is a huge win. Celebrate gently."
+    ],
+    "activities": [
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "breathing",
+        "narration_clip_id": "sensory-breathing.mp3",
+        "narration_category": "sensory",
+        "narration_text": "Just breathe. Nice and slow. No rush. Dad is right here.",
+        "input_type": "breathing",
+        "xp": 5,
+        "sensory_load": 1,
+        "ef_demand": 0,
+        "deep_target": "Co-regulation - parent breathes audibly, child may follow. No pressure.",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      },
+      {
+        "realm": "sensory-sanctuary",
+        "voice_id": "steward_emotional",
+        "activity_type": "sensory",
+        "narration_clip_id": "sensory-listening.mp3",
+        "narration_category": "sensory",
+        "narration_text": "Can you hear anything right now? The car? The road? Just listen. You do not have to talk.",
+        "input_type": "done",
+        "xp": 5,
+        "sensory_load": 1,
+        "ef_demand": 0,
+        "deep_target": "Passive auditory grounding - no response required. Listening anchors to present.",
+        "correct_answer": "",
+        "hints": [],
+        "choices": []
+      }
+    ]
+  }
+]

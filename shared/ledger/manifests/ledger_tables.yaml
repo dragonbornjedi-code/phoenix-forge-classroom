@@ -1,0 +1,46 @@
+# Maps legacy Ezra Quest sheet names → Local Childhood Ledger storage
+schema_version: 1
+source: EZRA_QUEST_ARCHITECTURE.md + MASTER_EZRA_ECOSYSTEM.gs headers
+
+tables:
+  - legacy_sheet: Quest Log
+    schema: shared/ledger/schemas/quest_log_event.schema.json
+    storage_ndjson: quest_log.ndjson
+    writer: [student_edition, teacher_edition, forge_world]
+    readers: [forge_profile, teacher_edition]
+
+  - legacy_sheet: XP Ledger
+    schema: shared/ledger/schemas/xp_ledger_event.schema.json
+    storage_ndjson: xp_ledger.ndjson
+    writer: [student_edition]
+    readers: [teacher_edition]
+
+  - legacy_sheet: Gold Tracker
+    schema: shared/ledger/schemas/gold_ledger_event.schema.json
+    storage_ndjson: gold_ledger.ndjson
+    writer: [student_edition]
+    readers: [teacher_edition]
+
+  - legacy_sheet: Emotional Log
+    schema: shared/schemas/emotion_checkin.schema.json
+    storage_ndjson: emotion_checkins.ndjson
+    writer: [student_edition, hardware_stub]
+    readers: [teacher_edition, forge_world]
+
+  - legacy_sheet: Daily Flags
+    schema: shared/schemas/daily_emotional_flag.schema.json
+    storage: computed
+    engine: DailyFlagEngine
+    readers: [teacher_edition, forge_world]
+
+  - legacy_sheet: Quest Library
+    schema: teacher curriculum IntentTile / QuestPayload
+    storage: teacher_room
+    writer: [teacher_edition]
+    readers: [student_edition]
+
+  - legacy_sheet: Weekly Schedule
+    schema: teacher expedition board
+    storage: teacher_room
+    writer: [teacher_edition]
+    readers: []

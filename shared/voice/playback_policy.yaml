@@ -1,0 +1,33 @@
+# Voice playback fallback — human voice wins over AI
+schema_version: 1
+
+default_chain:
+  - human_recording
+  - prerecorded_npc
+  - piper_tts
+  - text_only
+
+actor_overrides:
+  dad_joshua:
+    chain:
+      - human_recording
+      - text_only
+    note: "Operator Dad recordings always beat Piper for routine moments."
+
+  ignavarr:
+    chain:
+      - prerecorded_npc
+      - piper_tts
+      - text_only
+    clips_manifest: data/audio/ignavarr/voice_manifest.json
+
+listen_branch:
+  engine: faster_whisper
+  mode: sidecar_optional
+  output_ndjson: voice_transcript.ndjson
+  fallback: tap_to_respond
+
+piper_branch:
+  status: stub
+  offline: true
+  note: "Wire Piper binary in Phase 2 Student; Godot stub returns text_only until then."

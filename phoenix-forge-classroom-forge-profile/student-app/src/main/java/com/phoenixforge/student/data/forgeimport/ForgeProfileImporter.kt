@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
+import com.phoenixforge.student.domain.importpolicy.StudentProfileImportPolicy
 import com.phoenixforge.student.domain.model.ImportedProfileSnapshot
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.serialization.encodeToString
@@ -21,6 +22,7 @@ object ForgeProfileContract {
     const val READ_PERMISSION = "com.phoenixforge.profile.READ"
 
     val PROFILE_URI: Uri = Uri.parse("content://$AUTHORITY/profile")
+    val CHILD_PROFILES_URI: Uri = Uri.parse("content://$AUTHORITY/child_profiles")
     val AVATAR_URI: Uri = Uri.parse("content://$AUTHORITY/avatar")
     val TIMELINE_URI: Uri = Uri.parse("content://$AUTHORITY/timeline")
     val MEMORIES_URI: Uri = Uri.parse("content://$AUTHORITY/memories")
@@ -30,6 +32,7 @@ object ForgeProfileContract {
         const val FORGE_NAME = "forge_name"
         const val CURRENT_STAGE = "current_stage"
         const val CURRENT_TITLE = "current_title"
+        const val PROFILE_ROLE = "profile_role"
         const val AVATAR_HAIR = "hair_type"
         const val AVATAR_EYES = "eye_color"
         const val AVATAR_SKIN = "skin_tone"
@@ -59,6 +62,7 @@ object ForgeProfileContract {
 data class ForgeProfilePreview(
     val uid: String,
     val forgeName: String,
+    val profileRole: String?,
     val currentStage: String?,
     val currentTitle: String?,
     val avatarSummary: String?,
@@ -85,6 +89,7 @@ class ForgeProfileImporter @Inject constructor(
             return ForgeProfilePreview(
                 uid = "",
                 forgeName = "",
+                profileRole = null,
                 currentStage = null,
                 currentTitle = null,
                 avatarSummary = null,
@@ -103,6 +108,7 @@ class ForgeProfileImporter @Inject constructor(
                 ForgeProfilePreview(
                     uid = "",
                     forgeName = "",
+                    profileRole = null,
                     currentStage = null,
                     currentTitle = null,
                     avatarSummary = null,
@@ -114,11 +120,28 @@ class ForgeProfileImporter @Inject constructor(
                     isAvailable = false,
                     errorMessage = "No Forge Profile found on this device."
                 )
+            } else if (!StudentProfileImportPolicy.isImportableRole(profile.profileRole)) {
+                ForgeProfilePreview(
+                    uid = profile.uid,
+                    forgeName = profile.forgeName,
+                    profileRole = profile.profileRole,
+                    currentStage = profile.currentStage,
+                    currentTitle = profile.currentTitle,
+                    avatarSummary = null,
+                    heroStyle = null,
+                    heroColor = null,
+                    godotModelPath = null,
+                    avatarConfigJson = null,
+                    timelineEventCount = 0,
+                    isAvailable = false,
+                    errorMessage = StudentProfileImportPolicy.rejectReason(profile.profileRole)
+                )
             } else {
                 val avatar = readAvatarPayload()
                 ForgeProfilePreview(
                     uid = profile.uid,
                     forgeName = profile.forgeName,
+                    profileRole = profile.profileRole,
                     currentStage = profile.currentStage,
                     currentTitle = profile.currentTitle,
                     avatarSummary = avatar?.summary,
@@ -135,6 +158,7 @@ class ForgeProfileImporter @Inject constructor(
             ForgeProfilePreview(
                 uid = "",
                 forgeName = "",
+                profileRole = null,
                 currentStage = null,
                 currentTitle = null,
                 avatarSummary = null,
@@ -168,16 +192,53 @@ class ForgeProfileImporter @Inject constructor(
     private data class ProfileRow(
         val uid: String,
         val forgeName: String,
+        val profileRole: String?,
         val currentStage: String?,
         val currentTitle: String?
     )
 
     private fun readProfileRow(): ProfileRow? =
+        readChildProfileRows().firstOrNull()
+            ?: readImportProfileRow()
+
+    private fun readChildProfileRows(): List<ProfileRow> =
+        context.contentResolver.query(
+            ForgeProfileContract.CHILD_PROFILES_URI,
+            arrayOf(
+                ForgeProfileContract.Columns.UID,
+                ForgeProfileContract.Columns.FORGE_NAME,
+                ForgeProfileContract.Columns.PROFILE_ROLE,
+                ForgeProfileContract.Columns.CURRENT_STAGE,
+                ForgeProfileContract.Columns.CURRENT_TITLE,
+            ),
+            null,
+            null,
+            null,
+        )?.use { cursor ->
+            buildList {
+                while (cursor.moveToNext()) {
+                    val role = cursor.getStringOrNull(ForgeProfileContract.Columns.PROFILE_ROLE)
+                    if (role != "student_self") continue
+                    add(
+                        ProfileRow(
+                            uid = cursor.getString(cursor.col(ForgeProfileContract.Columns.UID)),
+                            forgeName = cursor.getString(cursor.col(ForgeProfileContract.Columns.FORGE_NAME)),
+                            profileRole = role,
+                            currentStage = cursor.getStringOrNull(ForgeProfileContract.Columns.CURRENT_STAGE),
+                            currentTitle = cursor.getStringOrNull(ForgeProfileContract.Columns.CURRENT_TITLE),
+                        ),
+                    )
+                }
+            }
+        }.orEmpty()
+
+    private fun readImportProfileRow(): ProfileRow? =
         context.contentResolver.query(
             ForgeProfileContract.PROFILE_URI,
             arrayOf(
                 ForgeProfileContract.Columns.UID,
                 ForgeProfileContract.Columns.FORGE_NAME,
+                ForgeProfileContract.Columns.PROFILE_ROLE,
                 ForgeProfileContract.Columns.CURRENT_STAGE,
                 ForgeProfileContract.Columns.CURRENT_TITLE
             ),
@@ -189,6 +250,7 @@ class ForgeProfileImporter @Inject constructor(
             ProfileRow(
                 uid = cursor.getString(cursor.col(ForgeProfileContract.Columns.UID)),
                 forgeName = cursor.getString(cursor.col(ForgeProfileContract.Columns.FORGE_NAME)),
+                profileRole = cursor.getStringOrNull(ForgeProfileContract.Columns.PROFILE_ROLE),
                 currentStage = cursor.getStringOrNull(ForgeProfileContract.Columns.CURRENT_STAGE),
                 currentTitle = cursor.getStringOrNull(ForgeProfileContract.Columns.CURRENT_TITLE)
             )

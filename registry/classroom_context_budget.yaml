@@ -1,0 +1,46 @@
+# Context window budget — Classroom lane (never load full taxonomy).
+schema_version: classroom_context_budget_v1
+updated: "2026-06-10"
+
+principle: >
+  Load INDEX + routed slice only. Specialists recruit Tier-4 skills on demand.
+  Never paste full taxonomy, full MASTER_ROADMAP, or all cline_essence extensions.
+
+per_turn_limits:
+  max_tier0_files: 6
+  max_skill_files: 2
+  max_skill_lines_each: 400
+  max_subagent_soul_chars: 1200
+  max_handoff_lines: 80
+  max_cross_repo_reads: 3
+  max_task_subagents: 2
+
+always_load:
+  - AGENTS.md
+  - registry/classroom_agent_manifest.yaml
+  - registry/classroom_context_budget.yaml
+  - registry/phoenix-forge-classroom.yaml
+
+load_on_route_only:
+  - .cursor/skills/phoenix-forge-classroom/SKILL_ROUTING.md
+  - docs/cline_essence/SKILL.md
+  - routed leaf row from classroom_agent_manifest.yaml
+
+never_load_whole:
+  - registry/classroom_agency_taxonomy.yaml
+  - docs/roadmaps/00_MASTER_ROADMAP.md
+  - docs/PHOENIX_FORGE_SYSTEM_ATLAS.md
+  - docs/REPOSITORY_CENSUS_AND_CONNECTIONS.md
+  - sovereign-deck/**/agency_graph_v1.json
+  - phoenix-forge-world/** bulk Godot trees
+
+routing_command: ./scripts/classroom-context-pack.sh "<goal>"
+delegation_proof_command: ./scripts/classroom-delegation-verify.py
+
+compose_ui_mandatory:
+  - ~/.phoenix-forge-agent-skills/frontend-design/SKILL.md
+  - .cursor/rules/classroom-compose-ui.mdc
+
+sage_mandatory:
+  - phoenix-forge-classroom-teacher-edition/docs/SAGE_PERSONA.md
+  - .cursor/rules/sage-persona-content.mdc

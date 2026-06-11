@@ -17,9 +17,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.phoenixforge.student.ui.components.StudentBackHeader
 
 @Composable
-fun MemoryVaultScreen(viewModel: MemoryVaultViewModel = hiltViewModel()) {
+fun MemoryVaultScreen(
+    onBack: (() -> Unit)? = null,
+    viewModel: MemoryVaultViewModel = hiltViewModel(),
+) {
     val chapters by viewModel.chapters.collectAsState()
 
     LazyColumn(
@@ -27,6 +31,9 @@ fun MemoryVaultScreen(viewModel: MemoryVaultViewModel = hiltViewModel()) {
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
+        onBack?.let { back ->
+            item { StudentBackHeader(onBack = back) }
+        }
         item {
             Text("Memory Vault", style = MaterialTheme.typography.headlineLarge)
             Text("Life chapters and time capsules", style = MaterialTheme.typography.bodyMedium)

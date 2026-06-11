@@ -17,10 +17,13 @@ object AppBoundaryCopy {
         "Student Edition is where Ezra explores, quests, and imports school photos into his vault."
 
     const val TEACHER_EDITION_OWNS =
-        "Teacher Edition is where you plan lessons, run the expedition board, and view read-only student snapshots."
+        "Teacher Edition is where you plan lessons, run the expedition board, and push the daily stack after you approve it."
+
+    const val FORGE_WORLD_OWNS =
+        "Phoenix Forge World is Ezra's 3D house — same avatar and companion progress as Student Edition via forge_profile_push.json."
 
     const val MANUAL_SYNC =
-        "Nothing syncs in the background. You push avatar and memories when you choose; Ezra pulls on his tablet."
+        "Nothing syncs in the background. Each app writes JSON to the shared sync folder when you choose; Forge Profile ingests events for one timeline."
 
     const val MEMORY_IMMUTABLE =
         "Ezra's original photo or voice stays the evidence. You can add notes — you cannot replace his capture."
@@ -29,56 +32,51 @@ object AppBoundaryCopy {
         FORGE_PROFILE_OWNS,
         STUDENT_EDITION_OWNS,
         TEACHER_EDITION_OWNS,
+        FORGE_WORLD_OWNS,
         MANUAL_SYNC,
     ).joinToString("\n")
 
-    const val PARENT_GATE_TITLE = "Parent gate"
-    const val PARENT_GATE_SUBTITLE =
-        "Adult-only access on this device. Unlocks parent tools — not Ezra's play world."
-
-    const val PARENT_GATE_LOCKED_BODY =
-        "Enable parent access to open Teacher Edition from here and manage adult-only settings. " +
-            "Ezra's Student Edition stays separate — he explores; you curate."
-
-    const val PARENT_GATE_UNLOCKED_BODY =
-        "Parent access is on for this device. Open Teacher Edition for curriculum and expedition work. " +
-            "Keep capturing memories and avatar updates in Forge Profile."
-
-    const val REQUEST_PARENT_ACCESS = "Unlock parent access"
-    const val ENABLE_PARENT_ON_DEVICE = "Set up parent access on this device"
     const val OPEN_TEACHER_EDITION = "Open Teacher Edition"
-    const val DISABLE_PARENT_ACCESS = "Turn off parent access on this device"
-
-    const val GATE_DENIED = "Parent access was denied."
-    const val GATE_NOT_CONFIGURED = "Parent access is not set up on this device yet."
-    const val GATE_ENABLE_FAILED = "Could not enable parent access."
-    const val GATE_SETUP_UNAVAILABLE = "Parent access setup is unavailable on this device."
+    const val OPEN_STUDENT_EDITION = "Open Student Edition"
+    const val PUSH_CHILD_SNAPSHOT = "Push snapshot to Student & Forge World"
 
     fun signInBoundaryHint(role: ProfileRole): String = when (role) {
         ProfileRole.STUDENT_SELF ->
-            "Student profile — for Ezra's device. Exploration lives in Student Edition; identity lives here."
+            "Child profile — identity, avatar, and timeline. Push snapshot from here; quests live in Student Edition."
         ProfileRole.STEWARD_FOR_STUDENT ->
-            "Parent profile — you manage Ezra's identity and memories here. Planning lives in Teacher Edition."
+            "Your adult profile — your identity and timeline. Teacher Edition plans the day and pushes the quest stack."
         ProfileRole.TEACHER_SELF ->
-            "Teacher profile — link to curriculum in Teacher Edition. Child identity stays in Forge Profile."
+            "Legacy teacher profile — use Teacher Edition for planning. Create a separate child profile for Student Edition import."
     }
 
     fun dashboardBoundaryLine(role: ProfileRole?): String = when (role) {
         ProfileRole.STEWARD_FOR_STUDENT ->
-            "Parent · Forge Profile = record · Student = play · Teacher = plan"
+            "Adult · Teacher Edition = plan & push daily stack · Switch to child profile to push avatar snapshot"
         ProfileRole.TEACHER_SELF ->
-            "Teacher · Forge Profile = identity · Teacher Edition = mentorship board"
+            "Teacher · Teacher Edition = expedition board · Child profile = play identity"
         ProfileRole.STUDENT_SELF ->
-            "Student · Your avatar and timeline · Quests in Student Edition"
+            "Your hero, your look — send it to quests and your 3D world when you're ready."
         null -> FORGE_PROFILE_OWNS
     }
 
-    fun pushAvatarHint(childName: String = "Ezra"): String =
-        "Manual push only — on $childName's tablet: Student Edition → Import Forge Profile → Pull snapshot."
+    fun childDashboardTagline(forgeName: String?): String =
+        "Hey ${forgeName ?: "Forger"}! Pick your hero look, then jump into adventures."
+
+    fun adultTeacherHint(): String =
+        "Daily quests push from Teacher Edition (Expedition Board → Push today's stack) after you approve — not from this adult profile."
+
+    fun pushAvatarHint(childName: String = "the child"): String =
+        "Writes forge_profile_push.json for Student Edition import and Forge World. Switch to the child profile before pushing $childName's avatar."
 
     fun memorySchoolHint(): String =
         "School photos tagged here also flow to Student Edition → Gallery → Pull school from Profile."
 
-    fun canAccessParentGate(role: ProfileRole?): Boolean =
+    fun canOpenTeacherEdition(role: ProfileRole?): Boolean =
         role == ProfileRole.STEWARD_FOR_STUDENT || role == ProfileRole.TEACHER_SELF
+
+    fun canPushPlaySnapshot(role: ProfileRole?): Boolean =
+        role == ProfileRole.STUDENT_SELF
+
+    fun canOpenStudentEdition(role: ProfileRole?): Boolean =
+        role == ProfileRole.STUDENT_SELF
 }

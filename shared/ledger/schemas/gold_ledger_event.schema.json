@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phoenixforge.local/schemas/gold_ledger_event.schema.json",
+  "title": "GoldLedgerEvent",
+  "description": "Append-only gold/token delta with optional cap policy reference.",
+  "type": "object",
+  "required": ["event_id", "timestamp_epoch_millis", "delta_gold", "reason"],
+  "properties": {
+    "event_id": { "type": "string" },
+    "timestamp_epoch_millis": { "type": "integer" },
+    "delta_gold": { "type": "integer" },
+    "reason": { "type": "string" },
+    "quest_id": { "type": "string" },
+    "milestone_id": { "type": "string" },
+    "source_surface": { "type": "string" }
+  },
+  "additionalProperties": false
+}

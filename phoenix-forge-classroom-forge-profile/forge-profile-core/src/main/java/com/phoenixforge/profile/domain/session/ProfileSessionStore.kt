@@ -23,7 +23,19 @@ class ProfileSessionStore @Inject constructor(
         prefs.edit().remove(KEY_REMEMBER_DEVICE).apply()
     }
 
+    fun getActiveProfileUid(): String? =
+        prefs.getString(KEY_ACTIVE_PROFILE_UID, null)
+
+    fun setActiveProfileUid(uid: String) {
+        prefs.edit().putString(KEY_ACTIVE_PROFILE_UID, uid).apply()
+    }
+
+    fun clearActiveProfileUid() {
+        prefs.edit().remove(KEY_ACTIVE_PROFILE_UID).apply()
+    }
+
     private companion object {
         const val KEY_REMEMBER_DEVICE = "profile_remember_device"
+        const val KEY_ACTIVE_PROFILE_UID = "profile_active_uid"
     }
 }

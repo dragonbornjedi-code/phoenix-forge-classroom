@@ -2,7 +2,9 @@ package com.phoenixforge.student.data.serialization
 
 import com.phoenixforge.student.domain.model.NpcMemoryAnchor
 import com.phoenixforge.student.domain.model.NpcMemoryNode
+import com.phoenixforge.student.domain.model.InventoryItem
 import com.phoenixforge.student.domain.model.WorldDriftState
+import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.json.Json
@@ -17,6 +19,8 @@ class StudentJson @Inject constructor() {
     }
 
     private val stringListSerializer = ListSerializer(String.serializer())
+    private val intMapSerializer = MapSerializer(String.serializer(), Int.serializer())
+    private val inventorySerializer = ListSerializer(InventoryItem.serializer())
     private val memoryGraphSerializer = ListSerializer(NpcMemoryNode.serializer())
     private val anchorSerializer = ListSerializer(NpcMemoryAnchor.serializer())
 
@@ -62,4 +66,20 @@ class StudentJson @Inject constructor() {
     fun decodeDrift(raw: String): WorldDriftState? =
         if (raw.isBlank()) null
         else runCatching { json.decodeFromString(WorldDriftState.serializer(), raw) }.getOrNull()
+
+    fun encodeCurrency(values: Map<String, Int>): String =
+        json.encodeToString(intMapSerializer, values)
+
+    fun decodeCurrency(raw: String): Map<String, Int> {
+        if (raw.isBlank()) return emptyMap()
+        return runCatching { json.decodeFromString(intMapSerializer, raw) }.getOrDefault(emptyMap())
+    }
+
+    fun encodeInventory(items: List<InventoryItem>): String =
+        json.encodeToString(inventorySerializer, items)
+
+    fun decodeInventory(raw: String): List<InventoryItem> {
+        if (raw.isBlank()) return emptyList()
+        return runCatching { json.decodeFromString(inventorySerializer, raw) }.getOrDefault(emptyList())
+    }
 }

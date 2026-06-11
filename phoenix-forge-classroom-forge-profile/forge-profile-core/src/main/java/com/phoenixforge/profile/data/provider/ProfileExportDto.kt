@@ -43,3 +43,34 @@ data class MemoryExportDto(
     val syncedToStudent: Boolean,
     val contentUri: String,
 )
+
+data class LinkedStudentExportDto(
+    val profileUid: String,
+    val displayName: String,
+    val linkedAtEpochMillis: Long,
+    val notes: String?,
+)
+
+data class ForgeEventExportDto(
+    val eventId: String,
+    val eventType: String,
+    val scope: String,
+    val actorApp: String,
+    val logicalClock: Long,
+    val epochMs: Long,
+)
+
+data class MessageExportDto(
+    val messageId: String,
+    val threadId: String,
+    val direction: String,
+    val fromDeviceId: String,
+    val fromDisplayName: String,
+    val toStudentUid: String,
+    val targetApp: String,
+    val epochMs: Long,
+    val subject: String,
+    val bodyMarkdown: String,
+    val readEpochMs: Long?,
+    val replyToMessageId: String?,
+)

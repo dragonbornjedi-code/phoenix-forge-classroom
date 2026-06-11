@@ -9,9 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -20,144 +18,129 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.phoenixforge.student.domain.avatar.ImportedHeroLookParser
 import com.phoenixforge.student.ui.avatar.HearthWelcomeCard
+import com.phoenixforge.student.ui.components.StudentHearthBackground
+import com.phoenixforge.student.ui.components.StudentPrimaryButton
 import com.phoenixforge.student.ui.navigation.StudentRoutes
+import com.phoenixforge.student.ui.theme.StudentKidCopy
+import com.phoenixforge.student.ui.theme.StudentSparkGold
 
 @Composable
 fun HomeScreen(
-    onNavigate: (String) -> Unit,
-    viewModel: HomeViewModel = hiltViewModel()
+    onNavigate: (String) -> Unit = {},
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val state by viewModel.worldState.collectAsState()
-
     val heroLook = ImportedHeroLookParser.parse(state.importedHeroSummary)
 
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        item {
-            state.importedForgeName?.let { forgeName ->
-                HearthWelcomeCard(
-                    forgeName = forgeName,
-                    heroLook = heroLook,
-                )
-            } ?: run {
-                Text("Your Hearth", style = MaterialTheme.typography.headlineLarge)
-                Text(
-                    "Welcome, explorer. Import your Forge Profile when your parent is ready.",
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-            }
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                "Level ${state.progress.level} · ${state.progress.xp} XP · ${state.progress.streakDays}-day streak",
-                style = MaterialTheme.typography.bodyMedium
-            )
-            Text(
-                "World: ${state.world.environmentTheme.replace('_', ' ')}",
-                style = MaterialTheme.typography.labelMedium
-            )
-        }
-
-        item {
-            WorldDriftPanel(drift = state.world.drift)
-        }
-
-        state.latestStory?.let { story ->
+    StudentHearthBackground {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(14.dp),
+        ) {
             item {
-                Card(modifier = Modifier.fillMaxWidth()) {
-                    Column(modifier = Modifier.padding(16.dp)) {
-                        Text("Life Story", style = MaterialTheme.typography.titleMedium)
-                        story.npcSpeaker?.let {
-                            Text("— $it", style = MaterialTheme.typography.labelSmall)
-                        }
-                        story.callbackLine?.let {
-                            Spacer(modifier = Modifier.height(4.dp))
-                            Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.secondary)
-                        }
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Text(story.narrative, style = MaterialTheme.typography.bodyMedium)
-                    }
+                state.importedForgeName?.let { forgeName ->
+                    HearthWelcomeCard(
+                        forgeName = forgeName,
+                        heroLook = heroLook,
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        StudentKidCopy.levelLine(state.progress.level, state.progress.streakDays),
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.primary,
+                    )
+                    Text(
+                        StudentKidCopy.starsLine(state.progress.xp),
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                } ?: run {
+                    Text(
+                        StudentKidCopy.homeNoProfileTitle(),
+                        style = MaterialTheme.typography.headlineLarge,
+                    )
+                    Text("🏠", fontSize = 56.sp, modifier = Modifier.padding(vertical = 8.dp))
+                    Text(
+                        StudentKidCopy.homeNoProfileBody(),
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
                 }
             }
-        }
 
-        item {
-            Text("Rooms in your hearth", style = MaterialTheme.typography.titleMedium)
-            LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                items(state.house.rooms) { room ->
+            item {
+                StudentPrimaryButton(
+                    text = "Visit my house 🏡",
+                    onClick = { onNavigate(StudentRoutes.DIGITAL_HOME_HUB) },
+                )
+            }
+
+            item {
+                StudentPrimaryButton(
+                    text = "Open my messages 💌",
+                    onClick = { onNavigate(StudentRoutes.INBOX) },
+                )
+            }
+
+            state.latestStory?.let { story ->
+                item {
                     Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(20.dp),
                         colors = CardDefaults.cardColors(
-                            containerColor = if (room.isUnlocked) {
-                                MaterialTheme.colorScheme.primaryContainer
-                            } else {
-                                MaterialTheme.colorScheme.surfaceVariant
-                            }
-                        )
+                            containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                        ),
                     ) {
-                        Column(modifier = Modifier.padding(12.dp)) {
-                            Text(room.type.displayName, style = MaterialTheme.typography.labelLarge)
+                        Column(modifier = Modifier.padding(18.dp)) {
                             Text(
-                                if (room.isUnlocked) "Unlocked" else "Lv ${room.type.unlockLevel}",
-                                style = MaterialTheme.typography.bodySmall
+                                StudentKidCopy.storyTitle(),
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold,
+                            )
+                            Text(
+                                StudentKidCopy.sparkTaleLine(story.narrative, story.npcSpeaker),
+                                style = MaterialTheme.typography.bodyLarge,
+                                modifier = Modifier.padding(top = 6.dp),
                             )
                         }
                     }
                 }
             }
-        }
 
-        item {
-            Card(modifier = Modifier.fillMaxWidth()) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Text("Companion", style = MaterialTheme.typography.titleMedium)
-                    val companion = state.activeCompanion
-                    Text(companion?.name ?: "—", style = MaterialTheme.typography.headlineSmall)
-                    Text(companion?.lastReaction ?: "Explore to meet your companion.", style = MaterialTheme.typography.bodyMedium)
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Button(onClick = { onNavigate(StudentRoutes.NPC) }) { Text("Visit Companions") }
+            item {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = StudentSparkGold.copy(alpha = 0.35f),
+                    ),
+                ) {
+                    Column(modifier = Modifier.padding(18.dp)) {
+                        Text(
+                            StudentKidCopy.companionTitle(),
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        val companion = state.activeCompanion
+                        Text(
+                            companion?.name ?: "Spark ✨",
+                            style = MaterialTheme.typography.headlineSmall,
+                        )
+                        Text(
+                            companion?.lastReaction?.let { reaction ->
+                                StudentKidCopy.sparkTaleLine(reaction, companion.name)
+                            } ?: StudentKidCopy.companionEmpty(),
+                            style = MaterialTheme.typography.bodyLarge,
+                            modifier = Modifier.padding(top = 6.dp),
+                        )
+                    }
                 }
             }
-        }
-
-        item {
-            Text("Active Quests", style = MaterialTheme.typography.titleMedium)
-        }
-        items(state.activeQuests) { quest ->
-            Card(modifier = Modifier.fillMaxWidth()) {
-                Column(modifier = Modifier.padding(12.dp)) {
-                    Text(quest.title, style = MaterialTheme.typography.titleSmall)
-                    Text(quest.description, style = MaterialTheme.typography.bodySmall)
-                    Text("+${quest.xpReward} XP", style = MaterialTheme.typography.labelMedium)
-                }
-            }
-        }
-
-        item {
-            RowActions(onNavigate)
-        }
-    }
-}
-
-@Composable
-private fun RowActions(onNavigate: (String) -> Unit) {
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Button(onClick = { onNavigate(StudentRoutes.GALLERY) }, modifier = Modifier.fillMaxWidth()) {
-            Text("Open Gallery")
-        }
-        Button(onClick = { onNavigate(StudentRoutes.VAULT) }, modifier = Modifier.fillMaxWidth()) {
-            Text("Memory Vault")
-        }
-        Button(onClick = { onNavigate(StudentRoutes.QUESTS) }, modifier = Modifier.fillMaxWidth()) {
-            Text("Quest Board")
-        }
-        Button(onClick = { onNavigate(StudentRoutes.STORY_ARCHIVE) }, modifier = Modifier.fillMaxWidth()) {
-            Text("Story Archive")
         }
     }
 }

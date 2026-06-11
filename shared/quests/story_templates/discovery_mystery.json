@@ -1,0 +1,10 @@
+{
+  "template_id": "discovery_mystery",
+  "display_name": "Discovery Mystery",
+  "story_intro": "A hidden clue appeared in the realm — something doesn't match yet, and only a careful explorer can figure it out.",
+  "story_outro": "Every mystery you solve makes the realm a little brighter.",
+  "celebration_skin": "Case closed, {player}! You followed the clues in {title} and restored order to the realm.",
+  "voice_id": "steward_cognitive",
+  "npc_guardian": "steward_cognitive",
+  "tone": "mystery"
+}

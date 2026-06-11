@@ -13,33 +13,33 @@ class AppBoundaryCopyTest {
         assertTrue(summary.contains("Forge Profile"))
         assertTrue(summary.contains("Student Edition"))
         assertTrue(summary.contains("Teacher Edition"))
+        assertTrue(summary.contains("Phoenix Forge World"))
         assertTrue(summary.contains("Nothing syncs"))
     }
 
     @Test
     fun userFacingCopyHasNoStewardTerminology() {
         val userFacing = listOf(
-            AppBoundaryCopy.PARENT_GATE_TITLE,
-            AppBoundaryCopy.PARENT_GATE_SUBTITLE,
-            AppBoundaryCopy.PARENT_GATE_LOCKED_BODY,
-            AppBoundaryCopy.PARENT_GATE_UNLOCKED_BODY,
-            AppBoundaryCopy.REQUEST_PARENT_ACCESS,
-            AppBoundaryCopy.ENABLE_PARENT_ON_DEVICE,
-            AppBoundaryCopy.DISABLE_PARENT_ACCESS,
-            AppBoundaryCopy.GATE_DENIED,
+            AppBoundaryCopy.OPEN_TEACHER_EDITION,
             AppBoundaryCopy.signInBoundaryHint(ProfileRole.STEWARD_FOR_STUDENT),
             AppBoundaryCopy.dashboardBoundaryLine(ProfileRole.STEWARD_FOR_STUDENT),
+            AppBoundaryCopy.adultTeacherHint(),
         ).joinToString("\n").lowercase()
         assertFalse(userFacing.contains("steward"))
         assertFalse(userFacing.contains("stewardship"))
     }
 
     @Test
-    fun parentGateAvailableForAdultRolesOnly() {
-        assertTrue(AppBoundaryCopy.canAccessParentGate(ProfileRole.STEWARD_FOR_STUDENT))
-        assertTrue(AppBoundaryCopy.canAccessParentGate(ProfileRole.TEACHER_SELF))
-        assertFalse(AppBoundaryCopy.canAccessParentGate(ProfileRole.STUDENT_SELF))
-        assertFalse(AppBoundaryCopy.canAccessParentGate(null))
+    fun teacherEditionAvailableForAdultRolesOnly() {
+        assertTrue(AppBoundaryCopy.canOpenTeacherEdition(ProfileRole.STEWARD_FOR_STUDENT))
+        assertTrue(AppBoundaryCopy.canOpenTeacherEdition(ProfileRole.TEACHER_SELF))
+        assertFalse(AppBoundaryCopy.canOpenTeacherEdition(ProfileRole.STUDENT_SELF))
+    }
+
+    @Test
+    fun snapshotPushOnlyOnChildProfile() {
+        assertTrue(AppBoundaryCopy.canPushPlaySnapshot(ProfileRole.STUDENT_SELF))
+        assertFalse(AppBoundaryCopy.canPushPlaySnapshot(ProfileRole.STEWARD_FOR_STUDENT))
     }
 
     @Test

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phoenixforge.local/schemas/daily_brief.schema.json",
+  "title": "DailyBrief",
+  "description": "Offline morning brief output — port of dailyAutoUpdate / generateDailySuggestions (Teacher reads, does not auto-accept).",
+  "type": "object",
+  "required": ["date", "generated_at_epoch_millis", "suggestions"],
+  "properties": {
+    "date": { "type": "string", "format": "date" },
+    "generated_at_epoch_millis": { "type": "integer" },
+    "child_id": { "type": "string" },
+    "emotion_flag_ref": {
+      "type": "string",
+      "description": "Reference date for computed daily_emotional_flag"
+    },
+    "suggestions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["suggestion_id", "title", "teacher_domain_id"],
+        "properties": {
+          "suggestion_id": { "type": "string" },
+          "title": { "type": "string" },
+          "teacher_domain_id": { "type": "string" },
+          "rationale": { "type": "string" },
+          "draft_tile": { "type": "boolean", "default": true }
+        }
+      }
+    },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": false
+}

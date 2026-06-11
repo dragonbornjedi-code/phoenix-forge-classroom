@@ -57,7 +57,7 @@ fun ForgeProfileViewerScreen(
                         Text("Not linked yet", style = MaterialTheme.typography.titleMedium)
                         Text(
                             profile.errorMessage
-                                ?: "Open Forge Profile on this device, sign in with “I am a teacher”, then return here.",
+                                ?: "Open Forge Profile on this device, sign in with your adult profile, then return here.",
                             style = MaterialTheme.typography.bodyMedium
                         )
                         Button(onClick = viewModel::refresh) {
@@ -69,7 +69,13 @@ fun ForgeProfileViewerScreen(
                 Card(modifier = Modifier.fillMaxWidth()) {
                     Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                         Text(profile.forgeName, style = MaterialTheme.typography.headlineSmall)
-                        Text("Teacher profile", style = MaterialTheme.typography.labelLarge)
+                        Text(
+                            when (profile.profileRole) {
+                                "steward_for_student" -> "Adult profile"
+                                else -> "Teacher profile"
+                            },
+                            style = MaterialTheme.typography.labelLarge,
+                        )
                         Text("Stage: ${profile.currentStage}", style = MaterialTheme.typography.bodyMedium)
                         profile.currentTitle?.let {
                             Text("Title: $it", style = MaterialTheme.typography.bodyMedium)
@@ -78,9 +84,10 @@ fun ForgeProfileViewerScreen(
                     }
                 }
                 Text(
-                    "Teacher Edition reads your identity from Forge Profile on this device. Student Snapshot data is provided by Student Edition in a read-only view.",
+                    "This screen is your adult identity from Forge Profile. " +
+                        "For your child's progress and private notes, use the Student tab (same as the star on Expedition).",
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 Button(onClick = viewModel::refresh) {
                     Text("Refresh")

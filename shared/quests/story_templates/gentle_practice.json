@@ -1,0 +1,10 @@
+{
+  "template_id": "gentle_practice",
+  "display_name": "Gentle Practice",
+  "story_intro": "This is a calm practice quest — no rush, no pressure. Take your time and let your body and brain learn at your pace.",
+  "story_outro": "Small steps count. The realm grows from gentle practice.",
+  "celebration_skin": "Well done, {player}. You stayed with {title} and gave it your best calm focus.",
+  "voice_id": "steward_emotional",
+  "npc_guardian": "steward_emotional",
+  "tone": "gentle"
+}

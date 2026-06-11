@@ -25,6 +25,7 @@ data class ProfileEntity(
 @Entity(tableName = "avatars")
 data class AvatarEntity(
     @PrimaryKey val id: String,
+    val profileUid: String,
     val hairType: String,
     val eyeColor: String,
     val skinTone: String,
@@ -47,6 +48,7 @@ data class IdentitySnapshotEntity(
 @Entity(tableName = "memory_artifacts")
 data class MemoryArtifactEntity(
     @PrimaryKey val id: String,
+    val profileUid: String,
     val type: ArtifactType,
     val localPath: String,
     val checksum: String,
@@ -60,6 +62,7 @@ data class MemoryArtifactEntity(
 @Entity(tableName = "timeline_events")
 data class TimelineEventEntity(
     @PrimaryKey val id: String,
+    val profileUid: String,
     val title: String,
     val type: EventType,
     val timestamp: Long,
@@ -79,6 +82,7 @@ data class TeacherMetadataEntity(
 @Entity(tableName = "about_me")
 data class AboutMeEntryEntity(
     @PrimaryKey val id: String,
+    val profileUid: String,
     val prompt: String,
     val answer: String,
     val timestamp: Long
@@ -87,6 +91,7 @@ data class AboutMeEntryEntity(
 @Entity(tableName = "favorites")
 data class FavoriteEntryEntity(
     @PrimaryKey val id: String,
+    val profileUid: String,
     val category: String,
     val item: String,
     val timestamp: Long
@@ -95,6 +100,7 @@ data class FavoriteEntryEntity(
 @Entity(tableName = "dreams")
 data class DreamEntryEntity(
     @PrimaryKey val id: String,
+    val profileUid: String,
     val type: String,
     val content: String,
     val timestamp: Long

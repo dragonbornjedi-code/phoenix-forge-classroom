@@ -1,0 +1,88 @@
+# Classroom lane capability registry — Observe / Analyze / Verify / Plan / Act (OAPVA).
+schema_version: classroom_capability_tools_v1
+updated: "2026-06-10"
+target_mix: {observe: 0.30, analyze: 0.25, verify: 0.15, plan: 0.15, act: 0.15}
+
+tools:
+  # ── Observe ───────────────────────────────────────────────────────────
+  classroom_session_snapshot:
+    kind: observe
+    impl: scripts/phoenix-forge-classroom-session.sh
+  classroom_context_pack:
+    kind: observe
+    impl: scripts/classroom-context-pack.sh
+  kotlin_list_screens:
+    kind: observe
+    impl: "find phoenix-forge-classroom-forge-profile -name '*Screen.kt' | head -80"
+  gradle_modules:
+    kind: observe
+    impl: "grep -r 'include' phoenix-forge-classroom-forge-profile/settings.gradle.kts"
+  adb_devices:
+    kind: observe
+    impl: adb devices
+  read_public_state_schema:
+    kind: observe
+    impl: shared/schemas/public_state.schema.json
+  read_master_roadmap_header:
+    kind: observe
+    impl: "head -20 docs/roadmaps/00_MASTER_ROADMAP.md"
+
+  # ── Analyze ─────────────────────────────────────────────────────────────
+  classroom_route_classify:
+    kind: analyze
+    impl: scripts/classroom-route-classify.py
+  classroom_delegation_map:
+    kind: analyze
+    impl: scripts/classroom-delegation-verify.py --report-only
+  rg_kotlin_search:
+    kind: analyze
+    impl: "rg -n pattern phoenix-forge-classroom-forge-profile/"
+  event_schema_diff:
+    kind: analyze
+    impl: "diff shared/schemas public_state vs world fixture"
+  forge_mcp_drift:
+    kind: analyze
+    mcp: phoenix-forge
+    tool: forge_detect_drift
+
+  # ── Verify ──────────────────────────────────────────────────────────────
+  classroom_verify_all:
+    kind: verify
+    impl: scripts/phoenix-forge-classroom-verify-all.sh
+  classroom_delegation_corpus:
+    kind: verify
+    impl: scripts/classroom-delegation-verify.py
+  cline_essence_drift:
+    kind: verify
+    impl: scripts/cline-essence-drift-check.sh
+  gradle_assemble_debug:
+    kind: verify
+    impl: phoenix-forge-classroom-forge-profile/gradlew assembleDebug
+  unit_tests_core:
+    kind: verify
+    impl: phoenix-forge-classroom-forge-profile/gradlew :forge-profile-core:test
+  smoke_cross_app:
+    kind: verify
+    impl: phoenix-forge-classroom-forge-profile/scripts/smoke-classroom-cross-app.sh
+
+  # ── Plan ────────────────────────────────────────────────────────────────
+  roadmap_current_step:
+    kind: plan
+    impl: registry/phoenix-forge-classroom.yaml current_step
+  handoff_next_slice:
+    kind: plan
+    impl: docs/SESSION_HANDOFF_20260609.md
+  master_spec_contract:
+    kind: plan
+    impl: docs/PHOENIX_FORGE_MASTER_SPEC.md
+
+  # ── Act ─────────────────────────────────────────────────────────────────
+  install_phone_apks:
+    kind: act
+    impl: scripts/install-phone-apks.sh
+  gradle_test_module:
+    kind: act
+    impl: phoenix-forge-classroom-forge-profile/gradlew test
+  chariot_adb_helper:
+    kind: act
+    impl: scripts/chariot-adb-helper.sh

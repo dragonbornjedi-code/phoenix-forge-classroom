@@ -1,11 +1,25 @@
 package com.phoenixforge.profile.ui.dashboard
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import android.widget.Toast
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material3.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -14,187 +28,209 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import android.widget.Toast
 import com.phoenixforge.profile.domain.avatar.AvatarHeroCatalog
 import com.phoenixforge.profile.domain.copy.AppBoundaryCopy
 import com.phoenixforge.profile.domain.model.ProfileRole
+import com.phoenixforge.profile.ui.components.ForgeNavTile
+import com.phoenixforge.profile.ui.components.ForgePrimaryButton
+import com.phoenixforge.profile.ui.components.ForgeSecondaryButton
 import com.phoenixforge.profile.ui.interop.ExternalApps
 import com.phoenixforge.profile.ui.navigation.Screen
 import com.phoenixforge.profile.ui.studio.AvatarPreview
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DashboardScreen(
     onNavigate: (String) -> Unit = {},
     onSignOut: () -> Unit = {},
+    onSwitchProfile: () -> Unit = {},
     viewModel: DashboardViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsState()
     val context = LocalContext.current
+    val role = ProfileRole.fromStorageKey(state.profile?.profileRole)
 
-    Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+    val stats = listOf(
+        StatItem("Timeline", state.timelineEventCount.toString(), Screen.Timeline.route),
+        StatItem("Memories", state.memoryCount.toString(), Screen.Memory.route),
+        StatItem("Avatars", state.avatarCount.toString(), Screen.Studio.route),
+        StatItem("Identity", state.profile?.forgeName ?: "—", Screen.Identity.route)
+    )
+
+    LazyColumn(
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Text("Forge Identity", style = MaterialTheme.typography.headlineLarge)
-        Text(
-            AppBoundaryCopy.dashboardBoundaryLine(ProfileRole.fromStorageKey(state.profile?.profileRole)),
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(top = 4.dp),
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Card(modifier = Modifier.fillMaxWidth()) {
-            Row(
-                modifier = Modifier.padding(16.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                AvatarPreview(
-                    avatar = state.latestAvatar,
-                    modifier = Modifier.size(80.dp),
-                    size = 80.dp,
+        item {
+            Text(
+                if (role == ProfileRole.STUDENT_SELF) "Your Forge" else "Forge Identity",
+                style = MaterialTheme.typography.headlineLarge,
+            )
+            if (role != ProfileRole.STUDENT_SELF) {
+                Text(
+                    AppBoundaryCopy.dashboardBoundaryLine(role),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-                Spacer(modifier = Modifier.width(16.dp))
-                Column {
-                    Text(
-                        state.profile?.forgeName ?: "Unknown Forger",
-                        style = MaterialTheme.typography.titleLarge
+            }
+        }
+
+        item {
+            Card(modifier = Modifier.fillMaxWidth()) {
+                Row(
+                    modifier = Modifier.padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    AvatarPreview(
+                        avatar = state.latestAvatar,
+                        modifier = Modifier.size(80.dp),
+                        size = 80.dp,
                     )
-                    Text(
-                        formatProfileSubtitle(state.profile),
-                        style = MaterialTheme.typography.labelMedium
-                    )
-                    state.latestAvatar?.let { avatar ->
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Column {
                         Text(
-                            "${AvatarHeroCatalog.displayStyle(avatar.hairType)} · ${AvatarHeroCatalog.displayColor(avatar.eyeColor)}",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.primary,
+                            state.profile?.forgeName ?: "Unknown Forger",
+                            style = MaterialTheme.typography.titleLarge
                         )
+                        Text(formatProfileSubtitle(state.profile), style = MaterialTheme.typography.labelMedium)
+                        state.latestAvatar?.let { avatar ->
+                            Text(
+                                "${AvatarHeroCatalog.displayStyle(avatar.hairType)} · ${AvatarHeroCatalog.displayColor(avatar.eyeColor)}",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.primary,
+                            )
+                        }
                     }
                 }
             }
         }
 
-        if (state.profile?.profileRole == "student_self" || state.profile?.profileRole == "steward_for_student") {
-            Spacer(modifier = Modifier.height(12.dp))
-            OutlinedButton(
-                onClick = {
-                    viewModel.pushToTablet(context) { message ->
-                        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-                    }
-                },
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Text("Push avatar to Ezra's tablet")
+        if (AppBoundaryCopy.canOpenTeacherEdition(role)) {
+            item {
+                ForgePrimaryButton(
+                    text = AppBoundaryCopy.OPEN_TEACHER_EDITION,
+                    onClick = {
+                        when (val result = ExternalApps.launchTeacherEdition(context)) {
+                            ExternalApps.LaunchResult.Launched -> Unit
+                            is ExternalApps.LaunchResult.NotInstalled ->
+                                Toast.makeText(
+                                    context,
+                                    "Teacher Edition is not installed on this device.",
+                                    Toast.LENGTH_LONG,
+                                ).show()
+                            is ExternalApps.LaunchResult.Failed ->
+                                Toast.makeText(context, result.message, Toast.LENGTH_LONG).show()
+                        }
+                    },
+                )
+                Text(
+                    AppBoundaryCopy.adultTeacherHint(),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 4.dp),
+                )
             }
+        }
+
+        if (AppBoundaryCopy.canPushPlaySnapshot(role)) {
+            item {
+                Text(
+                    AppBoundaryCopy.childDashboardTagline(state.profile?.forgeName),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+            }
+            item {
+                ForgePrimaryButton(
+                    text = AppBoundaryCopy.PUSH_CHILD_SNAPSHOT,
+                    onClick = {
+                        viewModel.pushToTablet(context) { message ->
+                            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+                        }
+                    },
+                )
+                Text(
+                    AppBoundaryCopy.pushAvatarHint(),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 4.dp),
+                )
+            }
+            item {
+                ForgeSecondaryButton(
+                    text = AppBoundaryCopy.OPEN_STUDENT_EDITION,
+                    onClick = {
+                        when (val result = ExternalApps.launchStudentEdition(context)) {
+                            ExternalApps.LaunchResult.Launched -> Unit
+                            is ExternalApps.LaunchResult.NotInstalled ->
+                                Toast.makeText(
+                                    context,
+                                    "Student Edition is not installed on this device.",
+                                    Toast.LENGTH_LONG,
+                                ).show()
+                            is ExternalApps.LaunchResult.Failed ->
+                                Toast.makeText(context, result.message, Toast.LENGTH_LONG).show()
+                        }
+                    },
+                )
+            }
+        }
+
+        item {
+            Text("Your record", style = MaterialTheme.typography.titleMedium)
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(220.dp),
+                userScrollEnabled = false,
+            ) {
+                items(stats) { stat ->
+                    ForgeNavTile(
+                        label = stat.label,
+                        value = stat.value,
+                        onClick = { onNavigate(stat.route) },
+                    )
+                }
+            }
+        }
+
+        item {
+            Text("Session", style = MaterialTheme.typography.titleMedium)
+            ForgeSecondaryButton(text = "Switch profile", onClick = onSwitchProfile)
+            Spacer(modifier = Modifier.height(8.dp))
+            ForgePrimaryButton(
+                text = "Sign out",
+                onClick = onSignOut,
+            )
             Text(
-                AppBoundaryCopy.pushAvatarHint(),
+                "Sign out returns to the profile picker. Clearing app cache does not sign you out — use this button.",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 4.dp),
             )
         }
 
-        if (AppBoundaryCopy.canAccessParentGate(ProfileRole.fromStorageKey(state.profile?.profileRole))) {
-            Spacer(modifier = Modifier.height(8.dp))
-            OutlinedButton(
-                onClick = { onNavigate(Screen.TeacherGate.route) },
+        item {
+            Text("Recent Activity", style = MaterialTheme.typography.titleMedium)
+            Card(
                 modifier = Modifier.fillMaxWidth(),
+                onClick = { onNavigate(Screen.Timeline.route) },
             ) {
-                Text(AppBoundaryCopy.PARENT_GATE_TITLE)
-            }
-        }
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        val stats = listOf(
-            StatItem("Timeline", state.timelineEventCount.toString(), Screen.Timeline.route),
-            StatItem("Memories", state.memoryCount.toString(), Screen.Memory.route),
-            StatItem("Avatars", state.avatarCount.toString(), Screen.Studio.route),
-            StatItem("Identity", state.profile?.forgeName ?: "—", Screen.Identity.route)
-        )
-
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            items(stats) { stat ->
-                StatCard(stat, onClick = { onNavigate(stat.route) })
-            }
-        }
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        if (state.profile?.profileRole == "student_self" || state.profile?.profileRole == "steward_for_student") {
-            state.profile?.uid?.let { uid ->
-                Card(modifier = Modifier.fillMaxWidth()) {
-                    Column(modifier = Modifier.padding(12.dp)) {
-                        Text("Profile ID", style = MaterialTheme.typography.labelMedium)
-                        Text(uid, style = MaterialTheme.typography.bodySmall)
-                        Text(
-                            "Share with Teacher Edition to link expedition snapshots — identity stays here.",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
+                Row(modifier = Modifier.padding(16.dp)) {
+                    Text("📊")
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text(
+                        if (state.timelineEventCount > 0) {
+                            "${state.timelineEventCount} childhood moments recorded — tap to open timeline"
+                        } else {
+                            "Tap to open timeline — moments appear as you use Forge Profile"
+                        }
+                    )
                 }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(
-            onClick = { onNavigate(Screen.Dreams.route) },
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("Dream Board")
-        }
-
-        if (state.profile?.profileRole == "teacher_self") {
-            Spacer(modifier = Modifier.height(8.dp))
-            OutlinedButton(
-                onClick = { ExternalApps.launchTeacherEdition(context) },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Open Teacher Edition")
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        OutlinedButton(
-            onClick = onSignOut,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("Sign out")
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Text(
-            "Recent Activity",
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.align(Alignment.Start)
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable { onNavigate(Screen.Timeline.route) }
-        ) {
-            Row(modifier = Modifier.padding(16.dp)) {
-                Text("📊")
-                Spacer(modifier = Modifier.width(16.dp))
-                Text(
-                    if (state.timelineEventCount > 0) {
-                        "${state.timelineEventCount} childhood moments recorded — tap to open timeline"
-                    } else {
-                        "Tap to open timeline — moments appear as you use Forge Profile"
-                    }
-                )
             }
         }
     }
@@ -204,13 +240,12 @@ private fun formatProfileSubtitle(profile: com.phoenixforge.profile.domain.model
     if (profile == null) return "Just getting started"
     val age = profile.ageYears?.let { "Age $it" }
     val role = when (profile.profileRole) {
-        "steward_for_student" -> "Profile for a student"
-        "student_self" -> "Student profile"
-        "teacher_self" -> "Teacher profile"
+        "steward_for_student" -> "Adult profile"
+        "student_self" -> "Child profile"
+        "teacher_self" -> "Teacher profile (legacy)"
         else -> null
     }
-    return listOfNotNull(age, role, formatStageLabel(profile.currentStage))
-        .joinToString(" · ")
+    return listOfNotNull(age, role, formatStageLabel(profile.currentStage)).joinToString(" · ")
 }
 
 private fun formatStageLabel(stage: String?): String = when (stage) {
@@ -220,16 +255,3 @@ private fun formatStageLabel(stage: String?): String = when (stage) {
 }
 
 data class StatItem(val label: String, val value: String, val route: String)
-
-@Composable
-fun StatCard(stat: StatItem, onClick: () -> Unit) {
-    Card(modifier = Modifier.clickable(onClick = onClick)) {
-        Column(
-            modifier = Modifier.padding(16.dp).fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(stat.value, style = MaterialTheme.typography.headlineMedium)
-            Text(stat.label, style = MaterialTheme.typography.labelSmall)
-        }
-    }
-}

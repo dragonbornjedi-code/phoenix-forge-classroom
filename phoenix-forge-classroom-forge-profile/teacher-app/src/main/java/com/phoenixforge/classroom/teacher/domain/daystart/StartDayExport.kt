@@ -21,6 +21,10 @@ object StartDayExport {
                     TileStatus.COMPLETED, TileStatus.DEFERRED -> false
                 }
             }
+            .filter { tile ->
+                val kind = tile.routineKind.trim()
+                kind != "morning_routine" && kind != "night_routine"
+            }
             .sortedBy { it.sortOrder }
 
         return buildString {
@@ -41,6 +45,7 @@ object StartDayExport {
             }
             appendLine()
             appendLine("Mission types: Brain · Body · Helper · Maker · Kindness")
+            appendLine("Note: Morning & night routines stay on Student → Quests (not pushed daily).")
         }.trimEnd()
     }
 }

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phoenixforge.local/schemas/chariot_activity.schema.json",
+  "title": "ChariotActivity",
+  "type": "object",
+  "required": ["realm", "voice_id", "narration_clip_id", "narration_category", "input_type"],
+  "properties": {
+    "realm": { "type": "string" },
+    "voice_id": { "type": "string" },
+    "activity_type": { "type": "string" },
+    "narration_clip_id": { "type": "string" },
+    "narration_category": { "type": "string" },
+    "narration_text": { "type": "string" },
+    "input_type": {
+      "type": "string",
+      "enum": ["done", "number", "spelling", "weather_check", "emotion", "breathing", "choice"]
+    },
+    "xp": { "type": "integer" },
+    "sensory_load": { "type": "integer", "minimum": 0, "maximum": 5 },
+    "ef_demand": { "type": "integer", "minimum": 0, "maximum": 5 },
+    "deep_target": { "type": "string" },
+    "correct_answer": { "type": "string" },
+    "hints": { "type": "array", "items": { "type": "string" } },
+    "choices": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

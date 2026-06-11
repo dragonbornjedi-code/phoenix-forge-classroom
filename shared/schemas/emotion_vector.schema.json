@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phoenixforge.local/schemas/emotion_vector.schema.json",
+  "title": "EmotionVector4D",
+  "description": "Phase 2 extension beyond DailyFlagEngine 1D check-ins. Port of calculateEmotionState() concept — not wired at runtime yet.",
+  "type": "object",
+  "required": ["timestamp_epoch_millis", "valence", "arousal", "dominance", "clarity"],
+  "properties": {
+    "timestamp_epoch_millis": { "type": "integer" },
+    "valence": { "type": "number", "minimum": -1, "maximum": 1 },
+    "arousal": { "type": "number", "minimum": -1, "maximum": 1 },
+    "dominance": { "type": "number", "minimum": -1, "maximum": 1 },
+    "clarity": { "type": "number", "minimum": 0, "maximum": 1 },
+    "source_surface": { "type": "string" },
+    "derived_from_checkin_id": { "type": "string" }
+  },
+  "additionalProperties": false
+}

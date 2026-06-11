@@ -12,6 +12,7 @@ object TeacherForgeProfileContract {
     const val AUTHORITY = "com.phoenixforge.profile.provider"
     const val READ_PERMISSION = "com.phoenixforge.profile.READ"
     val PROFILE_URI: Uri = Uri.parse("content://$AUTHORITY/profile")
+    val ACTIVE_PROFILE_URI: Uri = Uri.parse("content://$AUTHORITY/active_profile")
 
     object Columns {
         const val UID = "uid"
@@ -56,7 +57,7 @@ class ForgeProfileTeacherReader @Inject constructor(
 
         return try {
             context.contentResolver.query(
-                TeacherForgeProfileContract.PROFILE_URI,
+                TeacherForgeProfileContract.ACTIVE_PROFILE_URI,
                 arrayOf(
                     TeacherForgeProfileContract.Columns.UID,
                     TeacherForgeProfileContract.Columns.FORGE_NAME,
@@ -82,6 +83,7 @@ class ForgeProfileTeacherReader @Inject constructor(
                     )
                 }
                 val role = cursor.getStringOrNull(TeacherForgeProfileContract.Columns.PROFILE_ROLE)
+                val isTeacherCapable = role == "teacher_self" || role == "steward_for_student"
                 val snapshot = TeacherForgeProfileSnapshot(
                     uid = cursor.getStringOrNull(TeacherForgeProfileContract.Columns.UID).orEmpty(),
                     forgeName = cursor.getStringOrNull(TeacherForgeProfileContract.Columns.FORGE_NAME).orEmpty(),
@@ -89,8 +91,14 @@ class ForgeProfileTeacherReader @Inject constructor(
                     currentTitle = cursor.getStringOrNull(TeacherForgeProfileContract.Columns.CURRENT_TITLE),
                     ageYears = cursor.getIntOrNull(TeacherForgeProfileContract.Columns.AGE_YEARS),
                     profileRole = role,
-                    isLinked = role == "teacher_self",
-                    errorMessage = if (role == "teacher_self") null else "Forge Profile on this device is not a teacher profile."
+                    isLinked = isTeacherCapable,
+                    errorMessage = when {
+                        isTeacherCapable -> null
+                        role == "student_self" ->
+                            "Forge Profile is on the child profile. Open Forge Profile → switch to your adult profile → Refresh link."
+                        else ->
+                            "Forge Profile on this device is not an adult profile. Sign in with your adult profile in Forge Profile."
+                    },
                 )
                 snapshot
             } ?: TeacherForgeProfileSnapshot(

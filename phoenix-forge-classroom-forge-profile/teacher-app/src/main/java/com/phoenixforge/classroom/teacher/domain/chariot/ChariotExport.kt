@@ -9,21 +9,69 @@ import com.phoenixforge.classroom.teacher.domain.model.TileStatus
  */
 object ChariotExport {
     const val WELCOME_LINE = "Welcome to the Chariot of Champions! Car quest time!"
+    const val MODE_EXPEDITION = "expedition_tiles"
+    const val MODE_SAGE_SESSION = "sage_session"
 
-    fun build(tiles: List<IntentTile>): ChariotQuestStack {
+    fun build(tiles: List<IntentTile>): ChariotQuestStack =
+        buildExpedition(tiles)
+
+    fun buildExpedition(tiles: List<IntentTile>): ChariotQuestStack {
         val missions = tiles
             .filter { isEligibleForChariot(it) }
             .sortedBy { it.sortOrder }
             .map { tile -> toMission(tile) }
 
         return ChariotQuestStack(
+            exportMode = MODE_EXPEDITION,
             welcomeLine = WELCOME_LINE,
             missions = missions,
         )
     }
 
+    fun buildFromSageSession(session: ChariotSession, weather: String = ""): ChariotQuestStack {
+        val missions = session.activities.map { activity -> toMissionFromActivity(session, activity) }
+        val weatherLabel = weather.ifBlank { session.bodyWeatherFlags.firstOrNull().orEmpty() }
+        return ChariotQuestStack(
+            exportMode = MODE_SAGE_SESSION,
+            sessionId = session.id,
+            weather = weatherLabel,
+            bodyWeatherFlags = session.bodyWeatherFlags,
+            welcomeLine = session.story.ifBlank { WELCOME_LINE },
+            welcomeClipId = session.welcomeClipId,
+            celebrationClipId = session.celebrationClipId,
+            story = session.story,
+            durationMinutes = session.durationMinutes,
+            totalXp = session.totalXp,
+            deepObjectives = session.deepObjectives,
+            scaffolding = session.scaffolding,
+            parentTips = session.parentTips,
+            missions = missions,
+        )
+    }
+
+    fun buildSageSessionForWeather(sessionsJson: String, weather: String): ChariotQuestStack {
+        val sessions = ChariotSession.listFromJson(sessionsJson)
+        val session = ChariotSession.findForWeather(sessions, weather)
+            ?: error("No chariot session for weather: $weather")
+        return buildFromSageSession(session, weather)
+    }
+
+    fun buildSageSessionJson(weather: String): String =
+        buildSageSessionForWeather(loadBundledSessionsJson(), weather).toJson()
+
+    fun loadBundledSessionsJson(): String =
+        ChariotExport::class.java.classLoader
+            ?.getResourceAsStream("chariot/sage-sessions-salvage.json")
+            ?.bufferedReader()
+            ?.use { it.readText() }
+            ?: "[]"
+
     fun buildExportText(stack: ChariotQuestStack): String = buildString {
         appendLine("Phoenix Forge Classroom — Chariot Quest Stack")
+        appendLine("Mode: ${stack.exportMode}")
+        if (stack.sessionId.isNotBlank()) {
+            appendLine("Session: ${stack.sessionId} (${stack.weather})")
+        }
         appendLine(stack.welcomeLine)
         appendLine()
         if (stack.missions.isEmpty()) {
@@ -61,6 +109,30 @@ object ChariotExport {
         "backseat",
         "vehicle",
     )
+
+    private fun toMissionFromActivity(session: ChariotSession, activity: ChariotActivity): ChariotMission {
+        val missionText = activity.narrationText.ifBlank { session.title }
+        return ChariotMission(
+            tileId = "${session.id}:${activity.narrationClipId}",
+            title = activity.activityType.ifBlank { session.title },
+            studentMission = missionText,
+            xpReward = activity.xp,
+            missionCards = activity.hints.ifEmpty {
+                listOf(activity.inputType, activity.realm).filter { it.isNotBlank() }
+            },
+            sparkLine = "Steward ${activity.voiceId} guides this car-safe step.",
+            narrationClipId = activity.narrationClipId,
+            narrationCategory = activity.narrationCategory,
+            inputType = activity.inputType,
+            voiceId = activity.voiceId,
+            realm = activity.realm,
+            sensoryLoad = activity.sensoryLoad,
+            efDemand = activity.efDemand,
+            correctAnswer = activity.correctAnswer,
+            hints = activity.hints,
+            choices = activity.choices,
+        )
+    }
 
     private fun toMission(tile: IntentTile): ChariotMission {
         val missionText = tile.studentMission.ifBlank {

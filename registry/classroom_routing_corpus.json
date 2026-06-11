@@ -1,0 +1,319 @@
+{
+  "schema_version": "classroom_routing_corpus_v1",
+  "updated": "2026-06-10",
+  "parent_agent_id": "ao_classroom_bridge",
+  "description": "Delegation proof \u2014 prompt must route to leaf, not parent only.",
+  "gates": {
+    "leaf_hit_min_ratio": 0.92,
+    "parent_only_max_ratio": 0.05,
+    "min_cases": 50
+  },
+  "cases": [
+    {
+      "id": "compose_nav_plan",
+      "prompt": "plan jetpack compose navigation graph for student digital home tabs",
+      "expected_leaf": "sub_compose_architect",
+      "work_type": "compose_ui"
+    },
+    {
+      "id": "compose_digital_home",
+      "prompt": "build DigitalHomeScreen zone gates GARDEN unlock compose layout",
+      "expected_leaf": "sub_compose_builder",
+      "work_type": "compose_ui"
+    },
+    {
+      "id": "kotlin_viewmodel",
+      "prompt": "fix DigitalHomeViewModel state flow progression unlock",
+      "expected_leaf": "sub_kotlin_domain",
+      "work_type": "kotlin_domain"
+    },
+    {
+      "id": "event_writer",
+      "prompt": "EventWriter append EVT_QUEST_STARTED logicalClock PUBLIC scope",
+      "expected_leaf": "sub_sync_events",
+      "work_type": "sync_events"
+    },
+    {
+      "id": "public_state",
+      "prompt": "PublicStateWriter snapshots public_state.json schema parity",
+      "expected_leaf": "sub_sync_events",
+      "work_type": "cross_app_contract"
+    },
+    {
+      "id": "sage_long_press",
+      "prompt": "SageAdvisorScreen long press menu copy select all expedition tile",
+      "expected_leaf": "sub_sage_advisor",
+      "work_type": "sage_advisor"
+    },
+    {
+      "id": "sage_apply_json",
+      "prompt": "SageChatService sage_apply JSON block expedition tile draft",
+      "expected_leaf": "sub_sage_advisor",
+      "work_type": "sage_advisor"
+    },
+    {
+      "id": "curriculum_domain",
+      "prompt": "CurriculumDomainScreen subdomain taxonomy lesson objectives",
+      "expected_leaf": "sub_curriculum_manifest",
+      "work_type": "curriculum"
+    },
+    {
+      "id": "lesson_manifest",
+      "prompt": "ManifestWriter push lesson_manifest yyyy-MM-dd today's stack",
+      "expected_leaf": "sub_curriculum_manifest",
+      "work_type": "lesson_manifest"
+    },
+    {
+      "id": "expedition_board",
+      "prompt": "ExpeditionBoardScreen FAB create tile field guide coaching",
+      "expected_leaf": "sub_expedition_board",
+      "work_type": "expedition"
+    },
+    {
+      "id": "forge_ingest",
+      "prompt": "EventIngester EventFileWatcher forge_events Room timeline",
+      "expected_leaf": "sub_forge_profile_core",
+      "work_type": "forge_profile"
+    },
+    {
+      "id": "profile_projector",
+      "prompt": "PublicStateEventProjector aggregate PUBLIC state projector",
+      "expected_leaf": "sub_forge_profile_core",
+      "work_type": "profile_ingest"
+    },
+    {
+      "id": "student_quests",
+      "prompt": "QuestsViewModel ProgressionEngine quest complete student",
+      "expected_leaf": "sub_student_quests",
+      "work_type": "student_quests"
+    },
+    {
+      "id": "chariot_session",
+      "prompt": "chariot session schema sage-sessions-salvage audio path map",
+      "expected_leaf": "sub_chariot_sessions",
+      "work_type": "chariot"
+    },
+    {
+      "id": "gradle_assemble",
+      "prompt": "gradle assembleDebug forge-profile student teacher compile error",
+      "expected_leaf": "sub_gradle_build",
+      "work_type": "gradle_build"
+    },
+    {
+      "id": "drift_verify",
+      "prompt": "run cline essence drift check and unit tests verify all gates",
+      "expected_leaf": "sub_verify_runner",
+      "work_type": "verify_test"
+    },
+    {
+      "id": "nav_student",
+      "prompt": "StudentNavHost bottom bar routes digital home",
+      "expected_leaf": "sub_compose_architect",
+      "work_type": "compose_ui"
+    },
+    {
+      "id": "home_screen",
+      "prompt": "HomeScreen compose layout student edition",
+      "expected_leaf": "sub_compose_builder",
+      "work_type": "compose_ui"
+    },
+    {
+      "id": "repo_quest",
+      "prompt": "StudentRepositoryImpl quest state flow",
+      "expected_leaf": "sub_kotlin_domain",
+      "work_type": "kotlin_domain"
+    },
+    {
+      "id": "evt_quest",
+      "prompt": "append EVT_QUEST_COMPLETED logicalClock",
+      "expected_leaf": "sub_sync_events",
+      "work_type": "sync_events"
+    },
+    {
+      "id": "snapshot_public",
+      "prompt": "public_state snapshot builder student",
+      "expected_leaf": "sub_sync_events",
+      "work_type": "cross_app_contract"
+    },
+    {
+      "id": "sage_tile",
+      "prompt": "SageTileActions apply expedition tile",
+      "expected_leaf": "sub_sage_advisor",
+      "work_type": "sage_advisor"
+    },
+    {
+      "id": "sage_persona",
+      "prompt": "SageAdvisorViewModel provider catalog",
+      "expected_leaf": "sub_sage_advisor",
+      "work_type": "sage_advisor"
+    },
+    {
+      "id": "curriculum_repo",
+      "prompt": "CurriculumRepository subdomain taxonomy",
+      "expected_leaf": "sub_curriculum_manifest",
+      "work_type": "curriculum"
+    },
+    {
+      "id": "manifest_push",
+      "prompt": "push lesson manifest today stack teacher",
+      "expected_leaf": "sub_curriculum_manifest",
+      "work_type": "lesson_manifest"
+    },
+    {
+      "id": "start_day",
+      "prompt": "StartDayBottomSheet export daily stack",
+      "expected_leaf": "sub_expedition_board",
+      "work_type": "expedition"
+    },
+    {
+      "id": "ingest_room",
+      "prompt": "EventIngester Room forge_events timeline",
+      "expected_leaf": "sub_forge_profile_core",
+      "work_type": "forge_profile"
+    },
+    {
+      "id": "content_provider",
+      "prompt": "Forge Profile ContentProvider read profile",
+      "expected_leaf": "sub_forge_profile_core",
+      "work_type": "profile_ingest"
+    },
+    {
+      "id": "quest_vm",
+      "prompt": "QuestsViewModel today's expedition start",
+      "expected_leaf": "sub_student_quests",
+      "work_type": "student_quests"
+    },
+    {
+      "id": "progression_xp",
+      "prompt": "ProgressionEngine xp unlock garden",
+      "expected_leaf": "sub_student_quests",
+      "work_type": "progression"
+    },
+    {
+      "id": "chariot_audio",
+      "prompt": "chariot audio_path_map session salvage",
+      "expected_leaf": "sub_chariot_sessions",
+      "work_type": "chariot"
+    },
+    {
+      "id": "gradle_jdk",
+      "prompt": "gradle assembleDebug JDK 17 error",
+      "expected_leaf": "sub_gradle_build",
+      "work_type": "gradle_build"
+    },
+    {
+      "id": "drift_essence",
+      "prompt": "cline essence drift check script",
+      "expected_leaf": "sub_verify_runner",
+      "work_type": "verify_test"
+    },
+    {
+      "id": "digital_home_vm",
+      "prompt": "DigitalHomeViewModel unlockedRooms state",
+      "expected_leaf": "sub_kotlin_domain",
+      "work_type": "kotlin_domain"
+    },
+    {
+      "id": "garden_merchant",
+      "prompt": "GardenMerchantScreen purchase currency",
+      "expected_leaf": "sub_compose_builder",
+      "work_type": "compose_ui"
+    },
+    {
+      "id": "teacher_nav",
+      "prompt": "TeacherNavGraph expedition curriculum routes",
+      "expected_leaf": "sub_compose_architect",
+      "work_type": "compose_ui"
+    },
+    {
+      "id": "forge_event_models",
+      "prompt": "ForgeEventModels PUBLIC scope schema",
+      "expected_leaf": "sub_sync_events",
+      "work_type": "sync_events"
+    },
+    {
+      "id": "public_sync_writer",
+      "prompt": "PublicSyncWriter sync folder write",
+      "expected_leaf": "sub_sync_events",
+      "work_type": "sync_events"
+    },
+    {
+      "id": "sage_apply_block",
+      "prompt": "sage_apply structured JSON expedition",
+      "expected_leaf": "sub_sage_advisor",
+      "work_type": "sage_advisor"
+    },
+    {
+      "id": "curriculum_quests",
+      "prompt": "CurriculumSubdomainQuestsScreen list",
+      "expected_leaf": "sub_curriculum_manifest",
+      "work_type": "curriculum"
+    },
+    {
+      "id": "expedition_fab",
+      "prompt": "ExpeditionBoardScreen FAB new tile",
+      "expected_leaf": "sub_expedition_board",
+      "work_type": "expedition"
+    },
+    {
+      "id": "event_coordinator",
+      "prompt": "EventIngestCoordinator watch events folder",
+      "expected_leaf": "sub_forge_profile_core",
+      "work_type": "forge_profile"
+    },
+    {
+      "id": "student_import",
+      "prompt": "import child profile ContentProvider",
+      "expected_leaf": "sub_forge_profile_core",
+      "work_type": "profile_ingest"
+    },
+    {
+      "id": "quest_screen",
+      "prompt": "QuestsScreen mark mission complete",
+      "expected_leaf": "sub_student_quests",
+      "work_type": "student_quests"
+    },
+    {
+      "id": "chariot_schema",
+      "prompt": "chariot_session.schema.json validate",
+      "expected_leaf": "sub_chariot_sessions",
+      "work_type": "chariot"
+    },
+    {
+      "id": "unit_test_student",
+      "prompt": "student-app testDebugUnitTest EventWriter",
+      "expected_leaf": "sub_verify_runner",
+      "work_type": "verify_test"
+    },
+    {
+      "id": "gradle_teacher",
+      "prompt": "teacher-app assembleDebug compile",
+      "expected_leaf": "sub_gradle_build",
+      "work_type": "gradle_build"
+    },
+    {
+      "id": "compose_theme",
+      "prompt": "compose theme student digital home",
+      "expected_leaf": "sub_compose_builder",
+      "work_type": "compose_ui"
+    },
+    {
+      "id": "logical_clock",
+      "prompt": "LogicalClockStore monotonic increment",
+      "expected_leaf": "sub_sync_events",
+      "work_type": "sync_events"
+    },
+    {
+      "id": "manifest_writer_test",
+      "prompt": "ManifestWriter junit manifest json",
+      "expected_leaf": "sub_curriculum_manifest",
+      "work_type": "lesson_manifest"
+    },
+    {
+      "id": "field_guide",
+      "prompt": "expedition tile field guide coaching save",
+      "expected_leaf": "sub_expedition_board",
+      "work_type": "expedition"
+    }
+  ]
+}

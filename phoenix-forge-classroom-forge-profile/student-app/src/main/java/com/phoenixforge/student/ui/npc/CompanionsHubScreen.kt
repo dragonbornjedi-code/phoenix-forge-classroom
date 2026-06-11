@@ -22,9 +22,13 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.phoenixforge.student.domain.model.NpcState
 import com.phoenixforge.student.domain.model.NpcType
+import com.phoenixforge.student.ui.components.StudentBackHeader
 
 @Composable
-fun CompanionsHubScreen(viewModel: NpcRoomViewModel = hiltViewModel()) {
+fun CompanionsHubScreen(
+    onBack: (() -> Unit)? = null,
+    viewModel: NpcRoomViewModel = hiltViewModel(),
+) {
     val state by viewModel.hubState.collectAsState()
 
     LazyColumn(
@@ -32,6 +36,9 @@ fun CompanionsHubScreen(viewModel: NpcRoomViewModel = hiltViewModel()) {
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
+        onBack?.let { back ->
+            item { StudentBackHeader(onBack = back) }
+        }
         item {
             Text("Companions", style = MaterialTheme.typography.headlineLarge)
             Text(

@@ -36,6 +36,7 @@ import com.phoenixforge.classroom.teacher.domain.curriculum.CurriculumSubdomain
 fun CurriculumDomainScreen(
     onBack: () -> Unit,
     onOpenLesson: (String) -> Unit,
+    onOpenSubdomain: (String) -> Unit,
     viewModel: CurriculumDomainViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.state.collectAsState()
@@ -95,7 +96,10 @@ fun CurriculumDomainScreen(
             }
 
             items(domain.subdomains) { subdomain ->
-                SubdomainCard(subdomain = subdomain)
+                SubdomainCard(
+                    subdomain = subdomain,
+                    onClick = { onOpenSubdomain(subdomain.id) },
+                )
             }
 
             item { BulletSection("Lesson patterns", domain.lessonPatterns) }
@@ -126,8 +130,15 @@ fun CurriculumDomainScreen(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun SubdomainCard(subdomain: CurriculumSubdomain) {
-    Card(modifier = Modifier.fillMaxWidth()) {
+private fun SubdomainCard(
+    subdomain: CurriculumSubdomain,
+    onClick: () -> Unit,
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
+    ) {
         Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(subdomain.name, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
             Text(subdomain.summary, style = MaterialTheme.typography.bodyMedium)
@@ -138,8 +149,8 @@ private fun SubdomainCard(subdomain: CurriculumSubdomain) {
                 ) {
                     subdomain.topics.forEach { topic ->
                         AssistChip(
-                            onClick = {},
-                            label = { Text(topic, style = MaterialTheme.typography.labelSmall) }
+                            onClick = onClick,
+                            label = { Text(topic, style = MaterialTheme.typography.labelSmall) },
                         )
                     }
                 }

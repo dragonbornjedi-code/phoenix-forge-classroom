@@ -1,5 +1,7 @@
 package com.phoenixforge.student.domain.model
 
+import kotlinx.serialization.Serializable
+
 enum class HouseRoomType(val displayName: String, val unlockLevel: Int) {
     BEDROOM("Bedroom", 1),
     STUDY("Study", 2),
@@ -19,7 +21,15 @@ data class RoomNode(
 data class HouseState(
     val rooms: List<RoomNode>,
     val unlockedRoomTypes: Set<HouseRoomType>,
-    val decorations: List<String>
+    val decorations: List<String>,
+    val inventory: List<InventoryItem> = emptyList(),
+)
+
+@Serializable
+data class InventoryItem(
+    val itemId: String,
+    val zone: String,
+    val meshHint: String = "",
 )
 
 enum class LifeChapter(val displayName: String, val minLevel: Int) {
@@ -57,7 +67,8 @@ data class StudentProgress(
     val streakDays: Int,
     val lastVisitEpochMillis: Long,
     val unlockFlags: Set<String>,
-    val achievementIds: Set<String>
+    val achievementIds: Set<String>,
+    val currency: Map<String, Int> = emptyMap(),
 )
 
 enum class NpcType { COMPANION, WHISP, PET }
@@ -100,6 +111,16 @@ data class ImportedProfileSnapshot(
     val importedAtEpochMillis: Long
 )
 
+data class StudentInboxMessage(
+    val messageId: String,
+    val subject: String,
+    val body: String,
+    val fromDisplayName: String,
+    val epochMs: Long,
+    val isRead: Boolean,
+    val direction: String,
+)
+
 data class GalleryPhoto(
     val id: Long,
     val uri: String,
@@ -119,6 +140,7 @@ enum class LifeEventType {
     DAILY_RETURN,
     ACHIEVEMENT_LOGGED,
     FORGE_PROFILE_IMPORTED,
+    FORGE_WORLD_MEMORY_IMPORTED,
     LEVEL_UP
 }
 
@@ -127,6 +149,13 @@ data class RewardGrant(
     val unlockIds: List<String>,
     val npcReactions: List<String>,
     val message: String
+)
+
+data class DreamEntry(
+    val id: String,
+    val type: String,
+    val content: String,
+    val timestampEpochMillis: Long
 )
 
 data class StudentWorldState(

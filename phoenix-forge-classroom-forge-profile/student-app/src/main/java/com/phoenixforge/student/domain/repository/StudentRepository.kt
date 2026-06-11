@@ -4,9 +4,11 @@ import com.phoenixforge.student.domain.model.HouseState
 import com.phoenixforge.student.domain.model.ImportedProfileSnapshot
 import com.phoenixforge.student.domain.model.LifeEvent
 import com.phoenixforge.student.domain.model.MemoryArtifact
+import com.phoenixforge.student.domain.model.MemoryEventDraft
 import com.phoenixforge.student.domain.model.NpcState
 import com.phoenixforge.student.domain.model.Quest
 import com.phoenixforge.student.domain.model.BehaviorSignals
+import com.phoenixforge.student.domain.model.DreamEntry
 import com.phoenixforge.student.domain.model.StoryFragment
 import com.phoenixforge.student.domain.model.StudentProgress
 import com.phoenixforge.student.domain.model.WorldDriftState
@@ -22,6 +24,11 @@ interface StudentRepository {
     fun observeMemories(): Flow<List<MemoryArtifact>>
     fun observeRecentMemories(limit: Int): Flow<List<MemoryArtifact>>
     suspend fun saveMemory(memory: MemoryArtifact)
+
+    fun observeMemoryEventDrafts(): Flow<List<MemoryEventDraft>>
+    fun observeMemoryEventDraftCount(): Flow<Int>
+    suspend fun listMemoryEventDraftIds(): List<String>
+    suspend fun insertMemoryEventDraftIfNew(draft: MemoryEventDraft): Boolean
 
     fun observeNpcs(): Flow<List<NpcState>>
     suspend fun saveNpc(npc: NpcState)
@@ -44,4 +51,7 @@ interface StudentRepository {
 
     fun observeBehaviorSignals(): Flow<BehaviorSignals>
     suspend fun saveBehaviorSignals(signals: BehaviorSignals)
+
+    fun observeDreamEntries(): Flow<List<DreamEntry>>
+    suspend fun saveDreamEntry(entry: DreamEntry)
 }

@@ -92,7 +92,9 @@ enum class EventType {
     ABOUT_ME_UPDATED,
     FAVORITE_UPDATED,
     DREAM_UPDATED,
-    AVATAR_UPDATED
+    AVATAR_UPDATED,
+    /** Ingested from EVT_*.json (Student Edition, Forge World, future routines). */
+    SYNC_EVENT,
 }
 
 data class TimelineEvent(

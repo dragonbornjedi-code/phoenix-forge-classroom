@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "playback_policy_ref": "shared/voice/playback_policy.yaml",
+  "default_fallback_chain": ["human_recording", "prerecorded_npc", "piper_tts", "text_only"],
+  "actors": {
+    "ignavarr": {
+      "voice_id": "ignavarr",
+      "display_name": "Ignavarr",
+      "fallback_chain": ["prerecorded_npc", "piper_tts", "text_only"],
+      "clips_manifest": "res://data/audio/ignavarr/voice_manifest.json",
+      "piper_profile": null
+    },
+    "dad_joshua": {
+      "voice_id": "dad_joshua",
+      "display_name": "Dad (Joshua)",
+      "fallback_chain": ["human_recording", "text_only"],
+      "clips_manifest": "res://data/audio/human/dad_joshua_manifest.json",
+      "human_recording_prefix": "dad_",
+      "piper_profile": null
+    },
+    "spark": {
+      "voice_id": "spark",
+      "display_name": "Spark",
+      "fallback_chain": ["prerecorded_npc", "piper_tts", "text_only"],
+      "clips_manifest": null,
+      "piper_profile": "en_US-lessac-medium"
+    },
+    "wisp_mind": {
+      "voice_id": "wisp_mind",
+      "display_name": "Mind Wisp",
+      "fallback_chain": ["piper_tts", "text_only"],
+      "piper_profile": "wisp_mind_soft"
+    },
+    "wisp_heart": {
+      "voice_id": "wisp_heart",
+      "display_name": "Heart Wisp",
+      "fallback_chain": ["piper_tts", "text_only"],
+      "piper_profile": "wisp_heart_soft"
+    },
+    "steward_cognitive": {
+      "voice_id": "steward_cognitive",
+      "display_name": "Atlas (Thinking Tower)",
+      "fallback_chain": ["prerecorded_npc", "piper_tts", "text_only"],
+      "teacher_domain_id": "COGNITIVE_ACADEMIC",
+      "piper_profile": "steward_warm"
+    },
+    "steward_emotional": {
+      "voice_id": "steward_emotional",
+      "display_name": "Willow (Heart Garden)",
+      "fallback_chain": ["prerecorded_npc", "piper_tts", "text_only"],
+      "teacher_domain_id": "EMOTIONAL_REGULATION",
+      "piper_profile": "steward_calm"
+    },
+    "steward_practical": {
+      "voice_id": "steward_practical",
+      "display_name": "Hearth (Life Lodge)",
+      "fallback_chain": ["piper_tts", "text_only"],
+      "teacher_domain_id": "PRACTICAL_LIFE",
+      "piper_profile": "steward_warm"
+    },
+    "steward_social": {
+      "voice_id": "steward_social",
+      "display_name": "Circle (Social Grove)",
+      "fallback_chain": ["piper_tts", "text_only"],
+      "teacher_domain_id": "SOCIAL_DYNAMICS",
+      "piper_profile": "steward_warm"
+    },
+    "steward_physical": {
+      "voice_id": "steward_physical",
+      "display_name": "Stride (Adventure Grounds)",
+      "fallback_chain": ["piper_tts", "text_only"],
+      "teacher_domain_id": "PHYSICAL_MASTERY",
+      "piper_profile": "steward_bright"
+    },
+    "steward_creative": {
+      "voice_id": "steward_creative",
+      "display_name": "Prism (Creation Studio)",
+      "fallback_chain": ["piper_tts", "text_only"],
+      "teacher_domain_id": "CREATIVE_CURIOSITY",
+      "piper_profile": "steward_playful"
+    },
+    "steward_civic": {
+      "voice_id": "steward_civic",
+      "display_name": "Pledge (Civic Plaza)",
+      "fallback_chain": ["piper_tts", "text_only"],
+      "teacher_domain_id": "ETHICS_CIVIC",
+      "piper_profile": "steward_steady"
+    }
+  },
+  "dialogue_lines": [
+    {
+      "line_id": "ignavarr_welcome_hearth",
+      "voice_id": "ignavarr",
+      "text": "Welcome to the forge hearth, {player}!",
+      "clip_id": "realm_awaits",
+      "teacher_domain_id": "EMOTIONAL_REGULATION",
+      "fallback": "piper_tts"
+    },
+    {
+      "line_id": "ignavarr_return_visit",
+      "voice_id": "ignavarr",
+      "text": "Welcome back, {player}. The chronicle remembers.",
+      "clip_id": "morning_adventures",
+      "fallback": "piper_tts"
+    },
+    {
+      "line_id": "quest_welcome",
+      "voice_id": "ignavarr",
+      "text": "Let's begin your quest!",
+      "clip_file": "welcome.mp3",
+      "clip_category": "welcome",
+      "fallback": "text_only"
+    },
+    {
+      "line_id": "quest_step_progress",
+      "voice_id": "ignavarr",
+      "text": "Good progress — keep going!",
+      "clip_file": "mid-check.mp3",
+      "clip_category": "progress",
+      "fallback": "text_only"
+    },
+    {
+      "line_id": "quest_complete_celebration",
+      "voice_id": "ignavarr",
+      "text": "Magnificent work!",
+      "clip_file": "celebration-1.mp3",
+      "clip_category": "celebration",
+      "fallback": "text_only"
+    }
+  ]
+}

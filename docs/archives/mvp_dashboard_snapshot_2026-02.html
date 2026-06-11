@@ -1,0 +1,150 @@
+<!-- ARCHIVED 2026-06-08: Superseded by 00_MASTER_ROADMAP.md + DEPLOYMENT_REALITY.md. Teacher APK builds. Do not use for status. -->
+
+<h2 class="sr-only">Phoenix Forge classroom repo — MVP status for Forge Profile, Student Edition, and Teacher Edition, plus three build phases</h2>
+
+<style>
+.badge { font-size: 11px; padding: 2px 9px; border-radius: 10px; display: inline-block; line-height: 1.6; }
+.dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; vertical-align: middle; margin-right: 5px; }
+.app-card { background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 14px; }
+.app-card.critical { border: 2px solid var(--color-border-info); }
+.phase-card { background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 14px; }
+.phase-card.focus { border: 2px solid var(--color-border-info); }
+.phase-label { font-size: 10px; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.07em; margin: 0 0 4px; }
+.phase-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 10px; }
+.phase-list { margin: 0; padding-left: 14px; font-size: 12px; color: var(--color-text-secondary); line-height: 1.9; }
+.notch { font-size: 10px; background: var(--color-background-info); color: var(--color-text-info); padding: 1px 10px; border-radius: 8px; font-weight: 500; }
+</style>
+
+<div style="padding: 8px 0;">
+
+  <p style="font-size: 11px; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.07em; margin: 0 0 10px;">Three apps · current state</p>
+
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;">
+
+    <div class="app-card">
+      <div style="display: flex; align-items: center; margin-bottom: 8px;">
+        <span class="dot" style="background: var(--color-background-warning);"></span>
+        <span style="font-size: 10px; color: var(--color-text-warning); font-weight: 500;">BUILT · UNDEPLOYED</span>
+      </div>
+      <p style="font-size: 14px; font-weight: 500; margin: 0 0 3px; color: var(--color-text-primary);">Forge Profile</p>
+      <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 10px;">forge-profile-core + app</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 3px;">
+        <span class="badge" style="background: var(--color-background-success); color: var(--color-text-success);">Room ✓</span>
+        <span class="badge" style="background: var(--color-background-success); color: var(--color-text-success);">Auth ✓</span>
+        <span class="badge" style="background: var(--color-background-success); color: var(--color-text-success);">Provider ✓</span>
+        <span class="badge" style="background: var(--color-background-warning); color: var(--color-text-warning);">Export ⚠</span>
+        <span class="badge" style="background: var(--color-background-danger); color: var(--color-text-danger);">Spark ✗</span>
+      </div>
+    </div>
+
+    <div class="app-card">
+      <div style="display: flex; align-items: center; margin-bottom: 8px;">
+        <span class="dot" style="background: var(--color-background-warning);"></span>
+        <span style="font-size: 10px; color: var(--color-text-warning); font-weight: 500;">BUILT · UNDEPLOYED</span>
+      </div>
+      <p style="font-size: 14px; font-weight: 500; margin: 0 0 3px; color: var(--color-text-primary);">Student Edition</p>
+      <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 10px;">forge-profile/student-app</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 3px;">
+        <span class="badge" style="background: var(--color-background-success); color: var(--color-text-success);">Story ✓</span>
+        <span class="badge" style="background: var(--color-background-success); color: var(--color-text-success);">Quest ✓</span>
+        <span class="badge" style="background: var(--color-background-success); color: var(--color-text-success);">Vault ✓</span>
+        <span class="badge" style="background: var(--color-background-warning); color: var(--color-text-warning);">HH-UX ⚠</span>
+        <span class="badge" style="background: var(--color-background-danger); color: var(--color-text-danger);">TchFeed ✗</span>
+      </div>
+    </div>
+
+    <div class="app-card critical" style="position: relative;">
+      <div style="position: absolute; top: -11px; right: 10px;"><span class="notch">Build this next</span></div>
+      <div style="display: flex; align-items: center; margin-bottom: 8px;">
+        <span class="dot" style="background: var(--color-background-danger);"></span>
+        <span style="font-size: 10px; color: var(--color-text-danger); font-weight: 500;">DOCS ONLY · NO APK</span>
+      </div>
+      <p style="font-size: 14px; font-weight: 500; margin: 0 0 3px; color: var(--color-text-primary);">Teacher Edition</p>
+      <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 10px;">teacher-edition/android/ — empty</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 3px;">
+        <span class="badge" style="background: var(--color-background-success); color: var(--color-text-success);">17 docs ✓</span>
+        <span class="badge" style="background: var(--color-background-danger); color: var(--color-text-danger);">APK ✗</span>
+        <span class="badge" style="background: var(--color-background-danger); color: var(--color-text-danger);">Board ✗</span>
+        <span class="badge" style="background: var(--color-background-danger); color: var(--color-text-danger);">TileEngine ✗</span>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="font-size: 11px; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.07em; margin: 0 0 10px;">MVP spine — one loop that makes this real</p>
+
+  <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 14px 14px 10px; margin-bottom: 20px;">
+    <svg viewBox="0 0 680 64" style="width:100%;display:block;" xmlns="http://www.w3.org/2000/svg">
+      <title>MVP Spine: Teacher creates intent tile, Student completes quest, Forge Profile saves memory event, Teacher Compass sees result</title>
+      <defs>
+        <marker id="sp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <rect x="8" y="6" width="148" height="52" rx="8" style="fill:var(--color-background-info);stroke:var(--color-border-info);stroke-width:1;"/>
+      <text x="82" y="25" text-anchor="middle" dominant-baseline="central" style="font-size:12px;font-weight:500;fill:var(--color-text-info);">Teacher Edition</text>
+      <text x="82" y="44" text-anchor="middle" dominant-baseline="central" style="font-size:10px;fill:var(--color-text-info);">creates intent tile</text>
+      <line x1="158" y1="32" x2="180" y2="32" style="stroke:var(--color-text-tertiary);" stroke-width="1" marker-end="url(#sp)"/>
+      <rect x="182" y="6" width="148" height="52" rx="8" style="fill:var(--color-background-secondary);stroke:var(--color-border-secondary);stroke-width:0.5;"/>
+      <text x="256" y="25" text-anchor="middle" dominant-baseline="central" style="font-size:12px;font-weight:500;fill:var(--color-text-primary);">Student Edition</text>
+      <text x="256" y="44" text-anchor="middle" dominant-baseline="central" style="font-size:10px;fill:var(--color-text-secondary);">completes quest</text>
+      <line x1="332" y1="32" x2="354" y2="32" style="stroke:var(--color-text-tertiary);" stroke-width="1" marker-end="url(#sp)"/>
+      <rect x="356" y="6" width="148" height="52" rx="8" style="fill:var(--color-background-secondary);stroke:var(--color-border-secondary);stroke-width:0.5;"/>
+      <text x="430" y="25" text-anchor="middle" dominant-baseline="central" style="font-size:12px;font-weight:500;fill:var(--color-text-primary);">Forge Profile</text>
+      <text x="430" y="44" text-anchor="middle" dominant-baseline="central" style="font-size:10px;fill:var(--color-text-secondary);">memory event saved</text>
+      <line x1="506" y1="32" x2="528" y2="32" style="stroke:var(--color-text-tertiary);" stroke-width="1" marker-end="url(#sp)"/>
+      <rect x="530" y="6" width="148" height="52" rx="8" style="fill:var(--color-background-secondary);stroke:var(--color-border-secondary);stroke-width:0.5;"/>
+      <text x="604" y="25" text-anchor="middle" dominant-baseline="central" style="font-size:12px;font-weight:500;fill:var(--color-text-primary);">Teacher Compass</text>
+      <text x="604" y="44" text-anchor="middle" dominant-baseline="central" style="font-size:10px;fill:var(--color-text-secondary);">sees the result</text>
+    </svg>
+  </div>
+
+  <p style="font-size: 11px; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.07em; margin: 0 0 10px;">Build order</p>
+
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+
+    <div class="phase-card">
+      <p class="phase-label">Phase 0 · Day 1 · ~1 hr</p>
+      <p class="phase-title">Fix build env</p>
+      <ul class="phase-list">
+        <li>SSH → Crucible (Ryzen 7)</li>
+        <li>Install JDK 17</li>
+        <li>Set JAVA_HOME permanently</li>
+        <li>assembleDebug both APKs</li>
+        <li>Verify .apk file sizes</li>
+      </ul>
+      <button style="margin-top: 12px; font-size: 12px; width: 100%;" onclick="sendPrompt('Give me the exact Phase 0 commands: SSH to Crucible, install JDK 17, set JAVA_HOME, run assembleDebug on both Forge Profile and Student App, and verify the APKs built correctly')">Get exact commands ↗</button>
+    </div>
+
+    <div class="phase-card">
+      <p class="phase-label">Phase 1 · Day 1–2 · ~2 hrs</p>
+      <p class="phase-title">Field deploy both APKs</p>
+      <ul class="phase-list">
+        <li>Enable USB debugging on tablet</li>
+        <li>adb install Forge Profile</li>
+        <li>Create Ezra's profile</li>
+        <li>adb install Student App</li>
+        <li>Test profile import flow</li>
+        <li>Update DEPLOYMENT_REALITY.md</li>
+      </ul>
+      <button style="margin-top: 12px; font-size: 12px; width: 100%;" onclick="sendPrompt('Give me the exact Phase 1 ADB commands to deploy Forge Profile and Student App to Ezras tablet, create the profile, verify the import, and document results in DEPLOYMENT_REALITY.md')">Get exact commands ↗</button>
+    </div>
+
+    <div class="phase-card focus" style="position: relative;">
+      <div style="position: absolute; top: -11px; right: 10px;"><span class="notch">Longest phase</span></div>
+      <p class="phase-label">Phase 2 · Week 1–2 · Full scaffold</p>
+      <p class="phase-title">Build Teacher Edition APK</p>
+      <ul class="phase-list">
+        <li>Gradle project in teacher-edition/android/</li>
+        <li>Hilt + Room + Compose setup</li>
+        <li>IntentTile data model + DAO</li>
+        <li>Expedition Board screen</li>
+        <li>Profile reader (ContentProvider client)</li>
+        <li>First assembleDebug passes</li>
+      </ul>
+      <button style="margin-top: 12px; font-size: 12px; width: 100%;" onclick="sendPrompt('Give me all the Gradle and Kotlin files to build the Teacher Edition Android scaffold: settings.gradle.kts, app build.gradle.kts, Manifest, TeacherApp, MainActivity, IntentTile model, Room DAO, Expedition Board Compose screen, and Forge Profile ContentProvider reader')">Get all files ↗</button>
+    </div>
+
+  </div>
+
+</div>

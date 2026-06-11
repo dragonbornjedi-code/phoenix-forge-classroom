@@ -7,93 +7,105 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.phoenixforge.student.domain.avatar.ImportedHeroLookParser
 import com.phoenixforge.student.ui.avatar.HearthWelcomeCard
+import com.phoenixforge.student.ui.components.StudentHearthBackground
+import com.phoenixforge.student.ui.components.StudentPrimaryButton
+import com.phoenixforge.student.ui.components.StudentSecondaryButton
+import com.phoenixforge.student.ui.theme.StudentKidCopy
 
 @Composable
 fun ImportForgeProfileScreen(viewModel: ImportForgeProfileViewModel = hiltViewModel()) {
     val state by viewModel.state.collectAsState()
-    val pastImports by viewModel.pastImports.collectAsState()
     val preview = state.preview
 
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        item {
-            Text("Import Forge Profile", style = MaterialTheme.typography.headlineLarge)
-            Text(
-                "Manual pull only — your parent pushes from Forge Profile when you're ready.",
-                style = MaterialTheme.typography.bodyMedium
-            )
-        }
+    StudentHearthBackground {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(14.dp),
+        ) {
+            item {
+                Text("✨", fontSize = 48.sp)
+                Text(StudentKidCopy.importTitle(), style = MaterialTheme.typography.headlineLarge)
+                Text(
+                    StudentKidCopy.importSubtitle(),
+                    style = MaterialTheme.typography.bodyLarge,
+                )
+            }
 
-        item {
-            Card(modifier = Modifier.fillMaxWidth()) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    if (preview == null) {
-                        Text("Checking for Forge Profile…")
-                    } else if (!preview.isAvailable) {
-                        Text(preview.errorMessage ?: "Forge Profile unavailable", style = MaterialTheme.typography.bodyMedium)
-                    } else {
-                        Text("Found: ${preview.forgeName}", style = MaterialTheme.typography.titleMedium)
-                        Text("Stage: ${preview.currentStage ?: "—"}", style = MaterialTheme.typography.bodySmall)
-                        Text("Timeline events: ${preview.timelineEventCount}", style = MaterialTheme.typography.bodySmall)
-                        Text("Avatar: ${preview.avatarSummary ?: "—"}", style = MaterialTheme.typography.bodySmall)
-                        preview.heroStyle?.let { style ->
+            item {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                    ),
+                ) {
+                    Column(
+                        modifier = Modifier.padding(18.dp),
+                        verticalArrangement = Arrangement.spacedBy(10.dp),
+                    ) {
+                        if (preview == null) {
+                            Text(StudentKidCopy.importChecking(), style = MaterialTheme.typography.bodyLarge)
+                        } else if (!preview.isAvailable) {
                             Text(
-                                "Hero: $style · ${preview.heroColor ?: "—"}",
-                                style = MaterialTheme.typography.bodySmall,
+                                preview.errorMessage ?: StudentKidCopy.importUnavailable(),
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = MaterialTheme.colorScheme.error,
+                            )
+                        } else {
+                            Text(
+                                StudentKidCopy.importFound(preview.forgeName),
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold,
+                            )
+                            ImportedHeroLookParser.parse(preview.avatarSummary)?.let { look ->
+                                HearthWelcomeCard(
+                                    forgeName = preview.forgeName,
+                                    heroLook = look,
+                                    modifier = Modifier.padding(top = 4.dp),
+                                )
+                            }
+                            StudentPrimaryButton(
+                                text = StudentKidCopy.importSyncButton(state.isImporting),
+                                onClick = viewModel::importSelectedProfile,
+                                enabled = !state.isImporting,
                             )
                         }
-                        preview.godotModelPath?.let { path ->
-                            Text("Godot: $path", style = MaterialTheme.typography.labelSmall)
-                        }
-                        ImportedHeroLookParser.parse(preview.avatarSummary)?.let { look ->
-                            HearthWelcomeCard(
-                                forgeName = preview.forgeName,
-                                heroLook = look,
-                                modifier = Modifier.padding(top = 12.dp),
-                            )
-                        }
-                        Button(
-                            onClick = { viewModel.importSelectedProfile() },
-                            enabled = !state.isImporting,
-                            modifier = Modifier.padding(top = 8.dp)
-                        ) {
-                            Text(if (state.isImporting) "Pulling…" else "Pull snapshot from Forge Profile")
-                        }
-                    }
-                    Button(onClick = { viewModel.refreshPreview() }, modifier = Modifier.padding(top = 8.dp)) {
-                        Text("Refresh")
+                        StudentSecondaryButton(
+                            text = StudentKidCopy.importRefresh(),
+                            onClick = viewModel::refreshPreview,
+                        )
                     }
                 }
             }
-        }
 
-        state.lastReward?.let { reward ->
-            item { Text(reward.story.narrative, color = MaterialTheme.colorScheme.primary) }
-        }
-
-        if (pastImports.isNotEmpty()) {
-            item { Text("Past Imports", style = MaterialTheme.typography.titleMedium) }
-            items(pastImports) { snapshot ->
-                Card(modifier = Modifier.fillMaxWidth()) {
-                    Column(modifier = Modifier.padding(12.dp)) {
-                        Text(snapshot.forgeName, style = MaterialTheme.typography.titleSmall)
-                        Text("Imported ${snapshot.importedAtEpochMillis}", style = MaterialTheme.typography.bodySmall)
+            state.lastReward?.let { reward ->
+                item {
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(20.dp),
+                    ) {
+                        Text(
+                            reward.story.narrative,
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.padding(18.dp),
+                        )
                     }
                 }
             }

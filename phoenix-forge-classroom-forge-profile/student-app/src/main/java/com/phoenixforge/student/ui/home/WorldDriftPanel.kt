@@ -1,16 +1,19 @@
 package com.phoenixforge.student.ui.home
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.phoenixforge.student.domain.model.WorldDriftState
 
@@ -35,9 +38,21 @@ fun WorldDriftPanel(drift: WorldDriftState?, modifier: Modifier = Modifier) {
 
 @Composable
 private fun DriftBar(label: String, value: Float) {
+    val fraction = value.coerceIn(0f, 1f)
     Text(label, style = MaterialTheme.typography.labelSmall)
-    LinearProgressIndicator(
-        progress = value.coerceIn(0f, 1f),
-        modifier = Modifier.fillMaxWidth()
-    )
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(8.dp)
+            .clip(RoundedCornerShape(4.dp))
+            .background(MaterialTheme.colorScheme.surfaceVariant),
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth(fraction)
+                .height(8.dp)
+                .clip(RoundedCornerShape(4.dp))
+                .background(MaterialTheme.colorScheme.primary),
+        )
+    }
 }

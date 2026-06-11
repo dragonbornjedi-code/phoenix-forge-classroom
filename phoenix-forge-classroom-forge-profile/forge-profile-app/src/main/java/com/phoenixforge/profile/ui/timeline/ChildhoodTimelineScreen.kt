@@ -35,7 +35,14 @@ fun TimelineEventCard(event: TimelineEvent) {
     Card(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(event.title, style = MaterialTheme.typography.titleLarge)
-            Text(event.type.name, style = MaterialTheme.typography.labelMedium)
+            Text(
+                when (event.type.name) {
+                    "SYNC_EVENT" -> "From quests & Forge World"
+                    else -> event.type.name.replace('_', ' ').lowercase()
+                        .replaceFirstChar { it.titlecase() }
+                },
+                style = MaterialTheme.typography.labelMedium,
+            )
             Spacer(modifier = Modifier.height(8.dp))
             Text("Happened on: ${event.timestamp}")
         }

@@ -1,0 +1,55 @@
+# Visual Language Bible — Daily Emotional Flag palette
+# Source: archive/phoenix-forge-old/1_EzrasQuest/apps-script/DailyFlagEngine.gs
+# Consumed by: daily_emotional_flag.schema.json, Forge World daily_flag_engine.gd
+
+schema_version: 1
+primary_domain_id: EMOTIONAL_REGULATION
+
+emotion_base_colors:
+  happy: "#FFA500"
+  joy: "#FFA500"
+  excited: "#FFD700"
+  peak: "#FFD700"
+  encouraged: "#32CD32"
+  calm: "#4169E1"
+  content: "#4169E1"
+  peaceful: "#4169E1"
+  neutral: "#808080"
+  okay: "#808080"
+  fine: "#808080"
+  tired: "#87CEEB"
+  sleepy: "#87CEEB"
+  low: "#87CEEB"
+  worried: "#9370DB"
+  anxious: "#9370DB"
+  nervous: "#9370DB"
+  sad: "#4682B4"
+  upset: "#4682B4"
+  frustrated: "#FF6347"
+  annoyed: "#FF6347"
+  angry: "#DC143C"
+  mad: "#DC143C"
+  distressed: "#DC143C"
+  overwhelmed: "#DA70D6"
+
+time_brightness:
+  morning: 0.4
+  afternoon: 0.0
+  night: -0.3
+
+performance_colors:
+  excellent: "#90EE90"
+  good: "#32CD32"
+  struggled: "#FFD700"
+  failed: "#DC143C"
+
+day_status_thresholds:
+  TOP_TIER: 95
+  PASS: 80
+  NEEDS_WORK: 60
+  STRUGGLING: 0
+
+bucket_hours:
+  morning: 9
+  afternoon: 14
+  night: 20

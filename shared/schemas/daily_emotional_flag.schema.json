@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phoenixforge.local/schemas/daily_emotional_flag.schema.json",
+  "title": "DailyEmotionalFlag",
+  "description": "Daily emotional flag rollup from timestamped check-ins. Algorithm ported from DailyFlagEngine.gs — not Google Sheets runtime.",
+  "type": "object",
+  "required": [
+    "date",
+    "emoji_flag",
+    "day_score",
+    "day_status"
+  ],
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Local calendar date (YYYY-MM-DD)."
+    },
+    "emoji_flag": {
+      "type": "string",
+      "description": "Morning → afternoon → night emoji stripe."
+    },
+    "morning_emotion": { "type": ["string", "null"] },
+    "afternoon_emotion": { "type": ["string", "null"] },
+    "night_emotion": { "type": ["string", "null"] },
+    "morning_intensity": {
+      "type": ["integer", "null"],
+      "minimum": 1,
+      "maximum": 10
+    },
+    "afternoon_intensity": {
+      "type": ["integer", "null"],
+      "minimum": 1,
+      "maximum": 10
+    },
+    "night_intensity": {
+      "type": ["integer", "null"],
+      "minimum": 1,
+      "maximum": 10
+    },
+    "positive_pct": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "neutral_pct": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "negative_pct": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "day_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "day_status": {
+      "type": "string",
+      "enum": ["TOP_TIER", "PASS", "NEEDS_WORK", "STRUGGLING"]
+    },
+    "notes": {
+      "type": "string",
+      "description": "AM/PM/Eve summary line."
+    },
+    "teacher_domain_id": {
+      "type": "string",
+      "const": "EMOTIONAL_REGULATION",
+      "description": "Primary domain for Childhood Compass sunlight."
+    },
+    "palette_ref": {
+      "type": "string",
+      "const": "shared/visual_language/emotion_palette.yaml"
+    },
+    "morning_color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+    "afternoon_color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+    "night_color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" }
+  },
+  "additionalProperties": false
+}

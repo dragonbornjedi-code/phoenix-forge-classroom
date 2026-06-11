@@ -21,26 +21,32 @@ interface ProfileDao {
     @Query("SELECT * FROM profiles LIMIT 1")
     fun getProfile(): Flow<ProfileEntity?>
 
+    @Query("SELECT * FROM profiles WHERE uid = :uid")
+    fun getProfileByUid(uid: String): Flow<ProfileEntity?>
+
+    @Query("SELECT * FROM profiles ORDER BY forgeName ASC")
+    fun listProfiles(): Flow<List<ProfileEntity>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProfile(profile: ProfileEntity)
 
-    @Query("SELECT * FROM avatars ORDER BY version DESC")
-    fun getAvatarHistory(): Flow<List<AvatarEntity>>
+    @Query("SELECT * FROM avatars WHERE profileUid = :profileUid ORDER BY version DESC")
+    fun getAvatarHistory(profileUid: String): Flow<List<AvatarEntity>>
 
-    @Query("SELECT * FROM avatars ORDER BY version DESC LIMIT 1")
-    fun getLatestAvatar(): Flow<AvatarEntity?>
+    @Query("SELECT * FROM avatars WHERE profileUid = :profileUid ORDER BY version DESC LIMIT 1")
+    fun getLatestAvatar(profileUid: String): Flow<AvatarEntity?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAvatar(avatar: AvatarEntity)
 
-    @Query("SELECT * FROM timeline_events ORDER BY timestamp DESC")
-    fun getTimelineEvents(): Flow<List<TimelineEventEntity>>
+    @Query("SELECT * FROM timeline_events WHERE profileUid = :profileUid ORDER BY timestamp DESC")
+    fun getTimelineEvents(profileUid: String): Flow<List<TimelineEventEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTimelineEvent(event: TimelineEventEntity)
 
-    @Query("SELECT * FROM memory_artifacts ORDER BY capturedAt DESC")
-    fun getMemoryArtifacts(): Flow<List<MemoryArtifactEntity>>
+    @Query("SELECT * FROM memory_artifacts WHERE profileUid = :profileUid ORDER BY capturedAt DESC")
+    fun getMemoryArtifacts(profileUid: String): Flow<List<MemoryArtifactEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMemoryArtifact(artifact: MemoryArtifactEntity)
@@ -60,20 +66,20 @@ interface ProfileDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTeacherMetadata(metadata: TeacherMetadataEntity)
 
-    @Query("SELECT * FROM about_me ORDER BY timestamp DESC")
-    fun getAboutMeEntries(): Flow<List<AboutMeEntryEntity>>
+    @Query("SELECT * FROM about_me WHERE profileUid = :profileUid ORDER BY timestamp DESC")
+    fun getAboutMeEntries(profileUid: String): Flow<List<AboutMeEntryEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAboutMeEntry(entry: AboutMeEntryEntity)
 
-    @Query("SELECT * FROM favorites ORDER BY timestamp DESC")
-    fun getFavoriteEntries(): Flow<List<FavoriteEntryEntity>>
+    @Query("SELECT * FROM favorites WHERE profileUid = :profileUid ORDER BY timestamp DESC")
+    fun getFavoriteEntries(profileUid: String): Flow<List<FavoriteEntryEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFavoriteEntry(entry: FavoriteEntryEntity)
 
-    @Query("SELECT * FROM dreams ORDER BY timestamp DESC")
-    fun getDreamEntries(): Flow<List<DreamEntryEntity>>
+    @Query("SELECT * FROM dreams WHERE profileUid = :profileUid ORDER BY timestamp DESC")
+    fun getDreamEntries(profileUid: String): Flow<List<DreamEntryEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDreamEntry(entry: DreamEntryEntity)

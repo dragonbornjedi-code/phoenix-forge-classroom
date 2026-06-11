@@ -1,0 +1,117 @@
+# ACTIVE agents for Classroom lane — routed slice only (not full catalog).
+schema_version: classroom_agent_manifest_v1
+updated: "2026-06-10"
+
+executive:
+  id: phoenix_forge_agency
+  soul: phoenix-forge-home/registry/phoenix_forge_agency_soul.yaml
+
+parent:
+  id: ao_classroom_bridge
+  team: childhood_os
+  division: education_android
+  note: Routes Kotlin/Compose/sync work — never answers alone if leaf matches
+
+pedagogy_parent:
+  id: co_sage_coordinator
+  registry: sovereign-deck/.../assistant_operations.json
+  leaves: [co_sage_quest_designer, co_sage_lesson_planner, co_sage_storyteller, co_sage_parent_coach]
+  classroom_leaf: sub_sage_advisor
+
+leaves:
+  sub_compose_architect:
+    work_types: [compose_ui]
+    skills: [frontend-design, cline-essence]
+    verify: [scripts/cline-essence-drift-check.sh]
+    owns: navigation graphs, screen plans, TeacherNavGraph, StudentNavHost
+  sub_compose_builder:
+    work_types: [compose_ui]
+    skills: [frontend-design, android-kotlin-development]
+    verify: [phoenix-forge-classroom-forge-profile/gradlew :student-app:assembleDebug]
+    owns: [DigitalHomeScreen.kt, HomeScreen.kt, ExpeditionBoardScreen.kt]
+  sub_kotlin_domain:
+    work_types: [kotlin_domain]
+    skills: [android-kotlin-core, android-kotlin-development]
+    verify: [phoenix-forge-classroom-forge-profile/gradlew test]
+    owns: ViewModels, repositories, domain engines
+  sub_sync_events:
+    work_types: [sync_events, cross_app_contract]
+    skills: [cline-essence, android-kotlin-core]
+    verify:
+      - phoenix-forge-classroom-forge-profile/gradlew :forge-profile-core:test
+      - phoenix-forge-classroom-forge-profile/gradlew :student-app:testDebugUnitTest
+    owns: [EventWriter.kt, ForgeEventModels.kt, PublicStateWriter.kt, EventIngester.kt]
+  sub_sage_advisor:
+    work_types: [sage_advisor]
+    skills: [frontend-design, sage-persona]
+    docs: [phoenix-forge-classroom-teacher-edition/docs/SAGE_PERSONA.md, SAGE_ADVISOR_SPEC.md]
+    verify: [phoenix-forge-classroom-forge-profile/gradlew :teacher-app:testDebugUnitTest]
+    owns: [SageAdvisorScreen.kt, SageChatService.kt, SageTileActions.kt]
+  sub_curriculum_manifest:
+    work_types: [curriculum, lesson_manifest]
+    skills: [cline-essence]
+    verify: [phoenix-forge-classroom-forge-profile/gradlew :teacher-app:testDebugUnitTest]
+    owns: [CurriculumRepository.kt, ManifestWriter.kt, CurriculumDomainScreen.kt]
+  sub_expedition_board:
+    work_types: [expedition]
+    skills: [frontend-design, cline-essence]
+    verify: [phoenix-forge-classroom-forge-profile/gradlew :teacher-app:assembleDebug]
+    owns: [ExpeditionBoardScreen.kt, StartDayBottomSheet.kt, StartDayExport.kt]
+  sub_forge_profile_core:
+    work_types: [forge_profile, profile_ingest]
+    skills: [android-kotlin-development]
+    verify: [phoenix-forge-classroom-forge-profile/gradlew :forge-profile-app:assembleDebug]
+    owns: [EventIngestCoordinator.kt, PublicStateEventProjector.kt, forge-profile-app]
+  sub_student_quests:
+    work_types: [student_quests, progression]
+    skills: [android-kotlin-development, frontend-design]
+    verify: [phoenix-forge-classroom-forge-profile/gradlew :student-app:assembleDebug]
+    owns: [QuestsViewModel.kt, ProgressionEngine.kt, QuestsScreen.kt]
+  sub_chariot_sessions:
+    work_types: [chariot]
+    skills: [cline-essence]
+    verify: [scripts/chariot-adb-helper.sh]
+    owns: [shared/chariot/, docs/chariot/]
+  sub_gradle_build:
+    work_types: [gradle_build]
+    skills: [android-gradle-build-logic]
+    verify: [registry/phoenix-forge-classroom.yaml verification_commands.build_all]
+    owns: [settings.gradle.kts, build.gradle.kts, gradle libs]
+  sub_verify_runner:
+    work_types: [verify_test]
+    skills: [cline-essence]
+    verify: [scripts/phoenix-forge-classroom-verify-all.sh]
+    owns: drift check, unit tests, smoke scripts
+
+validators:
+  - id: classroom_verify_all
+    terminal: true
+    script: scripts/phoenix-forge-classroom-verify-all.sh
+  - id: classroom_delegation_corpus
+    terminal: false
+    script: scripts/classroom-delegation-verify.py
+  - id: cline_essence_drift
+    terminal: false
+    script: scripts/cline-essence-drift-check.sh
+
+cross_repo_readonly:
+  world:
+    - phoenix-forge-world/docs/DIGITAL_HOME_SYNC_HANDOFF.md
+    - phoenix-forge-world/shared/schemas/public_state.schema.json
+  note: Never edit Godot/GDScript from Classroom lane unless Josh explicitly bridges.
+
+forbidden:
+  - phoenix-forge-classroom-teacher-edition/android/
+  - phoenix-forge-classroom-student-edition/android/
+  - Import adult profile into Student Edition
+  - PROTECTED writers on Student
+  - Gradle deps between APKs
+  - Edit phoenix-forge-world GDScript unless bridged
+
+live_status:
+  current_step: "0.68"
+  digital_home: "[TESTED]"
+  sage_long_press_menu: LIVE
+  event_writer_public: LIVE
+  event_ingest_1_04: LIVE
+  next_spine: "0.69 QuestEngine + Quests UI"

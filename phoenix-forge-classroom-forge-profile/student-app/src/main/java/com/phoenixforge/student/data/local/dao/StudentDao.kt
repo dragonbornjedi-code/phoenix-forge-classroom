@@ -5,10 +5,12 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.phoenixforge.student.data.local.entity.BehaviorSignalsEntity
+import com.phoenixforge.student.data.local.entity.DreamEntryEntity
 import com.phoenixforge.student.data.local.entity.HouseStateEntity
 import com.phoenixforge.student.data.local.entity.ImportedProfileSnapshotEntity
 import com.phoenixforge.student.data.local.entity.LifeEventEntity
 import com.phoenixforge.student.data.local.entity.MemoryArtifactEntity
+import com.phoenixforge.student.data.local.entity.MemoryEventDraftEntity
 import com.phoenixforge.student.data.local.entity.NpcEntity
 import com.phoenixforge.student.data.local.entity.QuestEntity
 import com.phoenixforge.student.data.local.entity.StoryFragmentEntity
@@ -42,6 +44,18 @@ interface StudentDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMemory(entity: MemoryArtifactEntity)
+
+    @Query("SELECT * FROM memory_event_drafts ORDER BY importedAtEpochMillis DESC")
+    fun observeMemoryEventDrafts(): Flow<List<MemoryEventDraftEntity>>
+
+    @Query("SELECT COUNT(*) FROM memory_event_drafts")
+    fun observeMemoryEventDraftCount(): Flow<Int>
+
+    @Query("SELECT eventId FROM memory_event_drafts")
+    suspend fun listMemoryEventDraftIds(): List<String>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertMemoryEventDraft(entity: MemoryEventDraftEntity): Long
 
     @Query("SELECT * FROM npc_states ORDER BY type ASC")
     fun observeNpcs(): Flow<List<NpcEntity>>
@@ -87,4 +101,10 @@ interface StudentDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsertBehaviorSignals(entity: BehaviorSignalsEntity)
+
+    @Query("SELECT * FROM dream_entries ORDER BY timestampEpochMillis DESC")
+    fun observeDreamEntries(): Flow<List<DreamEntryEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsertDreamEntry(entity: DreamEntryEntity)
 }

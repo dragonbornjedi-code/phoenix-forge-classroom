@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phoenixforge.local/schemas/chariot_session.schema.json",
+  "title": "ChariotSession",
+  "type": "object",
+  "required": [
+    "id", "title", "body_weather_flags", "welcome_voice_id", "welcome_clip_id",
+    "celebration_clip_id", "story", "activities"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "body_weather_flags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["sunny", "cloudy", "rainy", "stormy", "frozen", "rainbow"]
+      },
+      "minItems": 1
+    },
+    "duration_minutes": { "type": "integer" },
+    "total_xp": { "type": "integer" },
+    "welcome_voice_id": { "type": "string" },
+    "welcome_clip_id": { "type": "string" },
+    "welcome_category": { "type": "string" },
+    "celebration_clip_id": { "type": "string" },
+    "celebration_category": { "type": "string" },
+    "story": { "type": "string" },
+    "deep_objectives": {
+      "type": "object",
+      "properties": {
+        "executive_function": { "type": "string" },
+        "social_emotional": { "type": "string" },
+        "sensory": { "type": "string" },
+        "academic": { "type": "string" }
+      }
+    },
+    "scaffolding": { "type": "object", "additionalProperties": { "type": "string" } },
+    "parent_tips": { "type": "array", "items": { "type": "string" } },
+    "activities": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "https://phoenixforge.local/schemas/chariot_activity.schema.json" }
+    }
+  },
+  "additionalProperties": false
+}
