@@ -2,16 +2,17 @@
 
 **For:** Cursor window on `phoenix-forge-classroom`  
 **Operator:** Josh · wireless adb connected on Galaxy  
-**Policy:** No commits unless Josh asks. No Ezra reveal until **"Ezra reveal"**.
+**Policy:** No Ezra reveal until **"Ezra reveal"**.
 
 ---
 
 ## Read first (every session)
 
-1. `docs/PHOENIX_FORGE_MASTER_SPEC.md`
-2. `docs/HANDOFF_1_02.md`
-3. This file
-4. Cross-lane: `../phoenix-forge-world/docs/SESSION_HANDOFF_20260609.md`
+1. **`docs/STASH_AND_SESSION_HANDOFF_20260611.md`** — stash restore, no hardcoded UUIDs
+2. `docs/PRIMARY_DEVICE_AUTHORITY.md` · `docs/INBOX_ARCHITECTURE.md` · `docs/IDENTITY_CONTINUITY_AUDIT.md`
+3. `docs/PHOENIX_FORGE_MASTER_SPEC.md`
+4. `docs/HANDOFF_1_02.md`
+5. Cross-lane World stash: `../phoenix-forge-world` → `git stash list` → `world-polish-ezra-session-2026-06-10`
 
 ---
 
@@ -34,15 +35,21 @@ Teacher push + Student Today's Expedition. Path:
 | `DeviceProfilePolicy` | Adult phone (Teacher installed): create adult + child; child tablet: child only |
 | Student import | Child profile only — adult blocked |
 
-### Student EventWriter (P2) ✅ on disk
+### Cross-app sync spine (`:forge-sync-client`) ✅ on disk
 
-| File | Role |
-|------|------|
-| `EventWriter.kt`, `ForgeEventModels.kt`, `LogicalClockStore.kt` | Append `EVT_*.json` |
-| `EventWriterLogicTest.kt` | 5 tests pass |
-| Today's Expedition UI | Start mission / Mark complete |
+| Module / file | Role |
+|---------------|------|
+| `forge-sync-client/` | **Send-end plugin** — paths, `PublicSyncWriter`, `ForgeSyncClient`, messages |
+| `docs/PLUGIN_CONTRACT.md` | Single contract for all Forge Profile expansion apps |
+| Student `EventWriter.kt` | Events via `ForgeSyncClient.writeEvent` |
+| Student `MessageWriter.kt` | Steward replies via `ForgeSyncClient.writeMessage` |
+| Teacher `ManifestWriter.kt` + `MessageRelayCoordinator.kt` | Manifests + steward→student messages |
+| `ForgeSyncModule.kt` (student + teacher) | Hilt wiring per APK |
 
-Events: `QUEST_STARTED`, `QUEST_COMPLETED` · scope PUBLIC · path spec-aligned.
+**Deprecated removed from app modules:** duplicate `PublicSyncWriter`, `ManifestSyncPaths`, `LogicalClockStore`, `ForgeEventModels`.
+
+Events: `QUEST_STARTED`, `QUEST_COMPLETED` · scope PUBLIC · path spec-aligned.  
+Messages: optional `TO_STUDENT` / `TO_STEWARD` under `{uid}/messages/MSG_*.json`.
 
 ---
 
@@ -156,3 +163,21 @@ Unit tests:
 - **Goal:** Quest status pills and Today tab consolidation
 - **Verify:** FAIL
 - Mission status chips on cards; Today route aliases to Quests daily category
+
+---
+## Autonomous run 2026-06-11T02:48:56-07:00
+- **Goal:** stabilize QuestEngine 0.69
+- **Verify:** PASS
+- QuestEngine start/complete lifecycle, SIDE-only strip filter, refresh without full-screen flash, QuestEngineLogicTest, ChariotExport asset load fix
+
+---
+## Autonomous run 2026-06-11T07:28:13-07:00
+- **Goal:** forge profile syncthing plugins account connection ezra
+- **Verify:** PASS
+- Fixed student compile; child dashboard Profile ID copy; forge-sync-client plugin wired; APKs on Ezra tablet
+
+---
+## Autonomous run 2026-06-11T11:12:49-07:00
+- **Goal:** unify cross-app forge-sync spine
+- **Verify:** PASS
+- Consolidated send-end sync into :forge-sync-client; Teacher+Student messaging; removed duplicate app-module writers; PLUGIN_CONTRACT + handoff updated; verify-all PASS
